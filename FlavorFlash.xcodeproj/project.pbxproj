@@ -319,6 +319,8 @@
 				DEVELOPMENT_TEAM = Y73ZJF4SCP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow browsing photo in Flavor Flash";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -348,6 +350,8 @@
 				DEVELOPMENT_TEAM = Y73ZJF4SCP;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow browsing photo in Flavor Flash";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
