@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */; };
 		E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */; };
 		E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992E2B034AB4005C8021 /* ContentView.swift */; };
 		E7A399312B034AB4005C8021 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399302B034AB4005C8021 /* Item.swift */; };
@@ -21,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28055511D6E283B5661F16BB /* Pods-FlavorFlash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.release.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.release.xcconfig"; sourceTree = "<group>"; };
+		3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.debug.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.debug.xcconfig"; sourceTree = "<group>"; };
+		BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlavorFlash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7A399292B034AB4005C8021 /* FlavorFlash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlavorFlash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashApp.swift; sourceTree = "<group>"; };
 		E7A3992E2B034AB4005C8021 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -40,17 +44,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83261AFC1AF957C830E3524E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */,
+				28055511D6E283B5661F16BB /* Pods-FlavorFlash.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		875771145004DB8690077DDD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E7A399202B034AB4005C8021 = {
 			isa = PBXGroup;
 			children = (
 				E7A3992B2B034AB4005C8021 /* FlavorFlash */,
 				E7A3992A2B034AB4005C8021 /* Products */,
+				83261AFC1AF957C830E3524E /* Pods */,
+				875771145004DB8690077DDD /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,6 +136,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7A399392B034AB6005C8021 /* Build configuration list for PBXNativeTarget "FlavorFlash" */;
 			buildPhases = (
+				4B2A3AF903D603869409845C /* [CP] Check Pods Manifest.lock */,
 				E7A399252B034AB4005C8021 /* Sources */,
 				E7A399262B034AB4005C8021 /* Frameworks */,
 				E7A399272B034AB4005C8021 /* Resources */,
@@ -168,6 +194,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4B2A3AF903D603869409845C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FlavorFlash-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E7A399252B034AB4005C8021 /* Sources */ = {
@@ -310,6 +361,7 @@
 		};
 		E7A3993A2B034AB6005C8021 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -342,6 +394,7 @@
 		};
 		E7A3993B2B034AB6005C8021 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28055511D6E283B5661F16BB /* Pods-FlavorFlash.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
