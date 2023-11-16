@@ -12,7 +12,8 @@ import CoreML
 import Vision
 
 struct FFAnalyzeResult: View {
-    @Binding var capturedImage: AVCapturePhoto?
+    @Binding var capturedFrontCamImage: AVCapturePhoto?
+    @Binding var capturedBackCamImage: AVCapturePhoto?
     @State private var result: String = ""
     @State private var classificationRequest: VNCoreMLRequest?
 
@@ -27,21 +28,35 @@ struct FFAnalyzeResult: View {
 
     var body: some View {
         GeometryReader { geometry in
-            if let capturedImage {
+            if let capturedFrontCamImage, let capturedBackCamImage {
                 VStack(alignment: .center) {
+                    ZStack {
+                        Image(
+                            capturedFrontCamImage.cgImageRepresentation()!,
+                            scale: 1,
+                            orientation: .right,
+                            label: Text("large")
+                        )
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width)
+                        .aspectRatio(contentMode: .fill)
+                    }
+                    .overlay(alignment: .topLeading) {
+                        Image(
+                            capturedBackCamImage.cgImageRepresentation()!,
+                            scale: 1,
+                            orientation: .right,
+                            label: Text("small")
+                        )
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 150)
+                        .border(Color.black, width: 4)
+                    }
                     Text(result)
                         .font(.subheadline)
                         .foregroundStyle(.blue)
-
-                    Image(
-                        capturedImage.cgImageRepresentation()!,
-                        scale: 1,
-                        orientation: .right,
-                        label: Text("cool")
-                    )
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
                 }
                 .overlay(alignment: .bottom) {
                     Button {
@@ -97,7 +112,7 @@ struct FFAnalyzeResult: View {
         }
 
         guard
-            let pixelBuffer = capturedImage?.pixelBuffer
+            let pixelBuffer = capturedFrontCamImage?.pixelBuffer
         else {
             return
         }

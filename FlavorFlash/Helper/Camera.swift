@@ -12,49 +12,52 @@ import os.log
 
 class Camera: NSObject {
     // A capture Session must have at least one input & one output
-    // single camera session
-    private let captureSession = AVCaptureSession()
+    // multiple camera session
+    private let multiCamSession = AVCaptureMultiCamSession()
     private let captureSessionQueue = DispatchQueue(label: "capture session queue")
+    private let dataOutputQueue = DispatchQueue(label: "data output queue")
+    // Inputs
     private var deviceInput: AVCaptureDeviceInput?
-    private var photoOutput: AVCapturePhotoOutput?
+    private var backCameraDeviceInput: AVCaptureDeviceInput?
+    private var frontCameraDeviceInput: AVCaptureDeviceInput?
+    // Outputs
+    private var backCamPhotoOutput: AVCapturePhotoOutput?
+    private var frontCamPhotoOutput: AVCapturePhotoOutput?
+    private let backCameraVideoDataOutput = AVCaptureVideoDataOutput()
+    private let frontCameraVideoDataOutput = AVCaptureVideoDataOutput()
     private var videoOutput: AVCaptureVideoDataOutput?
 
     // MARK: - Capturing Session status
-    var isPreviewPaused = false
+    var isFrontCamPreviewPaused = false
+    var isBackCamPreviewPaused = false
 
-    private var isCaptureSessionConfigured = false
+    private var isMultiCaptureSessionConfigured = false
 
     var isRunning: Bool {
-        captureSession.isRunning
-    }
-
-    // capture devices setup
-    private var allCaptureDevices: [AVCaptureDevice] {
-        AVCaptureDevice.DiscoverySession(
-            deviceTypes: [.builtInDualCamera, .builtInWideAngleCamera, .builtInDualCamera, .builtInDualWideCamera],
-            mediaType: .video,
-            position: .front)
-        .devices
-    }
-
-    private var captureDevice: AVCaptureDevice? {
-        didSet {
-            guard let captureDevice = captureDevice else { return }
-            logger.debug("Using capture device: \(captureDevice.localizedName)")
-            captureSessionQueue.async {
-                self.updateSessionForCaptureDevice(captureDevice)
-            }
-        }
+        multiCamSession.isRunning
     }
 
     // MARK: - Preview Stream setup
-    private var addToPreviewStream: ((CIImage) -> Void)?
-    var addToCapturedImage: ((AVCapturePhoto) -> Void)?
+    private var addToFrontCamPreviewStream: ((CIImage) -> Void)?
+    private var addToBackCamPreviewStream: ((CIImage) -> Void)?
 
-    lazy var previewStream: AsyncStream<CIImage> = {
+    var frontCamCapturedImage: ((AVCapturePhoto) -> Void)?
+    var backCamCapturedImage: ((AVCapturePhoto) -> Void)?
+
+    lazy var frontCamPreviewStream: AsyncStream<CIImage> = {
         AsyncStream { continuation in
-            addToPreviewStream = { ciImage in
-                if !self.isPreviewPaused {
+            addToFrontCamPreviewStream = { ciImage in
+                if !self.isFrontCamPreviewPaused {
+                    continuation.yield(ciImage)
+                }
+            }
+        }
+    }()
+
+    lazy var backCamPreviewStream: AsyncStream<CIImage> = {
+        AsyncStream { continuation in
+            addToBackCamPreviewStream = { ciImage in
+                if !self.isBackCamPreviewPaused {
                     continuation.yield(ciImage)
                 }
             }
@@ -64,12 +67,6 @@ class Camera: NSObject {
     // MARK: - Initializers
     override init() {
         super.init()
-        initialize()
-    }
-
-    private func initialize() {
-        captureDevice = allCaptureDevices.first ?? AVCaptureDevice.default(for: .video)
-        logger.info("capture device: \(self.captureDevice)")
     }
 
     // MARK: - Camera Actions
@@ -81,10 +78,10 @@ class Camera: NSObject {
         }
 
         // if capture session is configured, just start the session
-        if isCaptureSessionConfigured {
-            if !captureSession.isRunning {
+        if isMultiCaptureSessionConfigured {
+            if !multiCamSession.isRunning {
                 captureSessionQueue.async {
-                    self.captureSession.startRunning()
+                    self.multiCamSession.startRunning()
                 }
             }
             return
@@ -94,20 +91,20 @@ class Camera: NSObject {
         captureSessionQueue.async {
             self.configureCaptureSession { success in
                 guard success else { return }
-                self.captureSession.startRunning()
+                self.multiCamSession.startRunning()
             }
         }
     }
 
     func takePhoto() {
-        guard let photoOutput = self.photoOutput else { return }
+        guard 
+            let backCamPhotoOutput = self.backCamPhotoOutput,
+            let frontCamPhotoOutput = self.frontCamPhotoOutput
+        else { return }
 
         captureSessionQueue.async {
             var photoSettings = AVCapturePhotoSettings()
 
-//            if photoOutput.availablePhotoCodecTypes.contains(.hevc) {
-//                photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
-//            }
             let availableFormat = kCVPixelFormatType_32BGRA
             photoSettings = AVCapturePhotoSettings(format: [kCVPixelBufferPixelFormatTypeKey as String: availableFormat])
 
@@ -121,93 +118,214 @@ class Camera: NSObject {
             }
             photoSettings.photoQualityPrioritization = .balanced
 
-            if let photoOutputVideoConnection = photoOutput.connection(with: .video) {
+            if let photoOutputVideoConnection = backCamPhotoOutput.connection(with: .video) {
+                if photoOutputVideoConnection.isVideoOrientationSupported,
+                   let videoOrientation = self.videoOrientationFor(self.deviceOrientation) {
+                    photoOutputVideoConnection.videoOrientation = videoOrientation
+                }
+            }
+            if let photoOutputVideoConnection = frontCamPhotoOutput.connection(with: .video) {
                 if photoOutputVideoConnection.isVideoOrientationSupported,
                    let videoOrientation = self.videoOrientationFor(self.deviceOrientation) {
                     photoOutputVideoConnection.videoOrientation = videoOrientation
                 }
             }
 
-            photoOutput.capturePhoto(with: photoSettings, delegate: self)
+            frontCamPhotoOutput.capturePhoto(with: photoSettings, delegate: self)
+            backCamPhotoOutput.capturePhoto(with: photoSettings, delegate: self)
         }
     }
 
     // MARK: - Capture Session configs
     private func configureCaptureSession(completionHandler: (_ success: Bool) -> Void) {
 
+        guard AVCaptureMultiCamSession.isMultiCamSupported else {
+            logger.error("MultiCam not supported")
+            return
+        }
+
         var success = false
 
-        self.captureSession.beginConfiguration()
+        self.multiCamSession.beginConfiguration()
 
         defer {
-            self.captureSession.commitConfiguration()
+            self.multiCamSession.commitConfiguration()
             completionHandler(success)
         }
 
-        guard
-            let captureDevice = captureDevice,
-            let deviceInput = try? AVCaptureDeviceInput(device: captureDevice)
+        guard configureBackCamera() else {
+            logger.error("Cannot configure back camera")
+            return
+        }
+        guard configureFrontCamera() else {
+            logger.error("Cannot configure front camera")
+            return
+        }
+
+        let BCPhotoOutput = AVCapturePhotoOutput()
+        let FCPhotoOutput = AVCapturePhotoOutput()
+
+        guard 
+            multiCamSession.canAddOutput(FCPhotoOutput),
+            multiCamSession.canAddOutput(BCPhotoOutput)
         else {
-            logger.error("Failed to obtain video input")
-            return
-        }
-
-        let photoOutput = AVCapturePhotoOutput()
-
-        // camera resolution config
-        captureSession.sessionPreset = .photo
-
-        let videoOutput = AVCaptureVideoDataOutput()
-        videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "VideoDataOutputQueue"))
-
-        guard captureSession.canAddInput(deviceInput) else {
-            logger.error("Unable to add device input to capture session.")
-            return
-        }
-        guard captureSession.canAddOutput(photoOutput) else {
             logger.error("Unable to add photo output to capture session.")
             return
         }
 
-        guard captureSession.canAddOutput(videoOutput) else {
-            logger.error("Unable to add video output to capture session.")
-            return
-        }
+        multiCamSession.addOutput(FCPhotoOutput)
+        multiCamSession.addOutput(BCPhotoOutput)
 
-        captureSession.addInput(deviceInput)
-        captureSession.addOutput(photoOutput)
-        captureSession.addOutput(videoOutput)
+        self.backCamPhotoOutput = BCPhotoOutput
+        self.frontCamPhotoOutput = FCPhotoOutput
 
-        self.deviceInput = deviceInput
-        self.photoOutput = photoOutput
-
-        photoOutput.isHighResolutionCaptureEnabled = true
-        photoOutput.maxPhotoQualityPrioritization = .quality
+        FCPhotoOutput.isHighResolutionCaptureEnabled = true
+        FCPhotoOutput.maxPhotoQualityPrioritization = .quality
+        BCPhotoOutput.isHighResolutionCaptureEnabled = true
+        BCPhotoOutput.maxPhotoQualityPrioritization = .quality
 
         // capture session configured
-        isCaptureSessionConfigured = true
+        isMultiCaptureSessionConfigured = true
 
         success = true
     }
 
-    private func updateSessionForCaptureDevice(_ captureDevice: AVCaptureDevice) {
-        guard isCaptureSessionConfigured else { return }
-
-        captureSession.beginConfiguration()
-        defer { captureSession.commitConfiguration() }
-
-        for input in captureSession.inputs {
-            if let deviceInput = input as? AVCaptureDeviceInput {
-                captureSession.removeInput(deviceInput)
-            }
+    // MARK: - Device input setup
+    private func configureBackCamera() -> Bool {
+        multiCamSession.beginConfiguration()
+        defer {
+            multiCamSession.commitConfiguration()
         }
 
-        if let deviceInput = deviceInputFor(device: captureDevice) {
-            if !captureSession.inputs.contains(deviceInput),
-               captureSession.canAddInput(deviceInput) {
-                captureSession.addInput(deviceInput)
-            }
+        guard
+            let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back)
+        else {
+            logger.error("Cannot find the back camera")
+            return false
         }
+
+        do {
+            backCameraDeviceInput = try AVCaptureDeviceInput(device: backCamera)
+
+            guard
+                let backCameraDeviceInput = backCameraDeviceInput,
+                multiCamSession.canAddInput(backCameraDeviceInput)
+            else {
+                logger.error("Cannot add back camera device input")
+                return false
+            }
+
+            multiCamSession.addInput(backCameraDeviceInput)
+
+        } catch {
+            logger.warning("Cannot create back camera device input")
+            return false
+        }
+
+        guard
+            let backCameraDeviceInput = backCameraDeviceInput,
+            let backCameraVideoPort = backCameraDeviceInput.ports(
+                for: .video,
+                sourceDeviceType: backCamera.deviceType,
+                sourceDevicePosition: backCamera.position
+            ).first else {
+            logger.error("Could not find the back camera device input's video port")
+            return false
+        }
+
+        guard multiCamSession.canAddOutput(backCameraVideoDataOutput) else {
+            logger.error("Cannot add back camera video data output")
+            return false
+        }
+
+        multiCamSession.addOutput(backCameraVideoDataOutput)
+//        // Check if CVPixelFormat Lossy or Lossless Compression is supported
+//
+//        if backCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossy_32BGRA) {
+//            // Set the Lossy format
+//            print("Selecting lossy pixel format")
+//            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossy_32BGRA)]
+//        } else if backCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossless_32BGRA) {
+//            // Set the Lossless format
+//            print("Selecting a lossless pixel format")
+//            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossless_32BGRA)]
+//        } else {
+//            // Set to the fallback format
+//            print("Selecting a 32BGRA pixel format")
+//            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+//        }
+
+        backCameraVideoDataOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
+
+        return true
+    }
+
+    private func configureFrontCamera() -> Bool {
+        multiCamSession.beginConfiguration()
+        defer {
+            multiCamSession.commitConfiguration()
+        }
+
+        // Find front camera
+        guard
+            let frontCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
+        else {
+            logger.error("Cannot find the front camera")
+            return false
+        }
+
+        do {
+            frontCameraDeviceInput = try AVCaptureDeviceInput(device: frontCamera)
+
+            guard
+                let frontCameraDeviceInput = frontCameraDeviceInput,
+                multiCamSession.canAddInput(frontCameraDeviceInput)
+            else {
+                logger.error("Cannot add front camera device input")
+                return false
+            }
+
+            multiCamSession.addInput(frontCameraDeviceInput)
+        } catch {
+            logger.error("Cannot create front camera device input")
+            return false
+        }
+
+        // Find front camera device input's video port
+        guard 
+            let frontCameraDeviceInput = frontCameraDeviceInput,
+            let frontCameraVideoPort = frontCameraDeviceInput.ports(
+                for: .video, 
+                sourceDeviceType: frontCamera.deviceType,
+                sourceDevicePosition: frontCamera.position
+            ).first
+        else {
+            logger.error("Could not find the front camera device input's video port")
+            return false
+        }
+
+        guard multiCamSession.canAddOutput(frontCameraVideoDataOutput) else {
+            print("Could not add the front camera video data output")
+            return false
+        }
+
+        multiCamSession.addOutput(frontCameraVideoDataOutput)
+//        // Check if CVPixelFormat Lossy or Lossless Compression is supported
+//
+//        if frontCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossy_32BGRA) {
+//            // Set the Lossy format
+//            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossy_32BGRA)]
+//        } else if frontCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossless_32BGRA) {
+//            // Set the Lossless format
+//            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossless_32BGRA)]
+//        } else {
+//            // Set to the fallback format
+//            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+//        }
+
+        frontCameraVideoDataOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
+
+        return true
     }
 
     private func deviceInputFor(device: AVCaptureDevice?) -> AVCaptureDeviceInput? {
@@ -272,7 +390,11 @@ extension Camera: AVCapturePhotoCaptureDelegate {
             return
         }
 
-        addToCapturedImage?(photo)
+        if output == backCamPhotoOutput {
+            backCamCapturedImage?(photo)
+        } else {
+            frontCamCapturedImage?(photo)
+        }
     }
 }
 
@@ -289,8 +411,12 @@ extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate {
            let videoOrientation = videoOrientationFor(deviceOrientation) {
             connection.videoOrientation = videoOrientation
         }
-
-        addToPreviewStream?(CIImage(cvPixelBuffer: pixelBuffer))
+        guard let videoDataOutput = output as? AVCaptureVideoDataOutput else { return }
+        if videoDataOutput == backCameraVideoDataOutput {
+            addToBackCamPreviewStream?(CIImage(cvPixelBuffer: pixelBuffer))
+        } else {
+            addToFrontCamPreviewStream?(CIImage(cvPixelBuffer: pixelBuffer))
+        }
     }
 }
 

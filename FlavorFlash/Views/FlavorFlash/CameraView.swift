@@ -16,18 +16,24 @@ struct CameraView: View {
     var body: some View {
         NavigationStack {
             GeometryReader { geometry in
-                ViewfinderView(image: $model.viewfinderImage)
-                    .overlay(alignment: .top) {
-                        Color.black
-                            .opacity(0.75)
-                            .frame(height: geometry.size.height * Self.barHeightFactor)
-                    }
+                ViewfinderView(
+                    backCamImage: $model.viewfinderBackCamImage,
+                    frontCamImage: $model.viewfinderFrontCamImage
+                )
+//                    .overlay(alignment: .top) {
+//                        Color.black
+//                            .opacity(0.75)
+//                            .frame(height: geometry.size.height * Self.barHeightFactor)
+//                    }
                     .overlay(alignment: .bottom) {
                         Button {
 
                         } label: {
                             NavigationLink {
-                                FFAnalyzeResult(capturedImage: $model.capturedImage)
+                                FFAnalyzeResult(
+                                    capturedFrontCamImage: $model.capturedFrontCamImage,
+                                    capturedBackCamImage: $model.capturedBackCamImage
+                                )
                                     .task {
                                         model.camera.takePhoto()
                                     }
@@ -49,7 +55,7 @@ struct CameraView: View {
                     }
                     .overlay(alignment: .topTrailing, content: {
                         Button {
-                            model.capturedImage = nil
+                            model.capturedBackCamImage = nil
                         } label: {
                             Circle()
                                 .strokeBorder(.white, lineWidth: 5)

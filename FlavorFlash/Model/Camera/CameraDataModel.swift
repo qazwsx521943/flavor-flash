@@ -12,25 +12,45 @@ import os.log
 final class CameraDataModel: ObservableObject {
     let camera = Camera()
 
-    @Published var viewfinderImage: Image?
-    @Published var capturedImage: AVCapturePhoto?
+    @Published var viewfinderBackCamImage: Image?
+    @Published var viewfinderFrontCamImage: Image?
+    @Published var capturedBackCamImage: AVCapturePhoto?
+    @Published var capturedFrontCamImage: AVCapturePhoto?
 
     init() {
-        camera.addToCapturedImage = { capturedImage in
-            self.capturedImage = capturedImage
+        camera.frontCamCapturedImage = { capturedImage in
+            self.capturedFrontCamImage = capturedImage
+        }
+
+        camera.backCamCapturedImage = { capturedImage in
+            self.capturedBackCamImage = capturedImage
+        }
+
+        Task {
+            await handleBackCameraPreviews()
         }
         Task {
-            await handleCameraPreviews()
+            await handleFrontCameraPreviews()
         }
     }
 
     // handle camera previews
-    func handleCameraPreviews() async {
-        let imageStream = camera.previewStream.map { $0.image }
+    func handleBackCameraPreviews() async {
+        let backCamImageStream = camera.backCamPreviewStream.map { $0.image }
 
-        for await image in imageStream {
+        for await image in backCamImageStream {
             Task { @MainActor in
-                viewfinderImage = image
+                viewfinderBackCamImage = image
+            }
+        }
+    }
+
+    func handleFrontCameraPreviews() async {
+        let frontCamImageStream = camera.frontCamPreviewStream.map { $0.image }
+
+        for await image in frontCamImageStream {
+            Task { @MainActor in
+                viewfinderFrontCamImage = image
             }
         }
     }

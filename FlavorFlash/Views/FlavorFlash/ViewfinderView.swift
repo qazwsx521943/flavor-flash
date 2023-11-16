@@ -8,20 +8,31 @@
 import SwiftUI
 
 struct ViewfinderView: View {
-    @Binding var image: Image?
+    @Binding var backCamImage: Image?
+    @Binding var frontCamImage: Image?
 
     var body: some View {
         GeometryReader { geometry in
-            if let image {
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+            if let backCamImage, let frontCamImage {
+                ZStack {
+                    backCamImage
+                        .resizable()
+                        .scaledToFill()
+                }
+                .overlay(alignment: .topLeading, content: {
+                    frontCamImage
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 150, height: 200)
+                })
+                .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
     }
 }
 
 #Preview {
-    ViewfinderView(image: .constant(Image(systemName: "pencil")))
+    ViewfinderView(
+        backCamImage: .constant(Image(systemName: "pencil")), 
+        frontCamImage: .constant(Image(systemName: "pencil")))
 }
