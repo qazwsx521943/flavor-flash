@@ -18,13 +18,13 @@ struct ViewfinderView: View {
                 Image(
                     capturedImage.cgImageRepresentation()!,
                     scale: 1,
+                    orientation: .right,
                     label: Text("cool")
                 )
                 .resizable()
-                .scaledToFill()
+                .scaledToFit()
                 .frame(width: geometry.size.width, height: geometry.size.height)
-            }
-            else if let image {
+            } else if let image {
                 image
                     .resizable()
                     .scaledToFill()

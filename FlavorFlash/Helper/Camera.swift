@@ -251,6 +251,7 @@ class Camera: NSObject {
     }
 
     private func videoOrientationFor(_ deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation? {
+        logger.info("video orientation : \(String(describing: deviceOrientation))")
         switch deviceOrientation {
         case .portrait: return AVCaptureVideoOrientation.portrait
         case .portraitUpsideDown: return AVCaptureVideoOrientation.portraitUpsideDown
