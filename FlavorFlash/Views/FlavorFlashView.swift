@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FlavorFlashView: View {
     var body: some View {
-        Text("Flavor Flash")
+        CameraView()
     }
 }
 

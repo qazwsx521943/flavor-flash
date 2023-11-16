@@ -30,36 +30,60 @@ struct FFTabBar: View {
                     Button {
                         selectedTab = item.rawValue
                     } label: {
-                        customTabItem(imageName: item.icon, title: item.title, isActive: (selectedTab == item.rawValue))
+                        if item == .flavorFlash {
+                            centerTabItem(imageName: item.icon, title: item.title, isActive: (selectedTab == item.rawValue))
+                        } else {
+                            normalTabItem(imageName: item.icon, title: item.title, isActive: (selectedTab == item.rawValue))
+                        }
                     }
                 }
             }
-            .padding(6)
+            .padding(20)
         }
-        .frame(height: 70)
-        .background(.gray.opacity(0.2))
-        .cornerRadius(35)
+        .frame(height: 60)
+        .background(.black.opacity(0.2))
+        .cornerRadius(40)
         .padding(.horizontal, 26)
     }
 }
 
 extension FFTabBar {
-    func customTabItem(imageName: String, title: String, isActive: Bool) -> some View {
-        HStack(spacing: 10){
+    func centerTabItem(imageName: String, title: String, isActive: Bool) -> some View {
+        HStack(spacing: 10) {
             Spacer()
-            Image(imageName)
-                .resizable()
-//                .renderingMode(.template)
-                .foregroundColor(isActive ? nil : .gray)
-                .frame(width: 80, height: 80)
+
+            ZStack {
+                Image(imageName)
+                    .resizable()
+                    .frame(width: 80, height: 80)
+                Circle()
+                    .strokeBorder(.white, lineWidth: 5)
+                    .frame(width: 80, height: 80)
+            }
+
             Spacer()
         }
-        .frame(width: isActive ? .infinity : 60, height: 60)
+        .frame(width: 80, height: 80)
+        .background(isActive ? .purple.opacity(0.4) : .clear)
+        .cornerRadius(40)
+    }
+
+    func normalTabItem(imageName: String, title: String, isActive: Bool) -> some View {
+        HStack(spacing: 10) {
+            Spacer()
+
+            Image(imageName)
+                .resizable()
+                .foregroundColor(isActive ? nil : .gray)
+                .frame(width: 60, height: 60)
+
+            Spacer()
+        }
+        .frame(width: 60, height: 60)
         .background(isActive ? .purple.opacity(0.4) : .clear)
         .cornerRadius(30)
     }
 }
-
 
 #Preview {
     FFTabBar()
