@@ -31,7 +31,7 @@ class Camera: NSObject {
     // capture devices setup
     private var allCaptureDevices: [AVCaptureDevice] {
         AVCaptureDevice.DiscoverySession(
-            deviceTypes: [.builtInWideAngleCamera, .builtInDualCamera, .builtInDualWideCamera],
+            deviceTypes: [.builtInDualCamera, .builtInWideAngleCamera, .builtInDualCamera, .builtInDualWideCamera],
             mediaType: .video,
             position: .front)
         .devices
@@ -105,9 +105,11 @@ class Camera: NSObject {
         captureSessionQueue.async {
             var photoSettings = AVCapturePhotoSettings()
 
-            if photoOutput.availablePhotoCodecTypes.contains(.hevc) {
-                photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
-            }
+//            if photoOutput.availablePhotoCodecTypes.contains(.hevc) {
+//                photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
+//            }
+            let availableFormat = kCVPixelFormatType_32BGRA
+            photoSettings = AVCapturePhotoSettings(format: [kCVPixelBufferPixelFormatTypeKey as String: availableFormat])
 
             let isFlashAvailable = self.deviceInput?.device.isFlashAvailable ?? false
             photoSettings.flashMode = isFlashAvailable ? .auto : .off
@@ -153,7 +155,7 @@ class Camera: NSObject {
         let photoOutput = AVCapturePhotoOutput()
 
         // camera resolution config
-        captureSession.sessionPreset = AVCaptureSession.Preset.photo
+        captureSession.sessionPreset = .photo
 
         let videoOutput = AVCaptureVideoDataOutput()
         videoOutput.setSampleBufferDelegate(self, queue: DispatchQueue(label: "VideoDataOutputQueue"))
@@ -246,12 +248,10 @@ class Camera: NSObject {
         if orientation == UIDeviceOrientation.unknown {
             orientation = UIScreen.main.orientation
         }
-        logger.info("device orientation : \(String(describing: orientation))")
         return orientation
     }
 
     private func videoOrientationFor(_ deviceOrientation: UIDeviceOrientation) -> AVCaptureVideoOrientation? {
-        logger.info("video orientation : \(String(describing: deviceOrientation))")
         switch deviceOrientation {
         case .portrait: return AVCaptureVideoOrientation.portrait
         case .portraitUpsideDown: return AVCaptureVideoOrientation.portraitUpsideDown

@@ -21,6 +21,7 @@
 		E7A399472B034E30005C8021 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399462B034E30005C8021 /* CommunityView.swift */; };
 		E7A399492B0359B7005C8021 /* MessageBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399482B0359B7005C8021 /* MessageBubble.swift */; };
 		E7D856582B05F6F400C5CB92 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E7D856572B05F6F400C5CB92 /* MobileNetV2.mlmodel */; };
+		E7FD9B8A2B05BAAF002D0ADF /* FFAnalyzeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */; };
 		E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */; };
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,7 @@
 		E7A399462B034E30005C8021 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		E7A399482B0359B7005C8021 /* MessageBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBubble.swift; sourceTree = "<group>"; };
 		E7D856572B05F6F400C5CB92 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
+		E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFAnalyzeResult.swift; sourceTree = "<group>"; };
 		E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		E7FFC24C2B037A8E00F7B171 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,6 +162,7 @@
 			children = (
 				E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */,
 				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
+				E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */,
 			);
 			path = FlavorFlash;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
 				E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */,
+				E7FD9B8A2B05BAAF002D0ADF /* FFAnalyzeResult.swift in Sources */,
 				E715D9B32B03C52A00B6478D /* Camera.swift in Sources */,
 				E7A399472B034E30005C8021 /* CommunityView.swift in Sources */,
 				E7A399412B034B46005C8021 /* FFTabConfig.swift in Sources */,
