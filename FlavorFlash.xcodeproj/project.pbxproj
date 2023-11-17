@@ -17,6 +17,10 @@
 		E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8EB2B074B580003462C /* RestaurantCard.swift */; };
 		E70AF8EE2B074B8F0003462C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8ED2B074B8F0003462C /* Restaurant.swift */; };
 		E70AF8F02B0750D50003462C /* MKMapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8EF2B0750D50003462C /* MKMapViewCoordinator.swift */; };
+		E70AF8F32B075E260003462C /* DEBUG-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AF8F22B075E260003462C /* DEBUG-Keys.plist */; };
+		E70AF8F52B075E3F0003462C /* PROD-Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AF8F42B075E3F0003462C /* PROD-Keys.plist */; };
+		E70AF8F72B0760C70003462C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E70AF8F62B0760C70003462C /* GoogleService-Info.plist */; };
+		E70AF8F92B0763480003462C /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8F82B0763480003462C /* ENV.swift */; };
 		E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */; };
 		E715D9B32B03C52A00B6478D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9B22B03C52A00B6478D /* Camera.swift */; };
 		E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */; };
@@ -46,6 +50,10 @@
 		E70AF8EB2B074B580003462C /* RestaurantCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCard.swift; sourceTree = "<group>"; };
 		E70AF8ED2B074B8F0003462C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		E70AF8EF2B0750D50003462C /* MKMapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewCoordinator.swift; sourceTree = "<group>"; };
+		E70AF8F22B075E260003462C /* DEBUG-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DEBUG-Keys.plist"; sourceTree = "<group>"; };
+		E70AF8F42B075E3F0003462C /* PROD-Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PROD-Keys.plist"; sourceTree = "<group>"; };
+		E70AF8F62B0760C70003462C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E70AF8F82B0763480003462C /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
 		E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataModel.swift; sourceTree = "<group>"; };
 		E715D9B22B03C52A00B6478D /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		E7A399292B034AB4005C8021 /* FlavorFlash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlavorFlash.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				E70AF8DF2B0710BA0003462C /* appConfig.swift */,
+				E70AF8F82B0763480003462C /* ENV.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -181,6 +190,9 @@
 				E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */,
 				E7A399322B034AB6005C8021 /* Assets.xcassets */,
 				E7A399342B034AB6005C8021 /* Preview Content */,
+				E70AF8F22B075E260003462C /* DEBUG-Keys.plist */,
+				E70AF8F42B075E3F0003462C /* PROD-Keys.plist */,
+				E70AF8F62B0760C70003462C /* GoogleService-Info.plist */,
 			);
 			path = FlavorFlash;
 			sourceTree = "<group>";
@@ -299,6 +311,9 @@
 			files = (
 				E7A399362B034AB6005C8021 /* Preview Assets.xcassets in Resources */,
 				E7A399332B034AB6005C8021 /* Assets.xcassets in Resources */,
+				E70AF8F72B0760C70003462C /* GoogleService-Info.plist in Resources */,
+				E70AF8F32B075E260003462C /* DEBUG-Keys.plist in Resources */,
+				E70AF8F52B075E3F0003462C /* PROD-Keys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +388,7 @@
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E70AF8DE2B0710950003462C /* Profile.swift in Sources */,
 				E70AF8E92B073FC00003462C /* UIMapView.swift in Sources */,
+				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
 				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,
 				E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */,

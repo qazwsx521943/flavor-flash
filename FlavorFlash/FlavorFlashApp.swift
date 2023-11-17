@@ -9,10 +9,18 @@ import SwiftUI
 
 @main
 struct FlavorFlashApp: App {
+    @StateObject private var ENV: BaseENV = {
+        #if DEBUG
+            return DebugENV()
+        #else
+            return ProdENV()
+        #endif
+    }()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(ENV)
         }
     }
 }

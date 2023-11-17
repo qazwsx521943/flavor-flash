@@ -31,6 +31,7 @@ struct HomeView: View {
                 .background(.gray.opacity(0.8))
                 .foregroundStyle(.black)
             }
+            .navigationTitle("要吃什麼？")
         }
     }
 }
