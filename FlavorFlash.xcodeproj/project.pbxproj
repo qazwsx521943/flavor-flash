@@ -13,6 +13,10 @@
 		E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E22B071D450003462C /* NavigationModel.swift */; };
 		E70AF8E52B07311F0003462C /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E42B07311F0003462C /* HomeMapView.swift */; };
 		E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E62B0734A30003462C /* View+Extension.swift */; };
+		E70AF8E92B073FC00003462C /* UIMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E82B073FC00003462C /* UIMapView.swift */; };
+		E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8EB2B074B580003462C /* RestaurantCard.swift */; };
+		E70AF8EE2B074B8F0003462C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8ED2B074B8F0003462C /* Restaurant.swift */; };
+		E70AF8F02B0750D50003462C /* MKMapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8EF2B0750D50003462C /* MKMapViewCoordinator.swift */; };
 		E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */; };
 		E715D9B32B03C52A00B6478D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9B22B03C52A00B6478D /* Camera.swift */; };
 		E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */; };
@@ -38,6 +42,10 @@
 		E70AF8E22B071D450003462C /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		E70AF8E42B07311F0003462C /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
 		E70AF8E62B0734A30003462C /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
+		E70AF8E82B073FC00003462C /* UIMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIMapView.swift; sourceTree = "<group>"; };
+		E70AF8EB2B074B580003462C /* RestaurantCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCard.swift; sourceTree = "<group>"; };
+		E70AF8ED2B074B8F0003462C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
+		E70AF8EF2B0750D50003462C /* MKMapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MKMapViewCoordinator.swift; sourceTree = "<group>"; };
 		E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataModel.swift; sourceTree = "<group>"; };
 		E715D9B22B03C52A00B6478D /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		E7A399292B034AB4005C8021 /* FlavorFlash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlavorFlash.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,8 +95,8 @@
 		E70AF8DB2B070EE60003462C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E70AF8F12B07513E0003462C /* Map */,
 				E7A399422B034E11005C8021 /* HomeView.swift */,
-				E70AF8E42B07311F0003462C /* HomeMapView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -107,6 +115,23 @@
 				E70AF8DF2B0710BA0003462C /* appConfig.swift */,
 			);
 			path = Config;
+			sourceTree = "<group>";
+		};
+		E70AF8EA2B0748100003462C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		E70AF8F12B07513E0003462C /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				E70AF8E42B07311F0003462C /* HomeMapView.swift */,
+				E70AF8E82B073FC00003462C /* UIMapView.swift */,
+				E70AF8EF2B0750D50003462C /* MKMapViewCoordinator.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		E715D9AE2B03ACA200B6478D /* Camera */ = {
@@ -184,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A3993E2B034AEC005C8021 /* FFTabBar.swift */,
+				E70AF8EB2B074B580003462C /* RestaurantCard.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -202,8 +228,10 @@
 		E7FFC24E2B037B5A00F7B171 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E70AF8EA2B0748100003462C /* Map */,
 				E70AF8E22B071D450003462C /* NavigationModel.swift */,
 				E715D9AE2B03ACA200B6478D /* Camera */,
+				E70AF8ED2B074B8F0003462C /* Restaurant.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -322,10 +350,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E70AF8EE2B074B8F0003462C /* Restaurant.swift in Sources */,
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E70AF8DE2B0710950003462C /* Profile.swift in Sources */,
+				E70AF8E92B073FC00003462C /* UIMapView.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
+				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,
 				E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */,
 				E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */,
 				E7D856582B05F6F400C5CB92 /* MobileNetV2.mlmodel in Sources */,
@@ -333,6 +364,7 @@
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
+				E70AF8F02B0750D50003462C /* MKMapViewCoordinator.swift in Sources */,
 				E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */,
 				E7FD9B8A2B05BAAF002D0ADF /* FFAnalyzeResult.swift in Sources */,
 				E715D9B32B03C52A00B6478D /* Camera.swift in Sources */,
