@@ -58,7 +58,7 @@ struct FFAnalyzeResult: View {
                         .font(.subheadline)
                         .foregroundStyle(.blue)
                 }
-                .overlay(alignment: .bottom) {
+                .overlay(alignment: .center) {
                     Button {
                         analyzePhoto()
                     } label: {
@@ -67,6 +67,7 @@ struct FFAnalyzeResult: View {
                     .frame(width: 80, height: 80)
                     .background(.blue)
                 }
+                .navigationTitle(result)
             }
         }
     }

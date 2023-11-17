@@ -8,32 +8,41 @@
 import SwiftUI
 
 struct FFTabBar: View {
-    @State var selectedTab = 0
+    @Binding var selectedTab: TabItems
+    @EnvironmentObject private var navigationModel: NavigationModel
 
     var body: some View {
         ZStack(alignment: .bottom) {
             TabView(selection: $selectedTab) {
                 HomeView()
-                    .tag(0)
+                    .tag(TabItems.home)
 
                 FlavorFlashView()
-                    .tag(1)
+                    .tag(TabItems.flavorFlash)
 
                 CommunityView()
-                    .tag(2)
+                    .tag(TabItems.community)
             }
         }
 
         ZStack {
             HStack {
-                ForEach(TabItems.allCases, id: \.self) { item in
+                ForEach(TabItems.allCases, id: \.self) { tab in
                     Button {
-                        selectedTab = item.rawValue
+                        selectedTab = tab
                     } label: {
-                        if item == .flavorFlash {
-                            centerTabItem(imageName: item.icon, title: item.title, isActive: (selectedTab == item.rawValue))
+                        if tab == .flavorFlash {
+                            centerTabItem(
+                                imageName: tab.icon,
+                                title: tab.title,
+                                isActive: (selectedTab == tab)
+                            )
                         } else {
-                            normalTabItem(imageName: item.icon, title: item.title, isActive: (selectedTab == item.rawValue))
+                            normalTabItem(
+                                imageName: tab.icon,
+                                title: tab.title,
+                                isActive: (selectedTab == tab)
+                            )
                         }
                     }
                 }
@@ -86,5 +95,6 @@ extension FFTabBar {
 }
 
 #Preview {
-    FFTabBar()
+    FFTabBar(selectedTab: .constant(.home))
+        .environmentObject(NavigationModel())
 }
