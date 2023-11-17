@@ -1,16 +1,20 @@
 PODS:
+  - GooglePlaces (8.3.0)
   - SwiftLint (0.53.0)
 
 DEPENDENCIES:
+  - GooglePlaces (= 8.3.0)
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - GooglePlaces
     - SwiftLint
 
 SPEC CHECKSUMS:
+  GooglePlaces: b922e192c50994436900ef14d19f84971950250b
   SwiftLint: 5ce4d6a8ff83f1b5fd5ad5dbf30965d35af65e44
 
-PODFILE CHECKSUM: c9e019f44409fa2aa88f283e8b52491e46c44f9d
+PODFILE CHECKSUM: 284ef77457401c221d9b24a8e05db47165f1a556
 
 COCOAPODS: 1.13.0
