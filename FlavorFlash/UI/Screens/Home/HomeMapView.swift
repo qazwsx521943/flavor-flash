@@ -7,16 +7,20 @@
 
 import SwiftUI
 import MapKit
+import GooglePlaces
 
 struct HomeMapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
+    let map = MKMapView()
     // MARK: - Properties
     @Binding var restaurants: [Restaurant]
+    @State var currentLocation: CLLocationCoordinate2D?
 
     func makeUIView(context: Context) -> MKMapView {
-        let map = MKMapView()
-
-        map.setRegion(MKCoordinateRegion(center: restaurants[0].coordinate, latitudinalMeters: CLLocationDistance(500), longitudinalMeters: CLLocationDistance(500)), animated: true)
+//        let map = MKMapView()
+//        if let currentLocation {
+//            map.setRegion(MKCoordinateRegion(center: currentLocation, latitudinalMeters: CLLocationDistance(500), longitudinalMeters: CLLocationDistance(500)), animated: true)
+//        }
         for restaurant in restaurants {
             let pointAnnotation = MKPointAnnotation()
             pointAnnotation.title = restaurant.title
@@ -29,10 +33,18 @@ struct HomeMapView: UIViewRepresentable {
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
 
+        guard let currentLocation else { return }
+        map.setRegion(MKCoordinateRegion(center: currentLocation, latitudinalMeters: CLLocationDistance(500), longitudinalMeters: CLLocationDistance(500)), animated: true)
+
+        let pointAnnotation = MKPointAnnotation()
+        pointAnnotation.title = "目前位置"
+        pointAnnotation.coordinate = currentLocation
+
+        map.addAnnotation(pointAnnotation)
     }
 
     func makeCoordinator() -> HomeMapViewCoordinator {
-        HomeMapViewCoordinator()
+        HomeMapViewCoordinator(mapView: self)
     }
 }
 

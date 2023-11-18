@@ -34,6 +34,8 @@
 		E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399442B034E22005C8021 /* FlavorFlashView.swift */; };
 		E7A399472B034E30005C8021 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399462B034E30005C8021 /* CommunityView.swift */; };
 		E7D856582B05F6F400C5CB92 /* MobileNetV2.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E7D856572B05F6F400C5CB92 /* MobileNetV2.mlmodel */; };
+		E7F9EDB42B085502005976BE /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB32B085502005976BE /* PlaceManager.swift */; };
+		E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */; };
 		E7FD9B8A2B05BAAF002D0ADF /* FFAnalyzeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */; };
 		E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */; };
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
@@ -70,6 +72,8 @@
 		E7A399442B034E22005C8021 /* FlavorFlashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashView.swift; sourceTree = "<group>"; };
 		E7A399462B034E30005C8021 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		E7D856572B05F6F400C5CB92 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
+		E7F9EDB32B085502005976BE /* PlaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceManager.swift; sourceTree = "<group>"; };
+		E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSPlaceField+Extension.swift"; sourceTree = "<group>"; };
 		E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFAnalyzeResult.swift; sourceTree = "<group>"; };
 		E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		E7FFC24C2B037A8E00F7B171 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
@@ -107,8 +111,10 @@
 		E70AF8DB2B070EE60003462C /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				E70AF8F12B07513E0003462C /* Map */,
+				E7F9EDB72B0864A7005976BE /* Coordinators */,
 				E7A399422B034E11005C8021 /* HomeView.swift */,
+				E70AF8E82B073FC00003462C /* HomeMapView.swift */,
+				E70AF8E42B07311F0003462C /* RestaurantSearchView.swift */,
 				E70AF8FE2B07A5470003462C /* RestaurantViewModel.swift */,
 			);
 			path = Home;
@@ -139,20 +145,11 @@
 			path = Restaurant;
 			sourceTree = "<group>";
 		};
-		E70AF8F12B07513E0003462C /* Map */ = {
-			isa = PBXGroup;
-			children = (
-				E70AF8E42B07311F0003462C /* RestaurantSearchView.swift */,
-				E70AF8E82B073FC00003462C /* HomeMapView.swift */,
-				E70AF8EF2B0750D50003462C /* HomeMapViewCoordinator.swift */,
-			);
-			path = Map;
-			sourceTree = "<group>";
-		};
 		E715D9B12B03C51C00B6478D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				E70AF8E62B0734A30003462C /* View+Extension.swift */,
+				E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -217,6 +214,7 @@
 			isa = PBXGroup;
 			children = (
 				E715D9B22B03C52A00B6478D /* Camera.swift */,
+				E7F9EDB32B085502005976BE /* PlaceManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -240,6 +238,14 @@
 				E70AF8DC2B0710840003462C /* Profile */,
 			);
 			path = Screens;
+			sourceTree = "<group>";
+		};
+		E7F9EDB72B0864A7005976BE /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				E70AF8EF2B0750D50003462C /* HomeMapViewCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		E7FFC2492B037A1A00F7B171 /* FlavorFlash */ = {
@@ -407,10 +413,12 @@
 				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,
 				E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */,
 				E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */,
+				E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */,
 				E7D856582B05F6F400C5CB92 /* MobileNetV2.mlmodel in Sources */,
 				E7A3993F2B034AEC005C8021 /* FFTabBar.swift in Sources */,
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
+				E7F9EDB42B085502005976BE /* PlaceManager.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
 				E70AF8F02B0750D50003462C /* HomeMapViewCoordinator.swift in Sources */,
 				E70AF8FF2B07A5470003462C /* RestaurantViewModel.swift in Sources */,
