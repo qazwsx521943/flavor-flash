@@ -13,6 +13,7 @@ class BaseENV: ObservableObject {
 
     enum Key: String {
         case GOOGLE_MAP_API_KEY
+        case GOOGLE_PLACE_API_KEY
     }
 
     enum Env: String {
@@ -31,17 +32,30 @@ class BaseENV: ObservableObject {
     }
 }
 
+extension BaseENV {
+    func getValue(_ keyValue: String) -> String {
+        guard 
+            let key = dict.object(forKey: keyValue) as? String
+        else {
+            fatalError("Cannot get apiKey")
+        }
+
+        return key
+    }
+}
+
 protocol APIKeyable {
     var GOOGLE_MAP_API_KEY: String { get }
+    var GOOGLE_PLACE_API_KEY: String { get }
 }
 
 class DebugENV: BaseENV, APIKeyable {
     var GOOGLE_MAP_API_KEY: String {
-        guard
-            let key = dict.object(forKey: Key.GOOGLE_MAP_API_KEY.rawValue) as? String
-        else { fatalError("cannot get apikey") }
+        return getValue(Key.GOOGLE_MAP_API_KEY.rawValue)
+    }
 
-        return key
+    var GOOGLE_PLACE_API_KEY: String {
+        return getValue(Key.GOOGLE_PLACE_API_KEY.rawValue)
     }
 
     init() {
@@ -51,10 +65,11 @@ class DebugENV: BaseENV, APIKeyable {
 
 class ProdENV: BaseENV, APIKeyable {
     var GOOGLE_MAP_API_KEY: String {
-        guard let key = dict.object(forKey: Key.GOOGLE_MAP_API_KEY.rawValue) as? String
-        else { fatalError("cannot get apikey") }
+        return getValue(Key.GOOGLE_MAP_API_KEY.rawValue)
+    }
 
-        return key
+    var GOOGLE_PLACE_API_KEY: String {
+        return getValue(Key.GOOGLE_PLACE_API_KEY.rawValue)
     }
 
     init() {
