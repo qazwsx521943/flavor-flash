@@ -84,3 +84,18 @@ extension GMSPlaceField : SetAlgebra {
 
     public typealias ArrayLiteralElement = GMSPlaceField
 }
+
+extension GMSPlacesClient {
+    func getImage(from metaData: GMSPlacePhotoMetadata, completionHandler: @escaping (UIImage) -> ()) {
+        self.loadPlacePhoto(metaData) { image, error in
+            if let error {
+                print(error)
+            }
+
+            guard let image else {
+                return
+            }
+            completionHandler(image)
+        }
+    }
+}

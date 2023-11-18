@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 import CoreLocation
+import GooglePlaces
 
 // https://developers.google.com/maps/documentation/places/web-service/reference/rest/v1/places?hl=zh-tw#Place
-struct Restaurant: Hashable, Codable {
+struct Restaurant: Hashable, Codable, Identifiable {
     let name: String
     let id: String
     let displayName: LocalizedText
@@ -20,10 +21,6 @@ struct Restaurant: Hashable, Codable {
     let location: Location
     let rating: CGFloat?
     let photos: [Photo]?
-
-    var featureImage: Image? {
-        Image("home-icon")
-    }
 
     var coordinate: CLLocationCoordinate2D {
         CLLocationCoordinate2D(
@@ -53,5 +50,39 @@ struct Restaurant: Hashable, Codable {
         let name: String
         let widthPx: Int
         let heightPx: Int
+    }
+}
+
+extension Restaurant {
+    func loadMainImage(completionHandler: @escaping (Image) -> ()) {
+        guard
+            let photos
+        else { return }
+        let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt64(UInt(GMSPlaceField.photos.rawValue)))
+
+        GMSPlacesClient.shared().fetchPlace(fromPlaceID: "INSERT_PLACE_ID_HERE",
+                                            placeFields: fields,
+                                            sessionToken: nil, callback: {
+            (place: GMSPlace?, error: Error?) in
+            if let error = error {
+                print("An error occurred: \(error.localizedDescription)")
+                return
+            }
+            if let place = place {
+                // Get the metadata for the first photo in the place photo metadata list.
+                let photoMetadata: GMSPlacePhotoMetadata = place.photos![0]
+
+                // Call loadPlacePhoto to display the bitmap and attribution.
+                GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: { (photo, error) -> Void in
+                    if let error = error {
+                        // TODO: Handle the error.
+                        print("Error loading photo metadata: \(error.localizedDescription)")
+                        return
+                    } else {
+                        completionHandler(Image(uiImage: photo!))
+                    }
+                })
+            }
+        })
     }
 }

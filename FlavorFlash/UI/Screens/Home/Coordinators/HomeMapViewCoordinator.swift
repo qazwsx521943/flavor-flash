@@ -10,7 +10,7 @@ import SwiftUI
 import GooglePlaces
 import Alamofire
 
-class HomeMapViewCoordinator: NSObject, MKMapViewDelegate {
+class HomeMapViewCoordinator: NSObject {
     var mapView: RestaurantMapView?
     var placeManager = PlaceManager()
     var currentLocation: CLLocationCoordinate2D?
@@ -33,11 +33,10 @@ extension HomeMapViewCoordinator: PlaceManagerDelegate {
         mapView?.currentLocation = currentLocation?.place.coordinate
         self.currentLocation = currentLocation?.place.coordinate
 
-        //        let jsonEncoder = JSONEncoder()
         do {
             let body: [String: Any] = [
                 "languageCode": "zh-TW",
-                "includedTypes": ["restaurant"],
+                "includedTypes": [mapView?.category],
                 "maxResultCount": 10,
                 "rankPreference": "DISTANCE",
                 "locationRestriction": [
@@ -73,18 +72,14 @@ extension HomeMapViewCoordinator: PlaceManagerDelegate {
                     print("Failed fetching restaurants: \(error.localizedDescription)")
                 }
             }
-//            request.response { response in
-//                switch response.result {
-//                case .success(let data):
-//                    guard let data else { return }
-//
-//                    print(String(data: data, encoding: .utf8))
-//                case .failure(let error):
-//                    print("error fetching nearby parks: \(error.localizedDescription)")
-//                }
-//            }
         } catch {
             print("error")
         }
+    }
+}
+
+extension HomeMapViewCoordinator: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+        mapView.setRegion(MKCoordinateRegion(center: annotation.coordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)), animated: true)
     }
 }

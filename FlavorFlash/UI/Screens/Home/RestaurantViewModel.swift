@@ -6,10 +6,17 @@
 //
 
 import Foundation
+import MapKit
 
 final class RestaurantViewModel: ObservableObject {
     var category: String
+    @Published var currentLocation: CLLocationCoordinate2D?
     @Published var restaurants = [Restaurant]()
+    @Published var selectedRestaurant: Restaurant? {
+        didSet {
+            self.currentLocation = selectedRestaurant?.coordinate
+        }
+    }
 
     init(searchCategory: String) {
         self.category = searchCategory

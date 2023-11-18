@@ -9,15 +9,23 @@ import SwiftUI
 import os.log
 
 struct HomeView: View {
-    @State private var category: String = "lunch"
+    let matrix = ["steak_house", "pizza_restaurant", "seafood_restaurant", "indian_restaurant", "chinese_restaurant"]
+
+    @State private var category: String = ""
 
     var body: some View {
         NavigationStack {
             VStack {
+                Text(category)
+                    .font(.title3)
+
                 Image("cube")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .padding(40)
+                    .onTapGesture {
+                        category = matrix.randomElement()!
+                    }
 
                 Button {
                 } label: {
@@ -33,6 +41,7 @@ struct HomeView: View {
                 .foregroundStyle(.black)
             }
             .navigationTitle("要吃什麼？")
+            
         }
     }
 }
