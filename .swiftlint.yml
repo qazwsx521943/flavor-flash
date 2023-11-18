@@ -4,6 +4,7 @@ excluded:
 disabled_rules:
   - trailing_whitespace
 identifier_name:
+  allowed_symbols: ["_"] # these are allowed
   excluded: # excluded via string array
     - id
     - URL

@@ -6,16 +6,13 @@
 //
 
 import MapKit
+import GooglePlaces
 
-class MKMapViewCoordinator: NSObject, MKMapViewDelegate {
+class HomeMapViewCoordinator: NSObject, MKMapViewDelegate {
     var mapView: MKMapView?
-
-    override init() {
-        super.init()
-
-    }
 
     init(mapView: MKMapView? = nil) {
         self.mapView = mapView
     }
+
 }

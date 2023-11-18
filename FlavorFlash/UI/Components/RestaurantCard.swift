@@ -11,7 +11,9 @@ struct RestaurantCard: View {
     var restaurant: Restaurant = Restaurant(
         title: "季然食事",
         description: "好吃",
-        images: ["1","2"]
+        images: ["1","2"],
+        latitude: 20,
+        longitude: 20
     )
 
     var body: some View {

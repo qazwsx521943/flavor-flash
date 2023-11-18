@@ -12,7 +12,6 @@ class BaseENV: ObservableObject {
     let dict: NSDictionary
 
     enum Key: String {
-        // swiftlint:disable identifier_name
         case GOOGLE_MAP_API_KEY
     }
 
@@ -33,12 +32,10 @@ class BaseENV: ObservableObject {
 }
 
 protocol APIKeyable {
-    // swiftlint:disable identifier_name
     var GOOGLE_MAP_API_KEY: String { get }
 }
 
 class DebugENV: BaseENV, APIKeyable {
-    // swiftlint:disable identifier_name
     var GOOGLE_MAP_API_KEY: String {
         guard
             let key = dict.object(forKey: Key.GOOGLE_MAP_API_KEY.rawValue) as? String
@@ -53,7 +50,6 @@ class DebugENV: BaseENV, APIKeyable {
 }
 
 class ProdENV: BaseENV, APIKeyable {
-    // swiftlint:disable identifier_name
     var GOOGLE_MAP_API_KEY: String {
         guard let key = dict.object(forKey: Key.GOOGLE_MAP_API_KEY.rawValue) as? String
         else { fatalError("cannot get apikey") }

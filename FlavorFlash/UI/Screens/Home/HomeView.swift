@@ -21,7 +21,7 @@ struct HomeView: View {
                 Button {
                 } label: {
                     NavigationLink {
-                        HomeMapView()
+                        RestaurantSearchView()
                     } label: {
                         Text("就吃這間！")
                             .padding()
