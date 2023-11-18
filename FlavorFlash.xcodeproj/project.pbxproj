@@ -281,6 +281,7 @@
 				E7A399272B034AB4005C8021 /* Resources */,
 				E715D9B42B04A22A00B6478D /* ShellScript */,
 				5052881ECA486989E9088EF1 /* [CP] Copy Pods Resources */,
+				77DC380EE426F9E67DDBF888 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,6 +378,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		77DC380EE426F9E67DDBF888 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E715D9B42B04A22A00B6478D /* ShellScript */ = {

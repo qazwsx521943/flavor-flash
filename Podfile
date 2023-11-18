@@ -8,4 +8,5 @@ target 'FlavorFlash' do
   # Pods for FlavorFlash
   pod 'SwiftLint'
   pod 'GooglePlaces', '8.3.0'
+  pod 'Alamofire'
 end
