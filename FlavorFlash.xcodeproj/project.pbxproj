@@ -61,6 +61,7 @@
 		E7E200D52B08FF8C003C22D6 /* FirebaseRemoteConfigSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D42B08FF8C003C22D6 /* FirebaseRemoteConfigSwift */; };
 		E7E200D72B08FF8C003C22D6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D62B08FF8C003C22D6 /* FirebaseStorage */; };
 		E7E200D92B08FF8C003C22D6 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D82B08FF8C003C22D6 /* FirebaseStorageCombine-Community */; };
+		E7E200DC2B0908D1003C22D6 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200DB2B0908D1003C22D6 /* MessageKit */; };
 		E7F9EDB42B085502005976BE /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB32B085502005976BE /* PlaceManager.swift */; };
 		E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */; };
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
@@ -130,6 +131,7 @@
 				E7E200D12B08FF8C003C22D6 /* FirebasePerformance in Frameworks */,
 				E7E200C72B08FF8C003C22D6 /* FirebaseInAppMessaging-Beta in Frameworks */,
 				E7E200C52B08FF8C003C22D6 /* FirebaseFunctionsCombine-Community in Frameworks */,
+				E7E200DC2B0908D1003C22D6 /* MessageKit in Frameworks */,
 				E7E200B52B08FF8C003C22D6 /* FirebaseCrashlytics in Frameworks */,
 				E7E200CB2B08FF8C003C22D6 /* FirebaseInstallations in Frameworks */,
 				E7E200D32B08FF8C003C22D6 /* FirebaseRemoteConfig in Frameworks */,
@@ -389,6 +391,7 @@
 				E7E200D42B08FF8C003C22D6 /* FirebaseRemoteConfigSwift */,
 				E7E200D62B08FF8C003C22D6 /* FirebaseStorage */,
 				E7E200D82B08FF8C003C22D6 /* FirebaseStorageCombine-Community */,
+				E7E200DB2B0908D1003C22D6 /* MessageKit */,
 			);
 			productName = FlavorFlash;
 			productReference = E7A399292B034AB4005C8021 /* FlavorFlash.app */;
@@ -420,6 +423,7 @@
 			mainGroup = E7A399202B034AB4005C8021;
 			packageReferences = (
 				E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E7E200DA2B0908D1003C22D6 /* XCRemoteSwiftPackageReference "MessageKit" */,
 			);
 			productRefGroup = E7A3992A2B034AB4005C8021 /* Products */;
 			projectDirPath = "";
@@ -780,6 +784,14 @@
 				minimumVersion = 10.18.0;
 			};
 		};
+		E7E200DA2B0908D1003C22D6 /* XCRemoteSwiftPackageReference "MessageKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MessageKit/MessageKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -917,6 +929,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		E7E200DB2B0908D1003C22D6 /* MessageKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7E200DA2B0908D1003C22D6 /* XCRemoteSwiftPackageReference "MessageKit" */;
+			productName = MessageKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
