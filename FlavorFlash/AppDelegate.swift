@@ -7,6 +7,7 @@
 
 import UIKit
 import GooglePlaces
+import FirebaseCore
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(
@@ -21,6 +22,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             #endif
         }()
 
+        FirebaseApp.configure()
         GMSPlacesClient.provideAPIKey(env.GOOGLE_MAP_API_KEY)
         return true
     }
