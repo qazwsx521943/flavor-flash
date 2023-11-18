@@ -9,6 +9,7 @@ import SwiftUI
 import os.log
 
 struct HomeView: View {
+    @State private var category: String = "lunch"
 
     var body: some View {
         NavigationStack {
@@ -21,7 +22,7 @@ struct HomeView: View {
                 Button {
                 } label: {
                     NavigationLink {
-                        RestaurantSearchView()
+                        RestaurantSearchView(category: category)
                     } label: {
                         Text("就吃這間！")
                             .padding()

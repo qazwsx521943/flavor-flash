@@ -8,12 +8,14 @@
 import Foundation
 
 final class RestaurantViewModel: ObservableObject {
-    var restaurant: [Restaurant]
+    var category: String
+    @Published var restaurants = [Restaurant]()
 
-    init() {
-        self.restaurant = [
-            Restaurant(title: "季然食事", description: "好吃", images: [], latitude: 25.040141, longitude: 121.532135),
-            Restaurant(title: "八方雲集", description: "下水餃", images: [], latitude: 25.038833, longitude: 121.532529)
-        ]
+    init(searchCategory: String) {
+        self.category = searchCategory
+    }
+
+    func setRestaurants(_ restaurants: [Restaurant]) {
+        self.restaurants = restaurants
     }
 }

@@ -9,30 +9,19 @@ import SwiftUI
 import MapKit
 import GooglePlaces
 
-struct HomeMapView: UIViewRepresentable {
+struct RestaurantMapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
-    let map = MKMapView()
     // MARK: - Properties
+    let map = MKMapView()
     @Binding var restaurants: [Restaurant]
     @State var currentLocation: CLLocationCoordinate2D?
 
     func makeUIView(context: Context) -> MKMapView {
-//        let map = MKMapView()
-//        if let currentLocation {
-//            map.setRegion(MKCoordinateRegion(center: currentLocation, latitudinalMeters: CLLocationDistance(500), longitudinalMeters: CLLocationDistance(500)), animated: true)
-//        }
-        for restaurant in restaurants {
-            let pointAnnotation = MKPointAnnotation()
-            pointAnnotation.title = restaurant.title
-            pointAnnotation.coordinate = restaurant.coordinate
-
-            map.addAnnotation(pointAnnotation)
-        }
+        updateRestaurants()
         return map
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-
         guard let currentLocation else { return }
         map.setRegion(MKCoordinateRegion(center: currentLocation, latitudinalMeters: CLLocationDistance(500), longitudinalMeters: CLLocationDistance(500)), animated: true)
 
@@ -41,6 +30,8 @@ struct HomeMapView: UIViewRepresentable {
         pointAnnotation.coordinate = currentLocation
 
         map.addAnnotation(pointAnnotation)
+
+//        updateRestaurants()
     }
 
     func makeCoordinator() -> HomeMapViewCoordinator {
@@ -48,6 +39,20 @@ struct HomeMapView: UIViewRepresentable {
     }
 }
 
+
+extension RestaurantMapView {
+    func updateRestaurants() {
+        for restaurant in restaurants {
+            let pointAnnotation = MKPointAnnotation()
+            pointAnnotation.title = restaurant.displayName.text
+            pointAnnotation.coordinate = restaurant.coordinate
+            DispatchQueue.main.async {
+                map.addAnnotation(pointAnnotation)
+            }
+        }
+    }
+}
+
 #Preview {
-    HomeMapView(restaurants: .constant(RestaurantViewModel().restaurant))
+    RestaurantMapView(restaurants: .constant(RestaurantViewModel(searchCategory: "lunch").restaurants))
 }

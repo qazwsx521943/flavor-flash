@@ -13,7 +13,7 @@
 		E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E22B071D450003462C /* NavigationModel.swift */; };
 		E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E42B07311F0003462C /* RestaurantSearchView.swift */; };
 		E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E62B0734A30003462C /* View+Extension.swift */; };
-		E70AF8E92B073FC00003462C /* HomeMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E82B073FC00003462C /* HomeMapView.swift */; };
+		E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E82B073FC00003462C /* RestaurantMapView.swift */; };
 		E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8EB2B074B580003462C /* RestaurantCard.swift */; };
 		E70AF8EE2B074B8F0003462C /* Restaurant.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8ED2B074B8F0003462C /* Restaurant.swift */; };
 		E70AF8F02B0750D50003462C /* HomeMapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8EF2B0750D50003462C /* HomeMapViewCoordinator.swift */; };
@@ -51,7 +51,7 @@
 		E70AF8E22B071D450003462C /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
 		E70AF8E42B07311F0003462C /* RestaurantSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSearchView.swift; sourceTree = "<group>"; };
 		E70AF8E62B0734A30003462C /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
-		E70AF8E82B073FC00003462C /* HomeMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapView.swift; sourceTree = "<group>"; };
+		E70AF8E82B073FC00003462C /* RestaurantMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMapView.swift; sourceTree = "<group>"; };
 		E70AF8EB2B074B580003462C /* RestaurantCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCard.swift; sourceTree = "<group>"; };
 		E70AF8ED2B074B8F0003462C /* Restaurant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Restaurant.swift; sourceTree = "<group>"; };
 		E70AF8EF2B0750D50003462C /* HomeMapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeMapViewCoordinator.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 			children = (
 				E7F9EDB72B0864A7005976BE /* Coordinators */,
 				E7A399422B034E11005C8021 /* HomeView.swift */,
-				E70AF8E82B073FC00003462C /* HomeMapView.swift */,
+				E70AF8E82B073FC00003462C /* RestaurantMapView.swift */,
 				E70AF8E42B07311F0003462C /* RestaurantSearchView.swift */,
 				E70AF8FE2B07A5470003462C /* RestaurantViewModel.swift */,
 			);
@@ -150,6 +150,7 @@
 		E715D9B12B03C51C00B6478D /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				E7F9EDB82B0894B8005976BE /* ThirdPartyWrapper */,
 				E70AF8E62B0734A30003462C /* View+Extension.swift */,
 				E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */,
 			);
@@ -248,6 +249,13 @@
 				E70AF8EF2B0750D50003462C /* HomeMapViewCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		E7F9EDB82B0894B8005976BE /* ThirdPartyWrapper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ThirdPartyWrapper;
 			sourceTree = "<group>";
 		};
 		E7F9EDB92B089E33005976BE /* Response */ = {
@@ -436,7 +444,7 @@
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E70AF8DE2B0710950003462C /* Profile.swift in Sources */,
-				E70AF8E92B073FC00003462C /* HomeMapView.swift in Sources */,
+				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
 				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,

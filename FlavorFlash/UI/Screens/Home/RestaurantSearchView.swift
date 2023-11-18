@@ -9,17 +9,21 @@ import SwiftUI
 
 struct RestaurantSearchView: View {
     @EnvironmentObject private var navigationModel: NavigationModel
-    @StateObject private var restaurantDataModel = RestaurantViewModel()
+    @StateObject private var restaurantDataModel: RestaurantViewModel
 
     var body: some View {
         VStack { 
-            HomeMapView(restaurants: $restaurantDataModel.restaurant)
+            RestaurantMapView(restaurants: $restaurantDataModel.restaurants)
         }
         .navigationTitle("MAP")
+    }
+
+    init(category: String) {
+        _restaurantDataModel = StateObject(wrappedValue: RestaurantViewModel(searchCategory: category))
     }
 }
 
 #Preview {
-    RestaurantSearchView()
+    RestaurantSearchView(category: "lunch")
         .environmentObject(NavigationModel())
 }
