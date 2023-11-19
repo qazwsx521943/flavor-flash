@@ -62,8 +62,11 @@
 		E7E200D92B08FF8C003C22D6 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D82B08FF8C003C22D6 /* FirebaseStorageCombine-Community */; };
 		E7E200DC2B0908D1003C22D6 /* MessageKit in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200DB2B0908D1003C22D6 /* MessageKit */; };
 		E7E200E02B090B69003C22D6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = E7E200DF2B090B69003C22D6 /* GoogleService-Info.plist */; };
+		E7E200E22B090D83003C22D6 /* ChatroomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E200E12B090D83003C22D6 /* ChatroomViewController.swift */; };
+		E7E200E42B090F3D003C22D6 /* ChatroomViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E200E32B090F3D003C22D6 /* ChatroomViewCoordinator.swift */; };
 		E7E200E72B091235003C22D6 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E200E62B091235003C22D6 /* Message.swift */; };
 		E7E200E92B0912BA003C22D6 /* Sender.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E200E82B0912BA003C22D6 /* Sender.swift */; };
+		E7E200EB2B098597003C22D6 /* ChatroomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E200EA2B098597003C22D6 /* ChatroomViewModel.swift */; };
 		E7F9EDB42B085502005976BE /* PlaceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB32B085502005976BE /* PlaceManager.swift */; };
 		E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */; };
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
@@ -103,8 +106,11 @@
 		E7A399462B034E30005C8021 /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
 		E7D856572B05F6F400C5CB92 /* MobileNetV2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNetV2.mlmodel; sourceTree = "<group>"; };
 		E7E200DF2B090B69003C22D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E7E200E12B090D83003C22D6 /* ChatroomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomViewController.swift; sourceTree = "<group>"; };
+		E7E200E32B090F3D003C22D6 /* ChatroomViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomViewCoordinator.swift; sourceTree = "<group>"; };
 		E7E200E62B091235003C22D6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		E7E200E82B0912BA003C22D6 /* Sender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sender.swift; sourceTree = "<group>"; };
+		E7E200EA2B098597003C22D6 /* ChatroomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatroomViewModel.swift; sourceTree = "<group>"; };
 		E7F9EDB32B085502005976BE /* PlaceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceManager.swift; sourceTree = "<group>"; };
 		E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSPlaceField+Extension.swift"; sourceTree = "<group>"; };
 		E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceResult.swift; sourceTree = "<group>"; };
@@ -277,6 +283,8 @@
 			children = (
 				E7E200DE2B0909E6003C22D6 /* Coordinators */,
 				E7A399462B034E30005C8021 /* CommunityView.swift */,
+				E7E200E12B090D83003C22D6 /* ChatroomViewController.swift */,
+				E7E200EA2B098597003C22D6 /* ChatroomViewModel.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -284,8 +292,18 @@
 		E7E200DE2B0909E6003C22D6 /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				E7E200E32B090F3D003C22D6 /* ChatroomViewCoordinator.swift */,
 			);
 			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		E7E200E52B091226003C22D6 /* Chatroom */ = {
+			isa = PBXGroup;
+			children = (
+				E7E200E62B091235003C22D6 /* Message.swift */,
+				E7E200E82B0912BA003C22D6 /* Sender.swift */,
+			);
+			path = Chatroom;
 			sourceTree = "<group>";
 		};
 		E7F9EDB02B0841FE005976BE /* Services */ = {
@@ -310,8 +328,8 @@
 		E7F9EDB22B084BE0005976BE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				E7E200DD2B0909A0003C22D6 /* Chat */,
 				E7A3992E2B034AB4005C8021 /* ContentView.swift */,
+				E7E200DD2B0909A0003C22D6 /* Chat */,
 				E70AF8DB2B070EE60003462C /* Home */,
 				E7FFC2492B037A1A00F7B171 /* FlavorFlash */,
 				E70AF8DC2B0710840003462C /* Profile */,
@@ -555,6 +573,7 @@
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E70AF8DE2B0710950003462C /* Profile.swift in Sources */,
+				E7E200E42B090F3D003C22D6 /* ChatroomViewCoordinator.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
@@ -564,6 +583,7 @@
 				E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */,
 				E7D856582B05F6F400C5CB92 /* MobileNetV2.mlmodel in Sources */,
 				E7A3993F2B034AEC005C8021 /* FFTabBar.swift in Sources */,
+				E7E200E22B090D83003C22D6 /* ChatroomViewController.swift in Sources */,
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
 				E7F9EDB42B085502005976BE /* PlaceManager.swift in Sources */,
@@ -576,6 +596,7 @@
 				E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */,
 				E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */,
 				E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */,
+				E7E200EB2B098597003C22D6 /* ChatroomViewModel.swift in Sources */,
 				E7E200E72B091235003C22D6 /* Message.swift in Sources */,
 				E7A399472B034E30005C8021 /* CommunityView.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,

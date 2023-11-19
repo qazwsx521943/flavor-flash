@@ -7,9 +7,17 @@
 
 import SwiftUI
 
+let channels = ["steven", "jason", "jimmy"]
+
 struct CommunityView: View {
+    @StateObject private var viewModel = ChatroomViewModel()
     var body: some View {
-        Text("Community")
+//        Group {
+//            ForEach(channels, id: \.self) { channel in
+//                Text(channel)
+//            }
+//        }
+        ChatroomViewController(messages: $viewModel.messages)
     }
 }
 
