@@ -40,6 +40,16 @@ struct HomeView: View {
                 .background(.gray.opacity(0.8))
                 .foregroundStyle(.black)
             }
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					NavigationLink {
+						ProfileView()
+					} label: {
+						Image(systemName: "person.fill")
+							.foregroundStyle(.white)
+					}
+				}
+			}
             .navigationTitle("要吃什麼？")
         }
     }

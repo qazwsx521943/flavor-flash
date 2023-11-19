@@ -26,12 +26,21 @@ struct ChatroomViewController: UIViewControllerRepresentable {
 
     func updateUIViewController(_ uiViewController: MessageKit.MessagesViewController, context: Context) {
         uiViewController.messagesCollectionView.reloadData()
-        print("update UIViewController")
+		scrollToBottom(uiViewController)
+        debugPrint("update messageViewController")
     }
 
     func makeCoordinator() -> ChatroomViewCoordinator {
         ChatroomViewCoordinator(self)
     }
+}
+
+extension ChatroomViewController {
+	private func scrollToBottom(_ uiViewController: MessagesViewController) {
+		DispatchQueue.main.async {
+			uiViewController.messagesCollectionView.scrollToLastItem(animated: true)
+		}
+	}
 }
 
 #Preview {

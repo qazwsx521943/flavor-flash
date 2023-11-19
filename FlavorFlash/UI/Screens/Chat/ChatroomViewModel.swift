@@ -7,12 +7,25 @@
 
 import Foundation
 import MessageKit
+import Combine
 
+//final class ChatroomViewModel<DI: DataService>: ObservableObject where DI.Item == FFMessage {
 final class ChatroomViewModel: ObservableObject {
     @Published var messages: [MessageType] = [
         Message(sender: sender1, messageId: "1", sentDate: Date.now, kind: .text("hi")),
         Message(sender: sender1, messageId: "2", sentDate: Date.now, kind: .text("cool")),
         Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
+		Message(sender: sender2, messageId: "3", sentDate: Date.now, kind: .text("how are you")),
         Message(sender: sender1, messageId: "4", sentDate: Date.now, kind: .text("good!"))
     ]
 }

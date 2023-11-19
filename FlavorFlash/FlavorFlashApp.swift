@@ -10,10 +10,22 @@ import SwiftUI
 @main
 struct FlavorFlashApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
+	@StateObject private var navigationModel = NavigationModel()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
+				.onAppear {
+					let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+					debugPrint(authUser)
+					navigationModel.showSignInModal = authUser == nil
+				}
+				.fullScreenCover(isPresented: $navigationModel.showSignInModal) {
+					NavigationStack {
+						AuthenticationView()
+					}
+				}
+				.environmentObject(navigationModel)
         }
     }
 }

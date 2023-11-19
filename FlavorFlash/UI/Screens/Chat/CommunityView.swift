@@ -17,7 +17,7 @@ struct CommunityView: View {
 //                Text(channel)
 //            }
 //        }
-        ChatroomViewController(messages: $viewModel.messages)
+	ChatroomViewController(messages: $viewModel.messages)
     }
 }
 
