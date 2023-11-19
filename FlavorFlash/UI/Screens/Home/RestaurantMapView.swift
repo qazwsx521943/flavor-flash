@@ -25,7 +25,12 @@ struct RestaurantMapView: UIViewRepresentable {
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
         guard let currentLocation else { return }
-        map.setRegion(MKCoordinateRegion(center: currentLocation, latitudinalMeters: CLLocationDistance(500), longitudinalMeters: CLLocationDistance(500)), animated: true)
+        map.setRegion(
+            MKCoordinateRegion(
+                center: currentLocation,
+                latitudinalMeters: CLLocationDistance(500),
+                longitudinalMeters: CLLocationDistance(500)
+            ), animated: true)
 
         let pointAnnotation = MKPointAnnotation()
         pointAnnotation.title = "目前位置"
@@ -56,7 +61,12 @@ extension RestaurantMapView {
     }
 
     func updateRegion() {
-        map.setRegion(MKCoordinateRegion(center: currentLocation!, span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)), animated: true)
+        map.setRegion(
+            MKCoordinateRegion(
+                center: currentLocation!,
+                span: MKCoordinateSpan(latitudeDelta: 0.2, longitudeDelta: 0.2)
+            ),
+            animated: true)
     }
 }
 

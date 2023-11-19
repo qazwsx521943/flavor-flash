@@ -13,37 +13,36 @@ struct RestaurantSearchView: View {
     @State private var showDetail: Bool = false
 
     var body: some View {
-        VStack { 
+        VStack {
             RestaurantMapView(
                 restaurants: $restaurantDataModel.restaurants,
                 currentLocation: $restaurantDataModel.currentLocation,
                 category: $restaurantDataModel.category
             )
-                .overlay(alignment: .bottom) {
-                    ScrollView(.horizontal) {
-                        HStack {
-                            ForEach(restaurantDataModel.restaurants) { restaurant in
-                                RestaurantCard(restaurant: restaurant)
-                                    .onTapGesture {
-                                        restaurantDataModel.selectedRestaurant = restaurant
-                                        showDetail = true
-                                    }
-                                    .sheet(isPresented: $showDetail) {
-                                        if let selected = restaurantDataModel.selectedRestaurant {
-                                            VStack {
-                                                Text(selected.displayName.text)
-                                                    .font(.title)
-                                                    .foregroundStyle(.blue)
-                                                Text(selected.formattedAddress!)
-                                            }
+            .overlay(alignment: .bottom) {
+                ScrollView(.horizontal) {
+                    HStack {
+                        ForEach(restaurantDataModel.restaurants) { restaurant in
+                            RestaurantCard(restaurant: restaurant)
+                                .onTapGesture {
+                                    restaurantDataModel.selectedRestaurant = restaurant
+                                    showDetail = true
+                                }
+                                .sheet(isPresented: $showDetail) {
+                                    if let selected = restaurantDataModel.selectedRestaurant {
+                                        VStack {
+                                            Text(selected.displayName.text)
+                                                .font(.title)
+                                                .foregroundStyle(.blue)
+                                            Text(selected.formattedAddress!)
                                         }
                                     }
-                            }
+                                }
                         }
                     }
-                    .frame(height: 100)
-                    
                 }
+                .frame(height: 100)
+            }
         }
         .navigationTitle("MAP")
     }

@@ -20,49 +20,49 @@ struct CameraView: View {
                     backCamImage: $model.viewfinderBackCamImage,
                     frontCamImage: $model.viewfinderFrontCamImage
                 )
-//                    .overlay(alignment: .top) {
-//                        Color.black
-//                            .opacity(0.75)
-//                            .frame(height: geometry.size.height * Self.barHeightFactor)
-//                    }
-                    .overlay(alignment: .bottom) {
-                        Button {
+                //                    .overlay(alignment: .top) {
+                //                        Color.black
+                //                            .opacity(0.75)
+                //                            .frame(height: geometry.size.height * Self.barHeightFactor)
+                //                    }
+                .overlay(alignment: .bottom) {
+                    Button {
 
+                    } label: {
+                        NavigationLink {
+                            FFAnalyzeResult(
+                                capturedFrontCamImage: $model.capturedFrontCamImage,
+                                capturedBackCamImage: $model.capturedBackCamImage
+                            )
+                            .task {
+                                model.camera.takePhoto()
+                            }
                         } label: {
-                            NavigationLink {
-                                FFAnalyzeResult(
-                                    capturedFrontCamImage: $model.capturedFrontCamImage,
-                                    capturedBackCamImage: $model.capturedBackCamImage
-                                )
-                                    .task {
-                                        model.camera.takePhoto()
-                                    }
-                            } label: {
-                                ZStack {
-                                    Image(.cameraIcon)
-                                        .resizable()
-                                        .frame(width: 80, height: 80)
-                                    Circle()
-                                        .strokeBorder(.white, lineWidth: 5)
-                                        .frame(width: 80, height: 80)
-                                }
+                            ZStack {
+                                Image(.cameraIcon)
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                                Circle()
+                                    .strokeBorder(.white, lineWidth: 5)
+                                    .frame(width: 80, height: 80)
                             }
                         }
                     }
-                    .overlay(alignment: .center) {
-                        Color.clear
-                            .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
+                }
+                .overlay(alignment: .center) {
+                    Color.clear
+                        .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
+                }
+                .overlay(alignment: .topTrailing, content: {
+                    Button {
+                        model.capturedBackCamImage = nil
+                    } label: {
+                        Circle()
+                            .strokeBorder(.white, lineWidth: 5)
+                            .frame(width: 50, height: 50)
                     }
-                    .overlay(alignment: .topTrailing, content: {
-                        Button {
-                            model.capturedBackCamImage = nil
-                        } label: {
-                            Circle()
-                                .strokeBorder(.white, lineWidth: 5)
-                                .frame(width: 50, height: 50)
-                        }
-                    })
-                    .background(.black)
+                })
+                .background(.black)
             }
             .task {
                 await model.camera.start()

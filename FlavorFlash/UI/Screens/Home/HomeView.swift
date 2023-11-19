@@ -41,7 +41,6 @@ struct HomeView: View {
                 .foregroundStyle(.black)
             }
             .navigationTitle("要吃什麼？")
-            
         }
     }
 }

@@ -15,7 +15,7 @@ struct ChatroomViewController: UIViewControllerRepresentable {
 
     func makeUIViewController(context: Context) -> MessageKit.MessagesViewController {
         let messagesViewController = MessagesViewController()
-        
+
         messagesViewController.messagesCollectionView.messagesDataSource = context.coordinator
         messagesViewController.messagesCollectionView.messagesLayoutDelegate = context.coordinator
         messagesViewController.messagesCollectionView.messagesDisplayDelegate = context.coordinator

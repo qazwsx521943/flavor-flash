@@ -54,8 +54,7 @@ final class PlaceManager: NSObject {
         // See: GMSPlaceField+SetAlgebra.swift
         let placeFields: GMSPlaceField = [.name, .placeID, .coordinate]
 
-        placeClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: placeFields) {
-            [weak self] (list, error) -> Void in
+        placeClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: placeFields) { [weak self] (list, error) -> Void in
             guard let strongSelf = self else { return }
             guard error == nil else {
                 logger.error("Cannot findPlace likelihoods from current location")

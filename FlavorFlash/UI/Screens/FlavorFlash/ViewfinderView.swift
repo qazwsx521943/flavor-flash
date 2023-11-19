@@ -33,6 +33,6 @@ struct ViewfinderView: View {
 
 #Preview {
     ViewfinderView(
-        backCamImage: .constant(Image(systemName: "pencil")), 
+        backCamImage: .constant(Image(systemName: "pencil")),
         frontCamImage: .constant(Image(systemName: "pencil")))
 }

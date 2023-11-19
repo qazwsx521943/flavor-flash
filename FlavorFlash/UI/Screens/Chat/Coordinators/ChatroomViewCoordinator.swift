@@ -24,14 +24,14 @@ extension ChatroomViewCoordinator: MessagesDataSource {
     var currentSender: MessageKit.SenderType {
         sender1
     }
-    
+
     func messageForItem(
         at indexPath: IndexPath,
         in messagesCollectionView: MessageKit.MessagesCollectionView
     ) -> MessageKit.MessageType {
         parent.messages[indexPath.section]
     }
-    
+
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
         parent.messages.count
     }
