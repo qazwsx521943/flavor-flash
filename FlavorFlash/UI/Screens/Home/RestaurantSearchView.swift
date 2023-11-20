@@ -30,12 +30,7 @@ struct RestaurantSearchView: View {
                                 }
                                 .sheet(isPresented: $showDetail) {
                                     if let selected = restaurantDataModel.selectedRestaurant {
-                                        VStack {
-                                            Text(selected.displayName.text)
-                                                .font(.title)
-                                                .foregroundStyle(.blue)
-                                            Text(selected.formattedAddress!)
-                                        }
+										RestaurantDetail(restaurant: selected)
                                     }
                                 }
                         }

@@ -22,6 +22,8 @@
 		E70AF8F92B0763480003462C /* ENV.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8F82B0763480003462C /* ENV.swift */; };
 		E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8FA2B07735E0003462C /* AppDelegate.swift */; };
 		E70AF8FF2B07A5470003462C /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8FE2B07A5470003462C /* RestaurantViewModel.swift */; };
+		E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */; };
+		E70C6C352B0B6134003B27EE /* PlaceImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C342B0B6134003B27EE /* PlaceImageFetcher.swift */; };
 		E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */; };
 		E715D9B32B03C52A00B6478D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9B22B03C52A00B6478D /* Camera.swift */; };
 		E73B17122B0A564700F1A0DD /* FoodListSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17112B0A564700F1A0DD /* FoodListSettingView.swift */; };
@@ -94,6 +96,8 @@
 		E70AF8F82B0763480003462C /* ENV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ENV.swift; sourceTree = "<group>"; };
 		E70AF8FA2B07735E0003462C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E70AF8FE2B07A5470003462C /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
+		E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
+		E70C6C342B0B6134003B27EE /* PlaceImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageFetcher.swift; sourceTree = "<group>"; };
 		E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataModel.swift; sourceTree = "<group>"; };
 		E715D9B22B03C52A00B6478D /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		E73B17112B0A564700F1A0DD /* FoodListSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListSettingView.swift; sourceTree = "<group>"; };
@@ -220,8 +224,18 @@
 		E70C6C302B0B492C003B27EE /* GPDataService */ = {
 			isa = PBXGroup;
 			children = (
+				E70C6C342B0B6134003B27EE /* PlaceImageFetcher.swift */,
 			);
 			path = GPDataService;
+			sourceTree = "<group>";
+		};
+		E70C6C312B0B5CDF003B27EE /* Restaurant */ = {
+			isa = PBXGroup;
+			children = (
+				E70AF8EB2B074B580003462C /* RestaurantCard.swift */,
+				E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */,
+			);
+			path = Restaurant;
 			sourceTree = "<group>";
 		};
 		E73B17132B0AE89600F1A0DD /* Extensions */ = {
@@ -370,9 +384,9 @@
 		E7F9EDB12B084BD8005976BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E70C6C312B0B5CDF003B27EE /* Restaurant */,
 				E70AF8E22B071D450003462C /* NavigationModel.swift */,
 				E7A3993E2B034AEC005C8021 /* FFTabBar.swift */,
-				E70AF8EB2B074B580003462C /* RestaurantCard.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -631,6 +645,7 @@
 				E7D856582B05F6F400C5CB92 /* MobileNetV2.mlmodel in Sources */,
 				E773536F2B09B53F003035B4 /* DateFormatter+Extension.swift in Sources */,
 				E7A3993F2B034AEC005C8021 /* FFTabBar.swift in Sources */,
+				E70C6C352B0B6134003B27EE /* PlaceImageFetcher.swift in Sources */,
 				E7E200E22B090D83003C22D6 /* ChatroomViewController.swift in Sources */,
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
@@ -653,6 +668,7 @@
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7A399472B034E30005C8021 /* CommunityView.swift in Sources */,
 				E73B17122B0A564700F1A0DD /* FoodListSettingView.swift in Sources */,
+				E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,
 				E7E200E92B0912BA003C22D6 /* Sender.swift in Sources */,

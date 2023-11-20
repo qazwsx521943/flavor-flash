@@ -18,7 +18,11 @@ class RestaurantMapViewCoordinator: NSObject {
 
 	let placesClient = GMSPlacesClient.shared()
 
-	var currentLocation: CLLocationCoordinate2D?
+	var currentLocation: CLLocationCoordinate2D? {
+		didSet {
+			self.mapView?.currentLocation = currentLocation
+		}
+	}
 
 	init(mapView: RestaurantMapView? = nil) {
 		super.init()
@@ -155,11 +159,6 @@ extension RestaurantMapViewCoordinator {
 
 extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-		mapView.setRegion(
-			MKCoordinateRegion(
-				center: annotation.coordinate,
-				span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-			), animated: true
-		)
+		currentLocation = annotation.coordinate
 	}
 }
