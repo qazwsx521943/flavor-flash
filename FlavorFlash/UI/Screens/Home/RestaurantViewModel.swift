@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 
+@MainActor
 final class RestaurantViewModel: ObservableObject {
     var category: String
     @Published var currentLocation: CLLocationCoordinate2D?

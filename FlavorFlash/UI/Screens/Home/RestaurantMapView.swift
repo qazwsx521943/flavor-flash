@@ -41,11 +41,10 @@ struct RestaurantMapView: UIViewRepresentable {
 //        updateRestaurants()
     }
 
-    func makeCoordinator() -> HomeMapViewCoordinator {
-        HomeMapViewCoordinator(mapView: self)
+    func makeCoordinator() -> RestaurantMapViewCoordinator {
+        RestaurantMapViewCoordinator(mapView: self)
     }
 }
-
 
 extension RestaurantMapView {
     func updateRestaurants() {

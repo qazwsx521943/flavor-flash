@@ -95,19 +95,3 @@ extension ChatroomViewCoordinator: InputBarAccessoryViewDelegate {
         inputBar.inputTextView.text = ""
     }
 }
-
-extension ChatroomViewCoordinator: CameraInputBarAccessoryViewDelegate {
-	func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith attachments: [AttachmentManager.Attachment]) {
-		for item in attachments {
-			if case .image(let image) = item {
-				self.sendImageMessage(photo: image)
-			}
-		}
-		inputBar.invalidatePlugins()
-	}
-
-	func sendImageMessage(photo: UIImage) {
-//		let photoMessage = MockMessage(image: photo, user: currentSender as! MockUser, messageId: UUID().uuidString, date: Date())
-//		insertMessage(photoMessage)
-	}
-}
