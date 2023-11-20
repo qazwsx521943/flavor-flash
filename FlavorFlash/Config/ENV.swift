@@ -34,7 +34,7 @@ class BaseENV: ObservableObject {
 
 extension BaseENV {
     func getValue(_ keyValue: String) -> String {
-        guard 
+        guard
             let key = dict.object(forKey: keyValue) as? String
         else {
             fatalError("Cannot get apiKey")

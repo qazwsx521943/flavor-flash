@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 
 final class NavigationModel: ObservableObject {
+	@Published var showSignInModal: Bool = false
     @Published var selectedTab: TabItems = .home
     @Published var tabBarHidden: Bool = false
 

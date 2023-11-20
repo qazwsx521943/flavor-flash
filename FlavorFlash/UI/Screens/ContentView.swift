@@ -9,11 +9,10 @@ import SwiftUI
 import SwiftData
 
 struct ContentView: View {
-    @StateObject private var navigationModel = NavigationModel()
+	@EnvironmentObject private var navigationModel: NavigationModel
 
     var body: some View {
         FFTabBar(selectedTab: $navigationModel.selectedTab)
-            .environmentObject(navigationModel)
     }
 }
 

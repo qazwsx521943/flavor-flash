@@ -97,7 +97,7 @@ class Camera: NSObject {
     }
 
     func takePhoto() {
-        guard 
+        guard
             let backCamPhotoOutput = self.backCamPhotoOutput,
             let frontCamPhotoOutput = self.frontCamPhotoOutput
         else { return }
@@ -106,14 +106,16 @@ class Camera: NSObject {
             var photoSettings = AVCapturePhotoSettings()
 
             let availableFormat = kCVPixelFormatType_32BGRA
-            photoSettings = AVCapturePhotoSettings(format: [kCVPixelBufferPixelFormatTypeKey as String: availableFormat])
+            photoSettings = AVCapturePhotoSettings(format: [
+                kCVPixelBufferPixelFormatTypeKey as String: availableFormat
+            ])
 
             let isFlashAvailable = self.deviceInput?.device.isFlashAvailable ?? false
             photoSettings.flashMode = isFlashAvailable ? .auto : .off
             photoSettings.isHighResolutionPhotoEnabled = true
-            if 
+            if
                 let previewPhotoPixelFormatType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
-                photoSettings.previewPhotoFormat = 
+                photoSettings.previewPhotoFormat =
                 [kCVPixelBufferPixelFormatTypeKey as String: previewPhotoPixelFormatType]
             }
             photoSettings.photoQualityPrioritization = .balanced
@@ -165,7 +167,7 @@ class Camera: NSObject {
         let BCPhotoOutput = AVCapturePhotoOutput()
         let FCPhotoOutput = AVCapturePhotoOutput()
 
-        guard 
+        guard
             multiCamSession.canAddOutput(FCPhotoOutput),
             multiCamSession.canAddOutput(BCPhotoOutput)
         else {
@@ -239,21 +241,21 @@ class Camera: NSObject {
         }
 
         multiCamSession.addOutput(backCameraVideoDataOutput)
-//        // Check if CVPixelFormat Lossy or Lossless Compression is supported
-//
-//        if backCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossy_32BGRA) {
-//            // Set the Lossy format
-//            print("Selecting lossy pixel format")
-//            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossy_32BGRA)]
-//        } else if backCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossless_32BGRA) {
-//            // Set the Lossless format
-//            print("Selecting a lossless pixel format")
-//            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossless_32BGRA)]
-//        } else {
-//            // Set to the fallback format
-//            print("Selecting a 32BGRA pixel format")
-//            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-//        }
+        //        // Check if CVPixelFormat Lossy or Lossless Compression is supported
+        //
+        //        if backCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossy_32BGRA) {
+        //            // Set the Lossy format
+        //            print("Selecting lossy pixel format")
+        //            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossy_32BGRA)]
+        //        } else if backCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossless_32BGRA) {
+        //            // Set the Lossless format
+        //            print("Selecting a lossless pixel format")
+        //            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossless_32BGRA)]
+        //        } else {
+        //            // Set to the fallback format
+        //            print("Selecting a 32BGRA pixel format")
+        //            backCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+        //        }
 
         backCameraVideoDataOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
 
@@ -292,10 +294,10 @@ class Camera: NSObject {
         }
 
         // Find front camera device input's video port
-        guard 
+        guard
             let frontCameraDeviceInput = frontCameraDeviceInput,
             let frontCameraVideoPort = frontCameraDeviceInput.ports(
-                for: .video, 
+                for: .video,
                 sourceDeviceType: frontCamera.deviceType,
                 sourceDevicePosition: frontCamera.position
             ).first
@@ -310,18 +312,18 @@ class Camera: NSObject {
         }
 
         multiCamSession.addOutput(frontCameraVideoDataOutput)
-//        // Check if CVPixelFormat Lossy or Lossless Compression is supported
-//
-//        if frontCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossy_32BGRA) {
-//            // Set the Lossy format
-//            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossy_32BGRA)]
-//        } else if frontCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossless_32BGRA) {
-//            // Set the Lossless format
-//            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossless_32BGRA)]
-//        } else {
-//            // Set to the fallback format
-//            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
-//        }
+        //        // Check if CVPixelFormat Lossy or Lossless Compression is supported
+        //
+        //        if frontCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossy_32BGRA) {
+        //            // Set the Lossy format
+        //            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossy_32BGRA)]
+        //        } else if frontCameraVideoDataOutput.availableVideoPixelFormatTypes.contains(kCVPixelFormatType_Lossless_32BGRA) {
+        //            // Set the Lossless format
+        //            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_Lossless_32BGRA)]
+        //        } else {
+        //            // Set to the fallback format
+        //            frontCameraVideoDataOutput.videoSettings = [kCVPixelBufferPixelFormatTypeKey as String: Int(kCVPixelFormatType_32BGRA)]
+        //        }
 
         frontCameraVideoDataOutput.setSampleBufferDelegate(self, queue: dataOutputQueue)
 
@@ -439,4 +441,3 @@ fileprivate extension UIScreen {
 }
 
 fileprivate let logger = Logger(subsystem: "flavor-flash.capturingPhotos", category: "Camera")
-

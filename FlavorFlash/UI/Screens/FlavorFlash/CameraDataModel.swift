@@ -65,4 +65,3 @@ fileprivate extension CIImage {
 }
 
 fileprivate let logger = Logger(subsystem: "flavor-flash.capturingPhotos", category: "CameraDataModel")
-
