@@ -232,10 +232,18 @@
 		E70C6C312B0B5CDF003B27EE /* Restaurant */ = {
 			isa = PBXGroup;
 			children = (
+				E70C6C3A2B0B75C1003B27EE /* Annotations */,
 				E70AF8EB2B074B580003462C /* RestaurantCard.swift */,
 				E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */,
 			);
 			path = Restaurant;
+			sourceTree = "<group>";
+		};
+		E70C6C3A2B0B75C1003B27EE /* Annotations */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Annotations;
 			sourceTree = "<group>";
 		};
 		E73B17132B0AE89600F1A0DD /* Extensions */ = {
@@ -376,7 +384,6 @@
 			children = (
 				E70C6C302B0B492C003B27EE /* GPDataService */,
 				E77353772B09CE9D003035B4 /* FBDataService */,
-				E715D9B22B03C52A00B6478D /* Camera.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -430,6 +437,7 @@
 		E7FFC2492B037A1A00F7B171 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
+				E715D9B22B03C52A00B6478D /* Camera.swift */,
 				E7A399442B034E22005C8021 /* FlavorFlashView.swift */,
 				E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */,
 				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,

@@ -39,7 +39,7 @@ struct RestaurantSearchView: View {
                 .frame(height: 100)
             }
         }
-        .navigationTitle("MAP")
+		.navigationTitle($restaurantDataModel.category)
     }
 
     init(category: String) {

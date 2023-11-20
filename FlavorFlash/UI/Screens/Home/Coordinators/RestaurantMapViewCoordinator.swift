@@ -39,46 +39,9 @@ class RestaurantMapViewCoordinator: NSObject {
 	}
 }
 
-extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
-	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-		let location: CLLocation = locations.last!
-		print(location)
-	}
-
-	// Handle authorization for the location manager.
-	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		// Check accuracy authorization
-		let accuracy = manager.accuracyAuthorization
-		switch accuracy {
-		case .fullAccuracy:
-			print("Location accuracy is precise.")
-		case .reducedAccuracy:
-			print("Location accuracy is not precise.")
-		@unknown default:
-			fatalError()
-		}
-
-		// Handle authorization status
-		switch status {
-		case .restricted:
-			print("Location access was restricted.")
-		case .denied:
-			print("User denied access to location.")
-			// Display the map using the default location.
-		case .notDetermined:
-			print("Location status not determined.")
-		case .authorizedAlways: fallthrough
-		case .authorizedWhenInUse:
-			print("Location status is OK.")
-		@unknown default:
-			fatalError()
-		}
-	}
-
-	// Handle location manager errors.
-	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-		locationManager.stopUpdatingLocation()
-		print("Error: \(error)")
+extension RestaurantMapViewCoordinator: MKMapViewDelegate {
+	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
+		currentLocation = annotation.coordinate
 	}
 }
 
@@ -157,8 +120,45 @@ extension RestaurantMapViewCoordinator {
 	}
 }
 
-extension RestaurantMapViewCoordinator: MKMapViewDelegate {
-	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-		currentLocation = annotation.coordinate
+extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		let location: CLLocation = locations.last!
+		print(location)
+	}
+
+	// Handle authorization for the location manager.
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		// Check accuracy authorization
+		let accuracy = manager.accuracyAuthorization
+		switch accuracy {
+		case .fullAccuracy:
+			print("Location accuracy is precise.")
+		case .reducedAccuracy:
+			print("Location accuracy is not precise.")
+		@unknown default:
+			fatalError()
+		}
+
+		// Handle authorization status
+		switch status {
+		case .restricted:
+			print("Location access was restricted.")
+		case .denied:
+			print("User denied access to location.")
+			// Display the map using the default location.
+		case .notDetermined:
+			print("Location status not determined.")
+		case .authorizedAlways: fallthrough
+		case .authorizedWhenInUse:
+			print("Location status is OK.")
+		@unknown default:
+			fatalError()
+		}
+	}
+
+	// Handle location manager errors.
+	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+		locationManager.stopUpdatingLocation()
+		print("Error: \(error)")
 	}
 }

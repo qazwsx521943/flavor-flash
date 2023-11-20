@@ -16,5 +16,4 @@ final class NavigationModel: ObservableObject {
     func hideTabBar() {
         tabBarHidden = true
     }
-
 }
