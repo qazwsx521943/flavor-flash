@@ -22,18 +22,18 @@ final class ChatroomViewCoordinator: NSObject {
 
 extension ChatroomViewCoordinator: MessagesDataSource {
     var currentSender: MessageKit.SenderType {
-        sender1
+		Sender(senderId: parent.chatroomVM.user!.userId, displayName: "Jason")
     }
 
     func messageForItem(
         at indexPath: IndexPath,
         in messagesCollectionView: MessageKit.MessagesCollectionView
     ) -> MessageKit.MessageType {
-        parent.messages[indexPath.section]
+		parent.chatroomVM.messages[indexPath.section]
     }
 
     func numberOfSections(in messagesCollectionView: MessageKit.MessagesCollectionView) -> Int {
-        parent.messages.count
+		parent.chatroomVM.messages.count
     }
 
 	// message attributes
@@ -58,7 +58,7 @@ extension ChatroomViewCoordinator: MessagesDisplayDelegate {
 		at indexPath: IndexPath,
 		in messagesCollectionView: MessagesCollectionView
 	) -> UIColor {
-		.black
+		.systemPurple
 	}
 
 	func messageStyle(
@@ -69,6 +69,10 @@ extension ChatroomViewCoordinator: MessagesDisplayDelegate {
 		MessageStyle.bubbleTail(
 			message.sender.senderId == currentSender.senderId ? .bottomRight : .bottomLeft,
 				.curved)
+	}
+
+	func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
+		.white
 	}
 }
 extension ChatroomViewCoordinator: MessagesLayoutDelegate {
@@ -84,14 +88,26 @@ extension ChatroomViewCoordinator: MessagesLayoutDelegate {
 extension ChatroomViewCoordinator: InputBarAccessoryViewDelegate {
     func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith text: String) {
         guard !inputBar.inputTextView.text.isEmpty else { return }
-        parent.messages.append(
-            Message(
-                sender: sender1,
-                messageId: UUID().uuidString,
-                sentDate: Date.now,
-                kind: .text(text))
-        )
+		Task {
+			try await parent.chatroomVM.sendMessage(text: text)
+		}
 
         inputBar.inputTextView.text = ""
     }
+}
+
+extension ChatroomViewCoordinator: CameraInputBarAccessoryViewDelegate {
+	func inputBar(_ inputBar: InputBarAccessoryView, didPressSendButtonWith attachments: [AttachmentManager.Attachment]) {
+		for item in attachments {
+			if case .image(let image) = item {
+				self.sendImageMessage(photo: image)
+			}
+		}
+		inputBar.invalidatePlugins()
+	}
+
+	func sendImageMessage(photo: UIImage) {
+//		let photoMessage = MockMessage(image: photo, user: currentSender as! MockUser, messageId: UUID().uuidString, date: Date())
+//		insertMessage(photoMessage)
+	}
 }

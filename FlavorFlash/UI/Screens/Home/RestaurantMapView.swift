@@ -71,6 +71,5 @@ extension RestaurantMapView {
 }
 
 //#Preview {
-//
 //    RestaurantMapView(restaurants: .constant(RestaurantViewModel(searchCategory: "lunch").restaurants), )
 //}

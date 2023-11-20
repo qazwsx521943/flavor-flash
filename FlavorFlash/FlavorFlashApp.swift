@@ -17,7 +17,7 @@ struct FlavorFlashApp: App {
             ContentView()
 				.onAppear {
 					let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-					debugPrint(authUser)
+
 					navigationModel.showSignInModal = authUser == nil
 				}
 				.fullScreenCover(isPresented: $navigationModel.showSignInModal) {

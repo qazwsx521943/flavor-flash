@@ -15,17 +15,17 @@ final class UserManager {
 
 	private let userCollection = Firestore.firestore().collection("users")
 
-	private let encoder: Firestore.Encoder = {
-		let encoder = Firestore.Encoder()
-		encoder.keyEncodingStrategy = .convertToSnakeCase
-		return encoder
-	}()
-
-	private let decoder: Firestore.Decoder = {
-		let decoder = Firestore.Decoder()
-		decoder.keyDecodingStrategy = .convertFromSnakeCase
-		return decoder
-	}()
+//	private let encoder: Firestore.Encoder = {
+//		let encoder = Firestore.Encoder()
+//		encoder.keyEncodingStrategy = .convertToSnakeCase
+//		return encoder
+//	}()
+//
+//	private let decoder: Firestore.Decoder = {
+//		let decoder = Firestore.Decoder()
+//		decoder.keyDecodingStrategy = .convertFromSnakeCase
+//		return decoder
+//	}()
 
 	private func userDocument(userId: String) -> DocumentReference {
 		userCollection.document(userId)
@@ -38,12 +38,13 @@ final class UserManager {
 		debugPrint("creating new user: \(user)")
 		try userDocument(userId: user.userId).setData(
 			from: user,
-			merge: false,
-			encoder: encoder)
+			merge: false
+//			encoder: encoder
+		)
 	}
 
 	func getUser(userId: String) async throws -> FFUser {
-		return try await userDocument(userId: userId).getDocument(as: FFUser.self, decoder: decoder)
+		return try await userDocument(userId: userId).getDocument(as: FFUser.self)
 	}
 
 	// updateDate vs. setData (be careful using setData)

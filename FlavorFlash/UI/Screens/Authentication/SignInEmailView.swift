@@ -11,6 +11,7 @@ import SwiftUI
 class ViewModel: ObservableObject {
 	@Published var email = ""
 	@Published var password = ""
+	@Published var displayName = ""
 
 	func signUp() async throws {
 		guard !email.isEmpty, !password.isEmpty else {
@@ -18,7 +19,7 @@ class ViewModel: ObservableObject {
 		}
 
 		let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-		try await UserManager.shared.createNewUser(user: FFUser(auth: userData))
+		try await UserManager.shared.createNewUser(user: FFUser(auth: userData, displayName: displayName))
 	}
 
 	func signIn() async throws {
@@ -45,6 +46,12 @@ struct SignInEmailView: View {
 				.padding()
 				.background(Color.gray.opacity(0.4))
 				.cornerRadius(10)
+			
+			TextField("Name:" , text: $viewModel.displayName)
+				.padding()
+				.background(Color.gray.opacity(0.4))
+				.cornerRadius(10)
+
 			Button {
 				Task {
 					do {

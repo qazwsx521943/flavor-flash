@@ -31,6 +31,7 @@ final class AuthenticationManager {
 		guard let user = Auth.auth().currentUser else {
 			throw URLError(.badServerResponse)
 		}
+		debugPrint("current loggedin user: \(user.uid)")
 
 		return AuthDataResultModel(user: user)
 	}

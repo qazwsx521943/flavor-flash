@@ -10,7 +10,13 @@ import UIKit
 import MessageKit
 
 struct ChatroomViewController: UIViewControllerRepresentable {
-    @Binding var messages: [MessageType]
+//    @Binding var messages: [MessageType]
+	@StateObject var chatroomVM: ChatroomViewModel
+
+	init(groupId: String) {
+		_chatroomVM = StateObject(wrappedValue: ChatroomViewModel(groupId: groupId))
+	}
+
     typealias UIViewControllerType = MessagesViewController
 
     func makeUIViewController(context: Context) -> MessageKit.MessagesViewController {
@@ -19,13 +25,16 @@ struct ChatroomViewController: UIViewControllerRepresentable {
         messagesViewController.messagesCollectionView.messagesDataSource = context.coordinator
         messagesViewController.messagesCollectionView.messagesLayoutDelegate = context.coordinator
         messagesViewController.messagesCollectionView.messagesDisplayDelegate = context.coordinator
-        messagesViewController.messageInputBar.delegate = context.coordinator
+		messagesViewController.messageInputBar = CameraInputBarAccessoryView()
+		messagesViewController.messageInputBar.delegate = context.coordinator
 
         return messagesViewController
     }
 
     func updateUIViewController(_ uiViewController: MessageKit.MessagesViewController, context: Context) {
-        uiViewController.messagesCollectionView.reloadData()
+		DispatchQueue.main.async {
+			uiViewController.messagesCollectionView.reloadData()
+		}
 		scrollToBottom(uiViewController)
         debugPrint("update messageViewController")
     }
@@ -43,6 +52,6 @@ extension ChatroomViewController {
 	}
 }
 
-#Preview {
-    ChatroomViewController(messages: .constant(ChatroomViewModel().messages))
-}
+//#Preview {
+//    ChatroomViewController(messages: .constant(ChatListViewModel().messages),)
+//}
