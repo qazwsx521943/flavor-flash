@@ -30,12 +30,9 @@ struct RestaurantSearchView: View {
                                 }
                                 .sheet(isPresented: $showDetail) {
                                     if let selected = restaurantDataModel.selectedRestaurant {
-                                        VStack {
-                                            Text(selected.displayName.text)
-                                                .font(.title)
-                                                .foregroundStyle(.blue)
-                                            Text(selected.formattedAddress!)
-                                        }
+										RestaurantDetail(restaurant: selected) { restaurant in
+											try? restaurantDataModel.saveFavoriteRestaurant(restaurant)
+										}
                                     }
                                 }
                         }
@@ -44,7 +41,7 @@ struct RestaurantSearchView: View {
                 .frame(height: 100)
             }
         }
-        .navigationTitle("MAP")
+		.navigationTitle($restaurantDataModel.category)
     }
 
     init(category: String) {

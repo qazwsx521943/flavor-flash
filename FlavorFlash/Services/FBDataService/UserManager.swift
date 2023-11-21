@@ -9,6 +9,10 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
+enum FBStoreError: Error {
+	case noSuchInputField
+}
+
 final class UserManager {
 
 	static let shared = UserManager()
@@ -47,5 +51,24 @@ final class UserManager {
 		return try await userDocument(userId: userId).getDocument(as: FFUser.self)
 	}
 
+	func setRestaurantCategories(userId: String, categories: [String]) async throws {
+		let docData: [String: Any] = ["categoryPreferences": categories]
+		try await userDocument(userId: userId).setData(docData, merge: true)
+	}
+
 	// updateDate vs. setData (be careful using setData)
+	func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
+		let data: [String: Any] = [
+			FFUser.CodingKeys.profileImagePath.rawValue : path,
+			FFUser.CodingKeys.profileImageUrl.rawValue : url,
+		]
+
+		try await userDocument(userId: userId).updateData(data)
+	}
+
+	func saveUserFavoriteRestaurant(userId: String, restaurant: Restaurant) throws {
+		debugPrint("userId: \(userId), restaurant: \(restaurant)")
+//		userDocument(userId: userId).setData(["favorite_restaurants": restaurant.id], merge: true)
+		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayUnion([restaurant.id])])
+	}
 }

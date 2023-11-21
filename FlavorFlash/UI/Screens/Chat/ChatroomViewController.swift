@@ -25,7 +25,7 @@ struct ChatroomViewController: UIViewControllerRepresentable {
         messagesViewController.messagesCollectionView.messagesDataSource = context.coordinator
         messagesViewController.messagesCollectionView.messagesLayoutDelegate = context.coordinator
         messagesViewController.messagesCollectionView.messagesDisplayDelegate = context.coordinator
-		messagesViewController.messageInputBar = CameraInputBarAccessoryView()
+//		messagesViewController.messageInputBar = CameraInputBarAccessoryView()
 		messagesViewController.messageInputBar.delegate = context.coordinator
 
         return messagesViewController

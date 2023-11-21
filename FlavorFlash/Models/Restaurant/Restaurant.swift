@@ -54,35 +54,5 @@ struct Restaurant: Hashable, Codable, Identifiable {
 }
 
 extension Restaurant {
-	func loadMainImage(completionHandler: @escaping (Image) -> Void) {
-		guard
-			let _ = photos
-		else { return }
-		let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt64(UInt(GMSPlaceField.photos.rawValue)))
 
-		GMSPlacesClient.shared().fetchPlace(
-			fromPlaceID: "INSERT_PLACE_ID_HERE",
-			placeFields: fields,
-			sessionToken: nil, callback: { (place: GMSPlace?, error: Error?) in
-			if let error = error {
-				print("An error occurred: \(error.localizedDescription)")
-				return
-			}
-			if let place = place {
-				// Get the metadata for the first photo in the place photo metadata list.
-				let photoMetadata: GMSPlacePhotoMetadata = place.photos![0]
-
-				// Call loadPlacePhoto to display the bitmap and attribution.
-				GMSPlacesClient.shared().loadPlacePhoto(photoMetadata, callback: { (photo, error) -> Void in
-					if let error = error {
-						// TODO: Handle the error.
-						print("Error loading photo metadata: \(error.localizedDescription)")
-						return
-					} else {
-						completionHandler(Image(uiImage: photo!))
-					}
-				})
-			}
-		})
-	}
 }

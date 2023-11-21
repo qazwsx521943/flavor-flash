@@ -10,23 +10,32 @@ import SwiftUI
 struct RestaurantCard: View {
     var restaurant: Restaurant
 
-    var image: Image = Image("home-icon")
+	@State private var image: UIImage?
 
     var body: some View {
         HStack {
-            ZStack {
-                image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 60, height: 60)
-                    .cornerRadius(10)
-            }
-            .padding(5)
-            .background(.yellow)
-            .cornerRadius(10)
+			if let image {
+				ZStack {
+					Image(uiImage: image)
+						.resizable()
+						.scaledToFill()
+						.frame(width: 60, height: 60)
+						.cornerRadius(10)
+				}
+				.padding(5)
+				.background(.yellow)
+				.cornerRadius(10)
+			}
 
             TextOverlay(title: restaurant.displayName.text, description: restaurant.formattedAddress ?? "無相關資訊")
+
+			Image(systemName: "heart")
+				.resizable()
+				.frame(width: 20, height: 20)
         }
+		.task {
+			PlaceImageFetcher.shared.fetchImage(for: restaurant.id) { image = $0 }
+		}
         .padding(5)
         .frame(width: 200, height: 100)
         .background(.black.opacity(0.5))

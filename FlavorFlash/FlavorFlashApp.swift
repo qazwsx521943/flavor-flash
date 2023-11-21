@@ -25,6 +25,9 @@ struct FlavorFlashApp: App {
 						AuthenticationView()
 					}
 				}
+				.fullScreenCover(isPresented: $navigationModel.showCategorySelectionModal) {
+					RestaurantCategoryView()
+				}
 				.environmentObject(navigationModel)
         }
     }
