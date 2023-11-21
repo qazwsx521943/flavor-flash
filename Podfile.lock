@@ -1,16 +1,24 @@
 PODS:
+  - Alamofire (5.8.0)
+  - GooglePlaces (8.3.0)
   - SwiftLint (0.53.0)
 
 DEPENDENCIES:
+  - Alamofire
+  - GooglePlaces (= 8.3.0)
   - SwiftLint
 
 SPEC REPOS:
   trunk:
+    - Alamofire
+    - GooglePlaces
     - SwiftLint
 
 SPEC CHECKSUMS:
+  Alamofire: 0e92e751b3e9e66d7982db43919d01f313b8eb91
+  GooglePlaces: b922e192c50994436900ef14d19f84971950250b
   SwiftLint: 5ce4d6a8ff83f1b5fd5ad5dbf30965d35af65e44
 
-PODFILE CHECKSUM: c9e019f44409fa2aa88f283e8b52491e46c44f9d
+PODFILE CHECKSUM: 580af711fa9102cfbce0c1ea915e70dea48a0cf4
 
 COCOAPODS: 1.13.0

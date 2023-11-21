@@ -1,17 +1,62 @@
 
 excluded:
   - Pods
+  - DerivedData
+
 disabled_rules:
-  - trailing_whitespace
+  - private_over_fileprivate
+  - comment_spacing
+
+analyzer_rules:
+  - unused_import
+  - unused_declaration
+
+opt_in_rules:
+  - indentation_width
+  - force_try
+
+custom_rules:
+  array_constructor:
+    name: "Array/Dictionary initializer"
+    regex: '[let,var] .+ = (\[.+\]\(\))'
+    capture_group: 1
+    message: "Use explicit type annotation when initializing empty arrays and dictionaries"
+    severity: warning
+
+indentation_width:
+  indentation_width: 4
+
 identifier_name:
+  allowed_symbols: ["_"] # these are allowed
   excluded: # excluded via string array
     - id
     - URL
     - url
     - app
+
+force_cast: warning
+
+force_try: warning
+
+line_length:
+  ignore_urls: true
+  ignore_function_declarations: true
+  ignore_comments: true
+
 file_length:
   warning: 500
   error: 800
+
 type_body_length:
   - 500 # warning
   - 700 # error
+
+function_body_length:
+  warning: 80
+
+trailing_whitespace:
+  ignores_empty_lines: false
+  ignores_comments: true
+
+vertical_whitespace:
+  max_empty_lines: 2

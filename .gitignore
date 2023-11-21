@@ -2,6 +2,11 @@
 #
 # gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
+# API-Keys
+DEBUG-Keys.plist
+PROD-Keys.plist
+GoogleService-Info.plist
+
 ## User settings
 xcuserdata/
 
