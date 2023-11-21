@@ -47,5 +47,10 @@ final class UserManager {
 		return try await userDocument(userId: userId).getDocument(as: FFUser.self)
 	}
 
+	func setRestaurantCategories(userId: String, categories: [String]) async throws {
+		let docData: [String: Any] = ["categoryPreferences": categories]
+		try await userDocument(userId: userId).setData(docData, merge: true)
+	}
+
 	// updateDate vs. setData (be careful using setData)
 }

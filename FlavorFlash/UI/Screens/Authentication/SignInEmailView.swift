@@ -56,6 +56,7 @@ struct SignInEmailView: View {
 					do {
 						try await viewModel.signUp()
 						navigationModel.showSignInModal = false
+						navigationModel.showCategorySelectionModal = true
 						return
 					} catch {
 						debugPrint(error)

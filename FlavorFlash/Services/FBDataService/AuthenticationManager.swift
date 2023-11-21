@@ -11,6 +11,7 @@ import FirebaseAuth
 enum FBAuthError: Error {
 	case signInError
 	case inputFieldEmpty
+	case userNotLoggedIn
 }
 
 struct AuthDataResultModel {
