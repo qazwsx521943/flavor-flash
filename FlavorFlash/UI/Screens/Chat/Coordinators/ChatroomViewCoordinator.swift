@@ -9,15 +9,17 @@ import MessageKit
 import InputBarAccessoryView
 import UIKit
 
-let sender1 = Sender(senderId: "1", displayName: "Jason")
-let sender2 = Sender(senderId: "2", displayName: "Lyy")
-
 final class ChatroomViewCoordinator: NSObject {
     var parent: ChatroomViewController
 
     init(_ parent: ChatroomViewController) {
         self.parent = parent
     }
+
+	deinit {
+		print("Coordinator deinitialized")
+		parent.chatroomVM.removeListener()
+	}
 }
 
 extension ChatroomViewCoordinator: MessagesDataSource {
@@ -73,6 +75,28 @@ extension ChatroomViewCoordinator: MessagesDisplayDelegate {
 
 	func textColor(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> UIColor {
 		.white
+	}
+
+	func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+		if message.sender.senderId == currentSender.senderId {
+			guard let profileImageUrl = parent.chatroomVM.user?.profileImageUrl else { return }
+			UIImageView.getUIImage(urlString: profileImageUrl) { image in
+				avatarView.set(avatar: Avatar(image: image))
+			}
+		} else {
+			guard 
+				let profileImageUrl = parent.chatroomVM.members?.first(where: { user in
+				user.userId == message.sender.senderId
+			})?.profileImageUrl 
+			else {
+				avatarView.set(avatar: Avatar(image: UIImage(named: "home-icon")))
+				return
+			}
+
+			UIImageView.getUIImage(urlString: profileImageUrl) { image in
+				avatarView.set(avatar: Avatar(image: image))
+			}
+		}
 	}
 }
 extension ChatroomViewCoordinator: MessagesLayoutDelegate {
