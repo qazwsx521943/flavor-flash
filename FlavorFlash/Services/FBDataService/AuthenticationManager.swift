@@ -8,6 +8,11 @@
 import Foundation
 import FirebaseAuth
 
+enum FBAuthError: Error {
+	case signInError
+	case inputFieldEmpty
+}
+
 struct AuthDataResultModel {
 	let uid: String
 	let email: String?
@@ -46,9 +51,13 @@ final class AuthenticationManager {
 
 	@discardableResult
 	func signIn(email: String, password: String) async throws -> AuthDataResultModel {
-		let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
+		do {
+			let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
 
-		return AuthDataResultModel(user: authDataResult.user)
+			return AuthDataResultModel(user: authDataResult.user)
+		} catch {
+			throw FBAuthError.signInError
+		}
 	}
 
 	func signOut() throws {

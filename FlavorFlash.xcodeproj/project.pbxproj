@@ -24,6 +24,12 @@
 		E70AF8FF2B07A5470003462C /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8FE2B07A5470003462C /* RestaurantViewModel.swift */; };
 		E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */; };
 		E70C6C352B0B6134003B27EE /* PlaceImageFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C342B0B6134003B27EE /* PlaceImageFetcher.swift */; };
+		E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C402B0BA145003B27EE /* BorderModifiers.swift */; };
+		E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */; };
+		E70C6C452B0BAD51003B27EE /* TextFieldModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */; };
+		E70C6C472B0BBA03003B27EE /* EmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C462B0BBA03003B27EE /* EmailAddress.swift */; };
+		E70C6C492B0BBE0E003B27EE /* ButtonModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */; };
+		E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C4A2B0C1AF4003B27EE /* ImageModifiers.swift */; };
 		E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */; };
 		E715D9B32B03C52A00B6478D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9B22B03C52A00B6478D /* Camera.swift */; };
 		E73B17122B0A564700F1A0DD /* FoodListSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17112B0A564700F1A0DD /* FoodListSettingView.swift */; };
@@ -98,6 +104,12 @@
 		E70AF8FE2B07A5470003462C /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 		E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
 		E70C6C342B0B6134003B27EE /* PlaceImageFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceImageFetcher.swift; sourceTree = "<group>"; };
+		E70C6C402B0BA145003B27EE /* BorderModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderModifiers.swift; sourceTree = "<group>"; };
+		E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
+		E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifiers.swift; sourceTree = "<group>"; };
+		E70C6C462B0BBA03003B27EE /* EmailAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddress.swift; sourceTree = "<group>"; };
+		E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifiers.swift; sourceTree = "<group>"; };
+		E70C6C4A2B0C1AF4003B27EE /* ImageModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModifiers.swift; sourceTree = "<group>"; };
 		E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataModel.swift; sourceTree = "<group>"; };
 		E715D9B22B03C52A00B6478D /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		E73B17112B0A564700F1A0DD /* FoodListSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListSettingView.swift; sourceTree = "<group>"; };
@@ -246,9 +258,22 @@
 			path = Annotations;
 			sourceTree = "<group>";
 		};
+		E70C6C3D2B0B9B5C003B27EE /* ViewModifiers */ = {
+			isa = PBXGroup;
+			children = (
+				E70C6C402B0BA145003B27EE /* BorderModifiers.swift */,
+				E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */,
+				E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */,
+				E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */,
+				E70C6C4A2B0C1AF4003B27EE /* ImageModifiers.swift */,
+			);
+			path = ViewModifiers;
+			sourceTree = "<group>";
+		};
 		E73B17132B0AE89600F1A0DD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E70C6C3D2B0B9B5C003B27EE /* ViewModifiers */,
 				E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */,
 				E70AF8E62B0734A30003462C /* View+Extension.swift */,
 				E773536E2B09B53F003035B4 /* DateFormatter+Extension.swift */,
@@ -288,6 +313,7 @@
 			isa = PBXGroup;
 			children = (
 				E7809B552B0A2DDF00D76E71 /* FFUser.swift */,
+				E70C6C462B0BBA03003B27EE /* EmailAddress.swift */,
 			);
 			path = FFUser;
 			sourceTree = "<group>";
@@ -642,6 +668,8 @@
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
 				E7E200E42B090F3D003C22D6 /* ChatroomViewCoordinator.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
+				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,
+				E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */,
 				E77353742B09CB5C003035B4 /* SignInEmailView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
@@ -650,6 +678,8 @@
 				E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */,
 				E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */,
 				E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */,
+				E70C6C472B0BBA03003B27EE /* EmailAddress.swift in Sources */,
+				E70C6C452B0BAD51003B27EE /* TextFieldModifiers.swift in Sources */,
 				E7D856582B05F6F400C5CB92 /* MobileNetV2.mlmodel in Sources */,
 				E773536F2B09B53F003035B4 /* DateFormatter+Extension.swift in Sources */,
 				E7A3993F2B034AEC005C8021 /* FFTabBar.swift in Sources */,
@@ -676,7 +706,9 @@
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7A399472B034E30005C8021 /* CommunityView.swift in Sources */,
 				E73B17122B0A564700F1A0DD /* FoodListSettingView.swift in Sources */,
+				E70C6C492B0BBE0E003B27EE /* ButtonModifiers.swift in Sources */,
 				E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */,
+				E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,
 				E7E200E92B0912BA003C22D6 /* Sender.swift in Sources */,
@@ -738,7 +770,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -795,7 +827,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -818,6 +850,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow browsing photo in Flavor Flash";
@@ -853,6 +886,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow browsing photo in Flavor Flash";

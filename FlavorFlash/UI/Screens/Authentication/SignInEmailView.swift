@@ -13,8 +13,13 @@ class ViewModel: ObservableObject {
 	@Published var password = ""
 	@Published var displayName = ""
 
+	var isValidEmail: Bool {
+		EmailAddress(rawValue: email) != nil
+	}
+
 	func signUp() async throws {
 		guard !email.isEmpty, !password.isEmpty else {
+			throw FBAuthError.inputFieldEmpty
 			return
 		}
 
@@ -24,7 +29,7 @@ class ViewModel: ObservableObject {
 
 	func signIn() async throws {
 		guard !email.isEmpty, !password.isEmpty else {
-			return
+			throw FBAuthError.inputFieldEmpty
 		}
 
 		let userData = try await AuthenticationManager.shared.signIn(email: email, password: password)
@@ -38,19 +43,13 @@ struct SignInEmailView: View {
     var body: some View {
 		VStack {
 			TextField("Email:", text: $viewModel.email)
-				.padding()
-				.background(Color.gray.opacity(0.4))
-				.cornerRadius(10)
+				.signInFields()
 			Divider()
 			SecureField("Password", text: $viewModel.password)
-				.padding()
-				.background(Color.gray.opacity(0.4))
-				.cornerRadius(10)
-			
-			TextField("Name:" , text: $viewModel.displayName)
-				.padding()
-				.background(Color.gray.opacity(0.4))
-				.cornerRadius(10)
+				.signInFields()
+
+			TextField("Name:", text: $viewModel.displayName)
+				.signInFields()
 
 			Button {
 				Task {
@@ -68,17 +67,13 @@ struct SignInEmailView: View {
 						return
 					} catch {
 						debugPrint(error)
+						return
 					}
 				}
 			} label: {
 				Text("Sign in")
-					.font(.headline)
-					.background(.black)
-					.foregroundStyle(.white)
-					.frame(height: 55)
-					.frame(maxWidth: .infinity)
-					.cornerRadius(10)
 			}
+			.submitPressableStyle()
 		}
 		.padding(EdgeInsets(top: 16, leading: 16, bottom: 16, trailing: 16))
 		.navigationTitle("Sign In With Email")
