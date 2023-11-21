@@ -60,8 +60,10 @@ final class ChatManager {
 		}
 	}
 
-	func groupListener(groupId: String, completionHandler: @escaping ([FBMessage]) -> Void) {
-		chatCollection.document(groupId).collection("messages").order(by: "created_date").addSnapshotListener { collectionSnapshot, error in
+	func groupListener(groupId: String, completionHandler: @escaping ([FBMessage], ListenerRegistration?) -> Void) {
+		var listener: ListenerRegistration?
+
+		listener = chatCollection.document(groupId).collection("messages").order(by: "created_date").addSnapshotListener { [weak listener] collectionSnapshot, error in
 
 			guard let collectionSnapshot else { return }
 
@@ -71,7 +73,7 @@ final class ChatManager {
 					return try $0.document.data(as: FBMessage.self)
 				}
 
-				completionHandler(newMessages)
+				completionHandler(newMessages, listener)
 			} catch {
 				print("groupListener error")
 			}

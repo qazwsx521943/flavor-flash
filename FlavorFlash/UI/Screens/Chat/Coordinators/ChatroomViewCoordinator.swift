@@ -15,6 +15,11 @@ final class ChatroomViewCoordinator: NSObject {
     init(_ parent: ChatroomViewController) {
         self.parent = parent
     }
+
+	deinit {
+		print("Coordinator deinitialized")
+		parent.chatroomVM.removeListener()
+	}
 }
 
 extension ChatroomViewCoordinator: MessagesDataSource {
@@ -79,9 +84,11 @@ extension ChatroomViewCoordinator: MessagesDisplayDelegate {
 				avatarView.set(avatar: Avatar(image: image))
 			}
 		} else {
-			guard let profileImageUrl = parent.chatroomVM.members?.first(where: { user in
+			guard 
+				let profileImageUrl = parent.chatroomVM.members?.first(where: { user in
 				user.userId == message.sender.senderId
-			})?.profileImageUrl else {
+			})?.profileImageUrl 
+			else {
 				avatarView.set(avatar: Avatar(image: UIImage(named: "home-icon")))
 				return
 			}
