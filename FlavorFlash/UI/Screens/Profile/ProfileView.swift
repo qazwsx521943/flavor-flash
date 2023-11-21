@@ -18,13 +18,33 @@ struct ProfileView: View {
         NavigationStack {
             VStack {
                 ZStack {
-                    Circle()
-                        .frame(width: 100, height: 100)
-
+					if let imageUrl = viewModel.user?.photoUrl {
+						AsyncImage(url: URL(string: imageUrl)) { image in
+							image
+								.resizable()
+								.scaledToFill()
+								.frame(width: 100, height: 100)
+								.clipShape(Circle())
+						} placeholder: {
+							ProgressView()
+						}
+					} else {
+						Circle()
+							.frame(width: 100, height: 100)
+					}
                 }
+				.overlay(alignment: .bottomTrailing) {
+					PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
+						Image(systemName: "pencil.circle.fill")
+							.symbolRenderingMode(.multicolor)
+							.font(.system(size: 30))
+							.foregroundColor(Color.purple)
+					}
+				}
+
 				if let user = viewModel.user {
 					VStack {
-						Text(user.userId)
+						Text(user.displayName)
 							.font(.title)
 							.bold()
 						Text("美食獵人")
@@ -32,12 +52,6 @@ struct ProfileView: View {
 							.foregroundStyle(.gray)
 					}
 
-				}
-				Divider()
-				PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
-					Text("選擇大頭照")
-						.font(.caption)
-						.foregroundStyle(.red)
 				}
 			}
 			.task {

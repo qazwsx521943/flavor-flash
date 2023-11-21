@@ -18,9 +18,8 @@ class ViewModel: ObservableObject {
 	}
 
 	func signUp() async throws {
-		guard !email.isEmpty, !password.isEmpty else {
+		guard !email.isEmpty, !password.isEmpty, !displayName.isEmpty else {
 			throw FBAuthError.inputFieldEmpty
-			return
 		}
 
 		let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)

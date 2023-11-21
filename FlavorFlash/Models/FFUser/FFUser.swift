@@ -9,7 +9,7 @@ import Foundation
 
 struct FFUser: Codable {
 	let userId: String
-	let displayName: String?
+	let displayName: String
 	let email: String?
 	let photoUrl: String?
 	let photoPath: String? = nil
