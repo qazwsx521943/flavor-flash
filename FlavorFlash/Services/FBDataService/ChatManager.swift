@@ -77,4 +77,14 @@ final class ChatManager {
 			}
 		}
 	}
+
+	func getGroupMemberId(groupId: String) async throws -> [String] {
+		do {
+			let group = try await groupCollection.document(groupId).getDocument(as: FBGroup.self)
+			return group.members
+		} catch {
+			debugPrint("chat manager fetch groupid error")
+			throw FBStoreError.fetchError
+		}
+	}
 }

@@ -14,6 +14,7 @@ import Combine
 final class ChatroomViewModel: ObservableObject {
 	@Published var messages: [MessageType] = []
 	private(set) var groupId: String
+	var members: [FFUser]?
 
 	private(set) var user: FFUser?
 
@@ -21,8 +22,25 @@ final class ChatroomViewModel: ObservableObject {
 		self.groupId = groupId
 		Task {
 			try await loadUser()
+			try await loadGroupMember()
 //			try await getMessages(groupId: groupId)
 			listen()
+		}
+	}
+
+	func loadGroupMember() async throws {
+		var members: [FFUser] = []
+		do {
+			let ids = try await ChatManager.shared.getGroupMemberId(groupId: groupId)
+
+			for id in ids {
+				let member = try await UserManager.shared.getUser(userId: id)
+				members.append(member)
+			}
+
+			self.members = members
+		} catch {
+			debugPrint("fetch group error")
 		}
 	}
 
