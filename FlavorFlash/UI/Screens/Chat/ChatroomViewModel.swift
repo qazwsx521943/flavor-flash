@@ -8,12 +8,15 @@
 import Foundation
 import MessageKit
 import Combine
+import FirebaseFirestore
 
 //final class ChatroomViewModel<DI: DataService>: ObservableObject where DI.Item == FFMessage {
 //@MainActor
 final class ChatroomViewModel: ObservableObject {
 	@Published var messages: [MessageType] = []
 	private(set) var groupId: String
+	var members: [FFUser]?
+	private(set) var listener: ListenerRegistration?
 
 	private(set) var user: FFUser?
 
@@ -21,8 +24,25 @@ final class ChatroomViewModel: ObservableObject {
 		self.groupId = groupId
 		Task {
 			try await loadUser()
+			try await loadGroupMember()
 //			try await getMessages(groupId: groupId)
 			listen()
+		}
+	}
+
+	func loadGroupMember() async throws {
+		var members: [FFUser] = []
+		do {
+			let ids = try await ChatManager.shared.getGroupMemberId(groupId: groupId)
+
+			for id in ids {
+				let member = try await UserManager.shared.getUser(userId: id)
+				members.append(member)
+			}
+
+			self.members = members
+		} catch {
+			debugPrint("fetch group error")
 		}
 	}
 
@@ -62,7 +82,7 @@ final class ChatroomViewModel: ObservableObject {
 	}
 
 	func listen() {
-		ChatManager.shared.groupListener(groupId: groupId) { messages in
+		ChatManager.shared.groupListener(groupId: groupId) { messages, listener in
 			let mkMessages = messages.map {
 				Message(
 					sender: Sender(senderId: $0.senderId, displayName: $0.senderName),
@@ -70,8 +90,12 @@ final class ChatroomViewModel: ObservableObject {
 					sentDate: $0.createdDate,
 					kind: .text($0.text))
 			}
-
+			self.listener = listener
 			self.messages.append(contentsOf: mkMessages)
 		}
+	}
+
+	func removeListener() {
+		self.listener?.remove()
 	}
 }

@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 
 enum FBStoreError: Error {
 	case noSuchInputField
+	case fetchError
 }
 
 final class UserManager {
