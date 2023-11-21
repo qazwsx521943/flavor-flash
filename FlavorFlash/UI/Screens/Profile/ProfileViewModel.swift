@@ -12,6 +12,7 @@ final class ProfileViewModel: ObservableObject {
 
 	func logOut() throws {
 		try AuthenticationManager.shared.signOut()
+		user = nil
 	}
 
 	func resetPassword() async throws {

@@ -28,6 +28,10 @@ struct RestaurantCard: View {
 			}
 
             TextOverlay(title: restaurant.displayName.text, description: restaurant.formattedAddress ?? "無相關資訊")
+
+			Image(systemName: "heart")
+				.resizable()
+				.frame(width: 20, height: 20)
         }
 		.task {
 			PlaceImageFetcher.shared.fetchImage(for: restaurant.id) { image = $0 }

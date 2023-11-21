@@ -18,7 +18,7 @@ struct ProfileView: View {
         NavigationStack {
             VStack {
                 ZStack {
-					if let imageUrl = viewModel.user?.photoUrl {
+					if let imageUrl = viewModel.user?.profileImageUrl {
 						AsyncImage(url: URL(string: imageUrl)) { image in
 							image
 								.resizable()
@@ -65,13 +65,14 @@ struct ProfileView: View {
 			}
 
             List {
-                Section("Settings") {
-                    ForEach(settingConfigs) { config in
-                        NavigationLink(value: config) {
-                            Text(config.title)
-                        }
-                    }
-                }
+//                Section("Settings") {
+//                    ForEach(settingConfigs) { config in
+//                        NavigationLink(value: config) {
+//                            Text(config.title)
+//                        }
+//                    }
+//
+//                }
 				accountConfigurationView
             }
             .navigationDestination(for: SettingItem.self) { setting in
@@ -91,12 +92,10 @@ extension ProfileView {
 	private var accountConfigurationView: some View {
 		Section("Account") {
 			ForEach(accountConfigs) { config in
-				//                        NavigationLink(value: config) {
 				NavigationLink(value: config) {
 					Text(config.title)
 				}
 				.foregroundStyle(config.title == "Delete" ? .red : .white)
-				//                        }
 			}
 			Button {
 				Task {

@@ -11,6 +11,7 @@ import GooglePlaces
 struct RestaurantDetail: View {
 	@State private var featureImage: UIImage?
 	let restaurant: Restaurant
+	var addToFavorite: ((Restaurant) -> Void)?
 
     var body: some View {
 		VStack {
@@ -27,6 +28,15 @@ struct RestaurantDetail: View {
 						.font(.subheadline)
 				}
 			}
+
+			Image(systemName: "heart")
+				.resizable()
+				.frame(width: 30, height: 30)
+				.tint(Color.red)
+				.onTapGesture {
+					print("added")
+					addToFavorite?(restaurant)
+				}
 		}
 		.task {
 			PlaceImageFetcher.shared.fetchImage(for: restaurant.id) { featureImage = $0 }

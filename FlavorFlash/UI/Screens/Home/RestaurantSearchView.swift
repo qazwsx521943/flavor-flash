@@ -30,7 +30,9 @@ struct RestaurantSearchView: View {
                                 }
                                 .sheet(isPresented: $showDetail) {
                                     if let selected = restaurantDataModel.selectedRestaurant {
-										RestaurantDetail(restaurant: selected)
+										RestaurantDetail(restaurant: selected) { restaurant in
+											try? restaurantDataModel.saveFavoriteRestaurant(restaurant)
+										}
                                     }
                                 }
                         }
