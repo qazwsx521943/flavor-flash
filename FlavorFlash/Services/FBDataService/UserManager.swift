@@ -53,4 +53,12 @@ final class UserManager {
 	}
 
 	// updateDate vs. setData (be careful using setData)
+	func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
+		let data: [String: Any] = [
+			FFUser.CodingKeys.photoPath.rawValue : path,
+			FFUser.CodingKeys.photoUrl.rawValue : url,
+		]
+
+		try await userDocument(userId: userId).updateData(data)
+	}
 }

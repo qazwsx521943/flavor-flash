@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct ProfileView: View {
 	@StateObject private var viewModel = ProfileViewModel()
 	@EnvironmentObject private var navigationModel: NavigationModel
+	@State private var selectedItem: PhotosPickerItem? = nil
+
 
     var body: some View {
         NavigationStack {
@@ -28,10 +31,23 @@ struct ProfileView: View {
 							.font(.subheadline)
 							.foregroundStyle(.gray)
 					}
+
+				}
+				Divider()
+				PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
+					Text("選擇大頭照")
+						.font(.caption)
+						.foregroundStyle(.red)
 				}
 			}
 			.task {
 				try? await viewModel.loadCurrentUser()
+			}
+			.onChange(of: selectedItem) { selected in
+				guard let selected else {
+					return
+				}
+				viewModel.saveProfileImage(item: selected)
 			}
 
             List {

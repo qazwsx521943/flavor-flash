@@ -12,6 +12,7 @@ struct FFUser: Codable {
 	let displayName: String?
 	let email: String?
 	let photoUrl: String?
+	let photoPath: String? = nil
 	let dateCreated: Date?
 
 	enum CodingKeys: String, CodingKey {
@@ -19,6 +20,7 @@ struct FFUser: Codable {
 		case displayName = "display_name"
 		case email
 		case photoUrl = "photo_url"
+		case photoPath = "photo_path"
 		case dateCreated = "date_created"
 	}
 }
