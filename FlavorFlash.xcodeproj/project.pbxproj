@@ -37,6 +37,8 @@
 		E70C6C562B0C99D6003B27EE /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E70C6C552B0C99D6003B27EE /* FirebaseAnalyticsSwift */; };
 		E70C6C592B0C9B6A003B27EE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E70C6C582B0C9B6A003B27EE /* Kingfisher */; };
 		E70C6C5B2B0C9BA3003B27EE /* KingfisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C5A2B0C9BA3003B27EE /* KingfisherWrapper.swift */; };
+		E70C6C5D2B0CEA05003B27EE /* FlavorFlashCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C5C2B0CEA05003B27EE /* FlavorFlashCommentView.swift */; };
+		E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */; };
 		E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */; };
 		E715D9B32B03C52A00B6478D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9B22B03C52A00B6478D /* Camera.swift */; };
 		E73B17122B0A564700F1A0DD /* FoodListSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17112B0A564700F1A0DD /* FoodListSettingView.swift */; };
@@ -122,6 +124,8 @@
 		E70C6C512B0C5BAD003B27EE /* RestaurantCategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryViewModel.swift; sourceTree = "<group>"; };
 		E70C6C532B0C5CAF003B27EE /* RestaurantCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryView.swift; sourceTree = "<group>"; };
 		E70C6C5A2B0C9BA3003B27EE /* KingfisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherWrapper.swift; sourceTree = "<group>"; };
+		E70C6C5C2B0CEA05003B27EE /* FlavorFlashCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashCommentView.swift; sourceTree = "<group>"; };
+		E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrint.swift; sourceTree = "<group>"; };
 		E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataModel.swift; sourceTree = "<group>"; };
 		E715D9B22B03C52A00B6478D /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		E73B17112B0A564700F1A0DD /* FoodListSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListSettingView.swift; sourceTree = "<group>"; };
@@ -340,6 +344,7 @@
 			children = (
 				E7809B552B0A2DDF00D76E71 /* FFUser.swift */,
 				E70C6C462B0BBA03003B27EE /* EmailAddress.swift */,
+				E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */,
 			);
 			path = FFUser;
 			sourceTree = "<group>";
@@ -496,6 +501,7 @@
 				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
 				E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */,
 				E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */,
+				E70C6C5C2B0CEA05003B27EE /* FlavorFlashCommentView.swift */,
 			);
 			path = FlavorFlash;
 			sourceTree = "<group>";
@@ -699,6 +705,7 @@
 				E7E200E42B090F3D003C22D6 /* ChatroomViewCoordinator.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
 				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,
+				E70C6C5D2B0CEA05003B27EE /* FlavorFlashCommentView.swift in Sources */,
 				E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */,
 				E77353742B09CB5C003035B4 /* SignInEmailView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
@@ -722,6 +729,7 @@
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
 				E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
+				E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */,
 				E70AF8F02B0750D50003462C /* RestaurantMapViewCoordinator.swift in Sources */,
 				E70AF8FF2B07A5470003462C /* RestaurantViewModel.swift in Sources */,
 				E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */,

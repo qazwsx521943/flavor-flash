@@ -20,11 +20,11 @@ struct CameraView: View {
                     backCamImage: $model.viewfinderBackCamImage,
                     frontCamImage: $model.viewfinderFrontCamImage
                 )
-                //                    .overlay(alignment: .top) {
-                //                        Color.black
-                //                            .opacity(0.75)
-                //                            .frame(height: geometry.size.height * Self.barHeightFactor)
-                //                    }
+				.onAppear(perform: {
+					Task {
+						await model.camera.start()
+					}
+				})
                 .overlay(alignment: .bottom) {
                     Button {
 
@@ -33,7 +33,9 @@ struct CameraView: View {
                             FFAnalyzeResult(
                                 capturedFrontCamImage: $model.capturedFrontCamImage,
                                 capturedBackCamImage: $model.capturedBackCamImage
-                            )
+							) {
+								model.camera.stop()
+							}
                             .task {
                                 model.camera.takePhoto()
                             }
@@ -47,6 +49,7 @@ struct CameraView: View {
                                     .frame(width: 80, height: 80)
                             }
                         }
+						.environmentObject(model)
                     }
                 }
                 .overlay(alignment: .center) {

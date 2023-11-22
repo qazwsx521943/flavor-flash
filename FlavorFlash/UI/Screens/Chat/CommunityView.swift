@@ -25,9 +25,10 @@ struct CommunityView: View {
 					}
 				}
 			}
-			.task {
+			.onAppear {
 				Task {
-					try await viewModel.getGroups()
+					try? await viewModel.loadUser()
+					try? await viewModel.getGroups()
 				}
 			}
 		}

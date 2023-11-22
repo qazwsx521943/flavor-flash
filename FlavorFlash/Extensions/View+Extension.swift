@@ -11,4 +11,18 @@ extension View {
     func hidden(_ shouldHide: Bool) -> some View {
         opacity(shouldHide ? 0 : 1)
     }
+
+	func ignoreSafeArea() -> some View {
+		self.modifier(IgnoresSafeArea())
+	}
+}
+
+private struct IgnoresSafeArea: ViewModifier {
+	func body(content: Content) -> some View {
+		if #available(iOS 14.0, *) {
+			content.ignoresSafeArea(.keyboard, edges: .bottom)
+		} else {
+			content
+		}
+	}
 }

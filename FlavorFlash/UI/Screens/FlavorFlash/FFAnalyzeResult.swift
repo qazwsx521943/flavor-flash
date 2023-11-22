@@ -16,6 +16,7 @@ struct FFAnalyzeResult: View {
     @Binding var capturedBackCamImage: AVCapturePhoto?
     @State private var result: String = ""
     @State private var classificationRequest: VNCoreMLRequest?
+	var stopCamera: (() -> Void)?
 
     var mobileNetV2 = {
         do {
@@ -29,7 +30,7 @@ struct FFAnalyzeResult: View {
     var body: some View {
         GeometryReader { geometry in
             if let capturedFrontCamImage, let capturedBackCamImage {
-                VStack(alignment: .center) {
+                VStack {
                     ZStack {
                         Image(
                             capturedFrontCamImage.cgImageRepresentation()!,
@@ -39,7 +40,7 @@ struct FFAnalyzeResult: View {
                         )
                         .resizable()
                         .scaledToFit()
-                        .frame(width: geometry.size.width)
+						.frame(width: geometry.size.width, height: geometry.size.height - 100)
                         .aspectRatio(contentMode: .fill)
                     }
                     .overlay(alignment: .topLeading) {
@@ -54,13 +55,21 @@ struct FFAnalyzeResult: View {
                         .frame(width: 120, height: 150)
                         .border(Color.black, width: 4)
                     }
-                    Text(result)
-                        .font(.subheadline)
-                        .foregroundStyle(.blue)
+
+					HStack {
+						NavigationLink {
+							FlavorFlashCommentView()
+						} label: {
+							Text("繼續")
+								.font(.subheadline)
+								.foregroundStyle(.green)
+						}
+					}
                 }
                 .overlay(alignment: .center) {
                     Button {
                         analyzePhoto()
+						stopCamera?()
                     } label: {
                         Text("Analyze")
                     }

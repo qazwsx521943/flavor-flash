@@ -20,6 +20,8 @@ final class UserManager {
 
 	private let userCollection = Firestore.firestore().collection("users")
 
+	private let foodPrintCollection = Firestore.firestore().collection("foodprints")
+
 //	private let encoder: Firestore.Encoder = {
 //		let encoder = Firestore.Encoder()
 //		encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -71,5 +73,10 @@ final class UserManager {
 		debugPrint("userId: \(userId), restaurant: \(restaurant)")
 //		userDocument(userId: userId).setData(["favorite_restaurants": restaurant.id], merge: true)
 		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayUnion([restaurant.id])])
+	}
+
+	func saveUserFoodPrint(userId: String, foodPrint: FoodPrint) async throws {
+		let id = UUID().uuidString
+		try foodPrintCollection.document(id).setData(from: foodPrint, merge: true)
 	}
 }

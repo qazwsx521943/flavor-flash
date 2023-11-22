@@ -96,6 +96,16 @@ class Camera: NSObject {
         }
     }
 
+	func stop() {
+		guard isMultiCaptureSessionConfigured else { return }
+
+		if multiCamSession.isRunning {
+			captureSessionQueue.async {
+				self.multiCamSession.stopRunning()
+			}
+		}
+	}
+
     func takePhoto() {
         guard
             let backCamPhotoOutput = self.backCamPhotoOutput,

@@ -11,7 +11,7 @@ import os.log
 
 final class CameraDataModel: ObservableObject {
     let camera = Camera()
-
+	@Published var comment: String = ""
     @Published var viewfinderBackCamImage: Image?
     @Published var viewfinderFrontCamImage: Image?
     @Published var capturedBackCamImage: AVCapturePhoto?
@@ -54,6 +54,43 @@ final class CameraDataModel: ObservableObject {
             }
         }
     }
+
+	var frontCamImage: Image {
+		Image(uiImage: UIImage(cgImage: capturedFrontCamImage!.cgImageRepresentation()!))
+	}
+	var backCamImage: Image {
+		Image(uiImage: UIImage(cgImage: capturedBackCamImage!.cgImageRepresentation()!))
+	}
+
+	func saveImages() async throws {
+		let authResultModel = try AuthenticationManager.shared.getAuthenticatedUser()
+
+		let userId = authResultModel.uid
+
+		guard
+			let fcImage = capturedFrontCamImage?.cgImageRepresentation(),
+			let bcImage = capturedBackCamImage?.cgImageRepresentation()
+		else {
+			return
+		}
+		let frontImage = UIImage(cgImage: fcImage)
+		let backImage = UIImage(cgImage: bcImage)
+		let (frontImagePath, frontImageName) = try await StorageManager.shared.saveImage(userId: userId, image: frontImage)
+		let (backImagePath, backImageName) = try await StorageManager.shared.saveImage(userId: userId, image: backImage)
+
+		let frontUrl = try await StorageManager.shared.getUrlForImage(path: frontImagePath)
+		let backUrl = try await StorageManager.shared.getUrlForImage(path: frontImagePath)
+		let foodPrint = FoodPrint(
+			id: UUID().uuidString,
+			frontCameraImageUrl: frontUrl.absoluteString,
+			frontCameraImagePath: frontImagePath,
+			backCameraImageUrl: backUrl.absoluteString,
+			backCameraImagePath: backImagePath,
+			comment: comment,
+			createdDate: Date())
+
+		try await UserManager.shared.saveUserFoodPrint(userId: userId, foodPrint: foodPrint)
+	}
 }
 
 fileprivate extension CIImage {
