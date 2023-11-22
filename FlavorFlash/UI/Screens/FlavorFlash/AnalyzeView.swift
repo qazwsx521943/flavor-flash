@@ -38,8 +38,7 @@ struct AnalyzeView: View {
                             orientation: .right,
                             label: Text("large")
                         )
-                        .resizable()
-                        .scaledToFit()
+						.resizeAndFill()
 						.frame(width: geometry.size.width, height: geometry.size.height - 100)
                         .aspectRatio(contentMode: .fill)
                     }
@@ -50,8 +49,7 @@ struct AnalyzeView: View {
                             orientation: .right,
                             label: Text("small")
                         )
-                        .resizable()
-                        .scaledToFit()
+						.resizeAndFill()
                         .frame(width: 120, height: 150)
                         .border(Color.black, width: 4)
                     }
