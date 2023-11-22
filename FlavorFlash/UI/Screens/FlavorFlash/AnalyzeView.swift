@@ -11,7 +11,7 @@ import os.log
 import CoreML
 import Vision
 
-struct FFAnalyzeResult: View {
+struct AnalyzeView: View {
     @Binding var capturedFrontCamImage: AVCapturePhoto?
     @Binding var capturedBackCamImage: AVCapturePhoto?
     @State private var result: String = ""
@@ -33,7 +33,7 @@ struct FFAnalyzeResult: View {
                 VStack {
                     ZStack {
                         Image(
-                            capturedFrontCamImage.cgImageRepresentation()!,
+                            capturedBackCamImage.cgImageRepresentation()!,
                             scale: 1,
                             orientation: .right,
                             label: Text("large")
@@ -45,7 +45,7 @@ struct FFAnalyzeResult: View {
                     }
                     .overlay(alignment: .topLeading) {
                         Image(
-                            capturedBackCamImage.cgImageRepresentation()!,
+                            capturedFrontCamImage.cgImageRepresentation()!,
                             scale: 1,
                             orientation: .right,
                             label: Text("small")

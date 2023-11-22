@@ -30,7 +30,7 @@ struct CameraView: View {
 
                     } label: {
                         NavigationLink {
-                            FFAnalyzeResult(
+                            AnalyzeView(
                                 capturedFrontCamImage: $model.capturedFrontCamImage,
                                 capturedBackCamImage: $model.capturedBackCamImage
 							) {

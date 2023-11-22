@@ -88,7 +88,7 @@
 		E7E200EB2B098597003C22D6 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E200EA2B098597003C22D6 /* ChatListViewModel.swift */; };
 		E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */; };
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
-		E7FD9B8A2B05BAAF002D0ADF /* FFAnalyzeResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */; };
+		E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */; };
 		E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */; };
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
@@ -159,7 +159,7 @@
 		E7E200EA2B098597003C22D6 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSPlaceField+Extension.swift"; sourceTree = "<group>"; };
 		E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceResult.swift; sourceTree = "<group>"; };
-		E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFAnalyzeResult.swift; sourceTree = "<group>"; };
+		E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
 		E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		E7FFC24C2B037A8E00F7B171 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -316,6 +316,16 @@
 			children = (
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		E75588BA2B0DCD7A00086854 /* CameraView */ = {
+			isa = PBXGroup;
+			children = (
+				E715D9B22B03C52A00B6478D /* Camera.swift */,
+				E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */,
+				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
+			);
+			path = CameraView;
 			sourceTree = "<group>";
 		};
 		E77353702B09C9A2003035B4 /* Authentication */ = {
@@ -495,11 +505,9 @@
 		E7FFC2492B037A1A00F7B171 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
-				E715D9B22B03C52A00B6478D /* Camera.swift */,
+				E75588BA2B0DCD7A00086854 /* CameraView */,
 				E7A399442B034E22005C8021 /* FlavorFlashView.swift */,
-				E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */,
-				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
-				E7FD9B892B05BAAF002D0ADF /* FFAnalyzeResult.swift */,
+				E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */,
 				E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */,
 				E70C6C5C2B0CEA05003B27EE /* FlavorFlashCommentView.swift */,
 			);
@@ -735,7 +743,7 @@
 				E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */,
 				E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */,
 				E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */,
-				E7FD9B8A2B05BAAF002D0ADF /* FFAnalyzeResult.swift in Sources */,
+				E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */,
 				E715D9B32B03C52A00B6478D /* Camera.swift in Sources */,
 				E70C6C522B0C5BAD003B27EE /* RestaurantCategoryViewModel.swift in Sources */,
 				E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */,
