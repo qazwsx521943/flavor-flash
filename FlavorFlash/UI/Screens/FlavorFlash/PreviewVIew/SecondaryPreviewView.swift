@@ -11,11 +11,15 @@ struct SecondaryPreviewView: View {
 
 	var previewImage: Image
 
+	var width: CGFloat? = 150
+
+	var height: CGFloat? = 180
+
     var body: some View {
 		previewImage
 			.resizable()
 			.scaledToFill()
-			.frame(width: 150, height: 180)
+			.frame(width: width, height: height)
 			.border(.black, width: 4)
 			.clipped()
     }

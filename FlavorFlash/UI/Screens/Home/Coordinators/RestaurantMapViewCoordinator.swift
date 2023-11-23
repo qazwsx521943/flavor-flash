@@ -13,7 +13,7 @@ import Alamofire
 class RestaurantMapViewCoordinator: NSObject {
 	var mapView: RestaurantMapView?
 
-//	var placeManager = PlaceManager()
+	//	var placeManager = PlaceManager()
 	let locationManager = CLLocationManager()
 
 	let placesClient = GMSPlacesClient.shared()
@@ -35,14 +35,14 @@ class RestaurantMapViewCoordinator: NSObject {
 
 
 		listLikelyPlaces { [weak self] in
-			guard 
+			guard
 				let mapView = self?.mapView,
 				let currentLocation = self?.currentLocation
 			else {
 				return
 			}
 
-			PlaceFetcher.shared.fetchNearBy(type: mapView.category, location: Location(CLLocation: currentLocation)) { response in
+			PlaceFetcher.shared.fetchNearBy(type: [mapView.category], location: Location(CLLocation: currentLocation)) { response in
 				switch response {
 				case .success(let result):
 					mapView.restaurants = result.places
@@ -65,30 +65,17 @@ extension RestaurantMapViewCoordinator {
 	// Populate the array with the list of likely places.
 	func listLikelyPlaces(completionHandler: @escaping () -> Void) {
 		// Clean up from previous sessions.
+		PlaceFetcher.shared.listLikelyPlaces(completionHandler: { [weak self] response in
 
-		let placeFields: GMSPlaceField = [.name, .coordinate]
-		placesClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: placeFields) { [weak self] (placeLikelihoods, error) in
-			guard error == nil else {
-				// TODO: Handle the error.
-				print("Current Place error: \(error!.localizedDescription)")
-				return
+			switch response {
+			case .success(let placeLikelihoods):
+				guard let mostLikelihood = placeLikelihoods.first else { return }
+				self?.currentLocation = mostLikelihood.place.coordinate
+				completionHandler()
+			case .failure(let error):
+				debugPrint(error.localizedDescription)
 			}
-
-			guard let placeLikelihoods = placeLikelihoods else {
-				print("No places found.")
-				return
-			}
-
-			// Get likely places and add to the list.
-			//			for likelihood in placeLikelihoods {
-			//				let place = likelihood.place
-			//				self.likelyPlaces.append(place)
-			//			}
-
-			guard let mostLikelihood = placeLikelihoods.first else { return }
-			self?.currentLocation = mostLikelihood.place.coordinate
-			completionHandler()
-		}
+		})
 	}
 }
 

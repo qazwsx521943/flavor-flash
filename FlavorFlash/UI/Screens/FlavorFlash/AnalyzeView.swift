@@ -43,7 +43,6 @@ struct AnalyzeView: View {
 					}
 				}
 			}
-			.navigationTitle(cameraDataModel.foodAnalyzeResult)
 		}
 	}
 }

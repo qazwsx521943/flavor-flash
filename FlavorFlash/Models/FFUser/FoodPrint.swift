@@ -10,14 +10,14 @@ import Foundation
 struct FoodPrint: Codable {
 	let id: String
 	let userId: String
-	let restaurantId: String? = nil
+	let restaurantId: String?
 	let frontCameraImageUrl: String
 	let frontCameraImagePath: String
 	let backCameraImageUrl: String
 	let backCameraImagePath: String
 	let comment: String
-	let category: String? = nil
-	let location: Location? = nil
+	let category: String?
+	let location: Location?
 	let createdDate: Date
 
 	enum CodingKeys: String, CodingKey {
@@ -33,4 +33,24 @@ struct FoodPrint: Codable {
 		case location
 		case createdDate = "created_date"
 	}
+
+	init(id: String, userId: String, restaurantId: String? = nil, 
+		 frontCameraImageUrl: String, frontCameraImagePath: String, backCameraImageUrl: String, backCameraImagePath: String,
+		 comment: String, category: String? = nil, location: Location? = nil, createdDate: Date) {
+		self.id = id
+		self.userId = userId
+		self.restaurantId = restaurantId
+		self.frontCameraImageUrl = frontCameraImageUrl
+		self.frontCameraImagePath = frontCameraImagePath
+		self.backCameraImageUrl = backCameraImageUrl
+		self.backCameraImagePath = backCameraImagePath
+		self.comment = comment
+		self.category = category
+		self.location = location
+		self.createdDate = createdDate
+	}
+}
+
+extension FoodPrint {
+
 }

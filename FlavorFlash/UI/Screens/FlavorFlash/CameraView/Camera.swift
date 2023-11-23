@@ -183,8 +183,8 @@ class Camera: NSObject {
 				])
 			}
 
-			let isFlashAvailable = self.backCamDeviceInput?.device.isFlashAvailable ?? false
-			photoSettings.flashMode = isFlashAvailable ? .auto : .off
+//			let isFlashAvailable = self.backCamDeviceInput?.device.isFlashAvailable ?? false
+//			photoSettings.flashMode = isFlashAvailable ? .auto : .off
 			photoSettings.isHighResolutionPhotoEnabled = true
 
 			if

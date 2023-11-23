@@ -10,6 +10,7 @@ import SwiftUI
 import os.log
 import CoreML
 import Vision
+import CoreLocation
 
 final class CameraDataModel: ObservableObject {
     let camera = Camera()
@@ -25,6 +26,16 @@ final class CameraDataModel: ObservableObject {
     @Published var capturedFrontCamImage: AVCapturePhoto?
 
 	@Published var foodAnalyzeResult: String = ""
+
+	@Published var category: String = ""
+
+	@Published var nearByRestaurants: [Restaurant] = []
+
+	@Published var currentLocation: CLLocationCoordinate2D?
+
+	@Published var selectedRestaurant: Restaurant? = nil
+
+	@Published var searchText = ""
 
 	// MLModel Config
  	let foodClassifier = {
@@ -115,17 +126,60 @@ final class CameraDataModel: ObservableObject {
 
 		let frontUrl = try await StorageManager.shared.getUrlForImage(path: frontImagePath)
 		let backUrl = try await StorageManager.shared.getUrlForImage(path: frontImagePath)
+
+		guard let selectedRestaurant else { return }
 		let foodPrint = FoodPrint(
 			id: UUID().uuidString,
 			userId: userId,
+			restaurantId: selectedRestaurant.id,
 			frontCameraImageUrl: frontUrl.absoluteString,
 			frontCameraImagePath: frontImagePath,
 			backCameraImageUrl: backUrl.absoluteString,
 			backCameraImagePath: backImagePath,
 			comment: comment,
+			category: foodAnalyzeResult,
+			location: Location(CLLocation: selectedRestaurant.coordinate),
 			createdDate: Date())
 
 		try await UserManager.shared.saveUserFoodPrint(userId: userId, foodPrint: foodPrint)
+	}
+
+	func fetchNearByRestaurants() {
+		guard let currentLocation else { return }
+		PlaceFetcher.shared.fetchNearBy(type: ["restaurant"], location: Location(CLLocation: currentLocation)) { [weak self] response in
+			switch response {
+			case .success(let result):
+				self?.nearByRestaurants = result.places
+				debugPrint(self?.nearByRestaurants.map { $0.displayName.text })
+			case .failure(let error):
+				debugPrint(error.localizedDescription)
+			}
+		}
+	}
+
+	func searchRestaurants() {
+		PlaceFetcher.shared.fetchPlaceByText(keyword: searchText) { [weak self] response in
+			switch response {
+			case .success(let placesResult):
+				self?.nearByRestaurants = placesResult.places
+			case .failure(let error):
+				debugPrint(error.localizedDescription)
+			}
+		}
+	}
+
+	func getCurrentLocation() {
+		// Clean up from previous sessions.
+		PlaceFetcher.shared.listLikelyPlaces(completionHandler: { [weak self] response in
+
+			switch response {
+			case .success(let placeLikelihoods):
+				guard let mostLikelihood = placeLikelihoods.first else { return }
+				self?.currentLocation = mostLikelihood.place.coordinate
+			case .failure(let error):
+				debugPrint(error.localizedDescription)
+			}
+		})
 	}
 }
 
