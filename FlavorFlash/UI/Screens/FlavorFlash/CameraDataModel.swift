@@ -8,6 +8,8 @@
 import AVFoundation
 import SwiftUI
 import os.log
+import CoreML
+import Vision
 
 final class CameraDataModel: ObservableObject {
     let camera = Camera()
@@ -21,6 +23,20 @@ final class CameraDataModel: ObservableObject {
     @Published var capturedBackCamImage: AVCapturePhoto?
 
     @Published var capturedFrontCamImage: AVCapturePhoto?
+
+	@Published var foodAnalyzeResult: String = ""
+
+	// MLModel Config
+ 	let foodClassifier = {
+		do {
+			let config = MLModelConfiguration()
+			return try FoodClassifierV1(configuration: config)
+		} catch let error {
+			fatalError("something wrong loading model: \(error.localizedDescription)")
+		}
+	}()
+
+	private var classificationRequest: VNCoreMLRequest?
 
     init() {
         camera.frontCamCapturedImage = { capturedImage in
@@ -60,11 +76,25 @@ final class CameraDataModel: ObservableObject {
         }
     }
 
-	var frontCamImage: Image {
-		Image(uiImage: UIImage(cgImage: capturedFrontCamImage!.cgImageRepresentation()!))
+	var frontCamImage: Image? {
+		guard
+			let captureImage = capturedFrontCamImage,
+			let photoData = captureImage.fileDataRepresentation()
+		else {
+			return nil
+		}
+
+		return Image(captureImage.cgImageRepresentation()!, scale: 1, orientation: .right, label: Text("front"))
 	}
-	var backCamImage: Image {
-		Image(uiImage: UIImage(cgImage: capturedBackCamImage!.cgImageRepresentation()!))
+
+	var backCamImage: Image? {
+		guard
+			let captureImage = capturedBackCamImage
+		else {
+			return nil
+		}
+
+		return Image(captureImage.cgImageRepresentation()!, scale: 1, orientation: .right, label: Text("back"))
 	}
 
 	func saveImages() async throws {
@@ -96,6 +126,68 @@ final class CameraDataModel: ObservableObject {
 
 		try await UserManager.shared.saveUserFoodPrint(userId: userId, foodPrint: foodPrint)
 	}
+}
+
+// ML analyzing
+extension CameraDataModel {
+	func analyzeFood() {
+		do {
+			let VNModel = try VNCoreMLModel(for: foodClassifier.model)
+			let request = VNCoreMLRequest(model: VNModel) { [weak self] request, error in
+				self?.processObservations(for: request, error: error)
+			}
+			request.imageCropAndScaleOption = .scaleFit
+			classificationRequest = request
+		} catch {
+			fatalError("fail analyzing")
+		}
+
+		guard
+			let pixelBuffer = capturedFrontCamImage?.pixelBuffer
+		else {
+			return
+		}
+		let ciImage = CIImage(cvPixelBuffer: pixelBuffer)
+
+		let orientation = CGImagePropertyOrientation.up
+
+		let handler = VNImageRequestHandler(
+			ciImage: ciImage,
+			orientation: orientation)
+		do {
+			try handler.perform([classificationRequest!])
+		} catch {
+			print("Failed to perform classification: \(error)")
+		}
+
+	}
+
+	func processObservations(
+		for request: VNRequest,
+		error: Error?) {
+			// 1
+			DispatchQueue.main.async { [weak self] in
+				// 2
+				if let results = request.results
+					as? [VNClassificationObservation] {
+					// 3
+					if results.isEmpty {
+						self?.foodAnalyzeResult = "nothing found"
+					} else {
+						self?.foodAnalyzeResult = String(
+							format: "%@ %.1f%%",
+							results[0].identifier,
+							results[0].confidence * 100)
+					}
+					// 4
+				} else if let error = error {
+					self?.foodAnalyzeResult =
+					"error: \(error.localizedDescription)"
+				} else {
+					self?.foodAnalyzeResult = "???"
+				}
+			}
+		}
 }
 
 fileprivate extension CIImage {

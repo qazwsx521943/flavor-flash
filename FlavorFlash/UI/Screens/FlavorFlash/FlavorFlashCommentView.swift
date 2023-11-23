@@ -8,22 +8,22 @@
 import SwiftUI
 
 struct FlavorFlashCommentView: View {
-	@EnvironmentObject private var model: CameraDataModel
+	@ObservedObject var cameraDataModel: CameraDataModel
 
     var body: some View {
 		VStack {
-			model.frontCamImage
+			cameraDataModel.frontCamImage?
 				.resizable()
 				.frame(width: 100, height: 100)
-			model.backCamImage
+			cameraDataModel.backCamImage?
 				.resizable()
 				.frame(width: 100, height: 100)
 
-			TextField("Comment:", text: $model.comment)
+			TextField("Comment:", text: $cameraDataModel.comment)
 
 			Button {
 				Task {
-					try await model.saveImages()
+					try await cameraDataModel.saveImages()
 				}
 			} label: {
 				Text("Save!")
@@ -35,5 +35,5 @@ struct FlavorFlashCommentView: View {
 }
 
 #Preview {
-    FlavorFlashCommentView()
+    FlavorFlashCommentView(cameraDataModel: CameraDataModel())
 }

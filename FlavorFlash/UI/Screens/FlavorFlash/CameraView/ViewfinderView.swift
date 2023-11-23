@@ -9,23 +9,27 @@ import SwiftUI
 
 struct ViewfinderView: View {
     @Binding var backCamImage: Image?
+
     @Binding var frontCamImage: Image?
+
+	@State var isBackCamPrimary = true
 
     var body: some View {
         GeometryReader { geometry in
             if let backCamImage, let frontCamImage {
                 ZStack {
-                    backCamImage
-                        .resizable()
-                        .scaledToFill()
+					PrimaryPreviewView(previewImage: isBackCamPrimary ? backCamImage : frontCamImage)
                 }
-                .overlay(alignment: .topLeading, content: {
-                    frontCamImage
-                        .resizable()
-                        .scaledToFill()
-                        .frame(width: 150, height: 200)
-                })
-                .frame(width: geometry.size.width, height: geometry.size.height)
+                .overlay(alignment: .bottomTrailing) {
+					SecondaryPreviewView(previewImage: isBackCamPrimary ? frontCamImage : backCamImage)
+						.onTapGesture {
+							isBackCamPrimary.toggle()
+						}
+                }
+                .frame(
+					width: geometry.size.width,
+					height: geometry.size.height
+				)
             }
         }
     }

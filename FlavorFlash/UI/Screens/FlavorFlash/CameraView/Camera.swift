@@ -422,6 +422,17 @@ extension Camera: AVCapturePhotoCaptureDelegate {
 			return
 		}
 
+//		guard let photoData = photo.fileDataRepresentation() else {
+//			return
+//		}
+//
+//		let image = UIImage(data: photoData)
+//
+//		var previewPhotoOrientation: CGImagePropertyOrientation?
+//		if let orientationNum = photo.metadata[kCGImagePropertyOrientation as String] as? NSNumber {
+//			debugPrint(orientationNum)
+//		}
+
 		if output == backCamPhotoOutput {
 			backCamCapturedImage?(photo)
 		} else {
@@ -440,10 +451,14 @@ extension Camera: AVCaptureVideoDataOutputSampleBufferDelegate {
 	) {
 		guard let pixelBuffer = sampleBuffer.imageBuffer else { return }
 
-		if connection.isVideoOrientationSupported,
-		   let videoOrientation = videoOrientationFor(deviceOrientation) {
+		if 
+			connection.isVideoOrientationSupported,
+			let videoOrientation = videoOrientationFor(deviceOrientation) {
+
 			connection.videoOrientation = videoOrientation
+
 		}
+
 		guard let videoDataOutput = output as? AVCaptureVideoDataOutput else { return }
 
 		if videoDataOutput == backCamVideoDataOutput {

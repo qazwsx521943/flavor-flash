@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct CameraView: View {
-    @StateObject private var model = CameraDataModel()
+    @StateObject private var cameraDataModel = CameraDataModel()
 
     private static let barHeightFactor = 0.15
 
@@ -17,12 +17,14 @@ struct CameraView: View {
         NavigationStack {
             GeometryReader { geometry in
                 ViewfinderView(
-                    backCamImage: $model.viewfinderBackCamImage,
-                    frontCamImage: $model.viewfinderFrontCamImage
+                    backCamImage: $cameraDataModel.viewfinderBackCamImage,
+                    frontCamImage: $cameraDataModel.viewfinderFrontCamImage
                 )
 				.onAppear(perform: {
 					Task {
-						await model.camera.start()
+						await cameraDataModel.camera.start()
+						cameraDataModel.capturedBackCamImage = nil
+						cameraDataModel.capturedFrontCamImage = nil
 					}
 				})
                 .overlay(alignment: .bottom) {
@@ -30,14 +32,9 @@ struct CameraView: View {
 
                     } label: {
                         NavigationLink {
-                            AnalyzeView(
-                                capturedFrontCamImage: $model.capturedFrontCamImage,
-                                capturedBackCamImage: $model.capturedBackCamImage
-							) {
-								model.camera.stop()
-							}
+                            AnalyzeView(cameraDataModel: cameraDataModel)
                             .task {
-                                model.camera.takePhoto()
+                                cameraDataModel.camera.takePhoto()
                             }
                         } label: {
                             ZStack {
@@ -49,26 +46,16 @@ struct CameraView: View {
                                     .frame(width: 80, height: 80)
                             }
                         }
-						.environmentObject(model)
                     }
                 }
                 .overlay(alignment: .center) {
                     Color.clear
                         .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
                 }
-                .overlay(alignment: .topTrailing, content: {
-                    Button {
-                        model.capturedBackCamImage = nil
-                    } label: {
-                        Circle()
-                            .strokeBorder(.white, lineWidth: 5)
-                            .frame(width: 50, height: 50)
-                    }
-                })
                 .background(.black)
             }
             .task {
-                await model.camera.start()
+                await cameraDataModel.camera.start()
             }
             .navigationTitle("Flavor Flash")
             .navigationBarTitleDisplayMode(.inline)
