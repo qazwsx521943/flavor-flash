@@ -76,7 +76,6 @@ final class UserManager {
 	}
 
 	func saveUserFoodPrint(userId: String, foodPrint: FoodPrint) async throws {
-		let id = UUID().uuidString
-		try foodPrintCollection.document(id).setData(from: foodPrint, merge: true)
+		try foodPrintCollection.document(foodPrint.id).setData(from: foodPrint, merge: true)
 	}
 }

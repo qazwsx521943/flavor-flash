@@ -41,11 +41,6 @@ struct Restaurant: Hashable, Codable, Identifiable {
 		let languageCode: String
 	}
 
-	struct Location: Codable, Hashable {
-		let latitude: CGFloat
-		let longitude: CGFloat
-	}
-
 	struct Photo: Codable, Hashable {
 		let name: String
 		let widthPx: Int

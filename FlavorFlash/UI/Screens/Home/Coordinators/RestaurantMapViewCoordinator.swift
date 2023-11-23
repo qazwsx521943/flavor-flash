@@ -33,8 +33,24 @@ class RestaurantMapViewCoordinator: NSObject {
 		locationManager.startUpdatingLocation()
 		locationManager.delegate = self
 
+
 		listLikelyPlaces { [weak self] in
-			self?.findNearbyRestaurants()
+			guard 
+				let mapView = self?.mapView,
+				let currentLocation = self?.currentLocation
+			else {
+				return
+			}
+
+			PlaceFetcher.shared.fetchNearBy(type: mapView.category, location: Location(CLLocation: currentLocation)) { response in
+				switch response {
+				case .success(let result):
+					mapView.restaurants = result.places
+					mapView.updateRestaurants()
+				case .failure(let error):
+					debugPrint(error.localizedDescription)
+				}
+			}
 		}
 	}
 }
@@ -72,50 +88,6 @@ extension RestaurantMapViewCoordinator {
 			guard let mostLikelihood = placeLikelihoods.first else { return }
 			self?.currentLocation = mostLikelihood.place.coordinate
 			completionHandler()
-		}
-	}
-
-	func findNearbyRestaurants() {
-		do {
-			let body: [String: Any] = [
-				"languageCode": "zh-TW",
-				"includedTypes": [mapView?.category],
-				"maxResultCount": 20,
-				"rankPreference": "DISTANCE",
-				"locationRestriction": [
-					"circle": [
-						"center": ["latitude": self.currentLocation?.latitude,
-								   "longitude": self.currentLocation?.longitude],
-						"radius": 1000.0
-					]
-				]
-			]
-
-			let headers: [Alamofire.HTTPHeader] = [
-				.contentType("application/json"),
-				HTTPHeader(name: "X-Goog-FieldMask", value: "*"),
-				HTTPHeader(name: "X-Goog-Api-Key", value: "AIzaSyCkUgmyqSq5eWWUb3DgwHc4Xp_3jLKrSMk")
-			]
-			let request =
-			AF.request("https://places.googleapis.com/v1/places:searchNearby",
-					   method: .post,
-					   parameters: body,
-					   encoding: JSONEncoding(options: .prettyPrinted),
-					   headers: HTTPHeaders(headers)
-			)
-			request.responseDecodable(of: GooglePlaceResult.self) { [weak self] response in
-//				debugPrint(response.debugDescription)
-				switch response.result {
-				case .success(let result):
-					self?.mapView?.restaurants = result.places
-					self?.mapView?.updateRestaurants()
-
-				case .failure(let error):
-					print("Failed fetching restaurants: \(error.localizedDescription)")
-				}
-			}
-		} catch {
-			print("error")
 		}
 	}
 }

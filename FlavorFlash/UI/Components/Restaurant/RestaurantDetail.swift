@@ -39,7 +39,7 @@ struct RestaurantDetail: View {
 				}
 		}
 		.task {
-			PlaceImageFetcher.shared.fetchImage(for: restaurant.id) { featureImage = $0 }
+			PlaceFetcher.shared.fetchImage(for: restaurant.id) { featureImage = $0 }
 		}
     }
 }
