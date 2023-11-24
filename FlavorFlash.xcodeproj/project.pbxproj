@@ -62,6 +62,7 @@
 		E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FFUser.swift */; };
 		E796396D2B105B45006FF600 /* FFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396C2B105B45006FF600 /* FFTextField.swift */; };
 		E796396F2B107380006FF600 /* FFTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396E2B107380006FF600 /* FFTag.swift */; };
+		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
 		E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */; };
 		E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992E2B034AB4005C8021 /* ContentView.swift */; };
 		E7A399332B034AB6005C8021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7A399322B034AB6005C8021 /* Assets.xcassets */; };
@@ -200,6 +201,7 @@
 				E7E200D72B08FF8C003C22D6 /* FirebaseStorage in Frameworks */,
 				E70C6C562B0C99D6003B27EE /* FirebaseAnalyticsSwift in Frameworks */,
 				E7E200B72B08FF8C003C22D6 /* FirebaseDatabase in Frameworks */,
+				E79639722B109C41006FF600 /* PopupView in Frameworks */,
 				E7E200D92B08FF8C003C22D6 /* FirebaseStorageCombine-Community in Frameworks */,
 				102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */,
 				E7E200B12B08FF8C003C22D6 /* FirebaseAuth in Frameworks */,
@@ -629,6 +631,7 @@
 				E7E200DB2B0908D1003C22D6 /* MessageKit */,
 				E70C6C552B0C99D6003B27EE /* FirebaseAnalyticsSwift */,
 				E70C6C582B0C9B6A003B27EE /* Kingfisher */,
+				E79639712B109C41006FF600 /* PopupView */,
 			);
 			productName = FlavorFlash;
 			productReference = E7A399292B034AB4005C8021 /* FlavorFlash.app */;
@@ -662,6 +665,7 @@
 				E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E7E200DA2B0908D1003C22D6 /* XCRemoteSwiftPackageReference "MessageKit" */,
 				E70C6C572B0C9B6A003B27EE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = E7A3992A2B034AB4005C8021 /* Products */;
 			projectDirPath = "";
@@ -1064,6 +1068,14 @@
 				minimumVersion = 7.10.0;
 			};
 		};
+		E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.3;
+			};
+		};
 		E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1092,6 +1104,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E70C6C572B0C9B6A003B27EE /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		E79639712B109C41006FF600 /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 		E7E200A42B08FF8C003C22D6 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
