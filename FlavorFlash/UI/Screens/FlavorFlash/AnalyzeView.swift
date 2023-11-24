@@ -21,7 +21,7 @@ struct AnalyzeView: View {
 
 					ZStack {
 						PrimaryPreviewView(previewImage: backCamImage)
-							.frame(width: geometry.size.width, height: geometry.size.height - 100)
+							.frame(width: geometry.size.width, height: geometry.size.height)
 					}
 					.overlay(alignment: .topLeading) {
 						SecondaryPreviewView(previewImage: frontCamImage)
@@ -31,17 +31,21 @@ struct AnalyzeView: View {
 						cameraDataModel.analyzeFood()
 						cameraDataModel.camera.stop()
 					})
-				}
 
-				HStack {
-					NavigationLink {
-						FlavorFlashCommentView(cameraDataModel: cameraDataModel)
-					} label: {
-						Text("繼續")
-							.font(.subheadline)
-							.foregroundStyle(.green)
+					HStack(alignment: .bottom) {
+						NavigationLink {
+							FlavorFlashCommentView(cameraDataModel: cameraDataModel)
+						} label: {
+							Text("Continue ->")
+								.font(.title3)
+								.foregroundStyle(Color.black)
+								.padding()
+						}
+						.background(Color.white)
+						.clipShape(RoundedRectangle(cornerRadius: 20))
 					}
 				}
+
 			}
 		}
 	}

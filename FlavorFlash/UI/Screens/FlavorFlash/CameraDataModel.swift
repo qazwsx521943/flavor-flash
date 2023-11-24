@@ -33,7 +33,7 @@ final class CameraDataModel: ObservableObject {
 
 	@Published var currentLocation: CLLocationCoordinate2D?
 
-	@Published var selectedRestaurant: Restaurant? = nil
+	@Published var selectedRestaurant: Restaurant?
 
 	@Published var searchText = ""
 
@@ -158,7 +158,8 @@ final class CameraDataModel: ObservableObject {
 	}
 
 	func searchRestaurants() {
-		PlaceFetcher.shared.fetchPlaceByText(keyword: searchText) { [weak self] response in
+		guard let currentLocation else { return }
+		PlaceFetcher.shared.fetchPlaceByText(keyword: searchText, location: Location(CLLocation: currentLocation)) { [weak self] response in
 			switch response {
 			case .success(let placesResult):
 				self?.nearByRestaurants = placesResult.places
@@ -229,10 +230,11 @@ extension CameraDataModel {
 					if results.isEmpty {
 						self?.foodAnalyzeResult = "nothing found"
 					} else {
-						self?.foodAnalyzeResult = String(
-							format: "%@ %.1f%%",
-							results[0].identifier,
-							results[0].confidence * 100)
+//						self?.foodAnalyzeResult = String(
+//							format: "%@ %.1f%%",
+//							results[0].identifier,
+//							results[0].confidence * 100)
+						self?.foodAnalyzeResult = results[0].identifier
 					}
 					// 4
 				} else if let error = error {

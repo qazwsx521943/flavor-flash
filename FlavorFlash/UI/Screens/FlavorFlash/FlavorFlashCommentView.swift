@@ -9,6 +9,9 @@ import SwiftUI
 
 struct FlavorFlashCommentView: View {
 	@ObservedObject var cameraDataModel: CameraDataModel
+
+	@EnvironmentObject var navigationModel: NavigationModel
+
 	@State private var showList = false
 
 	var body: some View {
@@ -27,22 +30,26 @@ struct FlavorFlashCommentView: View {
 							}
 					}
 
-					Spacer()
+					VStack(alignment: .leading, spacing: 8) {
+						HStack {
+							Text(cameraDataModel.foodAnalyzeResult)
+								.padding(8)
+								.background(.purple.opacity(0.5))
+								.clipShape(RoundedRectangle(cornerRadius: 10.0))
 
-					VStack {
-						Text(cameraDataModel.foodAnalyzeResult)
+							Image(systemName: "pencil")
+								.resizable()
+								.foregroundStyle(.white)
+								.frame(width: 20, height: 20)
+						}
 
-//						TextField(text: $cameraDataModel.category) {
-//							Text("分類")
-//						}
-
-						Text("餐廳")
+						Text(cameraDataModel.selectedRestaurant?.displayName.text ?? "選擇餐廳")
 							.foregroundStyle(.white)
 							.onTapGesture {
 								showList = true
 							}
 							.sheet(isPresented: $showList) {
-								VStack {
+								VStack(alignment: .leading) {
 									SearchBar(text: $cameraDataModel.searchText) { searchText in
 										guard !searchText.isEmpty else {
 											return
@@ -52,51 +59,58 @@ struct FlavorFlashCommentView: View {
 									}
 
 									if showList {
-										Group {
+										ScrollView(.vertical, showsIndicators: false) {
 											ForEach(cameraDataModel.nearByRestaurants) { restaurant in
-												VStack {
+												VStack(alignment: .leading, spacing: 5) {
 													Text(restaurant.displayName.text)
 														.font(.title2)
 														.foregroundStyle(Color.white)
 													Text(restaurant.shortFormattedAddress ?? "尚無資訊")
 														.font(.caption)
 												}
+												.frame(maxWidth: .infinity, alignment: .leading)
+												.padding(.init(top: 0, leading: 16, bottom: 16, trailing: 16))
 												.onTapGesture {
 													cameraDataModel.selectedRestaurant = restaurant
 													showList = false
 												}
 											}
 										}
+										.scrollDismissesKeyboard(.interactively)
 									}
 								}
 								.onAppear {
 									cameraDataModel.fetchNearByRestaurants()
 								}
-								if let selectedRestaurant = cameraDataModel.selectedRestaurant {
-
-									Text(selectedRestaurant.displayName.text)
-										.foregroundStyle(Color.white)
-								}
 							}
-
 					}
+					.frame(maxWidth: .infinity, alignment: .leading)
+					.padding(4)
 				}
 			}
+			ScrollView {
+				TextField("Leave a comment ...", text: $cameraDataModel.comment, axis: .vertical)
+					.lineLimit(5...9)
+					.textFieldStyle(.roundedBorder)
+					.background(.gray.opacity(0.7))
+			}
+			.scrollDismissesKeyboard(.interactively)
 
-			TextField("Comment:", text: $cameraDataModel.comment)
-
-
-
+			Spacer()
 
 			Button {
 				Task {
 					try await cameraDataModel.saveImages()
+					navigationModel.selectedTab = .home
 				}
 			} label: {
-				Text("Save!")
+				Text("Save FoodPrint ！")
 					.font(.title3)
-					.foregroundStyle(.purple)
+					.foregroundStyle(Color.black)
+					.padding()
 			}
+			.background(Color.white)
+			.clipShape(RoundedRectangle(cornerRadius: 20))
 		}
 		.onAppear {
 			cameraDataModel.getCurrentLocation()

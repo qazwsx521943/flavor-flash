@@ -84,7 +84,7 @@ final class PlaceFetcher {
 			}
 		}
 
-	func fetchPlaceByText(keyword: String, completionHandler: @escaping (Result<GooglePlaceResult, Error>) -> Void) {
+	func fetchPlaceByText(keyword: String, location: Location, completionHandler: @escaping (Result<GooglePlaceResult, Error>) -> Void) {
 		let headers: [Alamofire.HTTPHeader] = [
 			.contentType("application/json"),
 			HTTPHeader(name: "X-Goog-FieldMask", value: "*"),

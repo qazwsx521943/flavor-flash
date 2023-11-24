@@ -60,7 +60,6 @@ struct CameraView: View {
             .navigationTitle("Flavor Flash")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
-            .ignoresSafeArea()
             .statusBarHidden()
         }
     }
