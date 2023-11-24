@@ -129,7 +129,8 @@ final class PlaceFetcher {
 			}
 			if let place = place {
 				// Get the metadata for the first photo in the place photo metadata list.
-				let photoMetadata: GMSPlacePhotoMetadata = place.photos![0]
+				guard let mainPhotoMetaData = place.photos?[0] else { return }
+				let photoMetadata: GMSPlacePhotoMetadata = mainPhotoMetaData
 
 				// Call loadPlacePhoto to display the bitmap and attribution.
 				self.placesClient.loadPlacePhoto(photoMetadata, callback: { (photo, error) -> Void in
