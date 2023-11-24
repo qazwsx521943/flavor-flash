@@ -49,24 +49,24 @@ class Camera: NSObject {
 	}
 
 	private var captureDevices: [AVCaptureDevice] {
-		var devices = [AVCaptureDevice]()
-#if os(macOS) || (os(iOS) && targetEnvironment(macCatalyst))
+		var devices = Array<AVCaptureDevice>()
+	#if os(macOS) || (os(iOS) && targetEnvironment(macCatalyst))
 		devices += allCaptureDevices
-#else
+	#else
 		if let backDevice = backCaptureDevices.first {
 			devices += [backDevice]
 		}
 		if let frontDevice = frontCaptureDevices.first {
 			devices += [frontDevice]
 		}
-#endif
+	#endif
 		return devices
 	}
 
 	private var availableCaptureDevices: [AVCaptureDevice] {
 		captureDevices
-			.filter( { $0.isConnected } )
-			.filter( { !$0.isSuspended } )
+			.filter { $0.isConnected }
+			.filter { !$0.isSuspended }
 	}
 
 	private var frontCaptureDevice: AVCaptureDevice?
@@ -109,6 +109,23 @@ class Camera: NSObject {
 				if !self.isPreviewPaused {
 					continuation.yield(ciImage)
 				}
+			}
+		}
+	}()
+
+	// TODO: fix photo capture orientation problem
+	lazy var frontCamCaptureStream: AsyncStream<AVCapturePhoto> = {
+		AsyncStream { continuation in
+			frontCamCapturedImage = { photo in
+				continuation.yield(photo)
+			}
+		}
+	}()
+
+	lazy var backCamCaptureStream: AsyncStream<AVCapturePhoto> = {
+		AsyncStream { continuation in
+			backCamCapturedImage = { photo in
+				continuation.yield(photo)
 			}
 		}
 	}()
