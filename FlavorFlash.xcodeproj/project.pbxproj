@@ -60,6 +60,8 @@
 		E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B502B0A054200D76E71 /* ProfileViewModel.swift */; };
 		E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B522B0A0E7A00D76E71 /* UserManager.swift */; };
 		E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FFUser.swift */; };
+		E796396D2B105B45006FF600 /* FFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396C2B105B45006FF600 /* FFTextField.swift */; };
+		E796396F2B107380006FF600 /* FFTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396E2B107380006FF600 /* FFTag.swift */; };
 		E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */; };
 		E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992E2B034AB4005C8021 /* ContentView.swift */; };
 		E7A399332B034AB6005C8021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7A399322B034AB6005C8021 /* Assets.xcassets */; };
@@ -153,6 +155,8 @@
 		E7809B502B0A054200D76E71 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E7809B522B0A0E7A00D76E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E7809B552B0A2DDF00D76E71 /* FFUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFUser.swift; sourceTree = "<group>"; };
+		E796396C2B105B45006FF600 /* FFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTextField.swift; sourceTree = "<group>"; };
+		E796396E2B107380006FF600 /* FFTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTag.swift; sourceTree = "<group>"; };
 		E7A399292B034AB4005C8021 /* FlavorFlash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlavorFlash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashApp.swift; sourceTree = "<group>"; };
 		E7A3992E2B034AB4005C8021 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -406,6 +410,15 @@
 			path = FFUser;
 			sourceTree = "<group>";
 		};
+		E796396B2B105B2A006FF600 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				E796396C2B105B45006FF600 /* FFTextField.swift */,
+				E796396E2B107380006FF600 /* FFTag.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		E7A399202B034AB4005C8021 = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +517,7 @@
 		E7F9EDB12B084BD8005976BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E796396B2B105B2A006FF600 /* Base */,
 				E75588CA2B0F3BAE00086854 /* SearchBar */,
 				E70C6C312B0B5CDF003B27EE /* Restaurant */,
 				E70AF8E22B071D450003462C /* NavigationModel.swift */,
@@ -769,6 +783,7 @@
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
 				E73B171A2B0AF8A200F1A0DD /* FBGroup.swift in Sources */,
+				E796396D2B105B45006FF600 /* FFTextField.swift in Sources */,
 				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,
 				E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */,
 				E70C6C4E2B0C4390003B27EE /* TagGrid.swift in Sources */,
@@ -800,6 +815,7 @@
 				E715D9B32B03C52A00B6478D /* Camera.swift in Sources */,
 				E70C6C522B0C5BAD003B27EE /* RestaurantCategoryViewModel.swift in Sources */,
 				E75588C22B0EE9C900086854 /* FoodClassifierV1.mlmodel in Sources */,
+				E796396F2B107380006FF600 /* FFTag.swift in Sources */,
 				E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */,
 				E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */,
 				E77353762B09CE95003035B4 /* AuthenticationManager.swift in Sources */,
