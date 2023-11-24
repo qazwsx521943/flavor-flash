@@ -21,7 +21,7 @@ struct AnalyzeView: View {
 
 					ZStack {
 						PrimaryPreviewView(previewImage: backCamImage)
-							.frame(width: geometry.size.width, height: geometry.size.height)
+							.frame(width: geometry.size.width, height: geometry.size.height - 80)
 					}
 					.overlay(alignment: .topLeading) {
 						SecondaryPreviewView(previewImage: frontCamImage)
