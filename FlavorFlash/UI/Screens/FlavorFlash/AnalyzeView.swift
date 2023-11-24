@@ -45,8 +45,9 @@ struct AnalyzeView: View {
 						.clipShape(RoundedRectangle(cornerRadius: 20))
 					}
 				}
-
 			}
+			.navigationTitle("UCCU")
+			.toolbarBackground(.visible, for: .navigationBar)
 		}
 	}
 }
