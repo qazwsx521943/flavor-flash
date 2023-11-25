@@ -13,7 +13,7 @@ import Alamofire
 class RestaurantMapViewCoordinator: NSObject {
 	var mapView: RestaurantMapView?
 
-//	var placeManager = PlaceManager()
+	//	var placeManager = PlaceManager()
 	let locationManager = CLLocationManager()
 
 	let placesClient = GMSPlacesClient.shared()
@@ -33,8 +33,24 @@ class RestaurantMapViewCoordinator: NSObject {
 		locationManager.startUpdatingLocation()
 		locationManager.delegate = self
 
+
 		listLikelyPlaces { [weak self] in
-			self?.findNearbyRestaurants()
+			guard
+				let mapView = self?.mapView,
+				let currentLocation = self?.currentLocation
+			else {
+				return
+			}
+
+			PlaceFetcher.shared.fetchNearBy(type: [mapView.category], location: Location(CLLocation: currentLocation)) { response in
+				switch response {
+				case .success(let result):
+					mapView.restaurants = result.places
+					mapView.updateRestaurants()
+				case .failure(let error):
+					debugPrint(error.localizedDescription)
+				}
+			}
 		}
 	}
 }
@@ -49,74 +65,17 @@ extension RestaurantMapViewCoordinator {
 	// Populate the array with the list of likely places.
 	func listLikelyPlaces(completionHandler: @escaping () -> Void) {
 		// Clean up from previous sessions.
+		PlaceFetcher.shared.listLikelyPlaces(completionHandler: { [weak self] response in
 
-		let placeFields: GMSPlaceField = [.name, .coordinate]
-		placesClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: placeFields) { [weak self] (placeLikelihoods, error) in
-			guard error == nil else {
-				// TODO: Handle the error.
-				print("Current Place error: \(error!.localizedDescription)")
-				return
+			switch response {
+			case .success(let placeLikelihoods):
+				guard let mostLikelihood = placeLikelihoods.first else { return }
+				self?.currentLocation = mostLikelihood.place.coordinate
+				completionHandler()
+			case .failure(let error):
+				debugPrint(error.localizedDescription)
 			}
-
-			guard let placeLikelihoods = placeLikelihoods else {
-				print("No places found.")
-				return
-			}
-
-			// Get likely places and add to the list.
-			//			for likelihood in placeLikelihoods {
-			//				let place = likelihood.place
-			//				self.likelyPlaces.append(place)
-			//			}
-
-			guard let mostLikelihood = placeLikelihoods.first else { return }
-			self?.currentLocation = mostLikelihood.place.coordinate
-			completionHandler()
-		}
-	}
-
-	func findNearbyRestaurants() {
-		do {
-			let body: [String: Any] = [
-				"languageCode": "zh-TW",
-				"includedTypes": [mapView?.category],
-				"maxResultCount": 20,
-				"rankPreference": "DISTANCE",
-				"locationRestriction": [
-					"circle": [
-						"center": ["latitude": self.currentLocation?.latitude,
-								   "longitude": self.currentLocation?.longitude],
-						"radius": 1000.0
-					]
-				]
-			]
-
-			let headers: [Alamofire.HTTPHeader] = [
-				.contentType("application/json"),
-				HTTPHeader(name: "X-Goog-FieldMask", value: "*"),
-				HTTPHeader(name: "X-Goog-Api-Key", value: "AIzaSyCkUgmyqSq5eWWUb3DgwHc4Xp_3jLKrSMk")
-			]
-			let request =
-			AF.request("https://places.googleapis.com/v1/places:searchNearby",
-					   method: .post,
-					   parameters: body,
-					   encoding: JSONEncoding(options: .prettyPrinted),
-					   headers: HTTPHeaders(headers)
-			)
-			request.responseDecodable(of: GooglePlaceResult.self) { [weak self] response in
-//				debugPrint(response.debugDescription)
-				switch response.result {
-				case .success(let result):
-					self?.mapView?.restaurants = result.places
-					self?.mapView?.updateRestaurants()
-
-				case .failure(let error):
-					print("Failed fetching restaurants: \(error.localizedDescription)")
-				}
-			}
-		} catch {
-			print("error")
-		}
+		})
 	}
 }
 

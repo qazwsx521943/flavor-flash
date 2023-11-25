@@ -21,6 +21,7 @@ final class ChatListViewModel: ObservableObject {
 	init() {
 		Task {
 			try? await loadUser()
+			try? await getGroups()
 		}
 	}
 
@@ -31,7 +32,7 @@ final class ChatListViewModel: ObservableObject {
 			debugPrint("not logged in")
 			return
 		}
-
+		debugPrint("chatlist loaded user: \(userResultModel.uid)")
 		self.user = try await UserManager.shared.getUser(userId: userResultModel.uid)
 	}
 

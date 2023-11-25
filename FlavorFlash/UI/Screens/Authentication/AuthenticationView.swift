@@ -11,7 +11,7 @@ struct AuthenticationView: View {
 	var body: some View {
 		VStack {
 			NavigationLink {
-				SignInEmailView()
+				EmailSignInView()
 			} label: {
 				Text("Sign in with Email")
 					.font(.headline)

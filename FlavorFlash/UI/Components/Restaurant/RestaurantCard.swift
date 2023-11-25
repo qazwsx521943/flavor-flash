@@ -34,7 +34,7 @@ struct RestaurantCard: View {
 				.frame(width: 20, height: 20)
         }
 		.task {
-			PlaceImageFetcher.shared.fetchImage(for: restaurant.id) { image = $0 }
+			PlaceFetcher.shared.fetchImage(for: restaurant.id) { image = $0 }
 		}
         .padding(5)
         .frame(width: 200, height: 100)

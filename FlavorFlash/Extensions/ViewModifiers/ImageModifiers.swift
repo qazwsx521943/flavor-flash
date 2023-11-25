@@ -18,4 +18,10 @@ extension Image {
 			.frame(maxWidth: maxWidth, maxHeight: maxHeight)
 			.clipped()
 	}
+
+	func resizeAndFill() -> some View {
+		self
+			.resizable()
+			.scaledToFill()
+	}
 }

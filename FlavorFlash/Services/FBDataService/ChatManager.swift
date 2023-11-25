@@ -37,7 +37,11 @@ final class ChatManager {
 
 	func getGroupMessages(groupId: String) async throws -> [FBMessage] {
 
-		let chatSnapshot = try await chatCollection.document(groupId).collection("messages").order(by: "created_date").getDocuments()
+		let chatSnapshot = try await chatCollection
+			.document(groupId)
+			.collection("messages")
+			.order(by: "created_date")
+			.getDocuments()
 
 		debugPrint("\(groupId) schatSnapshot count: \(chatSnapshot.documents.count)")
 		do {

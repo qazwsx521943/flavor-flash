@@ -50,7 +50,9 @@ extension ChatroomViewCoordinator: MessagesDataSource {
 	func messageBottomLabelAttributedText(for message: MessageType, at indexPath: IndexPath) -> NSAttributedString? {
 		let dateString = DateFormatter.formatter.string(from: message.sentDate)
 
-		return NSAttributedString(string: dateString, attributes: [NSAttributedString.Key.font : UIFont.preferredFont(forTextStyle: .caption2)])
+		return NSAttributedString(
+			string: dateString,
+			attributes: [NSAttributedString.Key.font : UIFont.preferredFont(forTextStyle: .caption2)])
 	}
 }
 
@@ -77,7 +79,11 @@ extension ChatroomViewCoordinator: MessagesDisplayDelegate {
 		.white
 	}
 
-	func configureAvatarView(_ avatarView: AvatarView, for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) {
+	func configureAvatarView(
+		_ avatarView: AvatarView,
+		for message: MessageType,
+		at indexPath: IndexPath,
+		in messagesCollectionView: MessagesCollectionView) {
 		if message.sender.senderId == currentSender.senderId {
 			guard let profileImageUrl = parent.chatroomVM.user?.profileImageUrl else { return }
 			UIImageView.getUIImage(urlString: profileImageUrl) { image in
