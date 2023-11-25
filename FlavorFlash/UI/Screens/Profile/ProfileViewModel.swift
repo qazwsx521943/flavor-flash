@@ -7,17 +7,13 @@
 import SwiftUI
 import PhotosUI
 import UIKit
+import CoreImage.CIFilterBuiltins
 
 @MainActor
 final class ProfileViewModel: ObservableObject {
-	@Published private(set) var user: FFUser? {
-		didSet {
-			guard let userId = user?.userId else { return }
-			self.qrCodeImageData = generateQRCode(from: userId)
-		}
-	}
+	@Published private(set) var user: FFUser?
 
-	@Published var qrCodeImageData: Data?
+	@Published var searchedUser: FFUser?
 
 	func logOut() throws {
 		try AuthenticationManager.shared.signOut()
@@ -52,20 +48,20 @@ final class ProfileViewModel: ObservableObject {
 			try await loadCurrentUser()
 		}
 	}
-	func generateQRCode(from string: String) -> Data? {
-		let data = string.data(using: String.Encoding.ascii)
 
-		if let filter = CIFilter(name: "CIQRCodeGenerator") {
-			filter.setValue(data, forKey: "inputMessage")
-			let transform = CGAffineTransform(scaleX: 3, y: 3)
+	func generateQRCode(from string: String) -> UIImage {
+		let context = CIContext()
+		let filter = CIFilter.qrCodeGenerator()
 
-			if let output = filter.outputImage?.transformed(by: transform) {
-				debugPrint("output qrcode")
-				return UIImage(ciImage: output).pngData()
+		filter.message = Data(string.utf8)
+
+		if let outputImage = filter.outputImage {
+			if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
+				return UIImage(cgImage: cgImage)
 			}
 		}
 
-		return nil
+		return UIImage(systemName: "xmark.circle") ?? UIImage()
 	}
 
 	func getUser(userId: String) async throws -> FFUser {
@@ -75,5 +71,10 @@ final class ProfileViewModel: ObservableObject {
 		} catch {
 			throw URLError(.badServerResponse)
 		}
+	}
+
+	func sendRequest(to userId: String) async throws {
+		guard let currentUserId = user?.userId else { return }
+		try await UserManager.shared.addFriend(userId: userId, from: currentUserId)
 	}
 }

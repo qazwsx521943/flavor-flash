@@ -9,12 +9,16 @@ import SwiftUI
 import PhotosUI
 
 struct ProfileView: View {
+
 	@StateObject private var viewModel = ProfileViewModel()
+
 	@EnvironmentObject private var navigationModel: NavigationModel
+
 	@State private var selectedItem: PhotosPickerItem? = nil
+
 	@State private var showQRCode = false
+
 	@State private var qrCodeMode: QRCodeMode = .myQRCode
-	@State private var foundedUser: FFUser?
 
 	enum QRCodeMode: Int {
 		case myQRCode = 0
@@ -120,13 +124,17 @@ extension ProfileView {
 
 						if qrCodeMode == .myQRCode {
 							VStack(alignment: .center) {
-								if let qrCodeData = viewModel.qrCodeImageData {
-									Image(uiImage: UIImage(data: qrCodeData)!)
+								if let userId = viewModel.user?.userId {
+									Image(uiImage: viewModel.generateQRCode(from: userId))
+										.interpolation(.none)
+										.resizable()
+										.scaledToFit()
+										.frame(width: 150, height: 150)
 								}
 							}
 						} else {
 							if
-								let searchedUser = foundedUser,
+								let searchedUser = viewModel.searchedUser,
 								let profileImageUrl = searchedUser.profileImageUrl
 							{
 								HStack {
@@ -135,8 +143,10 @@ extension ProfileView {
 										case .success(let image):
 											image
 												.resizable()
-												.scaledToFit()
-												.frame(width: 100, height: 100)
+												.scaledToFill()
+												.frame(width: 50, height: 50)
+												.clipShape(Circle())
+
 										case .failure(_):
 											Image(systemName: "person.fill")
 												.resizable()
@@ -156,25 +166,42 @@ extension ProfileView {
 
 									Spacer()
 
-									Button {
-										debugPrint("\(searchedUser.displayName) is  added to your friend list")
-										foundedUser = nil
-									} label: {
-										Text("Add")
-											.padding()
-											.foregroundStyle(.white)
-									}
-									.frame(width: 100, height: 50)
-									.background(Color.purple)
-									.clipShape(RoundedRectangle(cornerRadius: 10))
+									VStack(alignment: .center, spacing: 4) {
+										Button {
+											viewModel.searchedUser = nil
+										} label: {
+											Text("取消")
+												.font(.caption)
+												.padding(8)
+												.foregroundStyle(.white)
+										}
+										.frame(width: 80, height: 40)
+										.backgroundStyle(Color.black.opacity(0.7))
+										.clipShape(RoundedRectangle(cornerRadius: 10))
+										.border(Color.white, width: 2)
 
+										Button {
+											Task {
+												guard let searchedUser = viewModel.searchedUser else { return }
+												try await viewModel.sendRequest(to: searchedUser.userId)
+											}
+										} label: {
+											Text("加入")
+												.font(.caption)
+												.padding(8)
+												.foregroundStyle(.white)
+										}
+										.frame(width: 80, height: 40)
+										.background(Color.purple)
+										.clipShape(RoundedRectangle(cornerRadius: 10))
+									}
 								}
 							} else {
 								CodeScannerView(codeTypes: [.qr]) { response in
 									switch response {
 									case .success(let result):
 										Task {
-											foundedUser = try await viewModel.getUser(userId: result.string)
+											viewModel.searchedUser = try await viewModel.getUser(userId: result.string)
 										}
 									case .failure(let error):
 										debugPrint(error.localizedDescription)
@@ -183,8 +210,12 @@ extension ProfileView {
 								.frame(width: 300, height: 300)
 							}
 						}
+
+						Spacer()
 					}
 					.padding(.horizontal, 32)
+					.padding(.top, 80)
+					.frame(alignment: .top)
 				}
 
 			Button {

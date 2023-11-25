@@ -79,4 +79,10 @@ final class UserManager {
 		debugPrint("saved foodprint: \(foodPrint)")
 		try foodPrintCollection.document(foodPrint.id).setData(from: foodPrint, merge: true)
 	}
+
+	func addFriend(userId: String, from currentUser: String) async throws {
+		debugPrint("add \(userId) to friend")
+		try await userDocument(userId: userId).updateData(["friends": FieldValue.arrayUnion([currentUser])])
+		try await userDocument(userId: currentUser).updateData(["friends": FieldValue.arrayUnion([userId])])
+	}
 }
