@@ -52,6 +52,9 @@
 		E75588C72B0EF40F00086854 /* SecondaryPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588C62B0EF40F00086854 /* SecondaryPreviewView.swift */; };
 		E75588C92B0F1E2F00086854 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588C82B0F1E2F00086854 /* Location.swift */; };
 		E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588CB2B0F3BC100086854 /* SearchBar.swift */; };
+		E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D776E2B11C74200176A53 /* FoodPrintView.swift */; };
+		E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */; };
+		E76D77752B11C8C400176A53 /* FoodPrintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D77742B11C8C400176A53 /* FoodPrintManager.swift */; };
 		E773536D2B09A980003035B4 /* FBDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E773536C2B09A980003035B4 /* FBDataService.swift */; };
 		E773536F2B09B53F003035B4 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E773536E2B09B53F003035B4 /* DateFormatter+Extension.swift */; };
 		E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77353712B09CA08003035B4 /* AuthenticationView.swift */; };
@@ -151,6 +154,9 @@
 		E75588C62B0EF40F00086854 /* SecondaryPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryPreviewView.swift; sourceTree = "<group>"; };
 		E75588C82B0F1E2F00086854 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E75588CB2B0F3BC100086854 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		E76D776E2B11C74200176A53 /* FoodPrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintView.swift; sourceTree = "<group>"; };
+		E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintViewModel.swift; sourceTree = "<group>"; };
+		E76D77742B11C8C400176A53 /* FoodPrintManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintManager.swift; sourceTree = "<group>"; };
 		E773536C2B09A980003035B4 /* FBDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDataService.swift; sourceTree = "<group>"; };
 		E773536E2B09B53F003035B4 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		E77353712B09CA08003035B4 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -336,13 +342,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E73B171D2B0B351F00F1A0DD /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		E75588BA2B0DCD7A00086854 /* CameraView */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +387,15 @@
 			path = SearchBar;
 			sourceTree = "<group>";
 		};
+		E76D776D2B11C73000176A53 /* FoodPrint */ = {
+			isa = PBXGroup;
+			children = (
+				E76D776E2B11C74200176A53 /* FoodPrintView.swift */,
+				E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */,
+			);
+			path = FoodPrint;
+			sourceTree = "<group>";
+		};
 		E77353702B09C9A2003035B4 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -405,6 +413,7 @@
 				E7809B522B0A0E7A00D76E71 /* UserManager.swift */,
 				E73B17142B0AE90400F1A0DD /* ChatManager.swift */,
 				E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */,
+				E76D77742B11C8C400176A53 /* FoodPrintManager.swift */,
 			);
 			path = FBDataService;
 			sourceTree = "<group>";
@@ -495,7 +504,6 @@
 		E7E200DD2B0909A0003C22D6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				E73B171D2B0B351F00F1A0DD /* Components */,
 				E7E200DE2B0909E6003C22D6 /* Coordinators */,
 				E7A399462B034E30005C8021 /* CommunityView.swift */,
 				E7E200E12B090D83003C22D6 /* ChatroomViewController.swift */,
@@ -548,6 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A3992E2B034AB4005C8021 /* ContentView.swift */,
+				E76D776D2B11C73000176A53 /* FoodPrint */,
 				E77353702B09C9A2003035B4 /* Authentication */,
 				E7E200DD2B0909A0003C22D6 /* Chat */,
 				E70AF8DB2B070EE60003462C /* Home */,
@@ -798,6 +807,7 @@
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
 				E7E200E42B090F3D003C22D6 /* ChatroomViewCoordinator.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
+				E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */,
 				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,
 				E70C6C5D2B0CEA05003B27EE /* FlavorFlashCommentView.swift in Sources */,
 				E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */,
@@ -846,6 +856,7 @@
 				E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */,
 				E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */,
 				E7E200EB2B098597003C22D6 /* ChatListViewModel.swift in Sources */,
+				E76D77752B11C8C400176A53 /* FoodPrintManager.swift in Sources */,
 				E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */,
 				E7E200E72B091235003C22D6 /* Message.swift in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
@@ -857,6 +868,7 @@
 				E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E75588BD2B0E075B00086854 /* EmailSignInViewModel.swift in Sources */,
+				E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,
 				E7E200E92B0912BA003C22D6 /* Sender.swift in Sources */,
 			);

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FoodPrint: Codable {
+struct FoodPrint: Codable, Identifiable {
 	let id: String
 	let userId: String
 	let restaurantId: String?

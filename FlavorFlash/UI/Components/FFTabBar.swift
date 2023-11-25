@@ -28,12 +28,19 @@ struct FFTabBar: View {
 						.foregroundStyle(.white)
 				}
 
-			CommunityView()
+			FoodPrintView()
 				.tag(TabItems.community)
 				.tabItem {
 					Label("foodPrint", systemImage: "network")
 						.foregroundStyle(.white)
 				}
+
+//			CommunityView()
+//				.tag(TabItems.community)
+//				.tabItem {
+//					Label("foodPrint", systemImage: "network")
+//						.foregroundStyle(.white)
+//				}
 		}
 		.ignoresSafeArea()
 
