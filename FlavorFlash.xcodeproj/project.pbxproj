@@ -64,6 +64,8 @@
 		E796396F2B107380006FF600 /* FFTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396E2B107380006FF600 /* FFTag.swift */; };
 		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
 		E79639772B10A034006FF600 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639762B10A034006FF600 /* ActivityIndicatorView */; };
+		E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639802B118A49006FF600 /* QRCodeScanner.swift */; };
+		E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639822B118A6E006FF600 /* ScannerViewController.swift */; };
 		E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */; };
 		E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992E2B034AB4005C8021 /* ContentView.swift */; };
 		E7A399332B034AB6005C8021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7A399322B034AB6005C8021 /* Assets.xcassets */; };
@@ -159,6 +161,8 @@
 		E7809B552B0A2DDF00D76E71 /* FFUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFUser.swift; sourceTree = "<group>"; };
 		E796396C2B105B45006FF600 /* FFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTextField.swift; sourceTree = "<group>"; };
 		E796396E2B107380006FF600 /* FFTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTag.swift; sourceTree = "<group>"; };
+		E79639802B118A49006FF600 /* QRCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanner.swift; sourceTree = "<group>"; };
+		E79639822B118A6E006FF600 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		E7A399292B034AB4005C8021 /* FlavorFlash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlavorFlash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashApp.swift; sourceTree = "<group>"; };
 		E7A3992E2B034AB4005C8021 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -251,6 +255,7 @@
 		E70AF8DC2B0710840003462C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E796397F2B118A34006FF600 /* QRCodeScanner */,
 				E70AF8DD2B0710950003462C /* ProfileView.swift */,
 				E7809B502B0A054200D76E71 /* ProfileViewModel.swift */,
 			);
@@ -421,6 +426,15 @@
 				E796396E2B107380006FF600 /* FFTag.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		E796397F2B118A34006FF600 /* QRCodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				E79639802B118A49006FF600 /* QRCodeScanner.swift */,
+				E79639822B118A6E006FF600 /* ScannerViewController.swift */,
+			);
+			path = QRCodeScanner;
 			sourceTree = "<group>";
 		};
 		E7A399202B034AB4005C8021 = {
@@ -792,6 +806,7 @@
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
 				E73B171A2B0AF8A200F1A0DD /* FBGroup.swift in Sources */,
 				E796396D2B105B45006FF600 /* FFTextField.swift in Sources */,
+				E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */,
 				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,
 				E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */,
 				E70C6C4E2B0C4390003B27EE /* TagGrid.swift in Sources */,
@@ -810,6 +825,7 @@
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
 				E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */,
+				E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
 				E75588C92B0F1E2F00086854 /* Location.swift in Sources */,
 				E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */,
