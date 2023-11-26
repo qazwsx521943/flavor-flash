@@ -8,12 +8,15 @@ import SwiftUI
 import PhotosUI
 import UIKit
 import CoreImage.CIFilterBuiltins
+import Combine
 
 @MainActor
 final class ProfileViewModel: ObservableObject {
 	@Published private(set) var user: FFUser?
 
 	@Published var searchedUser: FFUser?
+
+	@Published var friends: [FFUser] = []
 
 	func logOut() throws {
 		try AuthenticationManager.shared.signOut()
@@ -69,6 +72,7 @@ final class ProfileViewModel: ObservableObject {
 			let user = try await UserManager.shared.getUser(userId: userId)
 			return user
 		} catch {
+			print("error getting User \(userId): \(error.localizedDescription)")
 			throw URLError(.badServerResponse)
 		}
 	}
@@ -76,5 +80,12 @@ final class ProfileViewModel: ObservableObject {
 	func sendRequest(to userId: String) async throws {
 		guard let currentUserId = user?.userId else { return }
 		try await UserManager.shared.addFriend(userId: userId, from: currentUserId)
+	}
+
+	// task groups
+	func getAllFriends() async throws {
+		guard let friendsId = user?.friends else { return }
+
+		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
 	}
 }

@@ -85,4 +85,22 @@ final class UserManager {
 		try await userDocument(userId: userId).updateData(["friends": FieldValue.arrayUnion([currentUser])])
 		try await userDocument(userId: currentUser).updateData(["friends": FieldValue.arrayUnion([userId])])
 	}
+
+	func getUserFriends(ids: [String]) async throws -> [FFUser] {
+		return try await withThrowingTaskGroup(of: FFUser.self) { group in
+			var users: [FFUser] = []
+
+			for id in ids {
+				group.addTask {
+					try await self.getUser(userId: id)
+				}
+			}
+
+			for try await user in group {
+				users.append(user)
+			}
+
+			return users
+		}
+	}
 }
