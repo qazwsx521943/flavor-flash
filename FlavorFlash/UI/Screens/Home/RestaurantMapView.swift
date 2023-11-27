@@ -12,55 +12,54 @@ import GooglePlaces
 struct RestaurantMapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     // MARK: - Properties
-    let map = MKMapView()
-    @Binding var restaurants: [Restaurant]
-	@Binding var currentLocation: CLLocationCoordinate2D? {
-		didSet {
-			updateRegion()
-		}
-	}
-    @Binding var category: String
+
+	@ObservedObject var restaurantViewModel: RestaurantViewModel
 
     func makeUIView(context: Context) -> MKMapView {
-        map.delegate = context.coordinator
-        updateRestaurants()
-        return map
+		let mapView = MKMapView()
+        mapView.delegate = context.coordinator
+
+		return mapView
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
-        guard let currentLocation else { return }
+		debugPrint("updated uiview")
+		updateRestaurants(mapView: uiView)
 
         let pointAnnotation = MKPointAnnotation()
-        pointAnnotation.title = "目前位置"
-        pointAnnotation.coordinate = currentLocation
+		if let currentLocation = restaurantViewModel.currentLocation {
+			pointAnnotation.title = "目前位置"
+			pointAnnotation.coordinate = currentLocation
+		}
 
-        map.addAnnotation(pointAnnotation)
-        updateRegion()
+        uiView.addAnnotation(pointAnnotation)
+		updateRegion(mapView: uiView)
 //        updateRestaurants()
     }
 
     func makeCoordinator() -> RestaurantMapViewCoordinator {
-        RestaurantMapViewCoordinator(mapView: self)
+        RestaurantMapViewCoordinator(self)
     }
 }
 
 extension RestaurantMapView {
-    func updateRestaurants() {
-        for restaurant in restaurants {
+	func updateRestaurants(mapView: MKMapView) {
+		for restaurant in restaurantViewModel.restaurants {
             let pointAnnotation = MKPointAnnotation()
             pointAnnotation.title = restaurant.displayName.text
             pointAnnotation.coordinate = restaurant.coordinate
 
             DispatchQueue.main.async {
-                map.addAnnotation(pointAnnotation)
+				mapView.addAnnotation(pointAnnotation)
             }
         }
     }
 
-    func updateRegion() {
-        map.setRegion(
+	func updateRegion(mapView: MKMapView) {
+		guard let currentLocation = restaurantViewModel.currentLocation else { return }
+        mapView.setRegion(
             MKCoordinateRegion(
-                center: currentLocation!,
+				center: currentLocation,
                 span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
             ),
             animated: true)

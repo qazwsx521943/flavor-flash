@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-@MainActor
+
 final class RestaurantViewModel: ObservableObject {
     var category: String
 	@Published var currentUser: FFUser?
@@ -36,7 +36,9 @@ final class RestaurantViewModel: ObservableObject {
 
 		let user = try await UserManager.shared.getUser(userId: currentUser.uid)
 
-		self.currentUser = user
+		await MainActor.run {
+			self.currentUser = user
+		}
 	}
 
 	func saveFavoriteRestaurant(_ restaurant: Restaurant) throws {

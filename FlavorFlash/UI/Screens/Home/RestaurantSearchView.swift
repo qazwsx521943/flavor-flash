@@ -8,30 +8,25 @@
 import SwiftUI
 
 struct RestaurantSearchView: View {
-    @EnvironmentObject private var navigationModel: NavigationModel
-    @StateObject private var restaurantDataModel: RestaurantViewModel
+    @StateObject private var restaurantViewModel: RestaurantViewModel
     @State private var showDetail: Bool = false
 
     var body: some View {
         VStack {
-            RestaurantMapView(
-                restaurants: $restaurantDataModel.restaurants,
-                currentLocation: $restaurantDataModel.currentLocation,
-                category: $restaurantDataModel.category
-            )
+            RestaurantMapView(restaurantViewModel: restaurantViewModel)
             .overlay(alignment: .bottom) {
                 ScrollView(.horizontal) {
                     HStack {
-                        ForEach(restaurantDataModel.restaurants) { restaurant in
+                        ForEach(restaurantViewModel.restaurants) { restaurant in
                             RestaurantCard(restaurant: restaurant)
                                 .onTapGesture {
-                                    restaurantDataModel.selectedRestaurant = restaurant
+                                    restaurantViewModel.selectedRestaurant = restaurant
                                     showDetail = true
                                 }
                                 .sheet(isPresented: $showDetail) {
-                                    if let selected = restaurantDataModel.selectedRestaurant {
+                                    if let selected = restaurantViewModel.selectedRestaurant {
 										RestaurantDetail(restaurant: selected) { restaurant in
-											try? restaurantDataModel.saveFavoriteRestaurant(restaurant)
+											try? restaurantViewModel.saveFavoriteRestaurant(restaurant)
 										}
                                     }
                                 }
@@ -41,15 +36,14 @@ struct RestaurantSearchView: View {
                 .frame(height: 100)
             }
         }
-		.navigationTitle($restaurantDataModel.category)
+		.navigationTitle($restaurantViewModel.category)
     }
 
     init(category: String) {
-        _restaurantDataModel = StateObject(wrappedValue: RestaurantViewModel(searchCategory: category))
+        _restaurantViewModel = StateObject(wrappedValue: RestaurantViewModel(searchCategory: category))
     }
 }
 
 #Preview {
     RestaurantSearchView(category: "lunch")
-        .environmentObject(NavigationModel())
 }

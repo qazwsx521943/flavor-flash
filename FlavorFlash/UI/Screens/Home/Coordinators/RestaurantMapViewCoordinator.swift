@@ -11,57 +11,44 @@ import GooglePlaces
 import Alamofire
 
 class RestaurantMapViewCoordinator: NSObject {
-	var mapView: RestaurantMapView?
+	var parent: RestaurantMapView
 
-	//	var placeManager = PlaceManager()
 	let locationManager = CLLocationManager()
 
-	let placesClient = GMSPlacesClient.shared()
-
-	var currentLocation: CLLocationCoordinate2D? {
-		didSet {
-			self.mapView?.currentLocation = currentLocation
-		}
-	}
-
-	init(mapView: RestaurantMapView? = nil) {
+	init(_ parent: RestaurantMapView) {
+		self.parent = parent
 		super.init()
-		self.mapView = mapView
 		locationManager.desiredAccuracy = kCLLocationAccuracyBest
 		locationManager.requestWhenInUseAuthorization()
-		locationManager.distanceFilter = 50
-		locationManager.startUpdatingLocation()
+		locationManager.distanceFilter = kCLDistanceFilterNone
 		locationManager.delegate = self
-
-
-		listLikelyPlaces { [weak self] in
-			guard
-				let mapView = self?.mapView,
-				let currentLocation = self?.currentLocation
-			else {
-				return
-			}
-
-			PlaceFetcher.shared.fetchNearBy(type: [mapView.category], location: Location(CLLocation: currentLocation)) { response in
-				switch response {
-				case .success(let result):
-					mapView.restaurants = result.places
-					mapView.updateRestaurants()
-				case .failure(let error):
-					debugPrint(error.localizedDescription)
-				}
-			}
-		}
+		locationManager.startUpdatingLocation()
 	}
 }
 
 extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-		currentLocation = annotation.coordinate
+		parent.restaurantViewModel.currentLocation = annotation.coordinate
 	}
 }
 
 extension RestaurantMapViewCoordinator {
+	func fetchNearByRestaurants() {
+		guard
+			let currentLocation = parent.restaurantViewModel.currentLocation
+		else {
+			return
+		}
+
+		PlaceFetcher.shared.fetchNearBy(type: [parent.restaurantViewModel.category], location: Location(CLLocation: currentLocation)) { [weak self] response in
+			switch response {
+			case .success(let result):
+				self?.parent.restaurantViewModel.restaurants = result.places
+			case .failure(let error):
+				debugPrint(error.localizedDescription)
+			}
+		}
+	}
 	// Populate the array with the list of likely places.
 	func listLikelyPlaces(completionHandler: @escaping () -> Void) {
 		// Clean up from previous sessions.
@@ -70,7 +57,7 @@ extension RestaurantMapViewCoordinator {
 			switch response {
 			case .success(let placeLikelihoods):
 				guard let mostLikelihood = placeLikelihoods.first else { return }
-				self?.currentLocation = mostLikelihood.place.coordinate
+				self?.parent.restaurantViewModel.currentLocation = mostLikelihood.place.coordinate
 				completionHandler()
 			case .failure(let error):
 				debugPrint(error.localizedDescription)
@@ -82,13 +69,17 @@ extension RestaurantMapViewCoordinator {
 extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let location: CLLocation = locations.last!
-		print(location)
+		manager.stopUpdatingLocation()
+		print("locations updated : \(location)")
+		parent.restaurantViewModel.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+		fetchNearByRestaurants()
 	}
 
 	// Handle authorization for the location manager.
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		// Check accuracy authorization
 		let accuracy = manager.accuracyAuthorization
+		debugPrint("accuracy: \(accuracy)")
 		switch accuracy {
 		case .fullAccuracy:
 			print("Location accuracy is precise.")
@@ -117,7 +108,7 @@ extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 
 	// Handle location manager errors.
 	func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-		locationManager.stopUpdatingLocation()
+		manager.stopUpdatingLocation()
 		print("Error: \(error)")
 	}
 }
