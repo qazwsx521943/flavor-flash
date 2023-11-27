@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct FoodPrintView: View {
-	@StateObject private var foodPrintViewModel = FoodPrintViewModel()
+	@StateObject private var foodPrintViewModel = FoodPrintViewModel(dataService: FoodPrintDataService(path: "foodprints"))
 
     var body: some View {
 		List {
 			ForEach(foodPrintViewModel.posts) { post in
-				Text(post.id)
+				Text(post.userId)
 			}
 		}
     }

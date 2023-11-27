@@ -63,6 +63,7 @@
 		E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B502B0A054200D76E71 /* ProfileViewModel.swift */; };
 		E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B522B0A0E7A00D76E71 /* UserManager.swift */; };
 		E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FFUser.swift */; };
+		E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */; };
 		E796396D2B105B45006FF600 /* FFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396C2B105B45006FF600 /* FFTextField.swift */; };
 		E796396F2B107380006FF600 /* FFTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396E2B107380006FF600 /* FFTag.swift */; };
 		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
@@ -165,6 +166,7 @@
 		E7809B502B0A054200D76E71 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E7809B522B0A0E7A00D76E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E7809B552B0A2DDF00D76E71 /* FFUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFUser.swift; sourceTree = "<group>"; };
+		E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintDataService.swift; sourceTree = "<group>"; };
 		E796396C2B105B45006FF600 /* FFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTextField.swift; sourceTree = "<group>"; };
 		E796396E2B107380006FF600 /* FFTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTag.swift; sourceTree = "<group>"; };
 		E79639802B118A49006FF600 /* QRCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanner.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				E773536C2B09A980003035B4 /* FBDataService.swift */,
+				E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */,
 				E77353752B09CE95003035B4 /* AuthenticationManager.swift */,
 				E7809B522B0A0E7A00D76E71 /* UserManager.swift */,
 				E73B17142B0AE90400F1A0DD /* ChatManager.swift */,
@@ -806,6 +809,7 @@
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
 				E7E200E42B090F3D003C22D6 /* ChatroomViewCoordinator.swift in Sources */,
+				E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
 				E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */,
 				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,

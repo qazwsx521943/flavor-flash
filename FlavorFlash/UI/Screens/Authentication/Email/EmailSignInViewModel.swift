@@ -9,6 +9,7 @@ import SwiftUI
 
 @MainActor
 class EmailSignInViewModel: ObservableObject {
+	@EnvironmentObject var userStore: UserStore
 
 	@Published var email = ""
 
@@ -39,6 +40,10 @@ class EmailSignInViewModel: ObservableObject {
 		}
 
 		let userData = try await AuthenticationManager.shared.signIn(email: email, password: password)
+
+		let currentUser = try await UserManager.shared.getUser(userId: userData.uid)
+
+		userStore.setCurrentUser(currentUser)
 		debugPrint(userData)
 	}
 }

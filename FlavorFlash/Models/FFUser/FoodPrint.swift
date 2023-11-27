@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct FoodPrint: Codable, Identifiable {
-	let id: String
+struct FoodPrint: FBModelType {
+	var id: String
 	let userId: String
 	let restaurantId: String?
 	let frontCameraImageUrl: String

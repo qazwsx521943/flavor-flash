@@ -87,17 +87,21 @@ final class UserManager {
 	}
 
 	func getUserFriends(ids: [String]) async throws -> [FFUser] {
-		return try await withThrowingTaskGroup(of: FFUser.self) { group in
-			var users: [FFUser] = []
+		var users: [FFUser] = []
+		users.reserveCapacity(ids.count)
+
+		return try await withThrowingTaskGroup(of: FFUser?.self) { group in
 
 			for id in ids {
 				group.addTask {
-					try await self.getUser(userId: id)
+					try? await self.getUser(userId: id)
 				}
 			}
 
 			for try await user in group {
-				users.append(user)
+				if let user {
+					users.append(user)
+				}
 			}
 
 			return users
