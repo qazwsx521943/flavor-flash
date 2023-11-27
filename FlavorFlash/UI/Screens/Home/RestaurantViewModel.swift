@@ -14,11 +14,7 @@ final class RestaurantViewModel: ObservableObject {
 	@Published var currentUser: FFUser?
     @Published var currentLocation: CLLocationCoordinate2D?
     @Published var restaurants: [Restaurant] = []
-    @Published var selectedRestaurant: Restaurant? {
-        didSet {
-            self.currentLocation = selectedRestaurant?.coordinate
-        }
-    }
+    @Published var selectedRestaurant: Restaurant?
 
 	init(searchCategory: String) {
 		self.category = searchCategory

@@ -57,6 +57,10 @@ extension RestaurantMapView {
         }
     }
 
+	func centerToRegion(mapView: MKMapView, coordinateRegion: MKCoordinateRegion) {
+		mapView.setRegion(coordinateRegion, animated: true)
+	}
+
 	func updateRegion(mapView: MKMapView) {
 		guard let currentLocation = restaurantViewModel.currentLocation else { return }
         mapView.setRegion(

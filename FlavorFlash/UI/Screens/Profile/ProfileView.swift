@@ -125,6 +125,14 @@ struct ProfileView: View {
 				//                    }
 				//
 				//                }
+				Section("FoodPrint") {
+					NavigationLink {
+						Text("hi")
+					} label: {
+						Text("FoodPrint")
+							.prefixedWithSFSymbol(named: "shoeprints.fill", height: 20)
+					}
+				}
 
 				Section("Social") {
 					qrcodeView
@@ -165,7 +173,8 @@ extension ProfileView {
 				}
 			} label: {
 				Text("Reset Password")
-					.foregroundStyle(.purple)
+					.prefixedWithSFSymbol(named: "square.and.pencil", height: 20)
+					.foregroundStyle(.primary)
 			}
 
 			Button {
@@ -178,6 +187,7 @@ extension ProfileView {
 				}
 			} label: {
 				Text("Logout")
+					.prefixedWithSFSymbol(named: "rectangle.portrait.and.arrow.right", height: 20, tintColor: .red)
 					.foregroundStyle(.red)
 			}
 		}

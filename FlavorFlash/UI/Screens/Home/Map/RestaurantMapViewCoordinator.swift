@@ -28,7 +28,7 @@ class RestaurantMapViewCoordinator: NSObject {
 
 extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-		parent.restaurantViewModel.currentLocation = annotation.coordinate
+		parent.centerToRegion(mapView: mapView, coordinateRegion: MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 200, longitudinalMeters: 200))
 	}
 
 //	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
