@@ -19,7 +19,7 @@ struct FoodPrintCell: View {
 			// swiftlint:disable:next line_length
 		"https://firebasestorage.googleapis.com:443/v0/b/flavorflash-4a1fc.appspot.com/o/user%2FQzZRdN8ggVeMjryKjPMUjcljRJQ2%2F72E63EBF-3530-47A7-8581-052C371E1663.jpeg?alt=media&token=c387ea4a-46bf-48a5-99d1-b9308dfe9f92",
 		backCameraImagePath: "user/QzZRdN8ggVeMjryKjPMUjcljRJQ2/5ECB61CA-F485-47A1-8C06-9B6C7BA7FFF9.jpeg",
-		comment: "好難吃",
+		description: "好難吃",
 		createdDate: Date.now)
 
 	let foodPrint: FoodPrint
@@ -83,7 +83,7 @@ struct FoodPrintCell: View {
 private extension FoodPrintCell {
 
 	var postBody: some View {
-		Text(foodPrint.comment)
+		Text(foodPrint.description)
 			.lineLimit(...5)
 			.frame(alignment: .leading)
 	}
