@@ -7,15 +7,15 @@
 
 import Foundation
 
-struct FoodPrint: Codable {
-	let id: String
+struct FoodPrint: FBModelType {
+	var id: String
 	let userId: String
 	let restaurantId: String?
 	let frontCameraImageUrl: String
 	let frontCameraImagePath: String
 	let backCameraImageUrl: String
 	let backCameraImagePath: String
-	let comment: String
+	let description: String
 	let category: String?
 	let location: Location?
 	let createdDate: Date
@@ -28,7 +28,7 @@ struct FoodPrint: Codable {
 		case frontCameraImagePath = "front_camera_image_path"
 		case backCameraImageUrl = "back_camera_image_url"
 		case backCameraImagePath = "back_camera_image_path"
-		case comment
+		case description
 		case category
 		case location
 		case createdDate = "created_date"
@@ -36,7 +36,7 @@ struct FoodPrint: Codable {
 
 	init(id: String, userId: String, restaurantId: String? = nil, 
 		 frontCameraImageUrl: String, frontCameraImagePath: String, backCameraImageUrl: String, backCameraImagePath: String,
-		 comment: String, category: String? = nil, location: Location? = nil, createdDate: Date) {
+		 description: String, category: String? = nil, location: Location? = nil, createdDate: Date) {
 		self.id = id
 		self.userId = userId
 		self.restaurantId = restaurantId
@@ -44,7 +44,7 @@ struct FoodPrint: Codable {
 		self.frontCameraImagePath = frontCameraImagePath
 		self.backCameraImageUrl = backCameraImageUrl
 		self.backCameraImagePath = backCameraImagePath
-		self.comment = comment
+		self.description = description
 		self.category = category
 		self.location = location
 		self.createdDate = createdDate

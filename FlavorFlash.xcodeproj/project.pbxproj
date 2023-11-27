@@ -52,6 +52,9 @@
 		E75588C72B0EF40F00086854 /* SecondaryPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588C62B0EF40F00086854 /* SecondaryPreviewView.swift */; };
 		E75588C92B0F1E2F00086854 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588C82B0F1E2F00086854 /* Location.swift */; };
 		E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588CB2B0F3BC100086854 /* SearchBar.swift */; };
+		E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D776E2B11C74200176A53 /* FoodPrintView.swift */; };
+		E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */; };
+		E76D77752B11C8C400176A53 /* FoodPrintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D77742B11C8C400176A53 /* FoodPrintManager.swift */; };
 		E773536D2B09A980003035B4 /* FBDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E773536C2B09A980003035B4 /* FBDataService.swift */; };
 		E773536F2B09B53F003035B4 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E773536E2B09B53F003035B4 /* DateFormatter+Extension.swift */; };
 		E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77353712B09CA08003035B4 /* AuthenticationView.swift */; };
@@ -60,10 +63,14 @@
 		E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B502B0A054200D76E71 /* ProfileViewModel.swift */; };
 		E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B522B0A0E7A00D76E71 /* UserManager.swift */; };
 		E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FFUser.swift */; };
+		E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */; };
+		E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB82B1448330042FB51 /* FoodPrintCell.swift */; };
 		E796396D2B105B45006FF600 /* FFTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396C2B105B45006FF600 /* FFTextField.swift */; };
 		E796396F2B107380006FF600 /* FFTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = E796396E2B107380006FF600 /* FFTag.swift */; };
 		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
 		E79639772B10A034006FF600 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639762B10A034006FF600 /* ActivityIndicatorView */; };
+		E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639802B118A49006FF600 /* QRCodeScanner.swift */; };
+		E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639822B118A6E006FF600 /* ScannerViewController.swift */; };
 		E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */; };
 		E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A3992E2B034AB4005C8021 /* ContentView.swift */; };
 		E7A399332B034AB6005C8021 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E7A399322B034AB6005C8021 /* Assets.xcassets */; };
@@ -149,6 +156,9 @@
 		E75588C62B0EF40F00086854 /* SecondaryPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryPreviewView.swift; sourceTree = "<group>"; };
 		E75588C82B0F1E2F00086854 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E75588CB2B0F3BC100086854 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		E76D776E2B11C74200176A53 /* FoodPrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintView.swift; sourceTree = "<group>"; };
+		E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintViewModel.swift; sourceTree = "<group>"; };
+		E76D77742B11C8C400176A53 /* FoodPrintManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintManager.swift; sourceTree = "<group>"; };
 		E773536C2B09A980003035B4 /* FBDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDataService.swift; sourceTree = "<group>"; };
 		E773536E2B09B53F003035B4 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
 		E77353712B09CA08003035B4 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -157,8 +167,12 @@
 		E7809B502B0A054200D76E71 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E7809B522B0A0E7A00D76E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E7809B552B0A2DDF00D76E71 /* FFUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFUser.swift; sourceTree = "<group>"; };
+		E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintDataService.swift; sourceTree = "<group>"; };
+		E783AAB82B1448330042FB51 /* FoodPrintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintCell.swift; sourceTree = "<group>"; };
 		E796396C2B105B45006FF600 /* FFTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTextField.swift; sourceTree = "<group>"; };
 		E796396E2B107380006FF600 /* FFTag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFTag.swift; sourceTree = "<group>"; };
+		E79639802B118A49006FF600 /* QRCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanner.swift; sourceTree = "<group>"; };
+		E79639822B118A6E006FF600 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		E7A399292B034AB4005C8021 /* FlavorFlash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlavorFlash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashApp.swift; sourceTree = "<group>"; };
 		E7A3992E2B034AB4005C8021 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -251,6 +265,7 @@
 		E70AF8DC2B0710840003462C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E796397F2B118A34006FF600 /* QRCodeScanner */,
 				E70AF8DD2B0710950003462C /* ProfileView.swift */,
 				E7809B502B0A054200D76E71 /* ProfileViewModel.swift */,
 			);
@@ -331,13 +346,6 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		E73B171D2B0B351F00F1A0DD /* Components */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		E75588BA2B0DCD7A00086854 /* CameraView */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,6 +391,15 @@
 			path = SearchBar;
 			sourceTree = "<group>";
 		};
+		E76D776D2B11C73000176A53 /* FoodPrint */ = {
+			isa = PBXGroup;
+			children = (
+				E76D776E2B11C74200176A53 /* FoodPrintView.swift */,
+				E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */,
+			);
+			path = FoodPrint;
+			sourceTree = "<group>";
+		};
 		E77353702B09C9A2003035B4 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,10 +413,12 @@
 			isa = PBXGroup;
 			children = (
 				E773536C2B09A980003035B4 /* FBDataService.swift */,
+				E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */,
 				E77353752B09CE95003035B4 /* AuthenticationManager.swift */,
 				E7809B522B0A0E7A00D76E71 /* UserManager.swift */,
 				E73B17142B0AE90400F1A0DD /* ChatManager.swift */,
 				E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */,
+				E76D77742B11C8C400176A53 /* FoodPrintManager.swift */,
 			);
 			path = FBDataService;
 			sourceTree = "<group>";
@@ -414,6 +433,14 @@
 			path = FFUser;
 			sourceTree = "<group>";
 		};
+		E783AAB62B1448170042FB51 /* FoodPrint */ = {
+			isa = PBXGroup;
+			children = (
+				E783AAB82B1448330042FB51 /* FoodPrintCell.swift */,
+			);
+			path = FoodPrint;
+			sourceTree = "<group>";
+		};
 		E796396B2B105B2A006FF600 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,6 +448,15 @@
 				E796396E2B107380006FF600 /* FFTag.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		E796397F2B118A34006FF600 /* QRCodeScanner */ = {
+			isa = PBXGroup;
+			children = (
+				E79639802B118A49006FF600 /* QRCodeScanner.swift */,
+				E79639822B118A6E006FF600 /* ScannerViewController.swift */,
+			);
+			path = QRCodeScanner;
 			sourceTree = "<group>";
 		};
 		E7A399202B034AB4005C8021 = {
@@ -481,7 +517,6 @@
 		E7E200DD2B0909A0003C22D6 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
-				E73B171D2B0B351F00F1A0DD /* Components */,
 				E7E200DE2B0909E6003C22D6 /* Coordinators */,
 				E7A399462B034E30005C8021 /* CommunityView.swift */,
 				E7E200E12B090D83003C22D6 /* ChatroomViewController.swift */,
@@ -521,6 +556,7 @@
 		E7F9EDB12B084BD8005976BE /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E783AAB62B1448170042FB51 /* FoodPrint */,
 				E796396B2B105B2A006FF600 /* Base */,
 				E75588CA2B0F3BAE00086854 /* SearchBar */,
 				E70C6C312B0B5CDF003B27EE /* Restaurant */,
@@ -534,6 +570,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A3992E2B034AB4005C8021 /* ContentView.swift */,
+				E76D776D2B11C73000176A53 /* FoodPrint */,
 				E77353702B09C9A2003035B4 /* Authentication */,
 				E7E200DD2B0909A0003C22D6 /* Chat */,
 				E70AF8DB2B070EE60003462C /* Home */,
@@ -783,15 +820,19 @@
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
 				E7E200E42B090F3D003C22D6 /* ChatroomViewCoordinator.swift in Sources */,
+				E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
+				E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */,
 				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,
 				E70C6C5D2B0CEA05003B27EE /* FlavorFlashCommentView.swift in Sources */,
 				E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */,
+				E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */,
 				E77353742B09CB5C003035B4 /* EmailSignInView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
 				E73B171A2B0AF8A200F1A0DD /* FBGroup.swift in Sources */,
 				E796396D2B105B45006FF600 /* FFTextField.swift in Sources */,
+				E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */,
 				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,
 				E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */,
 				E70C6C4E2B0C4390003B27EE /* TagGrid.swift in Sources */,
@@ -810,6 +851,7 @@
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
 				E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */,
+				E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
 				E75588C92B0F1E2F00086854 /* Location.swift in Sources */,
 				E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */,
@@ -830,6 +872,7 @@
 				E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */,
 				E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */,
 				E7E200EB2B098597003C22D6 /* ChatListViewModel.swift in Sources */,
+				E76D77752B11C8C400176A53 /* FoodPrintManager.swift in Sources */,
 				E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */,
 				E7E200E72B091235003C22D6 /* Message.swift in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
@@ -841,6 +884,7 @@
 				E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E75588BD2B0E075B00086854 /* EmailSignInViewModel.swift in Sources */,
+				E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,
 				E7E200E92B0912BA003C22D6 /* Sender.swift in Sources */,
 			);

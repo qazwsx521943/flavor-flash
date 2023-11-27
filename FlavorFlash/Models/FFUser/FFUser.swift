@@ -7,14 +7,15 @@
 
 import Foundation
 
-struct FFUser: Codable {
+struct FFUser: Codable, Hashable {
 	let userId: String
 	let displayName: String
 	let email: String?
 	let profileImageUrl: String?
-	let profileImagePath: String? = nil
+	let profileImagePath: String?
 	let dateCreated: Date?
 	let favoriteRestaurants: [String]? = nil
+	let friends: [String]?
 
 	enum CodingKeys: String, CodingKey {
 		case userId = "user_id"
@@ -24,6 +25,7 @@ struct FFUser: Codable {
 		case profileImagePath = "profile_image_path"
 		case dateCreated = "date_created"
 		case favoriteRestaurants = "favorite_restaurants"
+		case friends
 	}
 }
 
@@ -33,6 +35,8 @@ extension FFUser {
 		self.userId = auth.uid
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
+		self.profileImagePath = nil
+		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = "Anonymous"
 	}
@@ -41,6 +45,8 @@ extension FFUser {
 		self.userId = auth.uid
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
+		self.profileImagePath = nil
+		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = displayName
 	}

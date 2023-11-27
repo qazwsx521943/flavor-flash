@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct CameraView: View {
-    @StateObject private var cameraDataModel = CameraDataModel()
+	@ObservedObject var cameraDataModel: CameraDataModel
 
     private static let barHeightFactor = 0.15
 
@@ -54,9 +54,6 @@ struct CameraView: View {
                 }
                 .background(.black)
             }
-            .task {
-                await cameraDataModel.camera.start()
-            }
             .navigationTitle("Flavor Flash")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
@@ -66,5 +63,5 @@ struct CameraView: View {
 }
 
 #Preview {
-    CameraView()
+    CameraView(cameraDataModel: CameraDataModel())
 }

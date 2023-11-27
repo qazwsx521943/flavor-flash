@@ -6,9 +6,17 @@
 //
 import SwiftUI
 import PhotosUI
+import UIKit
+import CoreImage.CIFilterBuiltins
+import Combine
+
 @MainActor
 final class ProfileViewModel: ObservableObject {
 	@Published private(set) var user: FFUser?
+
+	@Published var searchedUser: FFUser?
+
+	@Published var friends: [FFUser] = []
 
 	func logOut() throws {
 		try AuthenticationManager.shared.signOut()
@@ -42,5 +50,42 @@ final class ProfileViewModel: ObservableObject {
 			try await UserManager.shared.updateUserProfileImagePath(userId: user.userId, path: path, url: url.absoluteString)
 			try await loadCurrentUser()
 		}
+	}
+
+	func generateQRCode(from string: String) -> UIImage {
+		let context = CIContext()
+		let filter = CIFilter.qrCodeGenerator()
+
+		filter.message = Data(string.utf8)
+
+		if let outputImage = filter.outputImage {
+			if let cgImage = context.createCGImage(outputImage, from: outputImage.extent) {
+				return UIImage(cgImage: cgImage)
+			}
+		}
+
+		return UIImage(systemName: "xmark.circle") ?? UIImage()
+	}
+
+	func getUser(userId: String) async throws -> FFUser {
+		do {
+			let user = try await UserManager.shared.getUser(userId: userId)
+			return user
+		} catch {
+			print("error getting User \(userId): \(error.localizedDescription)")
+			throw URLError(.badServerResponse)
+		}
+	}
+
+	func sendRequest(to userId: String) async throws {
+		guard let currentUserId = user?.userId else { return }
+		try await UserManager.shared.addFriend(userId: userId, from: currentUserId)
+	}
+
+	// task groups
+	func getAllFriends() async throws {
+		guard let friendsId = user?.friends else { return }
+
+		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
 	}
 }

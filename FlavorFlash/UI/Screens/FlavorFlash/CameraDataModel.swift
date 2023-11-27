@@ -15,7 +15,7 @@ import CoreLocation
 final class CameraDataModel: ObservableObject {
     let camera = Camera()
 
-	@Published var comment: String = ""
+	@Published var description: String = ""
 
     @Published var viewfinderBackCamImage: Image?
 
@@ -125,7 +125,7 @@ final class CameraDataModel: ObservableObject {
 		let (backImagePath, backImageName) = try await StorageManager.shared.saveImage(userId: userId, image: backImage)
 
 		let frontUrl = try await StorageManager.shared.getUrlForImage(path: frontImagePath)
-		let backUrl = try await StorageManager.shared.getUrlForImage(path: frontImagePath)
+		let backUrl = try await StorageManager.shared.getUrlForImage(path: backImagePath)
 
 		guard let selectedRestaurant else { return }
 		let foodPrint = FoodPrint(
@@ -136,7 +136,7 @@ final class CameraDataModel: ObservableObject {
 			frontCameraImagePath: frontImagePath,
 			backCameraImageUrl: backUrl.absoluteString,
 			backCameraImagePath: backImagePath,
-			comment: comment,
+			description: description,
 			category: foodAnalyzeResult,
 			location: Location(CLLocation: selectedRestaurant.coordinate),
 			createdDate: Date())

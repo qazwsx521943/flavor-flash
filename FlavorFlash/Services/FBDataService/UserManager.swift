@@ -79,4 +79,32 @@ final class UserManager {
 		debugPrint("saved foodprint: \(foodPrint)")
 		try foodPrintCollection.document(foodPrint.id).setData(from: foodPrint, merge: true)
 	}
+
+	func addFriend(userId: String, from currentUser: String) async throws {
+		debugPrint("add \(userId) to friend")
+		try await userDocument(userId: userId).updateData(["friends": FieldValue.arrayUnion([currentUser])])
+		try await userDocument(userId: currentUser).updateData(["friends": FieldValue.arrayUnion([userId])])
+	}
+
+	func getUserFriends(ids: [String]) async throws -> [FFUser] {
+		var users: [FFUser] = []
+		users.reserveCapacity(ids.count)
+
+		return try await withThrowingTaskGroup(of: FFUser?.self) { group in
+
+			for id in ids {
+				group.addTask {
+					try? await self.getUser(userId: id)
+				}
+			}
+
+			for try await user in group {
+				if let user {
+					users.append(user)
+				}
+			}
+
+			return users
+		}
+	}
 }

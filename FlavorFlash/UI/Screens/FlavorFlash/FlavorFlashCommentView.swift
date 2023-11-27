@@ -94,7 +94,7 @@ struct FlavorFlashCommentView: View {
 					}
 				}
 				ScrollView {
-					TextField("Leave a comment ...", text: $cameraDataModel.comment, axis: .vertical)
+					TextField("Leave a comment ...", text: $cameraDataModel.description, axis: .vertical)
 						.lineLimit(5...9)
 						.textFieldStyle(.roundedBorder)
 						.background(.gray.opacity(0.7))
