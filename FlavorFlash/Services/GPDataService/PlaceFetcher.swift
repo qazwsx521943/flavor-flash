@@ -67,11 +67,12 @@ final class PlaceFetcher {
 				HTTPHeader(name: "X-Goog-Api-Key", value: "AIzaSyCkUgmyqSq5eWWUb3DgwHc4Xp_3jLKrSMk")
 			]
 			let request =
-			AF.request("https://places.googleapis.com/v1/places:searchNearby",
-					   method: .post,
-					   parameters: body,
-					   encoding: JSONEncoding(options: .prettyPrinted),
-					   headers: HTTPHeaders(headers)
+			AF.request(
+				"https://places.googleapis.com/v1/places:searchNearby",
+				method: .post,
+				parameters: body,
+				encoding: JSONEncoding(options: .prettyPrinted),
+				headers: HTTPHeaders(headers)
 			)
 			request.responseDecodable(of: GooglePlaceResult.self) { response in
 				//				debugPrint(response.debugDescription)

@@ -17,6 +17,8 @@ struct RestaurantMapView: UIViewRepresentable {
 
     func makeUIView(context: Context) -> MKMapView {
 		let mapView = MKMapView()
+
+		mapView.register(RestaurantMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         mapView.delegate = context.coordinator
 
 		return mapView
@@ -45,13 +47,13 @@ struct RestaurantMapView: UIViewRepresentable {
 extension RestaurantMapView {
 	func updateRestaurants(mapView: MKMapView) {
 		for restaurant in restaurantViewModel.restaurants {
-            let pointAnnotation = MKPointAnnotation()
-            pointAnnotation.title = restaurant.displayName.text
-            pointAnnotation.coordinate = restaurant.coordinate
+			let annotation =
+			RestaurantAnnotation(
+				title: restaurant.displayName.text,
+				rating: restaurant.rating,
+				coordinate: restaurant.coordinate)
 
-            DispatchQueue.main.async {
-				mapView.addAnnotation(pointAnnotation)
-            }
+			mapView.addAnnotation(annotation)
         }
     }
 

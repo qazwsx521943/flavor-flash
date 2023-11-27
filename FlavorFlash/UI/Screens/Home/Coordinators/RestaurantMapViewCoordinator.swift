@@ -30,6 +30,34 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
 		parent.restaurantViewModel.currentLocation = annotation.coordinate
 	}
+
+//	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+//		guard let annotation = annotation as? RestaurantAnnotation else { return nil }
+//		
+//		var view: MKMarkerAnnotationView
+//		if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: String(describing: RestaurantAnnotation.self)) as? MKMarkerAnnotationView {
+//			dequeuedView.annotation = annotation
+//			view = dequeuedView
+//		} else {
+//			view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: String(describing: RestaurantAnnotation.self))
+//
+//			view.canShowCallout = true
+//			view.calloutOffset = CGPoint(x: -5, y: 5)
+//			view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+//		}
+//
+//		return view
+//	}
+
+	func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+		guard let restaurant = view.annotation as? RestaurantAnnotation else { return }
+
+		let launchOptions = [
+			MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking,
+		]
+
+		restaurant.mapItem?.openInMaps(launchOptions: launchOptions)
+	}
 }
 
 extension RestaurantMapViewCoordinator {
@@ -49,28 +77,13 @@ extension RestaurantMapViewCoordinator {
 			}
 		}
 	}
-	// Populate the array with the list of likely places.
-	func listLikelyPlaces(completionHandler: @escaping () -> Void) {
-		// Clean up from previous sessions.
-		PlaceFetcher.shared.listLikelyPlaces(completionHandler: { [weak self] response in
-
-			switch response {
-			case .success(let placeLikelihoods):
-				guard let mostLikelihood = placeLikelihoods.first else { return }
-				self?.parent.restaurantViewModel.currentLocation = mostLikelihood.place.coordinate
-				completionHandler()
-			case .failure(let error):
-				debugPrint(error.localizedDescription)
-			}
-		})
-	}
 }
 
 extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let location: CLLocation = locations.last!
 		manager.stopUpdatingLocation()
-		print("locations updated : \(location)")
+		debugPrint("locations updated : \(location.coordinate)")
 		parent.restaurantViewModel.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
 		fetchNearByRestaurants()
 	}
