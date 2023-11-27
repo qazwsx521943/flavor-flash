@@ -43,7 +43,7 @@ class EmailSignInViewModel: ObservableObject {
 
 		let currentUser = try await UserManager.shared.getUser(userId: userData.uid)
 
-		userStore.setCurrentUser(currentUser)
+//		userStore.setCurrentUser(currentUser)
 		debugPrint(userData)
 	}
 }
