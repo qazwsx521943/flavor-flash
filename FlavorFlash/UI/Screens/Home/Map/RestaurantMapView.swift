@@ -13,11 +13,12 @@ struct RestaurantMapView: UIViewRepresentable {
     typealias UIViewType = MKMapView
     // MARK: - Properties
 
-	@ObservedObject var restaurantViewModel: RestaurantViewModel
+	@EnvironmentObject var homeViewModel: HomeViewModel
 
     func makeUIView(context: Context) -> MKMapView {
 		let mapView = MKMapView()
 
+		mapView.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 100, maxCenterCoordinateDistance: 3000), animated: true)
 		mapView.register(RestaurantMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         mapView.delegate = context.coordinator
 
@@ -29,7 +30,7 @@ struct RestaurantMapView: UIViewRepresentable {
 		updateRestaurants(mapView: uiView)
 
         let pointAnnotation = MKPointAnnotation()
-		if let currentLocation = restaurantViewModel.currentLocation {
+		if let currentLocation = homeViewModel.currentLocation {
 			pointAnnotation.title = "目前位置"
 			pointAnnotation.coordinate = currentLocation
 		}
@@ -46,7 +47,7 @@ struct RestaurantMapView: UIViewRepresentable {
 
 extension RestaurantMapView {
 	func updateRestaurants(mapView: MKMapView) {
-		for restaurant in restaurantViewModel.restaurants {
+		for restaurant in homeViewModel.restaurants {
 			let annotation =
 			RestaurantAnnotation(
 				title: restaurant.displayName.text,
@@ -62,7 +63,7 @@ extension RestaurantMapView {
 	}
 
 	func updateRegion(mapView: MKMapView) {
-		guard let currentLocation = restaurantViewModel.currentLocation else { return }
+		guard let currentLocation = homeViewModel.currentLocation else { return }
         mapView.setRegion(
             MKCoordinateRegion(
 				center: currentLocation,

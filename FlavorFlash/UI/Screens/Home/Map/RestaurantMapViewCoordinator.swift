@@ -63,15 +63,15 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 extension RestaurantMapViewCoordinator {
 	func fetchNearByRestaurants() {
 		guard
-			let currentLocation = parent.restaurantViewModel.currentLocation
+			let currentLocation = parent.homeViewModel.currentLocation
 		else {
 			return
 		}
-
-		PlaceFetcher.shared.fetchNearBy(type: [parent.restaurantViewModel.category], location: Location(CLLocation: currentLocation)) { [weak self] response in
+		guard let categoryTag = RestaurantCategory(rawValue: parent.homeViewModel.category)?.searchTag else { return }
+		PlaceFetcher.shared.fetchNearBy(type: [categoryTag], location: Location(CLLocation: currentLocation)) { [weak self] response in
 			switch response {
 			case .success(let result):
-				self?.parent.restaurantViewModel.restaurants = result.places
+				self?.parent.homeViewModel.restaurants = result.places
 			case .failure(let error):
 				debugPrint(error.localizedDescription)
 			}
@@ -84,7 +84,10 @@ extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 		let location: CLLocation = locations.last!
 		manager.stopUpdatingLocation()
 		debugPrint("locations updated : \(location.coordinate)")
-		parent.restaurantViewModel.currentLocation = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+		debugPrint("location altitude: \(location.altitude)")
+		parent.homeViewModel.currentLocation = CLLocationCoordinate2D(
+			latitude: location.coordinate.latitude,
+			longitude: location.coordinate.longitude)
 		fetchNearByRestaurants()
 	}
 

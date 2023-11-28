@@ -8,28 +8,28 @@
 import SwiftUI
 
 struct RestaurantSearchView: View {
-    @StateObject private var restaurantViewModel: RestaurantViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @State private var showDetail: Bool = false
 
     var body: some View {
 
         GeometryReader { geometry in
 			VStack {
-				RestaurantMapView(restaurantViewModel: restaurantViewModel)
+				RestaurantMapView()
 				.overlay(alignment: .bottom) {
 					ScrollView(.horizontal, showsIndicators: false) {
 						HStack {
-							ForEach(restaurantViewModel.restaurants) { restaurant in
+							ForEach(homeViewModel.restaurants) { restaurant in
 								RestaurantCard(restaurant: restaurant)
 									.frame(width: geometry.size.width * 0.75, height: 120)
 									.onTapGesture {
-										restaurantViewModel.selectedRestaurant = restaurant
+										homeViewModel.selectedRestaurant = restaurant
 										showDetail = true
 									}
 									.sheet(isPresented: $showDetail) {
-										if let selected = restaurantViewModel.selectedRestaurant {
+										if let selected = homeViewModel.selectedRestaurant {
 											RestaurantDetail(restaurant: selected) { restaurant in
-												try? restaurantViewModel.saveFavoriteRestaurant(restaurant)
+												try? homeViewModel.saveFavoriteRestaurant(restaurant)
 											}
 										}
 									}
@@ -39,15 +39,15 @@ struct RestaurantSearchView: View {
 					.frame(height: 120)
 				}
 			}
-			.navigationTitle($restaurantViewModel.category)
+			.navigationTitle($homeViewModel.category)
         }
     }
-
-    init(category: String) {
-        _restaurantViewModel = StateObject(wrappedValue: RestaurantViewModel(searchCategory: category))
-    }
+//
+//    init(category: String) {
+//        _homeViewModel = StateObject(wrappedValue: HomeViewModel())
+//    }
 }
 
 #Preview {
-    RestaurantSearchView(category: "lunch")
+    RestaurantSearchView()
 }

@@ -45,9 +45,7 @@ final class UserManager {
 		debugPrint("creating new user: \(user)")
 		try userDocument(userId: user.userId).setData(
 			from: user,
-			merge: false
-//			encoder: encoder
-		)
+			merge: false)
 	}
 
 	func getUser(userId: String) async throws -> FFUser {
@@ -62,8 +60,8 @@ final class UserManager {
 	// updateDate vs. setData (be careful using setData)
 	func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
 		let data: [String: Any] = [
-			FFUser.CodingKeys.profileImagePath.rawValue : path,
-			FFUser.CodingKeys.profileImageUrl.rawValue : url,
+			FFUser.CodingKeys.profileImagePath.rawValue: path,
+			FFUser.CodingKeys.profileImageUrl.rawValue: url,
 		]
 
 		try await userDocument(userId: userId).updateData(data)

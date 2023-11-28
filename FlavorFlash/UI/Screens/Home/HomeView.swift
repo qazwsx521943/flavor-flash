@@ -9,16 +9,14 @@ import SwiftUI
 import os.log
 
 struct HomeView: View {
-	let matrix = ["steak_house", "pizza_restaurant", "seafood_restaurant", "indian_restaurant", "chinese_restaurant"]
-
-	@State private var category: String = ""
+	@StateObject private var viewModel = HomeViewModel()
 
 	@State private var animate = false
 
 	var body: some View {
 		NavigationStack {
 			VStack {
-				Text(category)
+				Text(viewModel.category)
 					.font(.title3)
 
 				Image("cube")
@@ -26,12 +24,13 @@ struct HomeView: View {
 					.aspectRatio(contentMode: .fit)
 					.padding(40)
 					.onTapGesture {
-						category = matrix.randomElement()!
+						viewModel.randomCategory()
 					}
 
-				if !category.isEmpty {
+				if !viewModel.category.isEmpty {
 					NavigationLink {
-						RestaurantSearchView(category: category)
+						RestaurantSearchView()
+							.environmentObject(viewModel)
 					} label: {
 						Text("就吃這間！")
 							.frame(height: 55)
