@@ -18,11 +18,14 @@ struct FBMessage: Codable {
 
 	let createdDate: Date
 
+	let medias: [String]?
+
 	enum CodingKeys: String, CodingKey {
 		case id
 		case text
 		case senderName = "sender_name"
 		case senderId = "sender_id"
 		case createdDate = "created_date"
+		case medias
 	}
 }

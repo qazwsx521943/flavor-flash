@@ -14,8 +14,10 @@ struct ChatroomView: View {
 
     var body: some View {
 		ChatView(messages: chatroomViewModel.messages) { message in
-			chatroomViewModel.sendMessage(text: message.text)
+			chatroomViewModel.sendMessage(message: message)
 		}
+		.chatNavigation(title: chatroomViewModel.chatroomTitle)
+		.toolbar(.hidden, for: .tabBar)
     }
 
 	init(groupId: String) {

@@ -22,6 +22,14 @@ final class ChatroomViewModel: ObservableObject {
 
 	private(set) var user: FFUser?
 
+	var chatroomTitle: String {
+		guard 
+			let members,
+			let user
+		else { return "沒有成員" }
+		return members.filter { $0.userId != user.userId }.map { $0.displayName }.joined(separator: ",")
+	}
+
 	init(groupId: String) {
 		self.groupId = groupId
 		Task {
@@ -73,13 +81,28 @@ final class ChatroomViewModel: ObservableObject {
 		return mkMessages
 	}
 
-	func sendMessage(text: String) {
+	func sendMessage(message: DraftMessage) {
 		guard let user else { return }
 
-		Task {
-			let message = FBMessage(id: UUID().uuidString, text: text, senderName: user.displayName ?? "Anonymous", senderId: user.userId, createdDate: Date())
+		if
+			let firstMedia = message.medias.first,
+			firstMedia.type == .image
+		{
+			Task {
+				guard let imageData = await firstMedia.getData() else { return }
+				let (imagePath, _) = try await StorageManager.shared.saveImage(userId: user.userId, data: imageData)
+				let imagePathUrl = try await StorageManager.shared.getUrlForImage(path: imagePath)
+				let message = FBMessage(id: UUID().uuidString, text: message.text, senderName: user.displayName, senderId: user.userId, createdDate: Date(), medias: [imagePathUrl.absoluteString])
 
-			try await ChatManager.shared.sendMessage(groupId: groupId, message: message)
+				try await ChatManager.shared.sendMessage(groupId: groupId, message: message)
+			}
+		} else {
+			let text = message.text
+			Task {
+				let message = FBMessage(id: UUID().uuidString, text: text, senderName: user.displayName ?? "Anonymous", senderId: user.userId, createdDate: Date(), medias: nil)
+
+				try await ChatManager.shared.sendMessage(groupId: groupId, message: message)
+			}
 		}
 	}
 
@@ -87,9 +110,17 @@ final class ChatroomViewModel: ObservableObject {
 		guard let currentUser = user else { return }
 		ChatManager.shared.groupListener(groupId: groupId) { messages, listener in
 			let mkMessages = messages.map {
-				ExyteChat.Message(
+
+				var attachment: [Attachment] = []
+				if
+					let medias = $0.medias,
+					let mediaUrl = medias.first
+				{
+					attachment.append(Attachment(id: mediaUrl, url: URL(string: mediaUrl)!, type: .image))
+				}
+				return ExyteChat.Message(
 					id: $0.id,
-					user: User(id: $0.senderId, name: $0.senderName, avatarURL: nil, isCurrentUser: currentUser.userId == $0.senderId), createdAt: $0.createdDate, text: $0.text)
+					user: User(id: $0.senderId, name: $0.senderName, avatarURL: nil, isCurrentUser: currentUser.userId == $0.senderId), createdAt: $0.createdDate, text: $0.text, attachments: attachment)
 			}
 			self.listener = listener
 			self.messages.append(contentsOf: mkMessages)
