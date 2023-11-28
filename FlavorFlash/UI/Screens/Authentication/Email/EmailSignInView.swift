@@ -7,43 +7,17 @@
 
 import SwiftUI
 
-@MainActor
-class ViewModel: ObservableObject {
-	@Published var email = ""
-	@Published var password = ""
-	@Published var displayName = ""
+struct EmailSignInView: View {
 
-	var isValidEmail: Bool {
-		EmailAddress(rawValue: email) != nil
-	}
+	@StateObject private var viewModel = EmailSignInViewModel()
 
-	func signUp() async throws {
-		guard !email.isEmpty, !password.isEmpty, !displayName.isEmpty else {
-			throw FBAuthError.inputFieldEmpty
-		}
-
-		let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-		try await UserManager.shared.createNewUser(user: FFUser(auth: userData, displayName: displayName))
-	}
-
-	func signIn() async throws {
-		guard !email.isEmpty, !password.isEmpty else {
-			throw FBAuthError.inputFieldEmpty
-		}
-
-		let userData = try await AuthenticationManager.shared.signIn(email: email, password: password)
-		debugPrint(userData)
-	}
-}
-
-struct SignInEmailView: View {
-	@StateObject private var viewModel = ViewModel()
 	@EnvironmentObject private var navigationModel: NavigationModel
+
     var body: some View {
 		VStack {
 			TextField("Email:", text: $viewModel.email)
 				.signInFields()
-			Divider()
+
 			SecureField("Password", text: $viewModel.password)
 				.signInFields()
 
@@ -82,6 +56,6 @@ struct SignInEmailView: View {
 
 #Preview {
 	NavigationStack {
-		SignInEmailView()
+		EmailSignInView()
 	}
 }

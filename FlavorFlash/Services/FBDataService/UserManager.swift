@@ -20,6 +20,8 @@ final class UserManager {
 
 	private let userCollection = Firestore.firestore().collection("users")
 
+	private let foodPrintCollection = Firestore.firestore().collection("foodprints")
+
 //	private let encoder: Firestore.Encoder = {
 //		let encoder = Firestore.Encoder()
 //		encoder.keyEncodingStrategy = .convertToSnakeCase
@@ -43,9 +45,7 @@ final class UserManager {
 		debugPrint("creating new user: \(user)")
 		try userDocument(userId: user.userId).setData(
 			from: user,
-			merge: false
-//			encoder: encoder
-		)
+			merge: false)
 	}
 
 	func getUser(userId: String) async throws -> FFUser {
@@ -60,8 +60,8 @@ final class UserManager {
 	// updateDate vs. setData (be careful using setData)
 	func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
 		let data: [String: Any] = [
-			FFUser.CodingKeys.profileImagePath.rawValue : path,
-			FFUser.CodingKeys.profileImageUrl.rawValue : url,
+			FFUser.CodingKeys.profileImagePath.rawValue: path,
+			FFUser.CodingKeys.profileImageUrl.rawValue: url,
 		]
 
 		try await userDocument(userId: userId).updateData(data)
@@ -71,5 +71,38 @@ final class UserManager {
 		debugPrint("userId: \(userId), restaurant: \(restaurant)")
 //		userDocument(userId: userId).setData(["favorite_restaurants": restaurant.id], merge: true)
 		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayUnion([restaurant.id])])
+	}
+
+	func saveUserFoodPrint(userId: String, foodPrint: FoodPrint) async throws {
+		debugPrint("saved foodprint: \(foodPrint)")
+		try foodPrintCollection.document(foodPrint.id).setData(from: foodPrint, merge: true)
+	}
+
+	func addFriend(userId: String, from currentUser: String) async throws {
+		debugPrint("add \(userId) to friend")
+		try await userDocument(userId: userId).updateData(["friends": FieldValue.arrayUnion([currentUser])])
+		try await userDocument(userId: currentUser).updateData(["friends": FieldValue.arrayUnion([userId])])
+	}
+
+	func getUserFriends(ids: [String]) async throws -> [FFUser] {
+		var users: [FFUser] = []
+		users.reserveCapacity(ids.count)
+
+		return try await withThrowingTaskGroup(of: FFUser?.self) { group in
+
+			for id in ids {
+				group.addTask {
+					try? await self.getUser(userId: id)
+				}
+			}
+
+			for try await user in group {
+				if let user {
+					users.append(user)
+				}
+			}
+
+			return users
+		}
 	}
 }

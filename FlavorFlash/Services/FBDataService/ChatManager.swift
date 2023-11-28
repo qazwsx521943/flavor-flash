@@ -5,7 +5,6 @@
 //  Created by 鍾哲玄 on 2023/11/20.
 //
 
-import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
@@ -37,7 +36,11 @@ final class ChatManager {
 
 	func getGroupMessages(groupId: String) async throws -> [FBMessage] {
 
-		let chatSnapshot = try await chatCollection.document(groupId).collection("messages").order(by: "created_date").getDocuments()
+		let chatSnapshot = try await chatCollection
+			.document(groupId)
+			.collection("messages")
+			.order(by: "created_date")
+			.getDocuments()
 
 		debugPrint("\(groupId) schatSnapshot count: \(chatSnapshot.documents.count)")
 		do {

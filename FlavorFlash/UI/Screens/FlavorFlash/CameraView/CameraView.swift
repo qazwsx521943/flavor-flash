@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct CameraView: View {
-    @StateObject private var model = CameraDataModel()
+	@ObservedObject var cameraDataModel: CameraDataModel
 
     private static let barHeightFactor = 0.15
 
@@ -17,25 +17,24 @@ struct CameraView: View {
         NavigationStack {
             GeometryReader { geometry in
                 ViewfinderView(
-                    backCamImage: $model.viewfinderBackCamImage,
-                    frontCamImage: $model.viewfinderFrontCamImage
+                    backCamImage: $cameraDataModel.viewfinderBackCamImage,
+                    frontCamImage: $cameraDataModel.viewfinderFrontCamImage
                 )
-                //                    .overlay(alignment: .top) {
-                //                        Color.black
-                //                            .opacity(0.75)
-                //                            .frame(height: geometry.size.height * Self.barHeightFactor)
-                //                    }
+				.onAppear(perform: {
+					Task {
+						await cameraDataModel.camera.start()
+						cameraDataModel.capturedBackCamImage = nil
+						cameraDataModel.capturedFrontCamImage = nil
+					}
+				})
                 .overlay(alignment: .bottom) {
                     Button {
 
                     } label: {
                         NavigationLink {
-                            FFAnalyzeResult(
-                                capturedFrontCamImage: $model.capturedFrontCamImage,
-                                capturedBackCamImage: $model.capturedBackCamImage
-                            )
+                            AnalyzeView(cameraDataModel: cameraDataModel)
                             .task {
-                                model.camera.takePhoto()
+                                cameraDataModel.camera.takePhoto()
                             }
                         } label: {
                             ZStack {
@@ -53,29 +52,16 @@ struct CameraView: View {
                     Color.clear
                         .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
                 }
-                .overlay(alignment: .topTrailing, content: {
-                    Button {
-                        model.capturedBackCamImage = nil
-                    } label: {
-                        Circle()
-                            .strokeBorder(.white, lineWidth: 5)
-                            .frame(width: 50, height: 50)
-                    }
-                })
                 .background(.black)
-            }
-            .task {
-                await model.camera.start()
             }
             .navigationTitle("Flavor Flash")
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarHidden(true)
-            .ignoresSafeArea()
             .statusBarHidden()
         }
     }
 }
 
 #Preview {
-    CameraView()
+    CameraView(cameraDataModel: CameraDataModel())
 }

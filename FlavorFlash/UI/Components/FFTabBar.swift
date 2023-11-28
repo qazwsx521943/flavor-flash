@@ -12,47 +12,68 @@ struct FFTabBar: View {
     @EnvironmentObject private var navigationModel: NavigationModel
 
     var body: some View {
-        ZStack(alignment: .bottom) {
-            TabView(selection: $selectedTab) {
-                HomeView()
-                    .tag(TabItems.home)
+//        ZStack(alignment: .bottom) {
+		TabView(selection: $selectedTab) {
+			HomeView()
+				.tag(TabItems.home)
+				.tabItem {
+					Label("Home", systemImage: "house.fill")
+						.foregroundStyle(.white)
+				}
 
-                FlavorFlashView()
-                    .tag(TabItems.flavorFlash)
+			FlavorFlashView()
+				.tag(TabItems.flavorFlash)
+				.tabItem {
+					Label("Camera", systemImage: "camera")
+						.foregroundStyle(.white)
+				}
 
-                CommunityView()
-                    .tag(TabItems.community)
-            }
-        }
+			FoodPrintView()
+				.tag(TabItems.community)
+				.tabItem {
+					Label("foodPrint", systemImage: "network")
+						.foregroundStyle(.white)
+				}
 
-        ZStack {
-            HStack {
-                ForEach(TabItems.allCases, id: \.self) { tab in
-                    Button {
-                        selectedTab = tab
-                    } label: {
-                        if tab == .flavorFlash {
-                            centerTabItem(
-                                imageName: tab.icon,
-                                title: tab.title,
-                                isActive: (selectedTab == tab)
-                            )
-                        } else {
-                            normalTabItem(
-                                imageName: tab.icon,
-                                title: tab.title,
-                                isActive: (selectedTab == tab)
-                            )
-                        }
-                    }
-                }
-            }
-            .padding(20)
-        }
-        .frame(height: 60)
-        .background(.black.opacity(0.2))
-        .cornerRadius(40)
-        .padding(.horizontal, 26)
+//			CommunityView()
+//				.tag(TabItems.community)
+//				.tabItem {
+//					Label("foodPrint", systemImage: "network")
+//						.foregroundStyle(.white)
+//				}
+		}
+		.ignoresSafeArea()
+
+//        }
+
+//        ZStack {
+//            HStack {
+//                ForEach(TabItems.allCases, id: \.self) { tab in
+//                    Button {
+//                        selectedTab = tab
+//                    } label: {
+//                        if tab == .flavorFlash {
+//                            centerTabItem(
+//                                imageName: tab.icon,
+//                                title: tab.title,
+//                                isActive: (selectedTab == tab)
+//                            )
+//                        } else {
+//                            normalTabItem(
+//                                imageName: tab.icon,
+//                                title: tab.title,
+//                                isActive: (selectedTab == tab)
+//                            )
+//                        }
+//                    }
+//                }
+//            }
+//            .padding(20)
+//        }
+//        .frame(height: 60)
+//        .background(.black.opacity(0.2))
+//        .cornerRadius(40)
+//        .padding(.horizontal, 26)
     }
 }
 

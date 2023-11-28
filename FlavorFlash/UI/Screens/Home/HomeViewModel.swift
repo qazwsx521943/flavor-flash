@@ -8,20 +8,21 @@
 import Foundation
 import MapKit
 
-@MainActor
-final class RestaurantViewModel: ObservableObject {
-    var category: String
-	@Published var currentUser: FFUser?
-    @Published var currentLocation: CLLocationCoordinate2D?
-    @Published var restaurants: [Restaurant] = []
-    @Published var selectedRestaurant: Restaurant? {
-        didSet {
-            self.currentLocation = selectedRestaurant?.coordinate
-        }
-    }
 
-	init(searchCategory: String) {
-		self.category = searchCategory
+final class HomeViewModel: ObservableObject {
+    @Published var category: String = ""
+
+	@Published var userCategories: [String] = []
+
+	@Published var currentUser: FFUser?
+
+    @Published var currentLocation: CLLocationCoordinate2D?
+
+    @Published var restaurants: [Restaurant] = []
+
+    @Published var selectedRestaurant: Restaurant?
+
+	init() {
 		Task {
 			try await loadCurrentUser()
 		}
@@ -31,12 +32,24 @@ final class RestaurantViewModel: ObservableObject {
         self.restaurants = restaurants
     }
 
+	func randomCategory() {
+		print(userCategories)
+		guard !userCategories.isEmpty else { return }
+		category = userCategories.randomElement()!
+	}
+
 	private func loadCurrentUser() async throws {
-		guard let currentUser = try? AuthenticationManager.shared.getAuthenticatedUser() else { throw FBAuthError.userNotLoggedIn }
+		guard let currentUser = try? AuthenticationManager.shared.getAuthenticatedUser() 
+		else {
+			throw FBAuthError.userNotLoggedIn
+		}
 
 		let user = try await UserManager.shared.getUser(userId: currentUser.uid)
-
-		self.currentUser = user
+		debugPrint("home get user: \(user)")
+		await MainActor.run {
+			self.currentUser = user
+			self.userCategories = user.categoryPreferences ?? []
+		}
 	}
 
 	func saveFavoriteRestaurant(_ restaurant: Restaurant) throws {

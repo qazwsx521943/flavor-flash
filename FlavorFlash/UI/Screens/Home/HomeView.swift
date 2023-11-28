@@ -9,14 +9,14 @@ import SwiftUI
 import os.log
 
 struct HomeView: View {
-	let matrix = ["steak_house", "pizza_restaurant", "seafood_restaurant", "indian_restaurant", "chinese_restaurant"]
+	@StateObject private var viewModel = HomeViewModel()
 
-	@State private var category: String = ""
+	@State private var animate = false
 
 	var body: some View {
 		NavigationStack {
 			VStack {
-				Text(category)
+				Text(viewModel.category)
 					.font(.title3)
 
 				Image("cube")
@@ -24,22 +24,29 @@ struct HomeView: View {
 					.aspectRatio(contentMode: .fit)
 					.padding(40)
 					.onTapGesture {
-						category = matrix.randomElement()!
+						viewModel.randomCategory()
 					}
 
-				Button {
-				} label: {
+				if !viewModel.category.isEmpty {
 					NavigationLink {
-						RestaurantSearchView(category: category)
+						RestaurantSearchView()
+							.environmentObject(viewModel)
 					} label: {
 						Text("就吃這間！")
-							.padding()
-							.border(.white, width: 2)
+							.frame(height: 55)
+							.frame(maxWidth: .infinity)
+							.frame(alignment: .center)
+							.background(animate ? .purple : .red)
+							.clipShape(RoundedRectangle(cornerRadius: 10.0))
 					}
+					.padding(.horizontal, animate ? 30 : 80)
+					.foregroundStyle(.white)
+					.scaleEffect(animate ? 1.1 : 1.0)
+					.offset(y: animate ? -10 : 0)
+					.onAppear(perform: addAnimation)
 				}
-				.background(.gray.opacity(0.8))
-				.foregroundStyle(.black)
 			}
+			.padding(8)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink {
@@ -51,6 +58,21 @@ struct HomeView: View {
 				}
 			}
 			.navigationTitle("要吃什麼？")
+		}
+	}
+}
+
+extension HomeView {
+	func addAnimation() {
+		guard !animate else { return }
+		DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+			withAnimation(
+				Animation
+					.easeInOut(duration: 2)
+					.repeatForever()
+			) {
+				animate.toggle()
+			}
 		}
 	}
 }

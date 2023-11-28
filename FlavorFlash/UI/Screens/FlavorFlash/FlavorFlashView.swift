@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct FlavorFlashView: View {
+	@StateObject private var cameraDataModel = CameraDataModel()
+
     var body: some View {
-        CameraView()
+        CameraView(cameraDataModel: cameraDataModel)
+			.onDisappear(perform: cameraDataModel.camera.stop)
     }
 }
 

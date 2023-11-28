@@ -56,7 +56,7 @@ let accountConfigs: [AccountConfigs] = [
 	.init(title: "Delete")
 ]
 
-enum RestaurantCategory: String, CaseIterable, TagItem {
+enum RestaurantCategory: String, CaseIterable, TagItem, Identifiable {
 	var id: String {
 		self.rawValue
 	}
@@ -78,11 +78,20 @@ enum RestaurantCategory: String, CaseIterable, TagItem {
 	case pizza
 	case ramen
 	case seafood
+	case thai
+	case turkish
 	case steak
 	case sushi
 	case vietnamese
 
 	var title: String { self.rawValue }
+
+	var searchTag: String {
+		switch self {
+		case .steak: return rawValue + "_house"
+		default: return rawValue + "_restaurant"
+		}
+	}
 }
 
 extension Array where Self.Element == RestaurantCategory {

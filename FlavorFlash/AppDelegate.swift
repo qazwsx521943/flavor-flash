@@ -9,6 +9,7 @@ import UIKit
 import GooglePlaces
 import FirebaseCore
 
+// unused
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(
         _ application: UIApplication,
