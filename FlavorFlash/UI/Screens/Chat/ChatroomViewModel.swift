@@ -6,16 +6,18 @@
 //
 
 import Foundation
-import MessageKit
 import Combine
 import FirebaseFirestore
-
+import ExyteChat
 //final class ChatroomViewModel<DI: DataService>: ObservableObject where DI.Item == FFMessage {
 //@MainActor
 final class ChatroomViewModel: ObservableObject {
-	@Published var messages: [MessageType] = []
+	@Published var messages: [ExyteChat.Message] = []
+
 	private(set) var groupId: String
+
 	var members: [FFUser]?
+
 	private(set) var listener: ListenerRegistration?
 
 	private(set) var user: FFUser?
@@ -25,7 +27,7 @@ final class ChatroomViewModel: ObservableObject {
 		Task {
 			try await loadUser()
 			try await loadGroupMember()
-//			try await getMessages(groupId: groupId)
+			//			try await getMessages(groupId: groupId)
 			listen()
 		}
 	}
@@ -57,38 +59,37 @@ final class ChatroomViewModel: ObservableObject {
 		self.user = try await UserManager.shared.getUser(userId: userResultModel.uid)
 	}
 
-	func getMessages(groupId: String) async throws -> [MessageType] {
+	func getMessages(groupId: String) async throws -> [ExyteChat.Message] {
 
 		let messages = try await ChatManager.shared.getGroupMessages(groupId: groupId)
-
+		guard let currentUser = user else { return [] }
 		let mkMessages = messages.map {
-			Message(
-				sender: Sender(senderId: $0.senderId, displayName: $0.senderName),
-				messageId: $0.id,
-				sentDate: $0.createdDate,
-				kind: .text($0.text))
+			ExyteChat.Message(
+				id: $0.id,
+				user: User(id: $0.senderId, name: $0.senderName, avatarURL: nil, isCurrentUser: currentUser.userId == $0.senderId), createdAt: $0.createdDate, text: $0.text)
 		}
 
 		self.messages = mkMessages
 		return mkMessages
 	}
 
-	func sendMessage(text: String) async throws {
+	func sendMessage(text: String) {
 		guard let user else { return }
-		
-		let message = FBMessage(id: UUID().uuidString, text: text, senderName: user.displayName ?? "Anonymous", senderId: user.userId, createdDate: Date())
 
-		try await ChatManager.shared.sendMessage(groupId: groupId, message: message)
+		Task {
+			let message = FBMessage(id: UUID().uuidString, text: text, senderName: user.displayName ?? "Anonymous", senderId: user.userId, createdDate: Date())
+
+			try await ChatManager.shared.sendMessage(groupId: groupId, message: message)
+		}
 	}
 
 	func listen() {
+		guard let currentUser = user else { return }
 		ChatManager.shared.groupListener(groupId: groupId) { messages, listener in
 			let mkMessages = messages.map {
-				Message(
-					sender: Sender(senderId: $0.senderId, displayName: $0.senderName),
-					messageId: $0.id,
-					sentDate: $0.createdDate,
-					kind: .text($0.text))
+				ExyteChat.Message(
+					id: $0.id,
+					user: User(id: $0.senderId, name: $0.senderName, avatarURL: nil, isCurrentUser: currentUser.userId == $0.senderId), createdAt: $0.createdDate, text: $0.text)
 			}
 			self.listener = listener
 			self.messages.append(contentsOf: mkMessages)
@@ -99,3 +100,4 @@ final class ChatroomViewModel: ObservableObject {
 		self.listener?.remove()
 	}
 }
+
