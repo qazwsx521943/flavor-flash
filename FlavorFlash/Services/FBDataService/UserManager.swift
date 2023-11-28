@@ -12,6 +12,7 @@ import FirebaseFirestoreSwift
 enum FBStoreError: Error {
 	case noSuchInputField
 	case fetchError
+	case addDocError
 }
 
 final class UserManager {
@@ -43,7 +44,7 @@ final class UserManager {
 	// MARK: - CRUD
 	func createNewUser(user: FFUser) async throws {
 		debugPrint("creating new user: \(user)")
-		try userDocument(userId: user.userId).setData(
+		try userDocument(userId: user.id).setData(
 			from: user,
 			merge: false)
 	}

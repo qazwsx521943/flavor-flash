@@ -56,7 +56,7 @@ final class HomeViewModel: ObservableObject {
 		guard let currentUser else { return }
 
 		do {
-			try UserManager.shared.saveUserFavoriteRestaurant(userId: currentUser.userId, restaurant: restaurant)
+			try UserManager.shared.saveUserFavoriteRestaurant(userId: currentUser.id, restaurant: restaurant)
 		} catch {
 			throw URLError(.badServerResponse)
 		}

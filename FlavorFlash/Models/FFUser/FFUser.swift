@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct FFUser: Codable, Hashable {
-	let userId: String
+struct FFUser: Codable, Hashable, Identifiable {
+	let id: String
 	let displayName: String
 	let email: String?
 	let profileImageUrl: String?
@@ -19,7 +19,7 @@ struct FFUser: Codable, Hashable {
 	let categoryPreferences: [String]?
 
 	enum CodingKeys: String, CodingKey {
-		case userId = "user_id"
+		case id = "user_id"
 		case displayName = "display_name"
 		case email
 		case profileImageUrl = "profile_image_url"
@@ -34,7 +34,7 @@ struct FFUser: Codable, Hashable {
 extension FFUser {
 	// prevent overriding memberwise initializer
 	init(auth: AuthDataResultModel) {
-		self.userId = auth.uid
+		self.id = auth.uid
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
 		self.profileImagePath = nil
@@ -45,7 +45,7 @@ extension FFUser {
 	}
 
 	init(auth: AuthDataResultModel, displayName: String) {
-		self.userId = auth.uid
+		self.id = auth.uid
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
 		self.profileImagePath = nil

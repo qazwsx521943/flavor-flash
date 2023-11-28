@@ -210,7 +210,7 @@ extension ProfileView {
 
 					if qrCodeMode == .myQRCode {
 						VStack(alignment: .center) {
-							if let userId = viewModel.user?.userId {
+							if let userId = viewModel.user?.id {
 								Image(uiImage: viewModel.generateQRCode(from: userId))
 									.interpolation(.none)
 									.resizable()
@@ -268,7 +268,7 @@ extension ProfileView {
 									Button {
 										Task {
 											guard let searchedUser = viewModel.searchedUser else { return }
-											try await viewModel.sendRequest(to: searchedUser.userId)
+											try await viewModel.sendRequest(to: searchedUser.id)
 										}
 									} label: {
 										Text("加入")

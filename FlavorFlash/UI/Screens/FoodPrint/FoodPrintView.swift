@@ -29,7 +29,7 @@ struct FoodPrintView: View {
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {
 						NavigationLink {
-							CommunityView()
+							ChatListView()
 						} label: {
 							Image(systemName: "message.fill")
 								.foregroundStyle(.white)
