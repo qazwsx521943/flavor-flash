@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import MessageKit
 import Combine
 
 //final class ChatroomViewModel<DI: DataService>: ObservableObject where DI.Item == FFMessage {
