@@ -6,23 +6,39 @@
 //
 
 import Foundation
-import MessageKit
 import Combine
 
-//final class ChatroomViewModel<DI: DataService>: ObservableObject where DI.Item == FFMessage {
 @MainActor
 final class ChatListViewModel: ObservableObject {
-//    @Published var messages: [MessageType] = []
 
 	@Published var groups: [FBGroup]?
 
 	private(set) var user: FFUser?
+
+	@Published var searchUserText: String = ""
+
+	@Published var searchedResult: [FFUser] = []
+
+	private var cancellables = Set<AnyCancellable>()
 
 	init() {
 		Task {
 			try? await loadUser()
 			try? await getGroups()
 		}
+
+		addSubscriber()
+	}
+
+	func addSubscriber() {
+		$searchUserText
+			.debounce(for: 0.3, scheduler: DispatchQueue.main)
+			.sink { [weak self] searchText in
+				Task {
+					try await self?.filterFriend(by: searchText)
+				}
+			}
+			.store(in: &cancellables)
 	}
 
 	func loadUser() async throws {
@@ -39,19 +55,28 @@ final class ChatListViewModel: ObservableObject {
 	func getGroups() async throws {
 		guard let user else { return }
 
-		let groups = try await ChatManager.shared.getGroups(userId: user.userId)
-		debugPrint(user.userId)
+		let groups = try await ChatManager.shared.getGroups(userId: user.id)
+		debugPrint(user.id)
 		debugPrint(groups)
 		self.groups = groups
 	}
 
-//	func getMessages(groupId: String) async throws -> [MessageType] {
-//
-//		let messages = try await ChatManager.shared.getGroupMessages(groupId: groupId)
-//
-//		let mkMessages = messages.map { Message(sender: Sender(senderId: $0.senderId, displayName: $0.senderName), messageId: $0.id, sentDate: $0.createdDate, kind: .text($0.text)) }
-//		
-//		self.messages = mkMessages
-//		return mkMessages
-//	}
+	func filterFriend(by name: String) async throws {
+		try await loadUser()
+
+		guard let ids = user?.friends else { return }
+
+		let friends = try await UserManager.shared.getUserFriends(ids: ids)
+
+		searchedResult = friends.filter { $0.displayName.starts(with: name) }
+	}
+
+	func createNewGroup(with id: String) {
+		guard let currentUserId = user?.id else { return }
+		do {
+			try ChatManager.shared.createNewGroup(with: [currentUserId, id])
+		} catch {
+			debugPrint("error creating new Group")
+		}
+	}
 }

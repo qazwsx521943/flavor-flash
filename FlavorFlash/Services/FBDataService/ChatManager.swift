@@ -92,4 +92,13 @@ final class ChatManager {
 			throw FBStoreError.fetchError
 		}
 	}
+
+	func createNewGroup(with members: [String]) throws {
+		let groupId = UUID().uuidString
+		do {
+			try groupCollection.document(groupId).setData(from: FBGroup(id: groupId, members: members))
+		} catch {
+			throw FBStoreError.addDocError
+		}
+	}
 }
