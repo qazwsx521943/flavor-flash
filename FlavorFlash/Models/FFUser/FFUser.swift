@@ -16,6 +16,7 @@ struct FFUser: Codable, Hashable {
 	let dateCreated: Date?
 	let favoriteRestaurants: [String]? = nil
 	let friends: [String]?
+	let categoryPreferences: [String]?
 
 	enum CodingKeys: String, CodingKey {
 		case userId = "user_id"
@@ -26,6 +27,7 @@ struct FFUser: Codable, Hashable {
 		case dateCreated = "date_created"
 		case favoriteRestaurants = "favorite_restaurants"
 		case friends
+		case categoryPreferences
 	}
 }
 
@@ -39,6 +41,7 @@ extension FFUser {
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = "Anonymous"
+		self.categoryPreferences = nil
 	}
 
 	init(auth: AuthDataResultModel, displayName: String) {
@@ -49,5 +52,6 @@ extension FFUser {
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = displayName
+		self.categoryPreferences = nil
 	}
 }

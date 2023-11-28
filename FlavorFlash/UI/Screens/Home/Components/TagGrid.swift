@@ -19,7 +19,7 @@ struct TagGrid: View {
 			LazyVGrid(columns: columns) {
 				ForEach(tags, id: \.id) { tag in
 					HStack {
-						Tag(item: tag) { 
+						Tag(item: tag) {
 							selectCategory?(tag)
 						}
 					}

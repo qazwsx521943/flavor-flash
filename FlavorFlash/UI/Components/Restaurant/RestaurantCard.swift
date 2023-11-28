@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct RestaurantCard: View {
-    var restaurant: Restaurant
+	var restaurant: Restaurant
 
 	@State private var image: UIImage?
 
-    var body: some View {
-        HStack {
+	var body: some View {
+		HStack {
 			if let image {
 				ZStack {
 					Image(uiImage: image)
@@ -23,41 +23,37 @@ struct RestaurantCard: View {
 						.cornerRadius(10)
 				}
 				.padding(5)
-				.background(.yellow)
+				.background(.white)
 				.cornerRadius(10)
 			}
 
-            TextOverlay(title: restaurant.displayName.text, description: restaurant.formattedAddress ?? "無相關資訊")
-
-			Image(systemName: "heart")
-				.resizable()
-				.frame(width: 20, height: 20)
-        }
+			TextOverlay(title: restaurant.displayName.text, description: restaurant.formattedAddress ?? "無相關資訊")
+		}
+		.padding(12)
+		.background(.black.opacity(0.5))
+		.cornerRadius(10)
 		.task {
 			PlaceFetcher.shared.fetchImage(for: restaurant.id) { image = $0 }
 		}
-        .padding(5)
-        .frame(width: 200, height: 100)
-        .background(.black.opacity(0.5))
-        .cornerRadius(15)
-    }
+	}
 }
 
 struct TextOverlay: View {
-    var title: String
-    var description: String
+	var title: String
+	var description: String
 
-    var body: some View {
-        ZStack(alignment: .bottomLeading) {
-            VStack {
-                Text(title)
-                    .font(.title3)
-                Text(description)
-                    .font(.subheadline)
-            }
-            .frame(alignment: .leading)
-        }
-    }
+	var body: some View {
+		ZStack(alignment: .bottomLeading) {
+			VStack(alignment: .leading, spacing: 4) {
+				Text(title)
+					.lineLimit(1)
+					.font(.callout)
+				Text(description)
+					.font(.caption)
+			}
+			.frame(alignment: .leading)
+		}
+	}
 }
 
 //#Preview {

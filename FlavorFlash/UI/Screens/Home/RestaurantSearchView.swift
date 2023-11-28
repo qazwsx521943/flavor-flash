@@ -8,48 +8,46 @@
 import SwiftUI
 
 struct RestaurantSearchView: View {
-    @EnvironmentObject private var navigationModel: NavigationModel
-    @StateObject private var restaurantDataModel: RestaurantViewModel
+    @EnvironmentObject var homeViewModel: HomeViewModel
     @State private var showDetail: Bool = false
 
     var body: some View {
-        VStack {
-            RestaurantMapView(
-                restaurants: $restaurantDataModel.restaurants,
-                currentLocation: $restaurantDataModel.currentLocation,
-                category: $restaurantDataModel.category
-            )
-            .overlay(alignment: .bottom) {
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(restaurantDataModel.restaurants) { restaurant in
-                            RestaurantCard(restaurant: restaurant)
-                                .onTapGesture {
-                                    restaurantDataModel.selectedRestaurant = restaurant
-                                    showDetail = true
-                                }
-                                .sheet(isPresented: $showDetail) {
-                                    if let selected = restaurantDataModel.selectedRestaurant {
-										RestaurantDetail(restaurant: selected) { restaurant in
-											try? restaurantDataModel.saveFavoriteRestaurant(restaurant)
-										}
-                                    }
-                                }
-                        }
-                    }
-                }
-                .frame(height: 100)
-            }
-        }
-		.navigationTitle($restaurantDataModel.category)
-    }
 
-    init(category: String) {
-        _restaurantDataModel = StateObject(wrappedValue: RestaurantViewModel(searchCategory: category))
+        GeometryReader { geometry in
+			VStack {
+				RestaurantMapView()
+				.overlay(alignment: .bottom) {
+					ScrollView(.horizontal, showsIndicators: false) {
+						HStack {
+							ForEach(homeViewModel.restaurants) { restaurant in
+								RestaurantCard(restaurant: restaurant)
+									.frame(width: geometry.size.width * 0.75, height: 120)
+									.onTapGesture {
+										homeViewModel.selectedRestaurant = restaurant
+										showDetail = true
+									}
+									.sheet(isPresented: $showDetail) {
+										if let selected = homeViewModel.selectedRestaurant {
+											RestaurantDetail(restaurant: selected) { restaurant in
+												try? homeViewModel.saveFavoriteRestaurant(restaurant)
+											}
+										}
+									}
+							}
+						}
+					}
+					.frame(height: 120)
+				}
+			}
+			.navigationTitle($homeViewModel.category)
+        }
     }
+//
+//    init(category: String) {
+//        _homeViewModel = StateObject(wrappedValue: HomeViewModel())
+//    }
 }
 
 #Preview {
-    RestaurantSearchView(category: "lunch")
-        .environmentObject(NavigationModel())
+    RestaurantSearchView()
 }
