@@ -28,12 +28,30 @@
       }
     },
     {
+      "identity" : "chat",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/Chat.git",
+      "state" : {
+        "revision" : "87f4e486579ec3ec291f0925cf651210dcbc9f75",
+        "version" : "1.3.0"
+      }
+    },
+    {
       "identity" : "firebase-ios-sdk",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/firebase/firebase-ios-sdk",
       "state" : {
         "revision" : "5de0369ee79ad096c164eb3afeb7921d92a43b58",
         "version" : "10.18.0"
+      }
+    },
+    {
+      "identity" : "floatingbutton",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/exyte/FloatingButton",
+      "state" : {
+        "revision" : "301fba68ed56c68c04af0b40a4eb422518c8eaf8",
+        "version" : "1.2.2"
       }
     },
     {
@@ -82,15 +100,6 @@
       }
     },
     {
-      "identity" : "inputbaraccessoryview",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/nathantannar4/InputBarAccessoryView",
-      "state" : {
-        "revision" : "17ced92a5dccb36512b408b6276353631d7cbe57",
-        "version" : "6.3.0"
-      }
-    },
-    {
       "identity" : "interop-ios-for-google-sdks",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/google/interop-ios-for-google-sdks.git",
@@ -118,12 +127,12 @@
       }
     },
     {
-      "identity" : "messagekit",
+      "identity" : "mediapicker",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/MessageKit/MessageKit",
+      "location" : "https://github.com/exyte/MediaPicker.git",
       "state" : {
-        "revision" : "1993e8e90d4e9a61b8d9bc8ceb733964ce943376",
-        "version" : "4.2.0"
+        "revision" : "3cb62be1813c1a53a9b6bd60b2ca31763efd623c",
+        "version" : "2.2.1"
       }
     },
     {
@@ -160,6 +169,15 @@
       "state" : {
         "revision" : "07f7f26ded8df9645c072f220378879c4642e063",
         "version" : "1.25.1"
+      }
+    },
+    {
+      "identity" : "swiftui-introspect",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/siteline/SwiftUI-Introspect.git",
+      "state" : {
+        "revision" : "121c146fe591b1320238d054ae35c81ffa45f45a",
+        "version" : "0.12.0"
       }
     }
   ],

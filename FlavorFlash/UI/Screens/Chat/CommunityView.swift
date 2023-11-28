@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-let channels = ["steven", "jason", "jimmy"]
-
 struct CommunityView: View {
 	@StateObject private var viewModel = ChatListViewModel()
 
@@ -18,7 +16,7 @@ struct CommunityView: View {
 				if let groups = viewModel.groups {
 					ForEach(groups) { group in
 						NavigationLink {
-							ChatroomViewController(groupId: group.id)
+							ChatroomView(groupId: group.id)
 						} label: {
 							Text(group.id)
 						}
