@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct AuthenticationView: View {
+	@StateObject private var authenticationViewModel = AuthenticationViewModel()
+
+	@EnvironmentObject var navigationModel: NavigationModel
+
 	var body: some View {
 		VStack {
 			NavigationLink {
@@ -21,7 +25,22 @@ struct AuthenticationView: View {
 					.frame(minWidth: 200)
 					.cornerRadius(10)
 			}
+
+			Button {
+				Task {
+					do {
+						try await authenticationViewModel.signInWithApple()
+						navigationModel.showSignInModal = false
+					} catch {
+						print(error)
+					}
+				}
+			} label: {
+				SignInWithAppleButtonView(type: .default, style: .black)
+			}
+			.frame(height: 55)
 		}
+		.padding()
 		.navigationTitle("Sign In")
 	}
 }

@@ -41,6 +41,10 @@
 		E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */; };
 		E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */; };
 		E715D9B32B03C52A00B6478D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9B22B03C52A00B6478D /* Camera.swift */; };
+		E71BFB192B1760E1008E89DE /* SignInWithAppleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFB182B1760E1008E89DE /* SignInWithAppleButtonView.swift */; };
+		E71BFB1B2B176250008E89DE /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFB1A2B176250008E89DE /* AuthenticationViewModel.swift */; };
+		E71BFB1E2B176E6B008E89DE /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFB1D2B176E6B008E89DE /* Utilities.swift */; };
+		E71BFB222B1771CC008E89DE /* SignInAppleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFB212B1771CC008E89DE /* SignInAppleHelper.swift */; };
 		E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17142B0AE90400F1A0DD /* ChatManager.swift */; };
 		E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */; };
 		E73B171A2B0AF8A200F1A0DD /* FBGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17192B0AF8A200F1A0DD /* FBGroup.swift */; };
@@ -145,6 +149,11 @@
 		E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrint.swift; sourceTree = "<group>"; };
 		E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataModel.swift; sourceTree = "<group>"; };
 		E715D9B22B03C52A00B6478D /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		E71BFB162B175F63008E89DE /* FlavorFlash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlavorFlash.entitlements; sourceTree = "<group>"; };
+		E71BFB182B1760E1008E89DE /* SignInWithAppleButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButtonView.swift; sourceTree = "<group>"; };
+		E71BFB1A2B176250008E89DE /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
+		E71BFB1D2B176E6B008E89DE /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		E71BFB212B1771CC008E89DE /* SignInAppleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInAppleHelper.swift; sourceTree = "<group>"; };
 		E73B17142B0AE90400F1A0DD /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E73B17192B0AF8A200F1A0DD /* FBGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBGroup.swift; sourceTree = "<group>"; };
@@ -325,6 +334,37 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E71BFB172B1760C3008E89DE /* AppleSignIn */ = {
+			isa = PBXGroup;
+			children = (
+				E71BFB182B1760E1008E89DE /* SignInWithAppleButtonView.swift */,
+			);
+			path = AppleSignIn;
+			sourceTree = "<group>";
+		};
+		E71BFB1C2B176E5C008E89DE /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				E71BFB1D2B176E6B008E89DE /* Utilities.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		E71BFB1F2B177071008E89DE /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
+		E71BFB202B17709A008E89DE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E71BFB212B1771CC008E89DE /* SignInAppleHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		E73B17132B0AE89600F1A0DD /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -394,8 +434,10 @@
 		E77353702B09C9A2003035B4 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
+				E71BFB172B1760C3008E89DE /* AppleSignIn */,
 				E75588BB2B0E06FC00086854 /* Email */,
 				E77353712B09CA08003035B4 /* AuthenticationView.swift */,
+				E71BFB1A2B176250008E89DE /* AuthenticationViewModel.swift */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -487,6 +529,10 @@
 		E7A3992B2B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
+				E71BFB202B17709A008E89DE /* Helpers */,
+				E71BFB1F2B177071008E89DE /* Providers */,
+				E71BFB162B175F63008E89DE /* FlavorFlash.entitlements */,
+				E71BFB1C2B176E5C008E89DE /* Utilities */,
 				E7F9EDB82B0894B8005976BE /* ThirdPartyWrapper */,
 				E73B17132B0AE89600F1A0DD /* Extensions */,
 				E70AF8E12B0710CB0003462C /* Config */,
@@ -815,6 +861,7 @@
 			files = (
 				E70AF8EE2B074B8F0003462C /* Restaurant.swift in Sources */,
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
+				E71BFB1E2B176E6B008E89DE /* Utilities.swift in Sources */,
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */,
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,
@@ -853,6 +900,7 @@
 				E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
 				E75588C92B0F1E2F00086854 /* Location.swift in Sources */,
+				E71BFB1B2B176250008E89DE /* AuthenticationViewModel.swift in Sources */,
 				E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */,
 				E70AF8F02B0750D50003462C /* RestaurantMapViewCoordinator.swift in Sources */,
 				E70AF8FF2B07A5470003462C /* HomeViewModel.swift in Sources */,
@@ -861,6 +909,7 @@
 				E75588C72B0EF40F00086854 /* SecondaryPreviewView.swift in Sources */,
 				E79ED09B2B14DF7C008C2E6F /* RestaurantMarkerView.swift in Sources */,
 				E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */,
+				E71BFB222B1771CC008E89DE /* SignInAppleHelper.swift in Sources */,
 				E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */,
 				E715D9B32B03C52A00B6478D /* Camera.swift in Sources */,
 				E70C6C522B0C5BAD003B27EE /* RestaurantCategoryViewModel.swift in Sources */,
@@ -885,6 +934,7 @@
 				E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E75588BD2B0E075B00086854 /* EmailSignInViewModel.swift in Sources */,
+				E71BFB192B1760E1008E89DE /* SignInWithAppleButtonView.swift in Sources */,
 				E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,
 			);
@@ -1018,6 +1068,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FlavorFlash/FlavorFlash.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlavorFlash/Preview Content\"";
@@ -1055,6 +1106,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = FlavorFlash/FlavorFlash.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FlavorFlash/Preview Content\"";
