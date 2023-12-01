@@ -7,23 +7,20 @@
 
 import SwiftUI
 
-struct FormSubmitButtonStyle: ButtonStyle {
+struct SubmitLoadingButtonStyle: ButtonStyle {
+
+	let scaleAmount: CGFloat
+
 	func makeBody(configuration: Configuration) -> some View {
 		configuration.label
-			.font(.title2)
-			.padding(.horizontal, 30)
-			.padding(.vertical, 8)
-			.foregroundColor(.primary)
-			.overlay(
-				RoundedRectangle(cornerRadius: 8)
-					.stroke(.black, lineWidth: 1.5)
-			)
-			.scaleEffect(configuration.isPressed ? 0.9 : 1.0)
+			.brightness(configuration.isPressed ? 0.6 : 0)
+			.scaleEffect(configuration.isPressed ? 0.9 : 1)
 	}
 }
 
+// MARK: - View Extension
 extension View {
-	func submitPressableStyle() -> some View {
-		buttonStyle(FormSubmitButtonStyle())
+	func submitLoadingButtonStyle(scaleAmount: CGFloat = 0.9) -> some View {
+		buttonStyle(SubmitLoadingButtonStyle(scaleAmount: scaleAmount))
 	}
 }

@@ -15,7 +15,6 @@ class AuthenticationViewModel: NSObject, ObservableObject {
 
 	@Published var didSignInWithApple = false
 
-
 	func signInWithApple() async throws {
 		let signInAppleHelper = SignInAppleHelper()
 		let tokens = try await signInAppleHelper.startSignInWithAppleFlow()
@@ -25,6 +24,3 @@ class AuthenticationViewModel: NSObject, ObservableObject {
 		try await UserManager.shared.createNewUser(user: user)
 	}
 }
-
-
-

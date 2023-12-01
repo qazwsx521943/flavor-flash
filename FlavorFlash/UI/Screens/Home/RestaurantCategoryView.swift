@@ -15,21 +15,6 @@ struct RestaurantCategoryView: View {
 	@State private var category: String = ""
 	var body: some View {
 
-		//		VStack {
-		//			TagGrid(
-		//				tags: restaurantCategoryViewModel.allCategories,
-		//				selectedCategories: $restaurantCategoryViewModel.selectedCategories
-		//			) { category in
-		//				restaurantCategoryViewModel.addCategory(category)
-		//			}
-		//
-		//			HStack {
-		//				ForEach(restaurantCategoryViewModel.selectedCategories, id: \.self) { category in
-		//					Text(category.rawValue)
-		//						.foregroundStyle(.white)
-		//				}
-		//			}
-		//
 		NavigationStack {
 			List {
 				ForEach($restaurantCategoryViewModel.selectedCategories, editActions: .all) { category in
@@ -55,7 +40,7 @@ struct RestaurantCategoryView: View {
 			} label: {
 				Text("Continue")
 			}
-			.submitPressableStyle()
+			.submitLoadingButtonStyle()
 		}
 
 	}
