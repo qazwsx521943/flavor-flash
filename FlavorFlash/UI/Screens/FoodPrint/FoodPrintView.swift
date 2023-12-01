@@ -37,6 +37,7 @@ struct FoodPrintView: View {
 					}
 				}
 				.navigationTitle("FoodPrints")
+				.navigationBarTitleDisplayMode(.inline)
 			}
 		}
 	}

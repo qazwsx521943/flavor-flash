@@ -427,6 +427,7 @@
 		E76D776D2B11C73000176A53 /* FoodPrint */ = {
 			isa = PBXGroup;
 			children = (
+				E783AAB62B1448170042FB51 /* FoodPrintCell */,
 				E76D776E2B11C74200176A53 /* FoodPrintView.swift */,
 				E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */,
 			);
@@ -468,12 +469,12 @@
 			path = FFUser;
 			sourceTree = "<group>";
 		};
-		E783AAB62B1448170042FB51 /* FoodPrint */ = {
+		E783AAB62B1448170042FB51 /* FoodPrintCell */ = {
 			isa = PBXGroup;
 			children = (
 				E783AAB82B1448330042FB51 /* FoodPrintCell.swift */,
 			);
-			path = FoodPrint;
+			path = FoodPrintCell;
 			sourceTree = "<group>";
 		};
 		E796396B2B105B2A006FF600 /* Base */ = {
@@ -533,7 +534,6 @@
 			children = (
 				E71BFB202B17709A008E89DE /* Helpers */,
 				E71BFB1F2B177071008E89DE /* Providers */,
-				E71BFB162B175F63008E89DE /* FlavorFlash.entitlements */,
 				E71BFB1C2B176E5C008E89DE /* Utilities */,
 				E7F9EDB82B0894B8005976BE /* ThirdPartyWrapper */,
 				E73B17132B0AE89600F1A0DD /* Extensions */,
@@ -545,6 +545,7 @@
 				E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */,
 				E7A399322B034AB6005C8021 /* Assets.xcassets */,
 				E7A399342B034AB6005C8021 /* Preview Content */,
+				E71BFB162B175F63008E89DE /* FlavorFlash.entitlements */,
 				E7E200DF2B090B69003C22D6 /* GoogleService-Info.plist */,
 				E70AF8F22B075E260003462C /* DEBUG-Keys.plist */,
 				E70AF8F42B075E3F0003462C /* PROD-Keys.plist */,
@@ -603,7 +604,6 @@
 			children = (
 				E70C6C3D2B0B9B5C003B27EE /* ViewModifiers */,
 				E79ED09C2B14DF85008C2E6F /* AnnotationViews */,
-				E783AAB62B1448170042FB51 /* FoodPrint */,
 				E796396B2B105B2A006FF600 /* Base */,
 				E75588CA2B0F3BAE00086854 /* SearchBar */,
 				E70C6C312B0B5CDF003B27EE /* Restaurant */,
@@ -690,7 +690,7 @@
 				E7A399252B034AB4005C8021 /* Sources */,
 				E7A399262B034AB4005C8021 /* Frameworks */,
 				E7A399272B034AB4005C8021 /* Resources */,
-				E715D9B42B04A22A00B6478D /* ShellScript */,
+				E715D9B42B04A22A00B6478D /* Run Script */,
 				5052881ECA486989E9088EF1 /* [CP] Copy Pods Resources */,
 				77DC380EE426F9E67DDBF888 /* [CP] Embed Pods Frameworks */,
 			);
@@ -838,7 +838,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E715D9B42B04A22A00B6478D /* ShellScript */ = {
+		E715D9B42B04A22A00B6478D /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -847,6 +847,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
