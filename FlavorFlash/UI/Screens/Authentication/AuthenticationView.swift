@@ -13,35 +13,85 @@ struct AuthenticationView: View {
 	@EnvironmentObject var navigationModel: NavigationModel
 
 	var body: some View {
-		VStack {
-			NavigationLink {
-				EmailSignInView()
-			} label: {
-				Text("Sign in with Email")
-					.font(.headline)
-					.background(.black)
-					.foregroundStyle(.white)
-					.frame(height: 100)
-					.frame(minWidth: 200)
-					.cornerRadius(10)
-			}
+		VStack(spacing: 10) {
 
-			Button {
-				Task {
-					do {
-						try await authenticationViewModel.signInWithApple()
-						navigationModel.showSignInModal = false
-					} catch {
-						print(error)
-					}
-				}
-			} label: {
-				SignInWithAppleButtonView(type: .default, style: .black)
+			signInWithAppleButton
+
+			signInDivider
+
+			signInWithEmailButton
+
+			HStack {
+				Spacer()
+
+				registerLink
 			}
-			.frame(height: 55)
 		}
-		.padding()
+		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
+		.padding(40)
+		.padding(.bottom, 50)
 		.navigationTitle("Sign In")
+		.toolbar(.hidden, for: .navigationBar)
+	}
+}
+
+extension AuthenticationView {
+	// MARK: - Layout
+	private var signInWithAppleButton: some View {
+		Button {
+			Task {
+				do {
+					try await authenticationViewModel.signInWithApple()
+					navigationModel.showSignInModal = false
+				} catch {
+					print(error)
+				}
+			}
+		} label: {
+			SignInWithAppleButtonView(type: .default, style: .white)
+		}
+		.frame(height: 55)
+	}
+
+	private var signInWithEmailButton: some View {
+		NavigationLink {
+			EmailSignInView(state: .signIn)
+		} label: {
+			emailSignInLabel
+		}
+	}
+
+	private var emailSignInLabel: some View {
+		Label("Sign in with Email", systemImage: "envelope.fill")
+			.font(.system(size: 20))
+			.foregroundStyle(.white)
+			.frame(maxWidth: .infinity, maxHeight: 55)
+			.withRoundedRectangleBackground()
+	}
+
+	private var signInDivider: some View {
+		Divider()
+			.frame(height: 2)
+			.overlay(.gray)
+			.padding()
+			.overlay {
+				Text("Continue with Email")
+					.font(.caption)
+					.padding(.horizontal, 10)
+					.background(.black)
+			}
+	}
+
+	private var registerLink: some View {
+		NavigationLink {
+			EmailSignInView(state: .signUp)
+		} label: {
+			Text("Doesn't have an account? Register")
+				.font(.caption)
+				.foregroundStyle(.white)
+				.bold()
+				.underline()
+		}
 	}
 }
 
