@@ -52,5 +52,7 @@ struct FoodPrint: FBModelType {
 }
 
 extension FoodPrint {
-
+	var getAllImagesURL: [String] {
+		return [backCameraImageUrl, frontCameraImageUrl]
+	}
 }
