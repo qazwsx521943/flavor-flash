@@ -13,70 +13,68 @@ struct CameraView: View {
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
-    private static let barHeightFactor = 0.15
+	private static let barHeightFactor = 0.15
 
-    var body: some View {
-        NavigationStack {
-            GeometryReader { geometry in
-                ViewfinderView(
-                    backCamImage: $cameraDataModel.viewfinderBackCamImage,
-                    frontCamImage: $cameraDataModel.viewfinderFrontCamImage
-                )
-				.ignoresSafeArea()
-				.onAppear(perform: {
-					Task {
-						await cameraDataModel.camera.start()
-						cameraDataModel.capturedBackCamImage = nil
-						cameraDataModel.capturedFrontCamImage = nil
-					}
-				})
-                .overlay(alignment: .bottom) {
-                    Button {
-
-                    } label: {
-                        NavigationLink {
-                            AnalyzeView(cameraDataModel: cameraDataModel)
-                            .task {
-                                cameraDataModel.camera.takePhoto()
-                            }
-                        } label: {
-                            ZStack {
-                                Image(.cameraIcon)
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                Circle()
-                                    .strokeBorder(.white, lineWidth: 5)
-                                    .frame(width: 80, height: 80)
-                            }
-                        }
-                    }
-                }
-				.overlay(alignment: .topTrailing) {
-					Image(systemName: "xmark")
-						.resizable()
-						.font(.largeTitle)
-						.foregroundStyle(.white)
-						.frame(width: 20, height: 20)
-						.padding(.trailing, 16)
-						.onTapGesture {
-							navigationModel.selectedTab = .home
+	var body: some View {
+		NavigationStack {
+			Group {
+				if
+					let _ = cameraDataModel.capturedBackCamImage,
+					let _ = cameraDataModel.capturedFrontCamImage
+				{
+					AnalyzeView(cameraDataModel: cameraDataModel)
+						.overlayWithSystemImage(systemName: "xmark", alignment: .topTrailing) {
+							cameraDataModel.capturedBackCamImage = nil
+							cameraDataModel.capturedFrontCamImage = nil
 						}
+				} else {
+					dualCameraCaptureView
 				}
-//                .overlay(alignment: .center) {
-//                    Color.clear
-//                        .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
-//                }
-//                .background(.black)
-            }
-            .navigationTitle("Flavor Flash")
-            .navigationBarTitleDisplayMode(.inline)
+			}
+			.navigationTitle("Flavor Flash")
+			.navigationBarTitleDisplayMode(.inline)
 			.toolbar(.hidden, for: .tabBar)
-//            .navigationBarHidden(true)
-            .statusBarHidden()
-        }
-    }
+			.statusBarHidden()
+		}
+	}
+}
+
+extension CameraView {
+	private var dualCameraCaptureView: some View {
+		GeometryReader { geometry in
+			ViewfinderView(
+				backCamImage: $cameraDataModel.viewfinderBackCamImage,
+				frontCamImage: $cameraDataModel.viewfinderFrontCamImage
+			)
+			.ignoresSafeArea()
+			.onAppear(perform: {
+				Task {
+					await cameraDataModel.camera.start()
+					cameraDataModel.capturedBackCamImage = nil
+					cameraDataModel.capturedFrontCamImage = nil
+				}
+			})
+			.overlay(alignment: .bottom) {
+				Button {
+					cameraDataModel.camera.takePhoto()
+				} label: {
+					ZStack {
+						Image(.cameraIcon)
+							.resizable()
+							.frame(width: 80, height: 80)
+						Circle()
+							.strokeBorder(.white, lineWidth: 5)
+							.frame(width: 80, height: 80)
+					}
+				}
+			}
+			.overlayWithSystemImage(systemName: "xmark",alignment: .topTrailing) {
+				navigationModel.selectedTab = .home
+			}
+		}
+	}
 }
 
 #Preview {
-    CameraView(cameraDataModel: CameraDataModel())
+	CameraView(cameraDataModel: CameraDataModel())
 }

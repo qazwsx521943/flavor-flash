@@ -12,6 +12,8 @@ import os.log
 struct AnalyzeView: View {
 	@ObservedObject var cameraDataModel: CameraDataModel
 
+	@State private var isBackImagePrimary = true
+
 	var body: some View {
 		GeometryReader { geometry in
 			VStack {
@@ -20,11 +22,14 @@ struct AnalyzeView: View {
 					let frontCamImage = cameraDataModel.frontCamImage {
 
 					ZStack {
-						PrimaryPreviewView(previewImage: backCamImage)
+						PrimaryPreviewView(previewImage: isBackImagePrimary ? backCamImage : frontCamImage)
 							.frame(width: geometry.size.width, height: geometry.size.height - 80)
 					}
 					.overlay(alignment: .topLeading) {
-						SecondaryPreviewView(previewImage: frontCamImage)
+						SecondaryPreviewView(previewImage: isBackImagePrimary ? frontCamImage : backCamImage)
+							.onTapGesture {
+								isBackImagePrimary.toggle()
+							}
 					}
 					.onAppear(perform: {
 						debugPrint("UIDevice.current.orientation \(UIDevice.current.orientation)")
@@ -46,8 +51,6 @@ struct AnalyzeView: View {
 					}
 				}
 			}
-			.navigationTitle("UCCU")
-			.toolbarBackground(.visible, for: .navigationBar)
 		}
 	}
 }

@@ -47,6 +47,7 @@
 		E7274B802B19C89F008C439F /* RestaurantCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B7F2B19C89F008C439F /* RestaurantCategory.swift */; };
 		E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B882B1A111D008C439F /* ChatListCell.swift */; };
 		E7274B8C2B1ACF85008C439F /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */; };
+		E73225832B1B0A4C00EE14CC /* OverlayModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */; };
 		E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17142B0AE90400F1A0DD /* ChatManager.swift */; };
 		E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */; };
 		E73B171A2B0AF8A200F1A0DD /* FBGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17192B0AF8A200F1A0DD /* FBGroup.swift */; };
@@ -156,6 +157,7 @@
 		E7274B7F2B19C89F008C439F /* RestaurantCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCategory.swift; sourceTree = "<group>"; };
 		E7274B882B1A111D008C439F /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
+		E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifiers.swift; sourceTree = "<group>"; };
 		E73B17142B0AE90400F1A0DD /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E73B17192B0AF8A200F1A0DD /* FBGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBGroup.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 				E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */,
 				E70C6C4A2B0C1AF4003B27EE /* ImageModifiers.swift */,
 				E7274B7C2B19ABE5008C439F /* BackgroundModifiers.swift */,
+				E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */,
 			);
 			path = ViewModifiers;
 			sourceTree = "<group>";
@@ -387,7 +390,7 @@
 		E75588BA2B0DCD7A00086854 /* CameraView */ = {
 			isa = PBXGroup;
 			children = (
-				E715D9B22B03C52A00B6478D /* Camera.swift */,
+				E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */,
 				E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */,
 				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
 			);
@@ -663,7 +666,6 @@
 				E75588C32B0EF3AB00086854 /* PreviewVIew */,
 				E75588BA2B0DCD7A00086854 /* CameraView */,
 				E7A399442B034E22005C8021 /* FlavorFlashView.swift */,
-				E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */,
 				E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */,
 				E70C6C5C2B0CEA05003B27EE /* FlavorFlashCommentView.swift */,
 			);
@@ -680,6 +682,7 @@
 				E7F9EDB92B089E33005976BE /* GooglePlaceResult */,
 				E70AF8EA2B0748100003462C /* Restaurant */,
 				E75588C82B0F1E2F00086854 /* Location.swift */,
+				E715D9B22B03C52A00B6478D /* Camera.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -883,6 +886,7 @@
 				E7274B7D2B19ABE5008C439F /* BackgroundModifiers.swift in Sources */,
 				E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */,
 				E74EDF442B15B9B4004DE202 /* ChatroomView.swift in Sources */,
+				E73225832B1B0A4C00EE14CC /* OverlayModifiers.swift in Sources */,
 				E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */,
 				E77353742B09CB5C003035B4 /* EmailSignInView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
