@@ -18,6 +18,12 @@ final class ProfileViewModel: ObservableObject {
 
 	@Published var friends: [FFUser] = []
 
+	init() {
+		Task {
+			try? await loadCurrentUser()
+		}
+	}
+
 	func logOut() throws {
 		try AuthenticationManager.shared.signOut()
 		user = nil

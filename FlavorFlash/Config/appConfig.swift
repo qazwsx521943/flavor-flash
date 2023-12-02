@@ -33,25 +33,3 @@ enum TabItems: Int, Hashable, CaseIterable, Codable, Identifiable {
 		}
 	}
 }
-
-// MARK: - Profile Configs
-struct SettingItem: Identifiable, Hashable {
-	let title: String
-	let id = NSUUID().uuidString
-}
-
-struct AccountConfigs: Identifiable, Hashable {
-	let title: String
-	let id = NSUUID().uuidString
-}
-
-let settingConfigs: [SettingItem] = [
-	.init(title: "Settings"),
-	.init(title: "FoodPrint"),
-	.init(title: "Style")
-]
-
-let accountConfigs: [AccountConfigs] = [
-	.init(title: "Suspend"),
-	.init(title: "Delete")
-]
