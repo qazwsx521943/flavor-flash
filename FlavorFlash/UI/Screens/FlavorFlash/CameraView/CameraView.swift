@@ -15,6 +15,8 @@ struct CameraView: View {
 
 	private static let barHeightFactor = 0.15
 
+	@State private var isAnimated = false
+
 	var body: some View {
 		NavigationStack {
 			Group {
@@ -42,6 +44,7 @@ struct CameraView: View {
 extension CameraView {
 	private var dualCameraCaptureView: some View {
 		GeometryReader { geometry in
+			let animation = Animation.default.repeatCount(2, autoreverses: true)
 			ViewfinderView(
 				backCamImage: $cameraDataModel.viewfinderBackCamImage,
 				frontCamImage: $cameraDataModel.viewfinderFrontCamImage
@@ -54,14 +57,25 @@ extension CameraView {
 					cameraDataModel.capturedFrontCamImage = nil
 				}
 			})
+			.onDisappear {
+				isAnimated = false
+			}
 			.overlay(alignment: .bottom) {
 				Button {
+					withAnimation(animation) {
+						isAnimated = true
+					}
 					cameraDataModel.camera.takePhoto()
 				} label: {
 					ZStack {
 						Image(.cameraIcon)
 							.resizable()
-							.frame(width: 80, height: 80)
+							.rotationEffect(Angle(degrees: isAnimated ? 360 : 0))
+							.frame(
+								width: isAnimated ? 0 : 80,
+								height: isAnimated ? 0 : 80
+							)
+
 						Circle()
 							.strokeBorder(.white, lineWidth: 5)
 							.frame(width: 80, height: 80)
