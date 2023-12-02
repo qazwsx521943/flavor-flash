@@ -28,7 +28,6 @@ struct ProfileView: View {
 	}
 
 	var body: some View {
-		NavigationStack {
 			if let user = viewModel.user {
 				ProfileHeader(avatarUrlString: user.profileImageUrl ?? "") {
 					ActivityItemDisplay(title: "日記", count: 8)
@@ -69,8 +68,6 @@ struct ProfileView: View {
 					.navigationTitle("Friends")
 					.navigationBarTitleDisplayMode(.inline)
 				}
-				.navigationTitle("Profile")
-				.navigationBarTitleDisplayMode(.inline)
 			}
 
 			List {
@@ -90,8 +87,9 @@ struct ProfileView: View {
 
 				accountConfigurationView
 			}
+			.navigationTitle("Profile")
+			.navigationBarTitleDisplayMode(.inline)
 		}
-	}
 }
 
 extension ProfileView {
