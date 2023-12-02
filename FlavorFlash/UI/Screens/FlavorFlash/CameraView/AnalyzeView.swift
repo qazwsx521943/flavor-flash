@@ -33,7 +33,7 @@ struct AnalyzeView: View {
 				}
 				.overlay(alignment: .bottomTrailing) {
 					NavigationLink {
-						FlavorFlashCommentView(cameraDataModel: cameraDataModel)
+						CommentView(cameraDataModel: cameraDataModel)
 					} label: {
 						Image(systemName: "arrow.right")
 							.font(.title)
