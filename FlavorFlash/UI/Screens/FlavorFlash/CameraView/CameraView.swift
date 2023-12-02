@@ -11,6 +11,8 @@ import AVFoundation
 struct CameraView: View {
 	@ObservedObject var cameraDataModel: CameraDataModel
 
+	@EnvironmentObject var navigationModel: NavigationModel
+
     private static let barHeightFactor = 0.15
 
     var body: some View {
@@ -20,6 +22,7 @@ struct CameraView: View {
                     backCamImage: $cameraDataModel.viewfinderBackCamImage,
                     frontCamImage: $cameraDataModel.viewfinderFrontCamImage
                 )
+				.ignoresSafeArea()
 				.onAppear(perform: {
 					Task {
 						await cameraDataModel.camera.start()
@@ -48,15 +51,27 @@ struct CameraView: View {
                         }
                     }
                 }
-                .overlay(alignment: .center) {
-                    Color.clear
-                        .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
-                }
-                .background(.black)
+				.overlay(alignment: .topTrailing) {
+					Image(systemName: "xmark")
+						.resizable()
+						.font(.largeTitle)
+						.foregroundStyle(.white)
+						.frame(width: 20, height: 20)
+						.padding(.trailing, 16)
+						.onTapGesture {
+							navigationModel.selectedTab = .home
+						}
+				}
+//                .overlay(alignment: .center) {
+//                    Color.clear
+//                        .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
+//                }
+//                .background(.black)
             }
             .navigationTitle("Flavor Flash")
             .navigationBarTitleDisplayMode(.inline)
-            .navigationBarHidden(true)
+			.toolbar(.hidden, for: .tabBar)
+//            .navigationBarHidden(true)
             .statusBarHidden()
         }
     }
