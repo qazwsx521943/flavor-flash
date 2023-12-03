@@ -55,4 +55,31 @@ extension FoodPrint {
 	var getAllImagesURL: [String] {
 		return [backCameraImageUrl, frontCameraImageUrl]
 	}
+
+	var relativeDateFormatter: RelativeDateTimeFormatter {
+		let formatter = RelativeDateTimeFormatter()
+		formatter.dateTimeStyle = .numeric
+		formatter.unitsStyle = .short
+		formatter.locale = Locale(identifier: "zh-TW")
+		return formatter
+	}
+
+	var getRelativeTimeString: String {
+		relativeDateFormatter.localizedString(for: createdDate, relativeTo: .now)
+	}
+}
+
+// MARK: - Mock
+extension FoodPrint {
+	static let mockFoodPrint = FoodPrint(
+		id: "1",
+		userId: "1",
+		frontCameraImageUrl:
+			"https://picsum.photos/200/300",
+		frontCameraImagePath: "user/QzZRdN8ggVeMjryKjPMUjcljRJQ2/72E63EBF-3530-47A7-8581-052C371E1663.jpeg",
+		backCameraImageUrl:
+			"https://picsum.photos/200/300",
+		backCameraImagePath: "user/QzZRdN8ggVeMjryKjPMUjcljRJQ2/5ECB61CA-F485-47A1-8C06-9B6C7BA7FFF9.jpeg",
+		description: "好難吃",
+		createdDate: Date.now)
 }
