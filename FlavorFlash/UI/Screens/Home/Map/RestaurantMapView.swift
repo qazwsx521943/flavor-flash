@@ -15,6 +15,8 @@ struct RestaurantMapView: UIViewRepresentable {
 
 	@EnvironmentObject var homeViewModel: HomeViewModel
 
+	@State var centerLocation: CLLocationCoordinate2D?
+
     func makeUIView(context: Context) -> MKMapView {
 		let mapView = MKMapView()
 
@@ -35,8 +37,12 @@ struct RestaurantMapView: UIViewRepresentable {
 		}
 
         uiView.addAnnotation(pointAnnotation)
-		updateRegion(mapView: uiView)
-//        updateRestaurants()
+
+		if let centerLocation {
+			centerToRegion(
+				mapView: uiView,
+				coordinateRegion: MKCoordinateRegion(center: centerLocation, latitudinalMeters: 200, longitudinalMeters: 200))
+		}
     }
 
     func makeCoordinator() -> RestaurantMapViewCoordinator {
@@ -60,16 +66,6 @@ extension RestaurantMapView {
 	func centerToRegion(mapView: MKMapView, coordinateRegion: MKCoordinateRegion) {
 		mapView.setRegion(coordinateRegion, animated: true)
 	}
-
-	func updateRegion(mapView: MKMapView) {
-		guard let currentLocation = homeViewModel.currentLocation else { return }
-        mapView.setRegion(
-            MKCoordinateRegion(
-				center: currentLocation,
-                span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)
-            ),
-            animated: true)
-    }
 }
 
 //#Preview {

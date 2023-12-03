@@ -8,7 +8,7 @@
 import Foundation
 import MapKit
 
-
+@MainActor
 final class HomeViewModel: ObservableObject {
     @Published var category: String = ""
 

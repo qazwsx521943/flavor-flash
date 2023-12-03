@@ -9,10 +9,13 @@ import MapKit
 import SwiftUI
 import GooglePlaces
 
+@MainActor
 class RestaurantMapViewCoordinator: NSObject {
 	var parent: RestaurantMapView
 
 	let locationManager = CLLocationManager()
+
+	var pendingWorkItem: DispatchWorkItem?
 
 	init(_ parent: RestaurantMapView) {
 		self.parent = parent
@@ -39,17 +42,27 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 
 		restaurant.mapItem?.openInMaps(launchOptions: launchOptions)
 	}
+
+	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+		pendingWorkItem?.cancel()
+
+		let workItem = DispatchWorkItem { [weak self] in
+			let centerCoordinate = mapView.centerCoordinate
+			self?.parent.centerLocation = centerCoordinate
+			self?.fetchNearByRestaurants(centerCoordinate: centerCoordinate)
+		}
+
+		pendingWorkItem = workItem
+		DispatchQueue.global().asyncAfter(deadline: .now() + 2.0, execute: workItem)
+	}
 }
 
 extension RestaurantMapViewCoordinator {
-	func fetchNearByRestaurants() {
-		guard
-			let currentLocation = parent.homeViewModel.currentLocation
-		else {
-			return
-		}
+
+	func fetchNearByRestaurants(centerCoordinate: CLLocationCoordinate2D) {
+
 		guard let categoryTag = RestaurantCategory(rawValue: parent.homeViewModel.category)?.searchTag else { return }
-		PlaceFetcher.shared.fetchNearBy(type: [categoryTag], location: Location(CLLocation: currentLocation)) { [weak self] response in
+		PlaceFetcher.shared.fetchNearBy(type: [categoryTag], location: Location(CLLocation: centerCoordinate)) { [weak self] response in
 			switch response {
 			case .success(let result):
 				self?.parent.homeViewModel.restaurants = result.places
@@ -69,7 +82,14 @@ extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 		parent.homeViewModel.currentLocation = CLLocationCoordinate2D(
 			latitude: location.coordinate.latitude,
 			longitude: location.coordinate.longitude)
-		fetchNearByRestaurants()
+
+		guard
+			let currentLocation = parent.homeViewModel.currentLocation
+		else {
+			return
+		}
+		parent.centerLocation = currentLocation
+		fetchNearByRestaurants(centerCoordinate: currentLocation)
 	}
 
 	// Handle authorization for the location manager.
