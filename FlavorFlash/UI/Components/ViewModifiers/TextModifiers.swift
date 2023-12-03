@@ -35,4 +35,19 @@ extension Text {
 		}
 		.padding(.leading, 12)
 	}
+
+	func suffixWithSFSymbol(
+		named name: String,
+		height: CGFloat,
+		tintColor color: Color = .black
+	) -> some View {
+		HStack {
+			self
+			Image(systemName: name)
+				.resizable()
+				.scaledToFit()
+				.frame(width: height, height: height)
+		}
+		.padding(.horizontal, 8)
+	}
 }

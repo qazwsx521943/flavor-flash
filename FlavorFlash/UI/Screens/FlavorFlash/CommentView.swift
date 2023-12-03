@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import ActivityIndicatorView
 
 struct CommentView: View {
 	@ObservedObject var cameraDataModel: CameraDataModel
@@ -26,27 +25,24 @@ struct CommentView: View {
 						let primary = cameraDataModel.backCamImage,
 						let secondary = cameraDataModel.frontCamImage
 					{
-						ZStack {
+						ZStack(alignment: .topLeading) {
 							PrimaryPreviewView(previewImage: primary)
-								.overlay(alignment: .topLeading) {
-									SecondaryPreviewView(previewImage: secondary)
+								.border(Color.white, width: 2)
+								.overlay(alignment: .bottomLeading) {
+									Text(cameraDataModel.foodAnalyzeResult)
+										.font(.caption)
+										.bold()
+										.padding(4)
+										.background(.black.opacity(0.5))
+										.clipShape(RoundedRectangle(cornerRadius: 10.0))
+										.offset(x: 5, y: -5)
 								}
+
+							SecondaryPreviewView(previewImage: secondary)
 						}
 					}
 
 					VStack(alignment: .leading, spacing: 8) {
-						HStack {
-							Text(cameraDataModel.foodAnalyzeResult)
-								.padding(8)
-								.background(.purple.opacity(0.5))
-								.clipShape(RoundedRectangle(cornerRadius: 10.0))
-
-							Image(systemName: "pencil")
-								.resizable()
-								.foregroundStyle(.white)
-								.frame(width: 20, height: 20)
-						}
-
 						Text(cameraDataModel.selectedRestaurant?.displayName.text ?? "選擇餐廳")
 							.foregroundStyle(.white)
 							.onTapGesture {
@@ -59,24 +55,21 @@ struct CommentView: View {
 					.frame(maxWidth: .infinity, alignment: .leading)
 
 					TextEditor(text: $cameraDataModel.description)
-						.foregroundColor(Color.gray)
-						.font(.custom("HelveticaNeue", size: 13))
+						.foregroundColor(Color.secondary)
+						.font(.custom("HelveticaNeue", size: 16))
+						.lineLimit(2...5)
 						.lineSpacing(5)
 						.frame(height: 200)
-						.border(Color.gray, width: 3)
+						.padding(8)
 
 					saveFoodPrintButton
 				}
 				.padding(.horizontal, 16)
-				//			.overlay(alignment: .center) {
-				//				ActivityIndicatorView(isVisible: $showLoading, type: .arcs())
-				//					.frame(width: size, height: size)
-				//					.foregroundStyle(.purple)
-				//			}
 				.onAppear {
 					cameraDataModel.getCurrentLocation()
 				}
 			}
+			.scrollDismissesKeyboard(.interactively)
 		}
 	}
 }
@@ -131,13 +124,14 @@ extension CommentView {
 				navigationModel.selectedTab = .home
 			}
 		} label: {
-			Text("Save FoodPrint ！")
+			Text("送出 ")
+				.suffixWithSFSymbol(named: "paperplane.fill", height: 25, tintColor: .black)
 				.font(.title3)
 				.foregroundStyle(Color.black)
 				.padding()
 		}
 		.background(Color.white)
-		.clipShape(RoundedRectangle(cornerRadius: 20))
+		.clipShape(RoundedRectangle(cornerRadius: 10))
 	}
 }
 
