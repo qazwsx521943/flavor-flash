@@ -20,8 +20,12 @@ struct ViewfinderView: View {
                 ZStack {
 					PrimaryPreviewView(previewImage: isBackCamPrimary ? backCamImage : frontCamImage)
                 }
-                .overlay(alignment: .bottomTrailing) {
+                .overlay(alignment: .topLeading) {
 					SecondaryPreviewView(previewImage: isBackCamPrimary ? frontCamImage : backCamImage)
+						.background(
+							RoundedRectangle(cornerRadius: 10)
+						)
+						.offset(x: 48, y: 100)
 						.onTapGesture {
 							isBackCamPrimary.toggle()
 						}

@@ -12,6 +12,13 @@ enum FBAuthError: Error {
 	case signInError
 	case inputFieldEmpty
 	case userNotLoggedIn
+	case signInWithAppleError
+}
+
+enum AuthProviderOption: String {
+	case email = "password"
+	case google = "google.com"
+	case apple = "apple.com"
 }
 
 struct AuthDataResultModel {
@@ -76,5 +83,23 @@ final class AuthenticationManager {
 		}
 
 		try await user.updatePassword(to: password)
+	}
+}
+
+// MARK: - Sign in SSO
+extension AuthenticationManager {
+	@discardableResult
+	func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
+		let credential = OAuthProvider.credential(
+			withProviderID: AuthProviderOption.apple.rawValue,
+			idToken: tokens.token,
+			rawNonce: tokens.nonce)
+
+		return try await signIn(credential: credential)
+	}
+
+	func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
+		let authDataResult = try await Auth.auth().signIn(with: credential)
+		return AuthDataResultModel(user: authDataResult.user)
 	}
 }

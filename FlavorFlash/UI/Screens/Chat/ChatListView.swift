@@ -12,15 +12,23 @@ struct ChatListView: View {
 
 	var body: some View {
 		NavigationStack {
-			List {
-				if let groups = viewModel.groups {
-					ForEach(groups) { group in
-						NavigationLink {
-							ChatroomView(groupId: group.id)
-						} label: {
-							Text(group.id)
+			Group {
+				if 
+					let currentUser = viewModel.user,
+					!viewModel.groups.isEmpty {
+					List {
+						ForEach(viewModel.groups) { group in
+							NavigationLink {
+								ChatroomView(groupId: group.id)
+							} label: {
+								ChatListCell(avatarUrl: group.getGroupImage(exclude: currentUser.id), name: group.name)
+									.frame(height: 60)
+							}
 						}
 					}
+					.listStyle(.plain)
+				} else {
+					Text("No Chats yet")
 				}
 			}
 			.onAppear {
@@ -46,6 +54,7 @@ struct ChatListView: View {
 }
 
 extension ChatListView {
+	// MARK: - Layout
 	var addNewChat: some View {
 		List {
 			ForEach(viewModel.searchedResult) { user in

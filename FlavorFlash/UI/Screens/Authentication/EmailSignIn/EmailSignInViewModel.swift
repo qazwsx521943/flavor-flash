@@ -9,6 +9,21 @@ import SwiftUI
 
 @MainActor
 class EmailSignInViewModel: ObservableObject {
+
+	enum State: String {
+		case signUp = "Sign Up"
+		case signIn = "Sign In"
+
+		var navigationTitle: String {
+			switch self {
+			case .signIn: return "Sign In With Email"
+			case .signUp: return "Sign Up With Email"
+			}
+		}
+	}
+
+	let state: State
+
 	@EnvironmentObject var userStore: UserStore
 
 	@Published var email = ""
@@ -16,6 +31,10 @@ class EmailSignInViewModel: ObservableObject {
 	@Published var password = ""
 
 	@Published var displayName = ""
+
+	init(state: State) {
+		self.state = state
+	}
 
 	var isValidEmail: Bool {
 		EmailAddress(rawValue: email) != nil

@@ -11,7 +11,7 @@ import Combine
 @MainActor
 final class ChatListViewModel: ObservableObject {
 
-	@Published var groups: [FBGroup]?
+	@Published var groups: [ChatRoom] = []
 
 	private(set) var user: FFUser?
 
@@ -56,9 +56,36 @@ final class ChatListViewModel: ObservableObject {
 		guard let user else { return }
 
 		let groups = try await ChatManager.shared.getGroups(userId: user.id)
+		
+		var chatrooms: [ChatRoom] = []
+		for group in groups {
+			let members = try await loadGroupMember(groupId: group.id)
+
+			let name = members.filter { $0.id != user.id }.map { $0.displayName }.joined(separator: ",")
+
+			chatrooms.append(ChatRoom(fbGroup: group, name: name, members: members))
+		}
+
+		self.groups = chatrooms
+
 		debugPrint(user.id)
 		debugPrint(groups)
-		self.groups = groups
+	}
+
+	private func loadGroupMember(groupId: String) async throws -> [FFUser] {
+		var members: [FFUser] = []
+		do {
+			let ids = try await ChatManager.shared.getGroupMemberId(groupId: groupId)
+
+			for id in ids {
+				let member = try await UserManager.shared.getUser(userId: id)
+				members.append(member)
+			}
+
+			return members
+		} catch {
+			throw URLError(.badServerResponse)
+		}
 	}
 
 	func filterFriend(by name: String) async throws {
@@ -73,6 +100,7 @@ final class ChatListViewModel: ObservableObject {
 
 	func createNewGroup(with id: String) {
 		guard let currentUserId = user?.id else { return }
+
 		do {
 			try ChatManager.shared.createNewGroup(with: [currentUserId, id])
 		} catch {

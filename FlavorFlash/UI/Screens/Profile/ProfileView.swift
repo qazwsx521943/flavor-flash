@@ -20,111 +20,58 @@ struct ProfileView: View {
 
 	@State private var qrCodeMode: QRCodeMode = .myQRCode
 
+	@State private var showFriends = false
+
 	enum QRCodeMode: Int {
 		case myQRCode = 0
 		case scanQRCode = 1
 	}
 
 	var body: some View {
-		NavigationStack {
-			VStack {
-				HStack {
-					ZStack {
-						if let imageUrl = viewModel.user?.profileImageUrl {
-							AsyncImage(url: URL(string: imageUrl)) { image in
-								image
-									.resizable()
-									.scaledToFill()
-							} placeholder: {
-								ProgressView()
-							}
-							.frame(width: 100, height: 100)
-							.clipShape(Circle())
-						} else {
-							Circle()
-								.frame(width: 100, height: 100)
+			if let user = viewModel.user {
+				ProfileHeader(avatarUrlString: user.profileImageUrl ?? "") {
+					ActivityItemDisplay(title: "日記", count: 8)
+					ActivityItemDisplay(title: "成就", count: 8)
+					ActivityItemDisplay(title: "朋友", count: 8) {
+						showFriends = true
+					}
+				}
+				.onAppear {
+					Task {
+						do {
+							try await viewModel.getAllFriends()
+						} catch {
+							debugPrint("error")
 						}
 					}
-					.overlay(alignment: .bottomTrailing) {
-						PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
-							Image(systemName: "pencil.circle.fill")
-								.symbolRenderingMode(.multicolor)
-								.font(.system(size: 30))
-								.foregroundColor(Color.purple)
-						}
-					}
-					if let user = viewModel.user {
-						VStack(alignment: .leading) {
-							Text(user.displayName)
-								.padding(.leading, 12)
-								.font(.title)
-								.bold()
-							Text("美食獵人")
-								.padding(.leading, 12)
-								.font(.subheadline)
-								.foregroundStyle(.gray)
-
-							NavigationLink {
-								List {
-									ForEach(viewModel.friends, id: \.self) { friend in
-										HStack {
-											AsyncImage(url: URL(string: friend.profileImageUrl ?? "")) { image in
-												image
-													.resizable()
-													.scaledToFill()
-											} placeholder: {
-												Image(systemName: "person.fill")
-											}
-											.frame(width: 50, height: 50)
-											.clipShape(Circle())
-
-											Text(friend.displayName)
-										}
-									}
-								}
-								.onAppear {
-									Task {
-										do {
-											try await viewModel.getAllFriends()
-										} catch {
-											debugPrint("error")
-										}
-									}
-								}
-								.navigationTitle("Friends")
-								.navigationBarTitleDisplayMode(.inline)
-							} label: {
-								Text("\(user.friends?.count ?? 0) Friends")
-									.prefixedWithSFSymbol(named: "person.fill", height: 15)
-									.font(.subheadline)
-									.foregroundStyle(.white)
-							}
-						}
-					}
-
-					Spacer()
 				}
 				.padding(.horizontal, 16)
-				.task {
-					try? await viewModel.loadCurrentUser()
-				}
-				.onChange(of: selectedItem) { selected in
-					guard let selected else {
-						return
+				.padding(.top, 50)
+				.navigationDestination(isPresented: $showFriends) {
+					List {
+						ForEach(viewModel.friends, id: \.self) { friend in
+							HStack {
+								AsyncImage(url: URL(string: friend.profileImageUrl ?? "")) { image in
+									image
+										.resizable()
+										.scaledToFill()
+								} placeholder: {
+									Image(systemName: "person.fill")
+								}
+								.frame(width: 50, height: 50)
+								.clipShape(Circle())
+
+								Text(friend.displayName)
+							}
+						}
 					}
-					viewModel.saveProfileImage(item: selected)
+					.navigationTitle("Friends")
+					.navigationBarTitleDisplayMode(.inline)
 				}
 			}
 
 			List {
-				//                Section("Settings") {
-				//                    ForEach(settingConfigs) { config in
-				//                        NavigationLink(value: config) {
-				//                            Text(config.title)
-				//                        }
-				//                    }
-				//
-				//                }
+
 				Section("FoodPrint") {
 					NavigationLink {
 						Text("hi")
@@ -140,28 +87,47 @@ struct ProfileView: View {
 
 				accountConfigurationView
 			}
-			.navigationDestination(for: SettingItem.self) { setting in
-				Text(setting.title)
-			}
-			.navigationDestination(for: AccountConfigs.self) { config in
-				Button(config.title) {
-
-				}
-				.padding()
-			}
+			.navigationTitle("Profile")
+			.navigationBarTitleDisplayMode(.inline)
 		}
-	}
 }
 
 extension ProfileView {
+	// MARK: - Layout
+	private var avatarInfo: some View {
+		ZStack(alignment: .center) {
+//			if let user = viewModel.user {
+//				VStack(alignment: .leading) {
+//					Text(user.displayName)
+//						.padding(.leading, 12)
+//						.font(.title)
+//						.bold()
+
+
+//				}
+//				.frame(maxWidth: .infinity, maxHeight: 100)
+			Rectangle()
+				.frame(width: .infinity, height: 100)
+				.background(Color.gray)
+
+			avatarImage
+//			}
+		}
+		.frame(height: 100)
+		.padding(.horizontal, 16)
+		.task {
+			try? await viewModel.loadCurrentUser()
+		}
+		.onChange(of: selectedItem) { selected in
+			guard let selected else {
+				return
+			}
+			viewModel.saveProfileImage(item: selected)
+		}
+	}
+
 	private var accountConfigurationView: some View {
 		Section("Account") {
-			ForEach(accountConfigs) { config in
-				NavigationLink(value: config) {
-					Text(config.title)
-				}
-				.foregroundStyle(config.title == "Delete" ? .red : .white)
-			}
 
 			Button {
 				Task {
@@ -303,6 +269,74 @@ extension ProfileView {
 				.padding(.top, 80)
 				.frame(alignment: .top)
 			}
+	}
+
+	private var avatarImage: some View {
+		ZStack {
+			if let imageUrl = viewModel.user?.profileImageUrl {
+				AsyncImage(url: URL(string: imageUrl)) { image in
+					image
+						.resizable()
+						.scaledToFill()
+				} placeholder: {
+					ProgressView()
+				}
+				.frame(width: 80, height: 80)
+				.clipShape(Circle())
+			} else {
+				Circle()
+					.frame(width: 80, height: 80)
+			}
+		}
+		.overlay(alignment: .bottomTrailing) {
+			PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
+				Image(systemName: "pencil.circle.fill")
+					.symbolRenderingMode(.multicolor)
+					.font(.system(size: 30))
+					.foregroundColor(Color.purple)
+			}
+		}
+	}
+
+	// unused
+	private var showFriendLink: some View {
+		NavigationLink {
+			List {
+				ForEach(viewModel.friends, id: \.self) { friend in
+					HStack {
+						AsyncImage(url: URL(string: friend.profileImageUrl ?? "")) { image in
+							image
+								.resizable()
+								.scaledToFill()
+						} placeholder: {
+							Image(systemName: "person.fill")
+						}
+						.frame(width: 50, height: 50)
+						.clipShape(Circle())
+
+						Text(friend.displayName)
+					}
+				}
+			}
+			.onAppear {
+				Task {
+					do {
+						try await viewModel.getAllFriends()
+					} catch {
+						debugPrint("error")
+					}
+				}
+			}
+			.navigationTitle("Friends")
+			.navigationBarTitleDisplayMode(.inline)
+		} label: {
+			if let user = viewModel.user {
+				Text("\(user.friends?.count ?? 0) Friends")
+					.prefixedWithSFSymbol(named: "person.fill", height: 15)
+					.font(.subheadline)
+					.foregroundStyle(.white)
+			}
+		}
 	}
 }
 
