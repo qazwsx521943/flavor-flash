@@ -74,7 +74,6 @@
 		E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */; };
 		E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB82B1448330042FB51 /* FoodPrintCell.swift */; };
 		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
-		E79639772B10A034006FF600 /* ActivityIndicatorView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639762B10A034006FF600 /* ActivityIndicatorView */; };
 		E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639802B118A49006FF600 /* QRCodeScanner.swift */; };
 		E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639822B118A6E006FF600 /* ScannerViewController.swift */; };
 		E79ED0992B14D392008C2E6F /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79ED0982B14D392008C2E6F /* RestaurantAnnotation.swift */; };
@@ -216,7 +215,6 @@
 				E7E200B32B08FF8C003C22D6 /* FirebaseAuthCombine-Community in Frameworks */,
 				E7E200BF2B08FF8C003C22D6 /* FirebaseFirestoreCombine-Community in Frameworks */,
 				E7E200CD2B08FF8C003C22D6 /* FirebaseMLModelDownloader in Frameworks */,
-				E79639772B10A034006FF600 /* ActivityIndicatorView in Frameworks */,
 				E70C6C592B0C9B6A003B27EE /* Kingfisher in Frameworks */,
 				E74EDF422B15B8BA004DE202 /* ExyteChat in Frameworks */,
 				E7E200A52B08FF8C003C22D6 /* FirebaseAnalytics in Frameworks */,
@@ -727,7 +725,6 @@
 				E70C6C552B0C99D6003B27EE /* FirebaseAnalyticsSwift */,
 				E70C6C582B0C9B6A003B27EE /* Kingfisher */,
 				E79639712B109C41006FF600 /* PopupView */,
-				E79639762B10A034006FF600 /* ActivityIndicatorView */,
 				E74EDF412B15B8BA004DE202 /* ExyteChat */,
 			);
 			productName = FlavorFlash;
@@ -762,7 +759,6 @@
 				E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E70C6C572B0C9B6A003B27EE /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */,
-				E79639752B10A034006FF600 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */,
 				E74EDF402B15B8BA004DE202 /* XCRemoteSwiftPackageReference "Chat" */,
 			);
 			productRefGroup = E7A3992A2B034AB4005C8021 /* Products */;
@@ -1199,14 +1195,6 @@
 				minimumVersion = 2.8.3;
 			};
 		};
-		E79639752B10A034006FF600 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/exyte/ActivityIndicatorView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.1.1;
-			};
-		};
 		E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1237,11 +1225,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */;
 			productName = PopupView;
-		};
-		E79639762B10A034006FF600 /* ActivityIndicatorView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E79639752B10A034006FF600 /* XCRemoteSwiftPackageReference "ActivityIndicatorView" */;
-			productName = ActivityIndicatorView;
 		};
 		E7E200A42B08FF8C003C22D6 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
