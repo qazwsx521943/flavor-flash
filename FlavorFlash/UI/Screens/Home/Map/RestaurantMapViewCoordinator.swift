@@ -8,7 +8,6 @@
 import MapKit
 import SwiftUI
 import GooglePlaces
-import Alamofire
 
 class RestaurantMapViewCoordinator: NSObject {
 	var parent: RestaurantMapView
@@ -30,24 +29,6 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
 		parent.centerToRegion(mapView: mapView, coordinateRegion: MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 200, longitudinalMeters: 200))
 	}
-
-//	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//		guard let annotation = annotation as? RestaurantAnnotation else { return nil }
-//		
-//		var view: MKMarkerAnnotationView
-//		if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: String(describing: RestaurantAnnotation.self)) as? MKMarkerAnnotationView {
-//			dequeuedView.annotation = annotation
-//			view = dequeuedView
-//		} else {
-//			view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: String(describing: RestaurantAnnotation.self))
-//
-//			view.canShowCallout = true
-//			view.calloutOffset = CGPoint(x: -5, y: 5)
-//			view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-//		}
-//
-//		return view
-//	}
 
 	func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 		guard let restaurant = view.annotation as? RestaurantAnnotation else { return }

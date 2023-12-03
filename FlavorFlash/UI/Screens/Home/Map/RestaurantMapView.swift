@@ -18,7 +18,6 @@ struct RestaurantMapView: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
 		let mapView = MKMapView()
 
-		mapView.setCameraZoomRange(MKMapView.CameraZoomRange(minCenterCoordinateDistance: 100, maxCenterCoordinateDistance: 3000), animated: true)
 		mapView.register(RestaurantMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
         mapView.delegate = context.coordinator
 
