@@ -111,6 +111,11 @@
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
 		E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
+		E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */; };
+		E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */; };
+		E7FFB3882B1C97950065A213 /* FoodPrintAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3872B1C97950065A213 /* FoodPrintAnnotation.swift */; };
+		E7FFB38A2B1C9A6E0065A213 /* FoodPrintAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3892B1C9A6E0065A213 /* FoodPrintAnnotationView.swift */; };
+		E7FFB38C2B1CA2B90065A213 /* FoodPrintHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB38B2B1CA2B90065A213 /* FoodPrintHistoryViewModel.swift */; };
 		E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */; };
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
@@ -204,6 +209,11 @@
 		E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceResult.swift; sourceTree = "<group>"; };
 		E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryView.swift; sourceTree = "<group>"; };
+		E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintMapView.swift; sourceTree = "<group>"; };
+		E7FFB3872B1C97950065A213 /* FoodPrintAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintAnnotation.swift; sourceTree = "<group>"; };
+		E7FFB3892B1C9A6E0065A213 /* FoodPrintAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintAnnotationView.swift; sourceTree = "<group>"; };
+		E7FFB38B2B1CA2B90065A213 /* FoodPrintHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryViewModel.swift; sourceTree = "<group>"; };
 		E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		E7FFC24C2B037A8E00F7B171 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -273,6 +283,7 @@
 		E70AF8DC2B0710840003462C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E7FFB3822B1C90E10065A213 /* FoodPrintHistoryView */,
 				E7274B8A2B1ACF43008C439F /* ProfileHeader */,
 				E796397F2B118A34006FF600 /* QRCodeScanner */,
 				E70AF8DD2B0710950003462C /* ProfileView.swift */,
@@ -506,6 +517,7 @@
 			isa = PBXGroup;
 			children = (
 				E79ED0982B14D392008C2E6F /* RestaurantAnnotation.swift */,
+				E7FFB3872B1C97950065A213 /* FoodPrintAnnotation.swift */,
 			);
 			path = Annotations;
 			sourceTree = "<group>";
@@ -514,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				E79ED09A2B14DF7C008C2E6F /* RestaurantMarkerView.swift */,
+				E7FFB3892B1C9A6E0065A213 /* FoodPrintAnnotationView.swift */,
 			);
 			path = AnnotationViews;
 			sourceTree = "<group>";
@@ -659,6 +672,16 @@
 				E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */,
 			);
 			path = GooglePlaceResult;
+			sourceTree = "<group>";
+		};
+		E7FFB3822B1C90E10065A213 /* FoodPrintHistoryView */ = {
+			isa = PBXGroup;
+			children = (
+				E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */,
+				E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */,
+				E7FFB38B2B1CA2B90065A213 /* FoodPrintHistoryViewModel.swift */,
+			);
+			path = FoodPrintHistoryView;
 			sourceTree = "<group>";
 		};
 		E7FFC2492B037A1A00F7B171 /* FlavorFlash */ = {
@@ -870,6 +893,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */,
 				E70AF8EE2B074B8F0003462C /* Restaurant.swift in Sources */,
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
 				E71BFB1E2B176E6B008E89DE /* Utilities.swift in Sources */,
@@ -888,6 +912,7 @@
 				E73225832B1B0A4C00EE14CC /* OverlayModifiers.swift in Sources */,
 				E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */,
 				E77353742B09CB5C003035B4 /* EmailSignInView.swift in Sources */,
+				E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
 				E73B171A2B0AF8A200F1A0DD /* FBGroup.swift in Sources */,
@@ -924,6 +949,7 @@
 				E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */,
 				E71BFB222B1771CC008E89DE /* SignInAppleHelper.swift in Sources */,
 				E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */,
+				E7FFB3882B1C97950065A213 /* FoodPrintAnnotation.swift in Sources */,
 				E715D9B32B03C52A00B6478D /* Camera.swift in Sources */,
 				E70C6C522B0C5BAD003B27EE /* RestaurantCategoryViewModel.swift in Sources */,
 				E75588C22B0EE9C900086854 /* FoodClassifierV1.mlmodel in Sources */,
@@ -942,6 +968,8 @@
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
 				E7A399472B034E30005C8021 /* ChatListView.swift in Sources */,
 				E70C6C542B0C5CAF003B27EE /* RestaurantCategoryView.swift in Sources */,
+				E7FFB38C2B1CA2B90065A213 /* FoodPrintHistoryViewModel.swift in Sources */,
+				E7FFB38A2B1C9A6E0065A213 /* FoodPrintAnnotationView.swift in Sources */,
 				E70C6C492B0BBE0E003B27EE /* ButtonModifiers.swift in Sources */,
 				E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */,
 				E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */,

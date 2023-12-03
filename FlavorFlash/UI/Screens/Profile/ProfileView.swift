@@ -21,6 +21,7 @@ struct ProfileView: View {
 	@State private var qrCodeMode: QRCodeMode = .myQRCode
 
 	@State private var showFriends = false
+	@State private var showFoodPrint = false
 
 	enum QRCodeMode: Int {
 		case myQRCode = 0
@@ -30,9 +31,11 @@ struct ProfileView: View {
 	var body: some View {
 			if let user = viewModel.user {
 				ProfileHeader(avatarUrlString: user.profileImageUrl ?? "") {
-					ActivityItemDisplay(title: "日記", count: 8)
+					ActivityItemDisplay(title: "足跡", count: viewModel.foodPrints.count) {
+						showFoodPrint = true
+					}
 					ActivityItemDisplay(title: "成就", count: 8)
-					ActivityItemDisplay(title: "朋友", count: 8) {
+					ActivityItemDisplay(title: "朋友", count: viewModel.friends.count) {
 						showFriends = true
 					}
 				}
@@ -67,6 +70,9 @@ struct ProfileView: View {
 					}
 					.navigationTitle("Friends")
 					.navigationBarTitleDisplayMode(.inline)
+				}
+				.navigationDestination(isPresented: $showFoodPrint) {
+					FoodPrintHistoryView(profileViewModel: viewModel)
 				}
 			}
 
