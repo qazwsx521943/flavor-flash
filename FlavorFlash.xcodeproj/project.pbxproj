@@ -119,6 +119,7 @@
 		E7FFB39C2B1DB4BF0065A213 /* CommentSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB39B2B1DB4BF0065A213 /* CommentSheetView.swift */; };
 		E7FFB39F2B1DBA400065A213 /* FBComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB39E2B1DBA400065A213 /* FBComment.swift */; };
 		E7FFB3A12B1DBC940065A213 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3A02B1DBC940065A213 /* CommentCell.swift */; };
+		E7FFB3A32B1DC9860065A213 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */; };
 		E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */; };
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
@@ -249,6 +250,7 @@
 				102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */,
 				E7E200B12B08FF8C003C22D6 /* FirebaseAuth in Frameworks */,
 				E7E200BB2B08FF8C003C22D6 /* FirebaseDynamicLinks in Frameworks */,
+				E7FFB3A32B1DC9860065A213 /* FirebaseMessaging in Frameworks */,
 				E7E200BD2B08FF8C003C22D6 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -793,6 +795,7 @@
 				E70C6C582B0C9B6A003B27EE /* Kingfisher */,
 				E79639712B109C41006FF600 /* PopupView */,
 				E74EDF412B15B8BA004DE202 /* ExyteChat */,
+				E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */,
 			);
 			productName = FlavorFlash;
 			productReference = E7A399292B034AB4005C8021 /* FlavorFlash.app */;
@@ -1381,6 +1384,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
