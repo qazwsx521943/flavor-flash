@@ -9,14 +9,14 @@ import SwiftUI
 
 struct FoodPrintView: View {
 	@StateObject private var foodPrintViewModel = FoodPrintViewModel(dataService: FoodPrintDataService(path: "foodprints"))
-	//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(mockService: FoodPrintDataService(path: "foodprints"))
+//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(mockService: FoodPrintDataService(path: "foodprints"))
 	@State private var showCommentModal = false
 
 	@State private var showReportModal = false
 
 	@State private var isSelectedFoodPrint: FoodPrint?
-	@State private var selectionType: SelectionType = .comment
 
+	@State private var selectionType: SelectionType = .comment
 
 	enum SelectionType: String {
 		case comment
@@ -33,7 +33,6 @@ struct FoodPrintView: View {
 							FoodPrintCell(foodPrint: post, showComment: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .comment
-
 							}) { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .report
@@ -47,10 +46,6 @@ struct FoodPrintView: View {
 					.sheet(item: $isSelectedFoodPrint) { item in
 						sheetType(foodPrint: item)
 					}
-					//					.sheet(isPresented: $showReportModal) {
-					//						Text("report \(isSelectedFoodPrint!.id)")
-					//							.presentationDetents([.fraction(0.3)])
-					//					}
 				}
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {
@@ -71,20 +66,22 @@ struct FoodPrintView: View {
 
 extension FoodPrintView {
 	private func sheetType(foodPrint: FoodPrint) -> some View {
-		switch selectionType {
-		case .comment:
-			return ZStack { ReportSheetView() }
+		ZStack {
+			switch selectionType {
+			case .comment:
+				CommentSheetView(foodPrint: foodPrint) { comment in
+					foodPrintViewModel.leaveComment(foodPrint: foodPrint, comment: comment)
+				}
 				.presentationDetents([.medium])
-		case .report:
-			return ZStack { ReportSheetView { reason in
-				print("selectiontype: \(selectionType)")
-				print("foodPrintId: \(foodPrint.id)")
-				foodPrintViewModel.reportFoodPrint(id: foodPrint.id, reason: reason)
-			} }
+			case .report:
+				ReportSheetView { reason in
+					foodPrintViewModel.reportFoodPrint(id: foodPrint.id, reason: reason)
+				}
 				.presentationDetents([.medium])
-		default:
-			return ZStack { ReportSheetView() }
-				.presentationDetents([.medium])
+			default:
+				ReportSheetView()
+					.presentationDetents([.medium])
+			}
 		}
 	}
 }

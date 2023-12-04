@@ -66,6 +66,12 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 }
 
 extension FoodPrintViewModel {
+	func leaveComment(foodPrint: FoodPrint, comment: String) {
+		guard let currentUser else { return }
+
+		dataService.leaveComment(foodPrint, userId: currentUser.id, comment: comment)
+	}
+
 	func reportFoodPrint(id: String, reason: ReportReason) {
 		debugPrint("reported")
 		do {

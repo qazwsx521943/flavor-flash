@@ -13,6 +13,7 @@ protocol FBDataService: ObservableObject {
 	func add(_ item: Item)
 	func update(_ item: Item)
 	func delete(_ item: Item)
+	func leaveComment(_ item: Item, userId: String, comment: String)
 }
 
 protocol FBModelType: Identifiable, Codable {
