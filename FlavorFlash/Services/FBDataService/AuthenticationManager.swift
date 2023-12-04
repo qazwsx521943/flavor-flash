@@ -84,6 +84,10 @@ final class AuthenticationManager {
 
 		try await user.updatePassword(to: password)
 	}
+
+	func deleteAccount() {
+		Auth.auth().currentUser?.delete()
+	}
 }
 
 // MARK: - Sign in SSO

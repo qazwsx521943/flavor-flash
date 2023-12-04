@@ -71,7 +71,6 @@ struct ProfileView: View {
 			}
 
 			List {
-
 				Section("FoodPrint") {
 					NavigationLink {
 						Text("hi")
@@ -86,6 +85,17 @@ struct ProfileView: View {
 				}
 
 				accountConfigurationView
+			}
+			.environmentObject(viewModel)
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					NavigationLink {
+						SettingsView()
+					} label: {
+						Image(systemName: "gearshape.fill")
+							.tint(.secondary)
+					}
+				}
 			}
 			.navigationTitle("Profile")
 			.navigationBarTitleDisplayMode(.inline)
@@ -127,34 +137,26 @@ extension ProfileView {
 	}
 
 	private var accountConfigurationView: some View {
-		Section("Account") {
+		Section {
+			HStack {
+				Spacer()
 
-			Button {
-				Task {
+				Button {
 					do {
-						try await viewModel.resetPassword()
+						try viewModel.logOut()
+						navigationModel.showSignInModal = true
+						debugPrint("logged out")
 					} catch {
-						debugPrint("Reset password error")
+						debugPrint("Logged Out Error")
 					}
+				} label: {
+					Text("Logout")
+						.font(.title2)
+						.bold()
+						.foregroundStyle(.red)
 				}
-			} label: {
-				Text("Reset Password")
-					.prefixedWithSFSymbol(named: "square.and.pencil", height: 20)
-					.foregroundStyle(.primary)
-			}
 
-			Button {
-				do {
-					try viewModel.logOut()
-					navigationModel.showSignInModal = true
-					debugPrint("logged out")
-				} catch {
-					debugPrint("Logged Out Error")
-				}
-			} label: {
-				Text("Logout")
-					.prefixedWithSFSymbol(named: "rectangle.portrait.and.arrow.right", height: 20, tintColor: .red)
-					.foregroundStyle(.red)
+				Spacer()
 			}
 		}
 	}
@@ -341,5 +343,7 @@ extension ProfileView {
 }
 
 #Preview {
-	ProfileView()
+	NavigationStack {
+		ProfileView()
+	}
 }

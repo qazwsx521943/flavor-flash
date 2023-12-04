@@ -95,3 +95,11 @@ final class ProfileViewModel: ObservableObject {
 		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
 	}
 }
+
+// MARK: - Auth function
+extension ProfileViewModel {
+	func deleteAccount() {
+		AuthenticationManager.shared.deleteAccount()
+		user = nil
+	}
+}
