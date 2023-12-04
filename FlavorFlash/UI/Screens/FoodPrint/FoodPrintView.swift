@@ -9,8 +9,20 @@ import SwiftUI
 
 struct FoodPrintView: View {
 	@StateObject private var foodPrintViewModel = FoodPrintViewModel(dataService: FoodPrintDataService(path: "foodprints"))
-//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(mockService: FoodPrintDataService(path: "foodprints"))
+	//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(mockService: FoodPrintDataService(path: "foodprints"))
 	@State private var showCommentModal = false
+
+	@State private var showReportModal = false
+
+	@State private var isSelectedFoodPrint: FoodPrint?
+	@State private var selectionType: SelectionType = .comment
+
+
+	enum SelectionType: String {
+		case comment
+		case report
+		case send
+	}
 
 	var body: some View {
 		NavigationStack {
@@ -18,8 +30,13 @@ struct FoodPrintView: View {
 				ScrollView(.vertical, showsIndicators: false) {
 					VStack(alignment: .center, spacing: 30) {
 						ForEach(foodPrintViewModel.posts) { post in
-							FoodPrintCell(foodPrint: post) { id in
-								showCommentModal = true
+							FoodPrintCell(foodPrint: post, showComment: { foodprint in
+								isSelectedFoodPrint = foodprint
+								selectionType = .comment
+
+							}) { foodprint in
+								isSelectedFoodPrint = foodprint
+								selectionType = .report
 							}
 							.frame(width: geometry.size.width, height: geometry.size.height * 0.9)
 							.padding(16)
@@ -27,9 +44,13 @@ struct FoodPrintView: View {
 						}
 					}
 					.frame(width: geometry.size.width)
-				}
-				.sheet(isPresented: $showCommentModal) {
-					Text("this is comment view")
+					.sheet(item: $isSelectedFoodPrint) { item in
+						sheetType(foodPrint: item)
+					}
+					//					.sheet(isPresented: $showReportModal) {
+					//						Text("report \(isSelectedFoodPrint!.id)")
+					//							.presentationDetents([.fraction(0.3)])
+					//					}
 				}
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {
@@ -44,6 +65,26 @@ struct FoodPrintView: View {
 				.navigationTitle("FoodPrints")
 				.navigationBarTitleDisplayMode(.inline)
 			}
+		}
+	}
+}
+
+extension FoodPrintView {
+	private func sheetType(foodPrint: FoodPrint) -> some View {
+		switch selectionType {
+		case .comment:
+			return ZStack { ReportSheetView() }
+				.presentationDetents([.medium])
+		case .report:
+			return ZStack { ReportSheetView { reason in
+				print("selectiontype: \(selectionType)")
+				print("foodPrintId: \(foodPrint.id)")
+				foodPrintViewModel.reportFoodPrint(id: foodPrint.id, reason: reason)
+			} }
+				.presentationDetents([.medium])
+		default:
+			return ZStack { ReportSheetView() }
+				.presentationDetents([.medium])
 		}
 	}
 }

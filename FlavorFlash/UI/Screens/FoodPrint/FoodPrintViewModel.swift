@@ -64,3 +64,14 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		self.currentUser = try await UserManager.shared.getUser(userId: authDataResultModel.uid)
 	}
 }
+
+extension FoodPrintViewModel {
+	func reportFoodPrint(id: String, reason: ReportReason) {
+		debugPrint("reported")
+		do {
+			try ReportManager.shared.report(id: id, type: .foodPrint, reason: reason)
+		} catch {
+			debugPrint(error)
+		}
+	}
+}

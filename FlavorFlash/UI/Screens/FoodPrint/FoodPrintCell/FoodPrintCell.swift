@@ -13,7 +13,9 @@ struct FoodPrintCell: View {
 
 	@State private var isLiked: Bool = false
 
-	var showComment: ((String) -> Void)?
+	var showComment: ((FoodPrint) -> Void)?
+
+	var showReport: ((FoodPrint) -> Void)?
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 10) {
@@ -73,6 +75,15 @@ private extension FoodPrintCell {
 							.fill(.black.opacity(0.7))
 					)
 			})
+			.overlay(alignment: .topTrailing, content: {
+				Text("...")
+					.font(.title2)
+					.bold()
+					.padding(.trailing, 12)
+					.onTapGesture {
+						showReport?(foodPrint)
+					}
+			})
 			.onAppear {
 				UIScrollView.appearance().isPagingEnabled = true
 			}
@@ -87,7 +98,7 @@ private extension FoodPrintCell {
 			Image(systemName: "paperplane.fill")
 			Image(systemName: "ellipsis.message")
 				.onTapGesture {
-					showComment?(foodPrint.id)
+					showComment?(foodPrint)
 				}
 
 			Spacer()

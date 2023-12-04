@@ -113,6 +113,9 @@
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
 		E7FFB38F2B1D6C000065A213 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB38E2B1D6C000065A213 /* SettingsView.swift */; };
 		E7FFB3922B1D6FA00065A213 /* DeleteAccountConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3912B1D6FA00065A213 /* DeleteAccountConfirmView.swift */; };
+		E7FFB3942B1D93F00065A213 /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3932B1D93F00065A213 /* ReportManager.swift */; };
+		E7FFB3972B1D94AA0065A213 /* FBReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3962B1D94AA0065A213 /* FBReport.swift */; };
+		E7FFB39A2B1D9B0A0065A213 /* ReportSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3992B1D9B0A0065A213 /* ReportSheetView.swift */; };
 		E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */; };
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
@@ -208,6 +211,9 @@
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		E7FFB38E2B1D6C000065A213 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E7FFB3912B1D6FA00065A213 /* DeleteAccountConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmView.swift; sourceTree = "<group>"; };
+		E7FFB3932B1D93F00065A213 /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
+		E7FFB3962B1D94AA0065A213 /* FBReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBReport.swift; sourceTree = "<group>"; };
+		E7FFB3992B1D9B0A0065A213 /* ReportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSheetView.swift; sourceTree = "<group>"; };
 		E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		E7FFC24C2B037A8E00F7B171 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -440,6 +446,7 @@
 		E76D776D2B11C73000176A53 /* FoodPrint */ = {
 			isa = PBXGroup;
 			children = (
+				E7FFB3982B1D9AF30065A213 /* SheetViews */,
 				E783AAB62B1448170042FB51 /* FoodPrintCell */,
 				E76D776E2B11C74200176A53 /* FoodPrintView.swift */,
 				E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */,
@@ -468,6 +475,7 @@
 				E73B17142B0AE90400F1A0DD /* ChatManager.swift */,
 				E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */,
 				E76D77742B11C8C400176A53 /* FoodPrintManager.swift */,
+				E7FFB3932B1D93F00065A213 /* ReportManager.swift */,
 			);
 			path = FBDataService;
 			sourceTree = "<group>";
@@ -683,6 +691,22 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		E7FFB3952B1D949A0065A213 /* FBReport */ = {
+			isa = PBXGroup;
+			children = (
+				E7FFB3962B1D94AA0065A213 /* FBReport.swift */,
+			);
+			path = FBReport;
+			sourceTree = "<group>";
+		};
+		E7FFB3982B1D9AF30065A213 /* SheetViews */ = {
+			isa = PBXGroup;
+			children = (
+				E7FFB3992B1D9B0A0065A213 /* ReportSheetView.swift */,
+			);
+			path = SheetViews;
+			sourceTree = "<group>";
+		};
 		E7FFC2492B037A1A00F7B171 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
@@ -698,6 +722,7 @@
 		E7FFC24E2B037B5A00F7B171 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E7FFB3952B1D949A0065A213 /* FBReport */,
 				E79ED0972B14D359008C2E6F /* Annotations */,
 				E75588C02B0EE27800086854 /* CreateML */,
 				E7809B542B0A2DCE00D76E71 /* FFUser */,
@@ -901,6 +926,7 @@
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
 				E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
+				E7FFB3942B1D93F00065A213 /* ReportManager.swift in Sources */,
 				E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */,
 				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,
 				E70C6C5D2B0CEA05003B27EE /* CommentView.swift in Sources */,
@@ -952,8 +978,10 @@
 				E70C6C522B0C5BAD003B27EE /* RestaurantCategoryViewModel.swift in Sources */,
 				E75588C22B0EE9C900086854 /* FoodClassifierV1.mlmodel in Sources */,
 				E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */,
+				E7FFB3972B1D94AA0065A213 /* FBReport.swift in Sources */,
 				E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */,
 				E79ED0992B14D392008C2E6F /* RestaurantAnnotation.swift in Sources */,
+				E7FFB39A2B1D9B0A0065A213 /* ReportSheetView.swift in Sources */,
 				E77353762B09CE95003035B4 /* AuthenticationManager.swift in Sources */,
 				E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */,
 				E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */,
