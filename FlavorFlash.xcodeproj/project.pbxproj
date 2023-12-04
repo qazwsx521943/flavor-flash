@@ -221,6 +221,7 @@
 		E7FFB39B2B1DB4BF0065A213 /* CommentSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSheetView.swift; sourceTree = "<group>"; };
 		E7FFB39E2B1DBA400065A213 /* FBComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBComment.swift; sourceTree = "<group>"; };
 		E7FFB3A02B1DBC940065A213 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		E7FFB3A42B1DCD580065A213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		E7FFC24C2B037A8E00F7B171 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -560,6 +561,7 @@
 		E7A3992B2B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
+				E7FFB3A42B1DCD580065A213 /* Info.plist */,
 				E71BFB202B17709A008E89DE /* Helpers */,
 				E71BFB1F2B177071008E89DE /* Providers */,
 				E71BFB1C2B176E5C008E89DE /* Utilities */,
@@ -1164,6 +1166,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FlavorFlash/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
@@ -1202,6 +1205,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FlavorFlash/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
