@@ -192,14 +192,14 @@ extension CameraDataModel {
 			let request = VNCoreMLRequest(model: VNModel) { [weak self] request, error in
 				self?.processObservations(for: request, error: error)
 			}
-			request.imageCropAndScaleOption = .scaleFit
+			request.imageCropAndScaleOption = .scaleFill
 			classificationRequest = request
 		} catch {
 			fatalError("fail analyzing")
 		}
 
 		guard
-			let pixelBuffer = capturedFrontCamImage?.pixelBuffer
+			let pixelBuffer = capturedBackCamImage?.pixelBuffer
 		else {
 			return
 		}
@@ -234,6 +234,7 @@ extension CameraDataModel {
 //							format: "%@ %.1f%%",
 //							results[0].identifier,
 //							results[0].confidence * 100)
+						debugPrint("vision analyze results : \(results)")
 						self?.foodAnalyzeResult = results[0].identifier
 					}
 					// 4
