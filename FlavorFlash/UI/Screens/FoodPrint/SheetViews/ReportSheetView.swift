@@ -21,6 +21,12 @@ struct ReportSheetView: View {
 					.animation(.default, value: reasonSelected)
 			} else {
 				List {
+					Section {
+						Text("檢舉")
+							.frame(maxWidth: .infinity)
+							.multilineTextAlignment(.center)
+					}
+
 					ForEach(ReportReason.allCases, id: \.self) { reason in
 						Text(reason.title)
 							.onTapGesture {

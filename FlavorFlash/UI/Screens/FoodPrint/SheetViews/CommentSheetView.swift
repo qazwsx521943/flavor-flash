@@ -15,29 +15,38 @@ struct CommentSheetView: View {
 	var action: ((String) -> Void)?
 
     var body: some View {
-		List {
-			Section {
-				Text("留言")
-			}
-			if let comments = foodPrint.comments {
-				ForEach(comments) { comment in
-					CommentCell(comment: comment)
+		VStack {
+			List {
+				Section {
+					Text("留言")
+						.frame(maxWidth: .infinity)
+						.multilineTextAlignment(.center)
 				}
-			} else {
-				Text("No comments yet")
-			}
-		}
-		.listStyle(.plain)
 
-		HStack {
-			TextField("新增留言...", text: $commentText)
-			Button("發布") {
-				action?(commentText)
-				commentText = ""
+				if let comments = foodPrint.comments {
+					ForEach(comments) { comment in
+						CommentCell(comment: comment)
+					}
+				} else {
+					Text("No comments yet")
+				}
 			}
-			.disabled(commentText.isEmpty)
+			.listRowSeparator(.visible, edges: .bottom)
+			.listStyle(.plain)
+
+			Spacer()
+
+			HStack {
+				TextField("新增留言...", text: $commentText)
+				Button("發佈") {
+					action?(commentText)
+					commentText = ""
+				}
+				.tint(Color.purple.opacity(0.8))
+				.disabled(commentText.isEmpty)
+			}
+			.padding(.horizontal, 32)
 		}
-		.padding(.horizontal, 32)
 	}
 }
 
