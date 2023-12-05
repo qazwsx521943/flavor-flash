@@ -15,6 +15,7 @@ struct FoodPrintHistoryView: View {
 		FoodPrintMapView(profileViewModel: profileViewModel)
 			.navigationTitle("My FoodPrints")
 			.navigationBarTitleDisplayMode(.inline)
+			.toolbar(.hidden, for: .tabBar)
     }
 }
 
