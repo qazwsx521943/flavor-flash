@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct SettingsView: View {
-	@EnvironmentObject var profileViewModel: ProfileViewModel
+	@ObservedObject var profileViewModel: ProfileViewModel
+
+	@EnvironmentObject var navigationModel: NavigationModel
 
     var body: some View {
 		List {
@@ -61,6 +63,7 @@ extension SettingsView {
 			NavigationLink {
 				DeleteAccountConfirmView {
 					profileViewModel.deleteAccount()
+					navigationModel.showSignInModal = true
 				}
 			} label: {
 				Text("刪除帳號")
@@ -73,8 +76,8 @@ extension SettingsView {
 	}
 }
 
-#Preview {
-	NavigationStack {
-		SettingsView()
-	}
-}
+//#Preview {
+//	NavigationStack {
+//		SettingsView()
+//	}
+//}
