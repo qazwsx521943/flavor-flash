@@ -20,8 +20,11 @@ struct SecondaryPreviewView: View {
 			.resizable()
 			.scaledToFill()
 			.frame(width: width, height: height)
-			.border(.black, width: 4)
-			.clipped()
+			.clipShape(RoundedRectangle(cornerRadius: 10))
+			.padding(4)
+			.background(.black)
+			.clipShape(RoundedRectangle(cornerRadius: 10))
+
     }
 }
 

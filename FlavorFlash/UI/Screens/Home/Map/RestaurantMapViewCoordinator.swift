@@ -8,12 +8,14 @@
 import MapKit
 import SwiftUI
 import GooglePlaces
-import Alamofire
 
+@MainActor
 class RestaurantMapViewCoordinator: NSObject {
 	var parent: RestaurantMapView
 
 	let locationManager = CLLocationManager()
+
+	var pendingWorkItem: DispatchWorkItem?
 
 	init(_ parent: RestaurantMapView) {
 		self.parent = parent
@@ -31,24 +33,6 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 		parent.centerToRegion(mapView: mapView, coordinateRegion: MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 200, longitudinalMeters: 200))
 	}
 
-//	func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-//		guard let annotation = annotation as? RestaurantAnnotation else { return nil }
-//		
-//		var view: MKMarkerAnnotationView
-//		if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: String(describing: RestaurantAnnotation.self)) as? MKMarkerAnnotationView {
-//			dequeuedView.annotation = annotation
-//			view = dequeuedView
-//		} else {
-//			view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: String(describing: RestaurantAnnotation.self))
-//
-//			view.canShowCallout = true
-//			view.calloutOffset = CGPoint(x: -5, y: 5)
-//			view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-//		}
-//
-//		return view
-//	}
-
 	func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
 		guard let restaurant = view.annotation as? RestaurantAnnotation else { return }
 
@@ -58,17 +42,27 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 
 		restaurant.mapItem?.openInMaps(launchOptions: launchOptions)
 	}
+
+	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+		pendingWorkItem?.cancel()
+
+		let workItem = DispatchWorkItem { [weak self] in
+			let centerCoordinate = mapView.centerCoordinate
+			self?.parent.centerLocation = centerCoordinate
+			self?.fetchNearByRestaurants(centerCoordinate: centerCoordinate)
+		}
+
+		pendingWorkItem = workItem
+		DispatchQueue.global().asyncAfter(deadline: .now() + 2.0, execute: workItem)
+	}
 }
 
 extension RestaurantMapViewCoordinator {
-	func fetchNearByRestaurants() {
-		guard
-			let currentLocation = parent.homeViewModel.currentLocation
-		else {
-			return
-		}
-		guard let categoryTag = RestaurantCategory(rawValue: parent.homeViewModel.category)?.searchTag else { return }
-		PlaceFetcher.shared.fetchNearBy(type: [categoryTag], location: Location(CLLocation: currentLocation)) { [weak self] response in
+
+	func fetchNearByRestaurants(centerCoordinate: CLLocationCoordinate2D) {
+
+		guard let categoryTag = parent.homeViewModel.category?.searchTag else { return }
+		PlaceFetcher.shared.fetchNearBy(type: [categoryTag], location: Location(CLLocation: centerCoordinate)) { [weak self] response in
 			switch response {
 			case .success(let result):
 				self?.parent.homeViewModel.restaurants = result.places
@@ -88,7 +82,14 @@ extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 		parent.homeViewModel.currentLocation = CLLocationCoordinate2D(
 			latitude: location.coordinate.latitude,
 			longitude: location.coordinate.longitude)
-		fetchNearByRestaurants()
+
+		guard
+			let currentLocation = parent.homeViewModel.currentLocation
+		else {
+			return
+		}
+		parent.centerLocation = currentLocation
+		fetchNearByRestaurants(centerCoordinate: currentLocation)
 	}
 
 	// Handle authorization for the location manager.

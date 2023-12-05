@@ -9,22 +9,43 @@ import SwiftUI
 
 struct FoodPrintView: View {
 	@StateObject private var foodPrintViewModel = FoodPrintViewModel(dataService: FoodPrintDataService(path: "foodprints"))
-
+//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(mockService: FoodPrintDataService(path: "foodprints"))
 	@State private var showCommentModal = false
+
+	@State private var showReportModal = false
+
+	@State private var isSelectedFoodPrint: FoodPrint?
+
+	@State private var selectionType: SelectionType = .comment
+
+	enum SelectionType: String {
+		case comment
+		case report
+		case send
+	}
 
 	var body: some View {
 		NavigationStack {
 			GeometryReader { geometry in
 				ScrollView(.vertical, showsIndicators: false) {
-					ForEach(foodPrintViewModel.posts) { post in
-						FoodPrintCell(foodPrint: post) { id in
-							showCommentModal = true
+					VStack(alignment: .center, spacing: 30) {
+						ForEach(foodPrintViewModel.posts) { post in
+							FoodPrintCell(foodPrint: post, showComment: { foodprint in
+								isSelectedFoodPrint = foodprint
+								selectionType = .comment
+							}) { foodprint in
+								isSelectedFoodPrint = foodprint
+								selectionType = .report
+							}
+							.frame(width: geometry.size.width, height: geometry.size.height * 0.9)
+							.padding(16)
+							.background(Color.black)
 						}
-						.frame(width: geometry.size.width, height: geometry.size.height / 1.5)
 					}
-				}
-				.sheet(isPresented: $showCommentModal) {
-					Text("this is comment view")
+					.frame(width: geometry.size.width)
+					.sheet(item: $isSelectedFoodPrint) { item in
+						sheetType(foodPrint: item)
+					}
 				}
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {
@@ -37,6 +58,29 @@ struct FoodPrintView: View {
 					}
 				}
 				.navigationTitle("FoodPrints")
+				.navigationBarTitleDisplayMode(.inline)
+			}
+		}
+	}
+}
+
+extension FoodPrintView {
+	private func sheetType(foodPrint: FoodPrint) -> some View {
+		ZStack {
+			switch selectionType {
+			case .comment:
+				CommentSheetView(foodPrint: foodPrint) { comment in
+					foodPrintViewModel.leaveComment(foodPrint: foodPrint, comment: comment)
+				}
+				.presentationDetents([.medium])
+			case .report:
+				ReportSheetView { reason in
+					foodPrintViewModel.reportFoodPrint(id: foodPrint.id, reason: reason)
+				}
+				.presentationDetents([.medium])
+			default:
+				ReportSheetView()
+					.presentationDetents([.medium])
 			}
 		}
 	}

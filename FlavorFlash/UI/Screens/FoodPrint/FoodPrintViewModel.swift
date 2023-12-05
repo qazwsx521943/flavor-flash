@@ -26,6 +26,18 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		}
 	}
 
+	init(mockService: DI) {
+		self.dataService = mockService
+
+		self.currentUser = FFUser.mockUser()
+		self.posts = [
+			// swiftlint:disable:next line_length
+			.init(id: "1", userId: "1", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now),
+			// swiftlint:disable:next line_length
+			.init(id: "1", userId: "1", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now)
+		]
+	}
+
 	private func initDataService() async throws {
 		guard 
 			let dataService = dataService as? FoodPrintDataService<FoodPrint>,
@@ -50,5 +62,22 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 
 		guard let authDataResultModel = authUser else { return }
 		self.currentUser = try await UserManager.shared.getUser(userId: authDataResultModel.uid)
+	}
+}
+
+extension FoodPrintViewModel {
+	func leaveComment(foodPrint: FoodPrint, comment: String) {
+		guard let currentUser else { return }
+
+		dataService.leaveComment(foodPrint, userId: currentUser.id, comment: comment)
+	}
+
+	func reportFoodPrint(id: String, reason: ReportReason) {
+		debugPrint("reported")
+		do {
+			try ReportManager.shared.report(id: id, type: .foodPrint, reason: reason)
+		} catch {
+			debugPrint(error)
+		}
 	}
 }

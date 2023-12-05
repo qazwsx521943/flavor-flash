@@ -11,57 +11,84 @@ import AVFoundation
 struct CameraView: View {
 	@ObservedObject var cameraDataModel: CameraDataModel
 
-    private static let barHeightFactor = 0.15
+	@EnvironmentObject var navigationModel: NavigationModel
 
-    var body: some View {
-        NavigationStack {
-            GeometryReader { geometry in
-                ViewfinderView(
-                    backCamImage: $cameraDataModel.viewfinderBackCamImage,
-                    frontCamImage: $cameraDataModel.viewfinderFrontCamImage
-                )
-				.onAppear(perform: {
-					Task {
-						await cameraDataModel.camera.start()
-						cameraDataModel.capturedBackCamImage = nil
-						cameraDataModel.capturedFrontCamImage = nil
+	private static let barHeightFactor = 0.15
+
+	@State private var isAnimated = false
+
+	var body: some View {
+		NavigationStack {
+			Group {
+				if
+					let _ = cameraDataModel.capturedBackCamImage,
+					let _ = cameraDataModel.capturedFrontCamImage
+				{
+					AnalyzeView(cameraDataModel: cameraDataModel)
+						.overlayWithSystemImage(systemName: "xmark", alignment: .topTrailing) {
+							cameraDataModel.capturedBackCamImage = nil
+							cameraDataModel.capturedFrontCamImage = nil
+						}
+				} else {
+					dualCameraCaptureView
+				}
+			}
+			.navigationTitle("Flavor Flash")
+			.navigationBarTitleDisplayMode(.inline)
+			.toolbar(.hidden, for: .tabBar)
+			.statusBarHidden()
+		}
+	}
+}
+
+extension CameraView {
+	private var dualCameraCaptureView: some View {
+		GeometryReader { geometry in
+			let animation = Animation.default.repeatCount(2, autoreverses: true)
+			ViewfinderView(
+				backCamImage: $cameraDataModel.viewfinderBackCamImage,
+				frontCamImage: $cameraDataModel.viewfinderFrontCamImage
+			)
+			.ignoresSafeArea()
+			.onAppear(perform: {
+				Task {
+					await cameraDataModel.camera.start()
+					cameraDataModel.capturedBackCamImage = nil
+					cameraDataModel.capturedFrontCamImage = nil
+				}
+			})
+			.onDisappear {
+				isAnimated = false
+			}
+			.overlay(alignment: .bottom) {
+				Button {
+					withAnimation(animation) {
+						isAnimated = true
 					}
-				})
-                .overlay(alignment: .bottom) {
-                    Button {
+					cameraDataModel.camera.takePhoto()
+				} label: {
+					ZStack {
+						Image(.cameraIcon)
+							.resizable()
+							.rotationEffect(Angle(degrees: isAnimated ? 360 : 0))
+							.frame(
+								width: isAnimated ? 0 : 80,
+								height: isAnimated ? 0 : 80
+							)
 
-                    } label: {
-                        NavigationLink {
-                            AnalyzeView(cameraDataModel: cameraDataModel)
-                            .task {
-                                cameraDataModel.camera.takePhoto()
-                            }
-                        } label: {
-                            ZStack {
-                                Image(.cameraIcon)
-                                    .resizable()
-                                    .frame(width: 80, height: 80)
-                                Circle()
-                                    .strokeBorder(.white, lineWidth: 5)
-                                    .frame(width: 80, height: 80)
-                            }
-                        }
-                    }
-                }
-                .overlay(alignment: .center) {
-                    Color.clear
-                        .frame(height: geometry.size.height * (1 - (Self.barHeightFactor * 2)))
-                }
-                .background(.black)
-            }
-            .navigationTitle("Flavor Flash")
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationBarHidden(true)
-            .statusBarHidden()
-        }
-    }
+						Circle()
+							.strokeBorder(.white, lineWidth: 5)
+							.frame(width: 80, height: 80)
+					}
+				}
+			}
+			.overlayWithSystemImage(systemName: "xmark",alignment: .topTrailing) {
+				navigationModel.selectedTab = .home
+			}
+		}
+	}
 }
 
 #Preview {
-    CameraView(cameraDataModel: CameraDataModel())
+	CameraView(cameraDataModel: CameraDataModel())
 }

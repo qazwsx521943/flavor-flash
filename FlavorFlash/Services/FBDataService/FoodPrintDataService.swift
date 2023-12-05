@@ -65,4 +65,18 @@ class FoodPrintDataService<T: FBModelType>: FBDataService {
 			fatalError("Updating item failed")
 		}
 	}
+
+	func leaveComment(_ item: T, userId: String, comment: String) {
+		let documentID = item.id
+
+		let fbComment = FBComment(id: UUID().uuidString, userId: userId, comment: comment, createdDate: Date.now)
+		let encodedComment = try! Firestore.Encoder().encode(fbComment)
+		do {
+			store.collection(path).document(documentID).updateData([
+				"comments": FieldValue.arrayUnion([encodedComment])
+			])
+		} catch {
+			fatalError("adding comment failed")
+		}
+	}
 }

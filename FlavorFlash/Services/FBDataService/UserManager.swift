@@ -50,7 +50,11 @@ final class UserManager {
 	}
 
 	func getUser(userId: String) async throws -> FFUser {
-		return try await userDocument(userId: userId).getDocument(as: FFUser.self)
+		do {
+			return try await userDocument(userId: userId).getDocument(as: FFUser.self)
+		} catch {
+			throw(FBStoreError.fetchError)
+		}
 	}
 
 	func setRestaurantCategories(userId: String, categories: [String]) async throws {

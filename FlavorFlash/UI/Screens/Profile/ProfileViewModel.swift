@@ -18,6 +18,17 @@ final class ProfileViewModel: ObservableObject {
 
 	@Published var friends: [FFUser] = []
 
+	@Published var foodPrints: [FoodPrint] = []
+
+	@Published var friendFoodPrints: [FoodPrint] = []
+
+	init() {
+		Task {
+			try? await loadCurrentUser()
+			try? await getFoodPrints()
+		}
+	}
+
 	func logOut() throws {
 		try AuthenticationManager.shared.signOut()
 		user = nil
@@ -87,5 +98,23 @@ final class ProfileViewModel: ObservableObject {
 		guard let friendsId = user?.friends else { return }
 
 		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
+	}
+
+	func getFoodPrints() async throws {
+		guard let userId = user?.id else { return }
+		self.foodPrints = try await FoodPrintManager.shared.getUserPosts(including: [userId])
+		debugPrint(foodPrints)
+	}
+
+	func getFriendFoodPrint(userId: String) async throws {
+		self.friendFoodPrints = try await FoodPrintManager.shared.getUserPosts(including: [userId])
+	}
+}
+
+// MARK: - Auth function
+extension ProfileViewModel {
+	func deleteAccount() {
+		AuthenticationManager.shared.deleteAccount()
+		user = nil
 	}
 }

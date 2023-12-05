@@ -19,7 +19,6 @@ class FoodPrintManager {
 		let snapshot = try await foodPrintCollection.whereField("user_id", in: usersId).getDocuments()
 
 		let posts = snapshot.documents.compactMap { try? $0.data(as: FoodPrint.self) }
-		debugPrint(posts)
 
 		return posts
 	}

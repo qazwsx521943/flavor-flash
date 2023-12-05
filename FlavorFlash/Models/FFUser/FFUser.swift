@@ -55,3 +55,17 @@ extension FFUser {
 		self.categoryPreferences = nil
 	}
 }
+
+extension FFUser {
+	static func mockUser() -> Self {
+		FFUser(
+			id: "1",
+			displayName: "mock",
+			email: "qqqq@mock.com",
+			profileImageUrl: "https://picsum.photos/200",
+			profileImagePath: "https://picsum.photos/200",
+			dateCreated: .now,
+			friends: nil,
+			categoryPreferences: nil)
+	}
+}
