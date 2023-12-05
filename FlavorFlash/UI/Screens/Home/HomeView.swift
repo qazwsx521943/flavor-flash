@@ -16,8 +16,10 @@ struct HomeView: View {
 	var body: some View {
 		NavigationStack {
 			VStack {
-				Text(viewModel.category)
-					.font(.title3)
+				if let randomCategoryText = viewModel.category?.title {
+					Text(randomCategoryText)
+						.font(.title3)
+				}
 
 				Image("cube")
 					.resizable()
@@ -27,12 +29,12 @@ struct HomeView: View {
 						viewModel.randomCategory()
 					}
 
-				if !viewModel.category.isEmpty {
+				if viewModel.category != nil {
 					NavigationLink {
 						RestaurantSearchView()
 							.environmentObject(viewModel)
 					} label: {
-						Text("就吃這間！")
+						Text("就吃這個！")
 							.frame(height: 55)
 							.frame(maxWidth: .infinity)
 							.frame(alignment: .center)
