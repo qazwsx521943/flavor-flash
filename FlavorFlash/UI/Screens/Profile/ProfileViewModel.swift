@@ -18,9 +18,12 @@ final class ProfileViewModel: ObservableObject {
 
 	@Published var friends: [FFUser] = []
 
+	@Published var foodPrints: [FoodPrint] = []
+
 	init() {
 		Task {
 			try? await loadCurrentUser()
+			try? await getFoodPrints()
 		}
 	}
 
@@ -93,6 +96,12 @@ final class ProfileViewModel: ObservableObject {
 		guard let friendsId = user?.friends else { return }
 
 		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
+	}
+
+	func getFoodPrints() async throws {
+		guard let userId = user?.id else { return }
+		self.foodPrints = try await FoodPrintManager.shared.getUserPosts(including: [userId])
+		debugPrint(foodPrints)
 	}
 }
 
