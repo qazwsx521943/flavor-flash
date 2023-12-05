@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 enum FBAuthError: Error {
 	case signInError
@@ -84,6 +85,10 @@ final class AuthenticationManager {
 
 		try await user.updatePassword(to: password)
 	}
+
+	func deleteAccount() {
+		Auth.auth().currentUser?.delete()
+	}
 }
 
 // MARK: - Sign in SSO
@@ -101,5 +106,28 @@ extension AuthenticationManager {
 	func signIn(credential: AuthCredential) async throws -> AuthDataResultModel {
 		let authDataResult = try await Auth.auth().signIn(with: credential)
 		return AuthDataResultModel(user: authDataResult.user)
+	}
+}
+
+extension AuthenticationManager {
+
+	func sendTokenToServer(token: String?) {
+		var deviceToken: [String: Any] = [
+			"token": token,
+			"timestamp": FieldValue.serverTimestamp()
+		]
+
+		if let userId = Auth.auth().currentUser?.uid {
+			let fcmTokensCollection = Firestore.firestore().collection("fcmTokens")
+			let documentRef = fcmTokensCollection.document(userId)
+
+			documentRef.setData(deviceToken) { error in
+				if let error = error {
+					print("Error setting FCM token data: \(error)")
+				} else {
+					print("FCM token data set successfully.")
+				}
+			}
+		}
 	}
 }

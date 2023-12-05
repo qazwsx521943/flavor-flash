@@ -111,6 +111,15 @@
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
 		E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
+		E7FFB38F2B1D6C000065A213 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB38E2B1D6C000065A213 /* SettingsView.swift */; };
+		E7FFB3922B1D6FA00065A213 /* DeleteAccountConfirmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3912B1D6FA00065A213 /* DeleteAccountConfirmView.swift */; };
+		E7FFB3942B1D93F00065A213 /* ReportManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3932B1D93F00065A213 /* ReportManager.swift */; };
+		E7FFB3972B1D94AA0065A213 /* FBReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3962B1D94AA0065A213 /* FBReport.swift */; };
+		E7FFB39A2B1D9B0A0065A213 /* ReportSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3992B1D9B0A0065A213 /* ReportSheetView.swift */; };
+		E7FFB39C2B1DB4BF0065A213 /* CommentSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB39B2B1DB4BF0065A213 /* CommentSheetView.swift */; };
+		E7FFB39F2B1DBA400065A213 /* FBComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB39E2B1DBA400065A213 /* FBComment.swift */; };
+		E7FFB3A12B1DBC940065A213 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3A02B1DBC940065A213 /* CommentCell.swift */; };
+		E7FFB3A32B1DC9860065A213 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */; };
 		E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */; };
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
@@ -204,6 +213,15 @@
 		E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceResult.swift; sourceTree = "<group>"; };
 		E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
+		E7FFB38E2B1D6C000065A213 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E7FFB3912B1D6FA00065A213 /* DeleteAccountConfirmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountConfirmView.swift; sourceTree = "<group>"; };
+		E7FFB3932B1D93F00065A213 /* ReportManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportManager.swift; sourceTree = "<group>"; };
+		E7FFB3962B1D94AA0065A213 /* FBReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBReport.swift; sourceTree = "<group>"; };
+		E7FFB3992B1D9B0A0065A213 /* ReportSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportSheetView.swift; sourceTree = "<group>"; };
+		E7FFB39B2B1DB4BF0065A213 /* CommentSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentSheetView.swift; sourceTree = "<group>"; };
+		E7FFB39E2B1DBA400065A213 /* FBComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBComment.swift; sourceTree = "<group>"; };
+		E7FFB3A02B1DBC940065A213 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		E7FFB3A42B1DCD580065A213 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewfinderView.swift; sourceTree = "<group>"; };
 		E7FFC24C2B037A8E00F7B171 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -233,6 +251,7 @@
 				102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */,
 				E7E200B12B08FF8C003C22D6 /* FirebaseAuth in Frameworks */,
 				E7E200BB2B08FF8C003C22D6 /* FirebaseDynamicLinks in Frameworks */,
+				E7FFB3A32B1DC9860065A213 /* FirebaseMessaging in Frameworks */,
 				E7E200BD2B08FF8C003C22D6 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -273,6 +292,7 @@
 		E70AF8DC2B0710840003462C /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E7FFB38D2B1D6BED0065A213 /* SettingsView */,
 				E7274B8A2B1ACF43008C439F /* ProfileHeader */,
 				E796397F2B118A34006FF600 /* QRCodeScanner */,
 				E70AF8DD2B0710950003462C /* ProfileView.swift */,
@@ -435,7 +455,8 @@
 		E76D776D2B11C73000176A53 /* FoodPrint */ = {
 			isa = PBXGroup;
 			children = (
-				E783AAB62B1448170042FB51 /* FoodPrintCell */,
+				E7FFB3982B1D9AF30065A213 /* SheetViews */,
+				E783AAB62B1448170042FB51 /* Cells */,
 				E76D776E2B11C74200176A53 /* FoodPrintView.swift */,
 				E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */,
 			);
@@ -463,6 +484,7 @@
 				E73B17142B0AE90400F1A0DD /* ChatManager.swift */,
 				E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */,
 				E76D77742B11C8C400176A53 /* FoodPrintManager.swift */,
+				E7FFB3932B1D93F00065A213 /* ReportManager.swift */,
 			);
 			path = FBDataService;
 			sourceTree = "<group>";
@@ -472,17 +494,17 @@
 			children = (
 				E7809B552B0A2DDF00D76E71 /* FFUser.swift */,
 				E70C6C462B0BBA03003B27EE /* EmailAddress.swift */,
-				E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */,
 			);
 			path = FFUser;
 			sourceTree = "<group>";
 		};
-		E783AAB62B1448170042FB51 /* FoodPrintCell */ = {
+		E783AAB62B1448170042FB51 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				E783AAB82B1448330042FB51 /* FoodPrintCell.swift */,
+				E7FFB3A02B1DBC940065A213 /* CommentCell.swift */,
 			);
-			path = FoodPrintCell;
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		E796396B2B105B2A006FF600 /* Base */ = {
@@ -539,6 +561,7 @@
 		E7A3992B2B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
+				E7FFB3A42B1DCD580065A213 /* Info.plist */,
 				E71BFB202B17709A008E89DE /* Helpers */,
 				E71BFB1F2B177071008E89DE /* Providers */,
 				E71BFB1C2B176E5C008E89DE /* Utilities */,
@@ -661,6 +684,49 @@
 			path = GooglePlaceResult;
 			sourceTree = "<group>";
 		};
+		E7FFB38D2B1D6BED0065A213 /* SettingsView */ = {
+			isa = PBXGroup;
+			children = (
+				E7FFB3902B1D6F6E0065A213 /* Components */,
+				E7FFB38E2B1D6C000065A213 /* SettingsView.swift */,
+			);
+			path = SettingsView;
+			sourceTree = "<group>";
+		};
+		E7FFB3902B1D6F6E0065A213 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E7FFB3912B1D6FA00065A213 /* DeleteAccountConfirmView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E7FFB3952B1D949A0065A213 /* FBReport */ = {
+			isa = PBXGroup;
+			children = (
+				E7FFB3962B1D94AA0065A213 /* FBReport.swift */,
+			);
+			path = FBReport;
+			sourceTree = "<group>";
+		};
+		E7FFB3982B1D9AF30065A213 /* SheetViews */ = {
+			isa = PBXGroup;
+			children = (
+				E7FFB3992B1D9B0A0065A213 /* ReportSheetView.swift */,
+				E7FFB39B2B1DB4BF0065A213 /* CommentSheetView.swift */,
+			);
+			path = SheetViews;
+			sourceTree = "<group>";
+		};
+		E7FFB39D2B1DBA1D0065A213 /* FoodPrint */ = {
+			isa = PBXGroup;
+			children = (
+				E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */,
+				E7FFB39E2B1DBA400065A213 /* FBComment.swift */,
+			);
+			path = FoodPrint;
+			sourceTree = "<group>";
+		};
 		E7FFC2492B037A1A00F7B171 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
@@ -676,6 +742,8 @@
 		E7FFC24E2B037B5A00F7B171 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E7FFB39D2B1DBA1D0065A213 /* FoodPrint */,
+				E7FFB3952B1D949A0065A213 /* FBReport */,
 				E79ED0972B14D359008C2E6F /* Annotations */,
 				E75588C02B0EE27800086854 /* CreateML */,
 				E7809B542B0A2DCE00D76E71 /* FFUser */,
@@ -729,6 +797,7 @@
 				E70C6C582B0C9B6A003B27EE /* Kingfisher */,
 				E79639712B109C41006FF600 /* PopupView */,
 				E74EDF412B15B8BA004DE202 /* ExyteChat */,
+				E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */,
 			);
 			productName = FlavorFlash;
 			productReference = E7A399292B034AB4005C8021 /* FlavorFlash.app */;
@@ -879,6 +948,7 @@
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
 				E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
+				E7FFB3942B1D93F00065A213 /* ReportManager.swift in Sources */,
 				E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */,
 				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,
 				E70C6C5D2B0CEA05003B27EE /* CommentView.swift in Sources */,
@@ -900,6 +970,7 @@
 				E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */,
 				E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */,
 				E70C6C472B0BBA03003B27EE /* EmailAddress.swift in Sources */,
+				E7FFB3922B1D6FA00065A213 /* DeleteAccountConfirmView.swift in Sources */,
 				E70C6C5B2B0C9BA3003B27EE /* KingfisherWrapper.swift in Sources */,
 				E70C6C452B0BAD51003B27EE /* TextFieldModifiers.swift in Sources */,
 				E7D856582B05F6F400C5CB92 /* MobileNetV2.mlmodel in Sources */,
@@ -915,9 +986,12 @@
 				E71BFB1B2B176250008E89DE /* AuthenticationViewModel.swift in Sources */,
 				E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */,
 				E70AF8F02B0750D50003462C /* RestaurantMapViewCoordinator.swift in Sources */,
+				E7FFB3A12B1DBC940065A213 /* CommentCell.swift in Sources */,
 				E70AF8FF2B07A5470003462C /* HomeViewModel.swift in Sources */,
+				E7FFB39F2B1DBA400065A213 /* FBComment.swift in Sources */,
 				E7274B8C2B1ACF85008C439F /* ProfileHeader.swift in Sources */,
 				E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */,
+				E7FFB38F2B1D6C000065A213 /* SettingsView.swift in Sources */,
 				E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */,
 				E75588C72B0EF40F00086854 /* SecondaryPreviewView.swift in Sources */,
 				E79ED09B2B14DF7C008C2E6F /* RestaurantMarkerView.swift in Sources */,
@@ -928,8 +1002,10 @@
 				E70C6C522B0C5BAD003B27EE /* RestaurantCategoryViewModel.swift in Sources */,
 				E75588C22B0EE9C900086854 /* FoodClassifierV1.mlmodel in Sources */,
 				E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */,
+				E7FFB3972B1D94AA0065A213 /* FBReport.swift in Sources */,
 				E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */,
 				E79ED0992B14D392008C2E6F /* RestaurantAnnotation.swift in Sources */,
+				E7FFB39A2B1D9B0A0065A213 /* ReportSheetView.swift in Sources */,
 				E77353762B09CE95003035B4 /* AuthenticationManager.swift in Sources */,
 				E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */,
 				E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */,
@@ -937,6 +1013,7 @@
 				E76D77752B11C8C400176A53 /* FoodPrintManager.swift in Sources */,
 				E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */,
 				E7E200E72B091235003C22D6 /* Message.swift in Sources */,
+				E7FFB39C2B1DB4BF0065A213 /* CommentSheetView.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+Extension.swift in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
@@ -1089,6 +1166,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FlavorFlash/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
@@ -1127,6 +1205,7 @@
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FlavorFlash/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
@@ -1309,6 +1388,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseStorageCombine-Community";
+		};
+		E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

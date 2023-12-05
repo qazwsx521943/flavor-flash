@@ -18,6 +18,7 @@ struct FoodPrint: FBModelType {
 	let description: String
 	let category: String?
 	let location: Location?
+	let comments: [FBComment]?
 	let createdDate: Date
 
 	enum CodingKeys: String, CodingKey {
@@ -31,12 +32,13 @@ struct FoodPrint: FBModelType {
 		case description
 		case category
 		case location
+		case comments
 		case createdDate = "created_date"
 	}
 
 	init(id: String, userId: String, restaurantId: String? = nil, 
 		 frontCameraImageUrl: String, frontCameraImagePath: String, backCameraImageUrl: String, backCameraImagePath: String,
-		 description: String, category: String? = nil, location: Location? = nil, createdDate: Date) {
+		 description: String, category: String? = nil, location: Location? = nil, comments: [FBComment]? = nil, createdDate: Date) {
 		self.id = id
 		self.userId = userId
 		self.restaurantId = restaurantId
@@ -47,6 +49,7 @@ struct FoodPrint: FBModelType {
 		self.description = description
 		self.category = category
 		self.location = location
+		self.comments = comments
 		self.createdDate = createdDate
 	}
 }
@@ -81,5 +84,10 @@ extension FoodPrint {
 			"https://picsum.photos/200/300",
 		backCameraImagePath: "user/QzZRdN8ggVeMjryKjPMUjcljRJQ2/5ECB61CA-F485-47A1-8C06-9B6C7BA7FFF9.jpeg",
 		description: "好難吃",
+		comments: [
+			FBComment(id: "1", userId: "1", comment: "你好聰明1", createdDate: .now),
+			FBComment(id: "2", userId: "1", comment: "你好聰明2", createdDate: .now),
+			FBComment(id: "3", userId: "1", comment: "你好聰明3", createdDate: .now)
+		],
 		createdDate: Date.now)
 }
