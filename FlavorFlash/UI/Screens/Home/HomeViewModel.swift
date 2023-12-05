@@ -10,9 +10,9 @@ import MapKit
 
 @MainActor
 final class HomeViewModel: ObservableObject {
-    @Published var category: String = ""
+    @Published var category: RestaurantCategory?
 
-	@Published var userCategories: [String] = []
+	@Published var userCategories: [RestaurantCategory] = []
 
 	@Published var currentUser: FFUser?
 
@@ -48,7 +48,9 @@ final class HomeViewModel: ObservableObject {
 		debugPrint("home get user: \(user)")
 		await MainActor.run {
 			self.currentUser = user
-			self.userCategories = user.categoryPreferences ?? []
+			if let categoryPreferences = user.categoryPreferences {
+				self.userCategories = categoryPreferences.compactMap { RestaurantCategory(rawValue: $0) }
+			}
 		}
 	}
 

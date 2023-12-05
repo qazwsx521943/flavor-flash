@@ -61,7 +61,7 @@ extension RestaurantMapViewCoordinator {
 
 	func fetchNearByRestaurants(centerCoordinate: CLLocationCoordinate2D) {
 
-		guard let categoryTag = RestaurantCategory(rawValue: parent.homeViewModel.category)?.searchTag else { return }
+		guard let categoryTag = parent.homeViewModel.category?.searchTag else { return }
 		PlaceFetcher.shared.fetchNearBy(type: [categoryTag], location: Location(CLLocation: centerCoordinate)) { [weak self] response in
 			switch response {
 			case .success(let result):

@@ -31,7 +31,7 @@ final class SignInAppleHelper: NSObject {
 					continuation.resume(returning: signInAppleResult)
 					return
 				case .failure(let error):
-					continuation.resume(throwing: error as! Never)
+//					continuation.resume(throwing: error)
 					return
 				}
 			}

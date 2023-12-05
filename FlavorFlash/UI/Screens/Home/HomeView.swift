@@ -15,35 +15,38 @@ struct HomeView: View {
 
 	var body: some View {
 		NavigationStack {
+			let animation = Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true)
 			VStack {
-				Text(viewModel.category)
-					.font(.title3)
+				if let randomCategoryText = viewModel.category?.title {
+					Text(randomCategoryText)
+						.font(.title3)
+				}
 
 				Image("cube")
 					.resizable()
-					.aspectRatio(contentMode: .fit)
-					.padding(40)
+					.frame(
+						width: 150, height: 150
+					)
 					.onTapGesture {
 						viewModel.randomCategory()
+						withAnimation(animation) {
+							animate = true
+						}
 					}
 
-				if !viewModel.category.isEmpty {
+				if viewModel.category != nil {
 					NavigationLink {
 						RestaurantSearchView()
 							.environmentObject(viewModel)
 					} label: {
-						Text("就吃這間！")
+						Text("就吃這個！")
 							.frame(height: 55)
-							.frame(maxWidth: .infinity)
-							.frame(alignment: .center)
-							.background(animate ? .purple : .red)
+							.frame(width: 200)
+							.background(.black.opacity(0.7))
 							.clipShape(RoundedRectangle(cornerRadius: 10.0))
+							.shadow(color: Color.white.opacity(0.7), radius: animate ? 10 : 0)
 					}
-					.padding(.horizontal, animate ? 30 : 80)
 					.foregroundStyle(.white)
-					.scaleEffect(animate ? 1.1 : 1.0)
-					.offset(y: animate ? -10 : 0)
-					.onAppear(perform: addAnimation)
 				}
 			}
 			.padding(8)
@@ -63,18 +66,6 @@ struct HomeView: View {
 }
 
 extension HomeView {
-	func addAnimation() {
-		guard !animate else { return }
-		DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-			withAnimation(
-				Animation
-					.easeInOut(duration: 2)
-					.repeatForever()
-			) {
-				animate.toggle()
-			}
-		}
-	}
 }
 
 #Preview {

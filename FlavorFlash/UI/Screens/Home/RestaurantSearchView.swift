@@ -39,7 +39,8 @@ struct RestaurantSearchView: View {
 					.frame(height: 120)
 				}
 			}
-			.navigationTitle($homeViewModel.category)
+			.navigationTitle(homeViewModel.category!.title)
+			.navigationBarTitleDisplayMode(.inline)
         }
     }
 //
