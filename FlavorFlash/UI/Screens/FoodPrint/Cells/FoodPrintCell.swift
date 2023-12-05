@@ -53,11 +53,12 @@ private extension FoodPrintCell {
 						AsyncImage(url: URL(string: imageUrl)!) { image in
 							image
 								.resizable()
+								.rotationEffect(.degrees(90))
 								.scaledToFill()
 								.frame(width: size.width)
 						} placeholder: {
 							ProgressView()
-								.frame(width: size.width)
+								.frame(width: size.width, height: 300)
 						}
 					}
 				}
