@@ -87,6 +87,7 @@ final class AuthenticationManager {
 	}
 
 	func deleteAccount() {
+		debugPrint("delete currentUser : \(Auth.auth().currentUser)")
 		Auth.auth().currentUser?.delete()
 	}
 }

@@ -96,7 +96,7 @@ struct ProfileView: View {
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink {
-						SettingsView()
+						SettingsView(profileViewModel: viewModel)
 					} label: {
 						Image(systemName: "gearshape.fill")
 							.tint(.secondary)
