@@ -43,6 +43,9 @@ extension AuthenticationView {
 				do {
 					try await authenticationViewModel.signInWithApple()
 					navigationModel.showSignInModal = false
+					if authenticationViewModel.isFirstSignIn {
+						navigationModel.showCategorySelectionModal = true
+					}
 				} catch {
 					print(error)
 				}

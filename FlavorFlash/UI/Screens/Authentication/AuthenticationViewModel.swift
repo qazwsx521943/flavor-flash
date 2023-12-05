@@ -15,12 +15,23 @@ class AuthenticationViewModel: NSObject, ObservableObject {
 
 	@Published var didSignInWithApple = false
 
+	@Published var isFirstSignIn = false
+
 	func signInWithApple() async throws {
 		let signInAppleHelper = SignInAppleHelper()
-		let tokens = try await signInAppleHelper.startSignInWithAppleFlow()
+		do {
+			let tokens = try await signInAppleHelper.startSignInWithAppleFlow()
+			let authDataResult = try await AuthenticationManager.shared.signInWithApple(tokens: tokens)
+			let user = FFUser(auth: authDataResult)
+			do {
+				let existingUser = try await UserManager.shared.getUser(userId: user.id)
+			} catch {
+				try await UserManager.shared.createNewUser(user: user)
+				isFirstSignIn = true
+			}
+		} catch {
+			debugPrint("signIn with apple cancelled")
+		}
 		//		print(signInResult)
-		let authDataResult = try await AuthenticationManager.shared.signInWithApple(tokens: tokens)
-		let user = FFUser(auth: authDataResult)
-		try await UserManager.shared.createNewUser(user: user)
 	}
 }
