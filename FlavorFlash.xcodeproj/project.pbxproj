@@ -110,6 +110,9 @@
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
 		E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */; };
 		E7FECC722B20927A00674C20 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC712B20927A00674C20 /* TextStyles.swift */; };
+		E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC732B209A9500674C20 /* ButtonStyles.swift */; };
+		E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC752B209C2B00674C20 /* ShadowStyles.swift */; };
+		E7FECC7A2B20A69600674C20 /* ToggleStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC792B20A69600674C20 /* ToggleStyles.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
 		E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */; };
 		E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */; };
@@ -217,6 +220,9 @@
 		E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceResult.swift; sourceTree = "<group>"; };
 		E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
 		E7FECC712B20927A00674C20 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
+		E7FECC732B209A9500674C20 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		E7FECC752B209C2B00674C20 /* ShadowStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyles.swift; sourceTree = "<group>"; };
+		E7FECC792B20A69600674C20 /* ToggleStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyles.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryView.swift; sourceTree = "<group>"; };
 		E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintMapView.swift; sourceTree = "<group>"; };
@@ -701,6 +707,9 @@
 			isa = PBXGroup;
 			children = (
 				E7FECC712B20927A00674C20 /* TextStyles.swift */,
+				E7FECC732B209A9500674C20 /* ButtonStyles.swift */,
+				E7FECC752B209C2B00674C20 /* ShadowStyles.swift */,
+				E7FECC792B20A69600674C20 /* ToggleStyles.swift */,
 			);
 			path = StyleGuide;
 			sourceTree = "<group>";
@@ -974,6 +983,7 @@
 				E70AF8EE2B074B8F0003462C /* Restaurant.swift in Sources */,
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
 				E71BFB1E2B176E6B008E89DE /* Utilities.swift in Sources */,
+				E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */,
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */,
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,
@@ -984,6 +994,7 @@
 				E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */,
 				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,
 				E70C6C5D2B0CEA05003B27EE /* CommentView.swift in Sources */,
+				E7FECC7A2B20A69600674C20 /* ToggleStyles.swift in Sources */,
 				E7274B7D2B19ABE5008C439F /* BackgroundModifiers.swift in Sources */,
 				E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */,
 				E74EDF442B15B9B4004DE202 /* ChatroomView.swift in Sources */,
@@ -1047,6 +1058,7 @@
 				E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */,
 				E7E200E72B091235003C22D6 /* Message.swift in Sources */,
 				E7FFB39C2B1DB4BF0065A213 /* CommentSheetView.swift in Sources */,
+				E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+Extension.swift in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
