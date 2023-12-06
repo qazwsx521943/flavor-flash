@@ -24,8 +24,6 @@ class EmailSignInViewModel: ObservableObject {
 
 	let state: State
 
-	@EnvironmentObject var userStore: UserStore
-
 	@Published var email = ""
 
 	@Published var password = ""
@@ -62,7 +60,6 @@ class EmailSignInViewModel: ObservableObject {
 
 		let currentUser = try await UserManager.shared.getUser(userId: userData.uid)
 
-//		userStore.setCurrentUser(currentUser)
 		debugPrint(userData)
 	}
 }
