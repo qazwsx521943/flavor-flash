@@ -109,6 +109,7 @@
 		E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */; };
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
 		E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */; };
+		E7FECC722B20927A00674C20 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC712B20927A00674C20 /* TextStyles.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
 		E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */; };
 		E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */; };
@@ -215,6 +216,7 @@
 		E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSPlaceField+Extension.swift"; sourceTree = "<group>"; };
 		E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceResult.swift; sourceTree = "<group>"; };
 		E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
+		E7FECC712B20927A00674C20 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryView.swift; sourceTree = "<group>"; };
 		E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintMapView.swift; sourceTree = "<group>"; };
@@ -313,6 +315,7 @@
 		E70AF8E12B0710CB0003462C /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				E7FECC702B20926900674C20 /* StyleGuide */,
 				E70AF8DF2B0710BA0003462C /* appConfig.swift */,
 				E70AF8F82B0763480003462C /* ENV.swift */,
 			);
@@ -694,6 +697,14 @@
 			path = GooglePlaceResult;
 			sourceTree = "<group>";
 		};
+		E7FECC702B20926900674C20 /* StyleGuide */ = {
+			isa = PBXGroup;
+			children = (
+				E7FECC712B20927A00674C20 /* TextStyles.swift */,
+			);
+			path = StyleGuide;
+			sourceTree = "<group>";
+		};
 		E7FFB3822B1C90E10065A213 /* FoodPrintHistoryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1048,6 +1059,7 @@
 				E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E75588BD2B0E075B00086854 /* EmailSignInViewModel.swift in Sources */,
+				E7FECC722B20927A00674C20 /* TextStyles.swift in Sources */,
 				E71BFB192B1760E1008E89DE /* SignInWithAppleButtonView.swift in Sources */,
 				E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,
