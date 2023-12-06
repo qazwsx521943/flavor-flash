@@ -22,6 +22,7 @@ struct ProfileView: View {
 
 	@State private var showFriends = false
 	@State private var showFoodPrint = false
+	@State private var isDarkMode = false
 
 	enum QRCodeMode: Int {
 		case myQRCode = 0
@@ -31,11 +32,11 @@ struct ProfileView: View {
 	var body: some View {
 			if let user = viewModel.user {
 				ProfileHeader(avatarUrlString: user.profileImageUrl ?? "") {
-					ActivityItemDisplay(title: "足跡", count: viewModel.foodPrints.count) {
+					ActivityItemDisplay(title: "foodprints", count: viewModel.foodPrints.count) {
 						showFoodPrint = true
 					}
-					ActivityItemDisplay(title: "成就", count: 8)
-					ActivityItemDisplay(title: "朋友", count: viewModel.friends.count) {
+					ActivityItemDisplay(title: "badges", count: 8)
+					ActivityItemDisplay(title: "friends", count: viewModel.friends.count) {
 						showFriends = true
 					}
 				}
@@ -77,17 +78,23 @@ struct ProfileView: View {
 			}
 
 			List {
-				Section("FoodPrint") {
-					NavigationLink {
-						Text("hi")
-					} label: {
-						Text("FoodPrint")
-							.prefixedWithSFSymbol(named: "shoeprints.fill", height: 20)
+				Section {
+					Toggle(isOn: $isDarkMode) {
+						Text("Dark Mode")
+							.prefixedWithSFSymbol(named: "circle.lefthalf.filled", height: 20)
+							.captionStyle()
 					}
+						.toggleStyle(PrimaryToggleStyle(size: 16))
+				} header: {
+					Text("Appearance")
+						.captionStyle()
 				}
 
-				Section("Social") {
+				Section {
 					qrcodeView
+				} header: {
+					Text("Social")
+						.captionStyle()
 				}
 
 				accountConfigurationView
@@ -157,8 +164,7 @@ extension ProfileView {
 					}
 				} label: {
 					Text("Logout")
-						.font(.title2)
-						.bold()
+						.bodyBoldStyle()
 						.foregroundStyle(.red)
 				}
 
@@ -168,8 +174,9 @@ extension ProfileView {
 	}
 
 	private var qrcodeView: some View {
-		Text("掃描QRCode")
+		Text("Add Friends")
 			.prefixedWithSFSymbol(named: "qrcode", height: 20, tintColor: .white)
+			.captionStyle()
 			.onTapGesture {
 				showQRCode = true
 			}

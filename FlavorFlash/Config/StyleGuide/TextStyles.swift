@@ -72,6 +72,13 @@ struct CaptionStyle: ViewModifier {
 	}
 }
 
+struct DetailBoldStyle: ViewModifier {
+	func body(content: Content) -> some View {
+		content
+			.font(.custom(FontStyle.fontNameBold.rawValue, size: 10))
+	}
+}
+
 
 // MARK: - View Extension
 extension View {
@@ -90,8 +97,17 @@ extension View {
 	func captionStyle() -> some View {
 		modifier(CaptionStyle())
 	}
+
+	func detailBoldStyle() -> some View {
+		modifier(DetailBoldStyle())
+	}
 }
 
+extension Text {
+	func navigationStyle() -> Self {
+		self.font(.custom(FontStyle.fontNameBold.rawValue, fixedSize: 20))
+	}
+}
 #Preview {
     TextStyles()
 }

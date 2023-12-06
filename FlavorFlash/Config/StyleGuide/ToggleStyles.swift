@@ -35,23 +35,30 @@ struct PrimaryToggleStyle: ToggleStyle {
 	@Environment(\.colorScheme) var colorScheme
 
 	let isLabelHidden: Bool
-	let size: CGFloat = 44
+	let size: CGFloat
 
 	var backgroundColor: Color {
 		colorScheme == .light ? Color(.middleYellow) : Color(.darkOrange)
+	}
+
+	init(isLabelHidden: Bool = false, size: CGFloat = 20.0) {
+		self.isLabelHidden = isLabelHidden
+		self.size = size
 	}
 
 	func makeBody(configuration: Configuration) -> some View {
 		return HStack {
 			if !isLabelHidden {
 				configuration.label
+					.captionStyle()
 			}
+
 			Spacer()
 
-			HStack(spacing: 16) {
+			HStack(spacing: 10) {
 				if configuration.isOn {
 					Text("on")
-						.bodyBoldStyle()
+						.detailBoldStyle()
 						.frame(width: size, height: size)
 				}
 
@@ -61,7 +68,7 @@ struct PrimaryToggleStyle: ToggleStyle {
 
 				if !configuration.isOn {
 					Text("off")
-						.bodyBoldStyle()
+						.detailBoldStyle()
 						.frame(width: size, height: size)
 				}
 			}
@@ -70,6 +77,10 @@ struct PrimaryToggleStyle: ToggleStyle {
 				Capsule()
 					.fill(configuration.isOn ? backgroundColor : Color(.shadowGray))
 			)
+		}.onTapGesture {
+			withAnimation {
+				configuration.$isOn.wrappedValue.toggle()
+			}
 		}
 	}
 }

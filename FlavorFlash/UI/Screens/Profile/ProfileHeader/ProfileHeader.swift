@@ -13,15 +13,14 @@ struct ProfileHeader<Content: View>: View {
 
 	var content: Content?
 
-
-
     var body: some View {
 		ZStack(alignment: .top) {
 			RoundedRectangle(cornerRadius: 15)
 				.fill(.gray.opacity(0.2))
 
-			HStack(spacing: 80) {
+			HStack(spacing: 50) {
 				content
+					.frame(width: 60)
 			}
 			.frame(maxWidth: .infinity)
 			.padding(.horizontal, 50)
@@ -40,8 +39,7 @@ struct ProfileHeader<Content: View>: View {
 			.offset(y: -40)
 			.overlay(alignment: .center) {
 				Text("Jason")
-					.font(.title2)
-					.bold()
+					.bodyBoldStyle()
 					.offset(y: 25)
 			}
 		}
@@ -68,12 +66,11 @@ struct ActivityItemDisplay: View {
 	var body: some View {
 		VStack(spacing: 10) {
 			Text(title)
-				.font(.system(size: 12))
+				.detailBoldStyle()
 				.foregroundStyle(Color(uiColor: UIColor.lightGray))
 
 			Text("\(count)")
-				.font(.title2)
-				.bold()
+				.bodyBoldStyle()
 				.onTapGesture {
 					action?()
 				}
@@ -83,8 +80,8 @@ struct ActivityItemDisplay: View {
 
 #Preview {
 	ProfileHeader(avatarUrlString: "https://picsum.photos/200") {
-		ActivityItemDisplay(title: "日記", count: 8)
-		ActivityItemDisplay(title: "成就", count: 8)
-		ActivityItemDisplay(title: "朋友", count: 8)
+		ActivityItemDisplay(title: "foodprints", count: 8)
+		ActivityItemDisplay(title: "badges", count: 8)
+		ActivityItemDisplay(title: "friends", count: 8)
 	}
 }
