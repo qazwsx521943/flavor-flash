@@ -29,8 +29,6 @@ struct PetSelectionView: View {
 
 	@State private var selectedItem: PhotosPickerItem?
 
-	@State var image: UIImage?
-
 	var body: some View {
 		ScrollView {
 			VStack(alignment: .leading) {
@@ -41,7 +39,7 @@ struct PetSelectionView: View {
 						}
 				}
 
-				if let image {
+				if let image = homeViewModel.outputImage {
 					Image(uiImage: image)
 						.resizable()
 						.frame(width: 100, height: 100)
@@ -58,7 +56,9 @@ struct PetSelectionView: View {
 						let selectedItem,
 						let data = try? await selectedItem.loadTransferable(type: Data.self)
 					{
-						image = UIImage(data: data)
+						homeViewModel.inputImage = UIImage(data: data)
+
+						homeViewModel.runVisionRequest()
 					}
 				}
 			}

@@ -7,6 +7,7 @@
 
 import Foundation
 import MapKit
+import Vision
 
 @MainActor
 final class HomeViewModel: ObservableObject {
@@ -21,6 +22,10 @@ final class HomeViewModel: ObservableObject {
     @Published var restaurants: [Restaurant] = []
 
     @Published var selectedRestaurant: Restaurant?
+
+	@Published var inputImage: UIImage?
+
+	@Published var outputImage: UIImage?
 
 	init() {
 		Task {
@@ -62,5 +67,90 @@ final class HomeViewModel: ObservableObject {
 		} catch {
 			throw URLError(.badServerResponse)
 		}
+	}
+}
+
+// MARK: - Image processing using Vision
+extension HomeViewModel {
+	func runVisionRequest() {
+
+		guard let model = try? VNCoreMLModel(for: DeepLabV3(configuration: .init()).model)
+		else { return }
+
+		let request = VNCoreMLRequest(model: model, completionHandler: visionRequestDidComplete)
+		request.imageCropAndScaleOption = .scaleFill
+
+		guard let inputImage else { return }
+
+		DispatchQueue.global().async {
+
+			let handler = VNImageRequestHandler(cgImage: inputImage.cgImage!, options: [:])
+
+			do {
+				try handler.perform([request])
+			}catch {
+				print(error)
+			}
+		}
+	}
+
+	func visionRequestDidComplete(request: VNRequest, error: Error?) {
+		guard let inputImage else { return }
+		DispatchQueue.main.async { [weak self] in
+			guard let self else { return }
+			if let observations = request.results as? [VNCoreMLFeatureValueObservation],
+			   let segmentationmap = observations.first?.featureValue.multiArrayValue {
+
+				let segmentationMask = segmentationmap.image(min: 0, max: 1)
+
+				self.outputImage = segmentationMask!.resizedImage(for: inputImage.size)!
+
+//				self.maskOriginalImage()
+				self.maskInputImage()
+			}
+		}
+	}
+
+	func maskInputImage() {
+		guard
+			let inputImage,
+			let outputImage
+		else { return }
+
+		let bgImage = UIImage.imageFromColor(color: .blue, size: inputImage.size, scale: inputImage.scale)!
+
+		let beginImage = CIImage(cgImage: inputImage.cgImage!)
+		let background = CIImage(cgImage: bgImage.cgImage!)
+		let mask = CIImage(cgImage: outputImage.cgImage!)
+
+		if let compositeImage = CIFilter(name: "CIBlendWithMask", parameters: [
+			kCIInputImageKey: beginImage,
+			kCIInputBackgroundImageKey:background,
+			kCIInputMaskImageKey:mask])?.outputImage
+		{
+
+			let ciContext = CIContext(options: nil)
+			let filteredImageRef = ciContext.createCGImage(compositeImage, from: compositeImage.extent)
+
+			self.outputImage = UIImage(cgImage: filteredImageRef!)
+		}
+	}
+
+	func maskOriginalImage() {
+		guard
+			let inputImage,
+			let outputImage
+		else { return }
+
+			let maskReference = outputImage.cgImage!
+			let imageMask = CGImage(maskWidth: maskReference.width,
+									height: maskReference.height,
+									bitsPerComponent: maskReference.bitsPerComponent,
+									bitsPerPixel: maskReference.bitsPerPixel,
+									bytesPerRow: maskReference.bytesPerRow,
+									provider: maskReference.dataProvider!, decode: nil, shouldInterpolate: true)
+
+			let maskedReference = inputImage.cgImage!.masking(imageMask!)
+		self.outputImage = UIImage(cgImage: maskedReference!)
 	}
 }

@@ -74,6 +74,10 @@
 		E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FFUser.swift */; };
 		E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */; };
 		E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB82B1448330042FB51 /* FoodPrintCell.swift */; };
+		E78678042B21BF8A00664756 /* DeepLabV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */; };
+		E78678062B21C2E200664756 /* MLMultiArray+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78678052B21C2E200664756 /* MLMultiArray+EXT.swift */; };
+		E78678082B21C50100664756 /* CGImage+RawBytes.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78678072B21C50100664756 /* CGImage+RawBytes.swift */; };
+		E786780A2B21C54A00664756 /* MLMultiArray+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E78678092B21C54A00664756 /* MLMultiArray+Helpers.swift */; };
 		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
 		E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639802B118A49006FF600 /* QRCodeScanner.swift */; };
 		E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639822B118A6E006FF600 /* ScannerViewController.swift */; };
@@ -203,6 +207,10 @@
 		E7809B552B0A2DDF00D76E71 /* FFUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFUser.swift; sourceTree = "<group>"; };
 		E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintDataService.swift; sourceTree = "<group>"; };
 		E783AAB82B1448330042FB51 /* FoodPrintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintCell.swift; sourceTree = "<group>"; };
+		E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DeepLabV3.mlmodel; sourceTree = "<group>"; };
+		E78678052B21C2E200664756 /* MLMultiArray+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+EXT.swift"; sourceTree = "<group>"; };
+		E78678072B21C50100664756 /* CGImage+RawBytes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGImage+RawBytes.swift"; sourceTree = "<group>"; };
+		E78678092B21C54A00664756 /* MLMultiArray+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MLMultiArray+Helpers.swift"; sourceTree = "<group>"; };
 		E79639802B118A49006FF600 /* QRCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanner.swift; sourceTree = "<group>"; };
 		E79639822B118A6E006FF600 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		E79ED0982B14D392008C2E6F /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
@@ -429,6 +437,9 @@
 				E773536E2B09B53F003035B4 /* DateFormatter+Extension.swift */,
 				E79ED09D2B14E9A7008C2E6F /* UIImage+Extension.swift */,
 				E70C38F02B2063810048535C /* Color+EXT.swift */,
+				E78678052B21C2E200664756 /* MLMultiArray+EXT.swift */,
+				E78678092B21C54A00664756 /* MLMultiArray+Helpers.swift */,
+				E78678072B21C50100664756 /* CGImage+RawBytes.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -455,6 +466,7 @@
 		E75588C02B0EE27800086854 /* CreateML */ = {
 			isa = PBXGroup;
 			children = (
+				E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */,
 				E70C38E62B1F22AF0048535C /* FoodClassifierV1.mlmodel */,
 			);
 			path = CreateML;
@@ -1034,6 +1046,7 @@
 				E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */,
 				E70C6C472B0BBA03003B27EE /* EmailAddress.swift in Sources */,
 				E7FFB3922B1D6FA00065A213 /* DeleteAccountConfirmView.swift in Sources */,
+				E78678082B21C50100664756 /* CGImage+RawBytes.swift in Sources */,
 				E70C6C5B2B0C9BA3003B27EE /* KingfisherWrapper.swift in Sources */,
 				E70C6C452B0BAD51003B27EE /* TextFieldModifiers.swift in Sources */,
 				E773536F2B09B53F003035B4 /* DateFormatter+Extension.swift in Sources */,
@@ -1055,6 +1068,7 @@
 				E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */,
 				E7FFB38F2B1D6C000065A213 /* SettingsView.swift in Sources */,
 				E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */,
+				E786780A2B21C54A00664756 /* MLMultiArray+Helpers.swift in Sources */,
 				E75588C72B0EF40F00086854 /* SecondaryPreviewView.swift in Sources */,
 				E79ED09B2B14DF7C008C2E6F /* RestaurantMarkerView.swift in Sources */,
 				E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */,
@@ -1079,6 +1093,7 @@
 				E7FFB39C2B1DB4BF0065A213 /* CommentSheetView.swift in Sources */,
 				E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+Extension.swift in Sources */,
+				E78678042B21BF8A00664756 /* DeepLabV3.mlmodel in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
@@ -1092,6 +1107,7 @@
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E75588BD2B0E075B00086854 /* EmailSignInViewModel.swift in Sources */,
 				E7FECC722B20927A00674C20 /* TextStyles.swift in Sources */,
+				E78678062B21C2E200664756 /* MLMultiArray+EXT.swift in Sources */,
 				E71BFB192B1760E1008E89DE /* SignInWithAppleButtonView.swift in Sources */,
 				E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,
