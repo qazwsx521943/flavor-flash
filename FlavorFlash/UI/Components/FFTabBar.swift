@@ -33,6 +33,12 @@ struct FFTabBar: View {
 						.foregroundStyle(.white)
 				}
 				.toolbar(.hidden, for: .tabBar)
+				.onAppear {
+					navigationModel.hideTabBar()
+				}
+				.onDisappear {
+					navigationModel.tabBarHidden = false
+				}
 
 			FoodPrintView()
 				.tag(TabItems.foodPrint)
@@ -48,7 +54,9 @@ struct FFTabBar: View {
 		}
 		.ignoresSafeArea()
 
-		customTabBar(isDarkMode ? .darkOrange : .middleYellow)
+		if !navigationModel.tabBarHidden {
+			customTabBar(isDarkMode ? .darkOrange : .middleYellow)
+		}
     }
 }
 

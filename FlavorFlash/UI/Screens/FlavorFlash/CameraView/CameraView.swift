@@ -37,7 +37,6 @@ struct CameraView: View {
 			.navigationBarTitleDisplayMode(.inline)
 			.toolbar(.hidden, for: .tabBar)
 			.statusBarHidden()
-			.ignoresSafeArea()
 		}
 	}
 }

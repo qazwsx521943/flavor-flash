@@ -35,7 +35,7 @@ struct HomeView: View {
 								width: 150, height: 150
 							)
 							.overlay(alignment: .top) {
-								Text(viewModel.category?.title ?? "要吃什麼？")
+								Text(viewModel.category?.title ?? "What to eat？")
 									.captionStyle()
 									.padding(.vertical, 8)
 									.padding(.horizontal, 12)
@@ -66,7 +66,8 @@ struct HomeView: View {
 							RestaurantSearchView()
 								.environmentObject(viewModel)
 						} label: {
-							Text("就吃這個！")
+							Text("Search Nearby！")
+								.bodyBoldStyle()
 								.frame(height: 55)
 								.frame(width: 200)
 								.background(.black.opacity(0.7))
@@ -89,7 +90,6 @@ struct HomeView: View {
 				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
-			.border(.red, width: 2)
 			.overlay(alignment: .topTrailing) {
 				Button {
 					withAnimation {
@@ -99,15 +99,6 @@ struct HomeView: View {
 					Image(systemName: "line.3.horizontal.decrease")
 				}
 				.buttonStyle(IconButtonStyle())
-			}
-			.toolbar {
-				ToolbarItem(placement: .topBarTrailing) {
-					NavigationLink {
-						ProfileView()
-					} label: {
-						Image(systemName: "person.fill")
-					}
-				}
 			}
 		}
 	}
