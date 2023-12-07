@@ -114,6 +114,7 @@
 		E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC732B209A9500674C20 /* ButtonStyles.swift */; };
 		E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC752B209C2B00674C20 /* ShadowStyles.swift */; };
 		E7FECC7A2B20A69600674C20 /* ToggleStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC792B20A69600674C20 /* ToggleStyles.swift */; };
+		E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC832B218B1600674C20 /* PetSelectionView.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
 		E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */; };
 		E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */; };
@@ -225,6 +226,7 @@
 		E7FECC732B209A9500674C20 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		E7FECC752B209C2B00674C20 /* ShadowStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyles.swift; sourceTree = "<group>"; };
 		E7FECC792B20A69600674C20 /* ToggleStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyles.swift; sourceTree = "<group>"; };
+		E7FECC832B218B1600674C20 /* PetSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSelectionView.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryView.swift; sourceTree = "<group>"; };
 		E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintMapView.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 		E70AF8DB2B070EE60003462C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E7FECC822B218AE800674C20 /* PetSelection */,
 				E7F9EDB72B0864A7005976BE /* Map */,
 				E7A399422B034E11005C8021 /* HomeView.swift */,
 				E70AF8FE2B07A5470003462C /* HomeViewModel.swift */,
@@ -717,6 +720,14 @@
 			path = StyleGuide;
 			sourceTree = "<group>";
 		};
+		E7FECC822B218AE800674C20 /* PetSelection */ = {
+			isa = PBXGroup;
+			children = (
+				E7FECC832B218B1600674C20 /* PetSelectionView.swift */,
+			);
+			path = PetSelection;
+			sourceTree = "<group>";
+		};
 		E7FFB3822B1C90E10065A213 /* FoodPrintHistoryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1065,6 +1076,7 @@
 				E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+Extension.swift in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
+				E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
 				E7A399472B034E30005C8021 /* ChatListView.swift in Sources */,
 				E70C6C542B0C5CAF003B27EE /* RestaurantCategoryView.swift in Sources */,

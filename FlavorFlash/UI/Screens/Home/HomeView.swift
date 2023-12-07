@@ -7,19 +7,21 @@
 
 import SwiftUI
 import os.log
+enum BoxSkin: String {
+	case cat01 = "cat_1"
+	case cat02 = "cat_2"
+	case cat03 = "cat_3"
+}
 
 struct HomeView: View {
 	@StateObject private var viewModel = HomeViewModel()
 
 	@State private var animate = false
 
-	@AppStorage("selectedSkin") var selectedSkin: BoxSkins = .cat01
+	@State private var showPetSelection = false
 
-	enum BoxSkins: String {
-		case cat01 = "cat_1"
-		case cat02 = "cat_2"
-		case cat03 = "cat_3"
-	}
+	@AppStorage("selectedSkin") var selectedSkin: BoxSkin?
+
 
 	var body: some View {
 		NavigationStack {
@@ -31,17 +33,19 @@ struct HomeView: View {
 							.font(.title3)
 					}
 
-					Image(selectedSkin.rawValue)
-						.resizable()
-						.frame(
-							width: 150, height: 150
-						)
-						.onTapGesture {
-							viewModel.randomCategory()
-							withAnimation(animation) {
-								animate = true
+					if let selectedSkin {
+						Image(selectedSkin.rawValue)
+							.resizable()
+							.frame(
+								width: 150, height: 150
+							)
+							.onTapGesture {
+								viewModel.randomCategory()
+								withAnimation(animation) {
+									animate = true
+								}
 							}
-						}
+					}
 
 					if viewModel.category != nil {
 						NavigationLink {
@@ -58,29 +62,38 @@ struct HomeView: View {
 						.foregroundStyle(.white)
 					}
 				}
+
+				GeometryReader { geo in
+					PetSelectionView(currentSelectedSkin: $selectedSkin) { boxSkin in
+						selectedSkin = boxSkin
+					}
+					.frame(width: geo.size.width * 0.6)
+					.offset(x: showPetSelection ? geo.size.width * 0.4 : geo.size.width)
+					.transition(.move(edge: .trailing))
+					.animation(.easeIn, value: showPetSelection)
+				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.border(.red, width: 2)
 			.overlay(alignment: .topTrailing) {
 				Button {
-
+					withAnimation {
+						showPetSelection.toggle()
+					}
 				} label: {
 					Image(systemName: "line.3.horizontal.decrease")
 				}
 				.buttonStyle(IconButtonStyle())
 			}
-			.padding(8)
 			.toolbar {
 				ToolbarItem(placement: .topBarTrailing) {
 					NavigationLink {
 						ProfileView()
 					} label: {
 						Image(systemName: "person.fill")
-							.foregroundStyle(.white)
 					}
 				}
 			}
-			.navigationTitle("要吃什麼？")
 		}
 	}
 }
