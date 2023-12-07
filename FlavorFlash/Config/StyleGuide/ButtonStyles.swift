@@ -35,6 +35,12 @@ struct ButtonStyles: View {
 			}
 			.buttonStyle(LargePrimaryButtonStyle())
 
+			Button {
+
+			} label: {
+				Image(systemName: "line.3.horizontal.decrease")
+			}
+			.buttonStyle(IconButtonStyle())
 		}
     }
 }
@@ -73,6 +79,27 @@ struct LargePrimaryButtonStyle: ButtonStyle {
 			.padding(15)
 			.background(RoundedRectangle(cornerRadius: 10.0).fill(backgroundColor))
 			.scaleEffect(configuration.isPressed ? 0.9 : 1)
+	}
+}
+
+struct IconButtonStyle: ButtonStyle {
+	@Environment(\.colorScheme) var colorScheme
+
+	var backgroundColor: Color {
+		colorScheme == .light ? Color(.middleYellow) : Color(.darkOrange)
+	}
+
+	func makeBody(configuration: Configuration) -> some View {
+		configuration.label
+			.bodyBoldStyle()
+			.padding(12)
+			.background(
+				Circle()
+					.fill(
+						configuration.isPressed 
+						? backgroundColor.opacity(0.4)
+						: backgroundColor.opacity(0.9))
+			)
 	}
 }
 
