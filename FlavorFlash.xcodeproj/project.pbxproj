@@ -115,6 +115,7 @@
 		E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC752B209C2B00674C20 /* ShadowStyles.swift */; };
 		E7FECC7A2B20A69600674C20 /* ToggleStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC792B20A69600674C20 /* ToggleStyles.swift */; };
 		E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC832B218B1600674C20 /* PetSelectionView.swift */; };
+		E7FECC862B21AC6000674C20 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC852B21AC6000674C20 /* Polygon.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
 		E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */; };
 		E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */; };
@@ -227,6 +228,7 @@
 		E7FECC752B209C2B00674C20 /* ShadowStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyles.swift; sourceTree = "<group>"; };
 		E7FECC792B20A69600674C20 /* ToggleStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyles.swift; sourceTree = "<group>"; };
 		E7FECC832B218B1600674C20 /* PetSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSelectionView.swift; sourceTree = "<group>"; };
+		E7FECC852B21AC6000674C20 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryView.swift; sourceTree = "<group>"; };
 		E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintMapView.swift; sourceTree = "<group>"; };
@@ -534,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				E7FFB3802B1C35CF0065A213 /* LikeButton.swift */,
+				E7FECC852B21AC6000674C20 /* Polygon.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -998,6 +1001,7 @@
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
 				E71BFB1E2B176E6B008E89DE /* Utilities.swift in Sources */,
 				E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */,
+				E7FECC862B21AC6000674C20 /* Polygon.swift in Sources */,
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */,
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,

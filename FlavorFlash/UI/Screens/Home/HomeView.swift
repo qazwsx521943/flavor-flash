@@ -28,17 +28,31 @@ struct HomeView: View {
 			let animation = Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true)
 			ZStack {
 				VStack {
-					if let randomCategoryText = viewModel.category?.title {
-						Text(randomCategoryText)
-							.font(.title3)
-					}
-
 					if let selectedSkin {
 						Image(selectedSkin.rawValue)
 							.resizable()
 							.frame(
 								width: 150, height: 150
 							)
+							.overlay(alignment: .top) {
+								Text(viewModel.category?.title ?? "要吃什麼？")
+									.captionStyle()
+									.padding(.vertical, 8)
+									.padding(.horizontal, 12)
+									.background(
+										Capsule()
+											.fill(.shadowGray)
+											.zIndex(1.0)
+											.overlay(alignment: .bottom) {
+												Polygon(sides: 3)
+													.fill(.shadowGray)
+													.frame(width: 20, height: 20)
+													.rotationEffect(.degrees(90.0))
+													.offset(y: 5)
+											}
+									)
+									.offset(y: -30)
+							}
 							.onTapGesture {
 								viewModel.randomCategory()
 								withAnimation(animation) {
@@ -71,6 +85,7 @@ struct HomeView: View {
 					.offset(x: showPetSelection ? geo.size.width * 0.4 : geo.size.width)
 					.transition(.move(edge: .trailing))
 					.animation(.easeIn, value: showPetSelection)
+					.environmentObject(viewModel)
 				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)

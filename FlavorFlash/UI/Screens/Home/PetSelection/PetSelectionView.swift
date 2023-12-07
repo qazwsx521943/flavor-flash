@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct Pet: Identifiable {
 	let id: String
@@ -22,7 +23,13 @@ struct Pet: Identifiable {
 struct PetSelectionView: View {
 	@Binding var currentSelectedSkin: BoxSkin?
 
+	@EnvironmentObject var homeViewModel: HomeViewModel
+
 	var action: ((BoxSkin) -> Void)?
+
+	@State private var selectedItem: PhotosPickerItem?
+
+	@State var image: UIImage?
 
 	var body: some View {
 		ScrollView {
@@ -33,7 +40,29 @@ struct PetSelectionView: View {
 							action?(BoxSkin(rawValue: pet.imageName)!)
 						}
 				}
+
+				if let image {
+					Image(uiImage: image)
+						.resizable()
+						.frame(width: 100, height: 100)
+				}
 			}
+
+			PhotosPicker(selection: $selectedItem, matching: .images) {
+				Text("Upload Image")
+					.captionStyle()
+			}
+			.onChange(of: selectedItem) { item in
+				Task {
+					if
+						let selectedItem,
+						let data = try? await selectedItem.loadTransferable(type: Data.self)
+					{
+						image = UIImage(data: data)
+					}
+				}
+			}
+
 		}
 		.background(
 			.black.opacity(0.8)

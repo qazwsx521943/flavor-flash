@@ -33,6 +33,8 @@ identifier_name:
     - URL
     - url
     - app
+    - x
+    - y
 
 force_cast: warning
 
