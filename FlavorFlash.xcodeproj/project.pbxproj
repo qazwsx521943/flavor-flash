@@ -27,7 +27,6 @@
 		E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */; };
 		E70C6C352B0B6134003B27EE /* PlaceFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C342B0B6134003B27EE /* PlaceFetcher.swift */; };
 		E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C402B0BA145003B27EE /* BorderModifiers.swift */; };
-		E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */; };
 		E70C6C452B0BAD51003B27EE /* TextFieldModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */; };
 		E70C6C472B0BBA03003B27EE /* EmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C462B0BBA03003B27EE /* EmailAddress.swift */; };
 		E70C6C492B0BBE0E003B27EE /* ButtonModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */; };
@@ -162,7 +161,6 @@
 		E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
 		E70C6C342B0B6134003B27EE /* PlaceFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFetcher.swift; sourceTree = "<group>"; };
 		E70C6C402B0BA145003B27EE /* BorderModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderModifiers.swift; sourceTree = "<group>"; };
-		E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifiers.swift; sourceTree = "<group>"; };
 		E70C6C462B0BBA03003B27EE /* EmailAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddress.swift; sourceTree = "<group>"; };
 		E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifiers.swift; sourceTree = "<group>"; };
@@ -373,7 +371,6 @@
 			isa = PBXGroup;
 			children = (
 				E70C6C402B0BA145003B27EE /* BorderModifiers.swift */,
-				E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */,
 				E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */,
 				E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */,
 				E70C6C4A2B0C1AF4003B27EE /* ImageModifiers.swift */,
@@ -1103,7 +1100,6 @@
 				E7FFB38A2B1C9A6E0065A213 /* FoodPrintAnnotationView.swift in Sources */,
 				E70C6C492B0BBE0E003B27EE /* ButtonModifiers.swift in Sources */,
 				E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */,
-				E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E75588BD2B0E075B00086854 /* EmailSignInViewModel.swift in Sources */,
 				E7FECC722B20927A00674C20 /* TextStyles.swift in Sources */,

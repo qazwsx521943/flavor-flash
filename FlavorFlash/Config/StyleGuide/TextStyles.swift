@@ -79,7 +79,6 @@ struct DetailBoldStyle: ViewModifier {
 	}
 }
 
-
 // MARK: - View Extension
 extension View {
 	func titleStyle() -> some View {
@@ -103,11 +102,40 @@ extension View {
 	}
 }
 
+// MARK: - Text Extension
 extension Text {
-	func navigationStyle() -> Self {
-		self.font(.custom(FontStyle.fontNameBold.rawValue, fixedSize: 20))
+
+	func prefixedWithSFSymbol(
+		named name: String,
+		height: CGFloat,
+		tintColor color: Color = .black
+	) -> some View {
+		HStack {
+			Image(systemName: name)
+				.resizable()
+				.scaledToFit()
+				.frame(width: height, height: height)
+			self
+		}
+		.padding(.leading, 12)
+	}
+
+	func suffixWithSFSymbol(
+		named name: String,
+		height: CGFloat,
+		tintColor color: Color = .black
+	) -> some View {
+		HStack {
+			self
+			Image(systemName: name)
+				.resizable()
+				.scaledToFit()
+				.frame(width: height, height: height)
+		}
+		.padding(.horizontal, 8)
 	}
 }
+
 #Preview {
     TextStyles()
 }

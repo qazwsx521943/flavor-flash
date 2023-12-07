@@ -30,6 +30,8 @@ struct ProfileView: View {
 	}
 
 	var body: some View {
+		NavigationStack {
+
 			if let user = viewModel.user {
 				ProfileHeader(avatarUrlString: user.profileImageUrl ?? "") {
 					ActivityItemDisplay(title: "foodprints", count: viewModel.foodPrints.count) {
@@ -84,7 +86,7 @@ struct ProfileView: View {
 							.prefixedWithSFSymbol(named: "circle.lefthalf.filled", height: 20)
 							.captionStyle()
 					}
-						.toggleStyle(PrimaryToggleStyle(size: 16))
+					.toggleStyle(PrimaryToggleStyle(size: 16))
 				} header: {
 					Text("Appearance")
 						.captionStyle()
@@ -113,28 +115,29 @@ struct ProfileView: View {
 			.navigationTitle("Profile")
 			.navigationBarTitleDisplayMode(.inline)
 		}
+	}
 }
 
 extension ProfileView {
 	// MARK: - Layout
 	private var avatarInfo: some View {
 		ZStack(alignment: .center) {
-//			if let user = viewModel.user {
-//				VStack(alignment: .leading) {
-//					Text(user.displayName)
-//						.padding(.leading, 12)
-//						.font(.title)
-//						.bold()
+			//			if let user = viewModel.user {
+			//				VStack(alignment: .leading) {
+			//					Text(user.displayName)
+			//						.padding(.leading, 12)
+			//						.font(.title)
+			//						.bold()
 
 
-//				}
-//				.frame(maxWidth: .infinity, maxHeight: 100)
+			//				}
+			//				.frame(maxWidth: .infinity, maxHeight: 100)
 			Rectangle()
 				.frame(width: .infinity, height: 100)
 				.background(Color.gray)
 
 			avatarImage
-//			}
+			//			}
 		}
 		.frame(height: 100)
 		.padding(.horizontal, 16)
