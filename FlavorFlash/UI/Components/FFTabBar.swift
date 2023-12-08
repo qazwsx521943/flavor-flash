@@ -56,6 +56,7 @@ struct FFTabBar: View {
 
 		if !navigationModel.tabBarHidden {
 			customTabBar(isDarkMode ? .darkOrange : .middleYellow)
+				.ignoresSafeArea()
 		}
     }
 }

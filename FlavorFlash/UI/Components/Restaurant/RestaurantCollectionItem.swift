@@ -16,11 +16,11 @@ struct RestaurantCollectionItem: View {
 			Image(systemName: "person.fill")
 				.resizable()
 				.aspectRatio(contentMode: .fill)
-				.frame(width: 80, height: 80)
+				.frame(width: 60, height: 60)
 
-			VStack {
+			VStack(alignment: .leading) {
 				Text(restaurant.displayName.text)
-					.bodyBoldStyle()
+					.captionBoldStyle()
 
 				RestaurantInfoTags(restaurant: restaurant)
 			}

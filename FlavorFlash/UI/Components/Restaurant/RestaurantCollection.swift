@@ -46,7 +46,7 @@ struct RestaurantCollection: View {
 						}
 
 						RestaurantCollectionItem(restaurant: restaurants[index])
-							.roundedRectRadius(10)
+							.roundedRectRadius(20)
 							.offset(x: restaurants[index].offset)
 							.gesture(DragGesture().onChanged { value in
 								onChanged(value: value, index: index)
