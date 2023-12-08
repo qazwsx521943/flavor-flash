@@ -31,21 +31,7 @@ struct RestaurantDetail: View {
 					Text(restaurant.displayName.text)
 						.bodyBoldStyle()
 
-					HStack {
-						Group {
-							Text(restaurant.roundedRating)
-								.tagPaddingStyle()
-
-							Text("\(restaurant.userRatingCount ?? 0)")
-								.prefixedWithSFSymbol(named: "bubble.fill", height: 14)
-								.tagPaddingStyle(backgroundColor: .accent)
-
-							Text(restaurant.status)
-								.tagPaddingStyle(
-									backgroundColor: restaurant.opening ? .green : .red)
-						}
-						.captionStyle()
-					}
+					RestaurantInfoTags(restaurant: restaurant)
 
 					Text(restaurant.formattedAddress ?? "unknown")
 						.detailBoldStyle()
@@ -53,10 +39,9 @@ struct RestaurantDetail: View {
 
 				Spacer()
 
-				LikeButton(isLiked: $isLiked)
-					.onTapGesture {
-						addToFavorite?(restaurant)
-					}
+				LikeButton(isLiked: $isLiked) {
+					addToFavorite?(restaurant)
+				}
 			}
 
 			Divider()
