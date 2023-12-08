@@ -27,9 +27,12 @@ final class HomeViewModel: ObservableObject {
 
 	@Published var outputImage: UIImage?
 
+	@Published var userSavedRestaurants: [Restaurant] = []
+
 	init() {
 		Task {
 			try await loadCurrentUser()
+			try await loadUserSavedRestaurants()
 		}
 	}
 
@@ -66,6 +69,29 @@ final class HomeViewModel: ObservableObject {
 			try UserManager.shared.saveUserFavoriteRestaurant(userId: currentUser.id, restaurant: restaurant)
 		} catch {
 			throw URLError(.badServerResponse)
+		}
+	}
+
+	func loadUserSavedRestaurants() async throws {
+		print(currentUser?.favoriteRestaurants)
+		print("current User",currentUser)
+		guard let savedRestaurantIds = currentUser?.favoriteRestaurants else { return }
+		print("saved ids: \(savedRestaurantIds)")
+
+		var restaurants: [Restaurant] = []
+
+		try await withThrowingTaskGroup(of: Restaurant.self) { group in
+			for id in savedRestaurantIds {
+				group.addTask {
+					try await PlaceFetcher.shared.fetchPlaceDetailById(id: id)
+				}
+			}
+
+			for try await restaurant in group {
+				restaurants.append(restaurant)
+			}
+
+			self.userSavedRestaurants = restaurants
 		}
 	}
 }

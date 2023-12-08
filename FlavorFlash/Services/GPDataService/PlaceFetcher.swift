@@ -14,6 +14,12 @@ final class PlaceFetcher {
 
 	private let placesClient: GMSPlacesClient
 
+	private let headers: [Alamofire.HTTPHeader] = [
+		.contentType("application/json"),
+		HTTPHeader(name: "X-Goog-FieldMask", value: "*"),
+		HTTPHeader(name: "X-Goog-Api-Key", value: "AIzaSyCkUgmyqSq5eWWUb3DgwHc4Xp_3jLKrSMk")
+	]
+
 	private init() {
 		self.placesClient = GMSPlacesClient()
 	}
@@ -21,6 +27,35 @@ final class PlaceFetcher {
 	enum PlaceFetcherError: Error {
 		case noPlacesFound
 		case responseError
+	}
+
+	func fetchPlaceDetailById(id: String, completionHandler: @escaping (Result<Restaurant, Error>) -> Void) {
+
+		let request = AF.request("https://places.googleapis.com/v1/places/\(id)",
+								 encoding: JSONEncoding(options: .prettyPrinted),
+								 headers: HTTPHeaders(headers))
+
+		request.responseDecodable(of: Restaurant.self) { response in
+			switch response.result {
+			case .success(let restaurant):
+				completionHandler(.success(restaurant))
+			case .failure(let error):
+				completionHandler(.failure(error))
+			}
+		}
+	}
+
+	func fetchPlaceDetailById(id: String) async throws -> Restaurant {
+		try await withCheckedThrowingContinuation { continuation in
+			fetchPlaceDetailById(id: id) { result in
+				switch result {
+				case .success(let restaurant):
+					continuation.resume(returning: restaurant)
+				case .failure(let error):
+					continuation.resume(throwing: error)
+				}
+			}
+		}
 	}
 
 	func listLikelyPlaces(completionHandler: @escaping (Result<[GMSPlaceLikelihood], Error>) -> Void) {
@@ -32,11 +67,6 @@ final class PlaceFetcher {
 				return
 			}
 
-			// Get likely places and add to the list.
-			//			for likelihood in placeLikelihoods {
-			//				let place = likelihood.place
-			//				self.likelyPlaces.append(place)
-			//			}
 			guard let placeLikelihoods else {
 				completionHandler(.failure(PlaceFetcherError.noPlacesFound))
 				return
@@ -61,11 +91,6 @@ final class PlaceFetcher {
 				]
 			]
 
-			let headers: [Alamofire.HTTPHeader] = [
-				.contentType("application/json"),
-				HTTPHeader(name: "X-Goog-FieldMask", value: "*"),
-				HTTPHeader(name: "X-Goog-Api-Key", value: "AIzaSyCkUgmyqSq5eWWUb3DgwHc4Xp_3jLKrSMk")
-			]
 			let request =
 			AF.request(
 				"https://places.googleapis.com/v1/places:searchNearby",
@@ -86,11 +111,6 @@ final class PlaceFetcher {
 		}
 
 	func fetchPlaceByText(keyword: String, location: Location, completionHandler: @escaping (Result<GooglePlaceResult, Error>) -> Void) {
-		let headers: [Alamofire.HTTPHeader] = [
-			.contentType("application/json"),
-			HTTPHeader(name: "X-Goog-FieldMask", value: "*"),
-			HTTPHeader(name: "X-Goog-Api-Key", value: "AIzaSyCkUgmyqSq5eWWUb3DgwHc4Xp_3jLKrSMk")
-		]
 
 		let body: [String: Any] = [
 			"textQuery": keyword,
