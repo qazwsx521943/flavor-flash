@@ -14,7 +14,7 @@ struct FFUser: Codable, Hashable, Identifiable {
 	let profileImageUrl: String?
 	let profileImagePath: String?
 	let dateCreated: Date?
-	let favoriteRestaurants: [String]? = nil
+	let favoriteRestaurants: [String]?
 	let friends: [String]?
 	let categoryPreferences: [String]?
 
@@ -38,6 +38,7 @@ extension FFUser {
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
 		self.profileImagePath = nil
+		self.favoriteRestaurants = nil
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = "Anonymous"
@@ -49,6 +50,7 @@ extension FFUser {
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
 		self.profileImagePath = nil
+		self.favoriteRestaurants = nil
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = displayName
@@ -65,6 +67,7 @@ extension FFUser {
 			profileImageUrl: "https://picsum.photos/200",
 			profileImagePath: "https://picsum.photos/200",
 			dateCreated: .now,
+			favoriteRestaurants: nil,
 			friends: nil,
 			categoryPreferences: nil)
 	}

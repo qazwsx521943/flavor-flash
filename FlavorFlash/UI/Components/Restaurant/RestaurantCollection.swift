@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RestaurantCollection: View {
 
-	@State private var restaurants = Array.init(repeating: Restaurant.mockData, count: 5)
+	@Binding var restaurants: [Restaurant]
 
     var body: some View {
 		ScrollView {
@@ -81,5 +81,5 @@ extension RestaurantCollection {
 }
 
 #Preview {
-    RestaurantCollection()
+	RestaurantCollection(restaurants: .constant(Array(repeating: Restaurant.mockData, count: 5)))
 }

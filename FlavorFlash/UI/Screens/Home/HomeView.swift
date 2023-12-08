@@ -22,6 +22,7 @@ struct HomeView: View {
 
 	@AppStorage("selectedSkin") var selectedSkin: BoxSkin?
 
+	@State private var showRestaurantCollection: Bool = false
 
 	var body: some View {
 		NavigationStack {
@@ -91,14 +92,26 @@ struct HomeView: View {
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.overlay(alignment: .topTrailing) {
-				Button {
-					withAnimation {
-						showPetSelection.toggle()
+				VStack {
+					Button {
+						withAnimation {
+							showPetSelection.toggle()
+						}
+					} label: {
+						Image(systemName: "line.3.horizontal.decrease")
 					}
-				} label: {
-					Image(systemName: "line.3.horizontal.decrease")
+					.buttonStyle(IconButtonStyle())
+
+					Button {
+						showRestaurantCollection.toggle()
+					} label: {
+						Image(systemName: "bookmark.fill")
+					}
+					.buttonStyle(IconButtonStyle())
 				}
-				.buttonStyle(IconButtonStyle())
+			}
+			.sheet(isPresented: $showRestaurantCollection) {
+				RestaurantCollection(restaurants: $viewModel.userSavedRestaurants)
 			}
 		}
 	}
