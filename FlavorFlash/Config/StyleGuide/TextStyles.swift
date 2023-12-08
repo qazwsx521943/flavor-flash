@@ -33,6 +33,10 @@ struct TextStyles: View {
 
 			Text("說明")
 				.captionStyle()
+
+			Text("Padding")
+				.captionStyle()
+				.tagPaddingStyle()
         }
     }
 }
@@ -79,6 +83,21 @@ struct DetailBoldStyle: ViewModifier {
 	}
 }
 
+// MARK: - Padding Modifiers
+struct TagPaddingStyle: ViewModifier {
+	let backgroundColor: Color
+
+	func body(content: Content) -> some View {
+		content
+			.padding(.horizontal, 10)
+			.padding(.vertical, 6)
+			.background(
+				RoundedRectangle(cornerRadius: 10.0)
+					.fill(backgroundColor)
+			)
+	}
+}
+
 // MARK: - View Extension
 extension View {
 	func titleStyle() -> some View {
@@ -100,6 +119,10 @@ extension View {
 	func detailBoldStyle() -> some View {
 		modifier(DetailBoldStyle())
 	}
+
+	func tagPaddingStyle(backgroundColor: Color = .darkOrange) -> some View {
+		modifier(TagPaddingStyle(backgroundColor: backgroundColor))
+	}
 }
 
 // MARK: - Text Extension
@@ -117,7 +140,7 @@ extension Text {
 				.frame(width: height, height: height)
 			self
 		}
-		.padding(.leading, 12)
+//		.padding(.leading, 12)
 	}
 
 	func suffixWithSFSymbol(

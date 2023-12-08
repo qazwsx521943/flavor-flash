@@ -21,8 +21,9 @@ struct ProfileView: View {
 	@State private var qrCodeMode: QRCodeMode = .myQRCode
 
 	@State private var showFriends = false
+
 	@State private var showFoodPrint = false
-	@State private var isDarkMode = false
+
 
 	enum QRCodeMode: Int {
 		case myQRCode = 0
@@ -81,7 +82,7 @@ struct ProfileView: View {
 
 			List {
 				Section {
-					Toggle(isOn: $isDarkMode) {
+					Toggle(isOn: $navigationModel.preferDarkMode) {
 						Text("Dark Mode")
 							.prefixedWithSFSymbol(named: "circle.lefthalf.filled", height: 20)
 							.captionStyle()

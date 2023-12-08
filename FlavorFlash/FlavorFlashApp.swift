@@ -17,6 +17,16 @@ struct FlavorFlashApp: App {
 
 	@Environment(\.scenePhase) private var scenePhase
 
+	@Environment(\.colorScheme) private var colorScheme
+
+	init() {
+		let preferDarkMode = UserDefaults.standard.object(forKey: "preferDarkMode") as? Bool
+
+		if let preferDarkMode {
+			_navigationModel = StateObject(wrappedValue: NavigationModel(preferDarkMode: preferDarkMode))
+		}
+	}
+
 	var body: some Scene {
 		WindowGroup {
 			ContentView()
@@ -34,6 +44,7 @@ struct FlavorFlashApp: App {
 					RestaurantCategoryView()
 				}
 				.environmentObject(navigationModel)
+				.environment(\.colorScheme, navigationModel.preferDarkMode ?? (colorScheme == .dark) ? .dark : .light)
 		}
 		.onChange(of: scenePhase) { newValue in
 			if newValue == .background {

@@ -37,7 +37,7 @@ struct FFTabBar: View {
 					navigationModel.hideTabBar()
 				}
 				.onDisappear {
-					navigationModel.tabBarHidden = false
+					navigationModel.showTabBar()
 				}
 
 			FoodPrintView()

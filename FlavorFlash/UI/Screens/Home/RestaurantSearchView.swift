@@ -43,10 +43,6 @@ struct RestaurantSearchView: View {
 			.navigationBarTitleDisplayMode(.inline)
         }
     }
-//
-//    init(category: String) {
-//        _homeViewModel = StateObject(wrappedValue: HomeViewModel())
-//    }
 }
 
 #Preview {
