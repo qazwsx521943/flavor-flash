@@ -43,18 +43,18 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 		restaurant.mapItem?.openInMaps(launchOptions: launchOptions)
 	}
 
-	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-		pendingWorkItem?.cancel()
-
-		let workItem = DispatchWorkItem { [weak self] in
-			let centerCoordinate = mapView.centerCoordinate
-			self?.parent.centerLocation = centerCoordinate
-			self?.fetchNearByRestaurants(centerCoordinate: centerCoordinate)
-		}
-
-		pendingWorkItem = workItem
-		DispatchQueue.global().asyncAfter(deadline: .now() + 2.0, execute: workItem)
-	}
+//	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+//		pendingWorkItem?.cancel()
+//
+//		let workItem = DispatchWorkItem { [weak self] in
+//			let centerCoordinate = mapView.centerCoordinate
+//			self?.parent.centerLocation = centerCoordinate
+//			self?.fetchNearByRestaurants(centerCoordinate: centerCoordinate)
+//		}
+//
+//		pendingWorkItem = workItem
+//		DispatchQueue.global().asyncAfter(deadline: .now() + 2.0, execute: workItem)
+//	}
 }
 
 extension RestaurantMapViewCoordinator {
