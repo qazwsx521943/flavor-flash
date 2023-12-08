@@ -26,6 +26,7 @@ struct Restaurant: Hashable, Codable, Identifiable {
 	let servesDinner: Bool?
 	let regularOpeningHours: RegularOpeningHours?
 	let photos: [Photo]?
+	var offset: CGFloat = 0
 
 	// MARK: - Convenient Getters
 
@@ -96,4 +97,23 @@ extension Restaurant {
 		"星期六: 11:00 – 23:00",
 		"星期日: 11:00 – 22:00"
 		]), photos: nil)
+
+	init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.name = try container.decode(String.self, forKey: .name)
+		self.id = try container.decode(String.self, forKey: .id)
+		self.displayName = try container.decode(Restaurant.LocalizedText.self, forKey: .displayName)
+		self.formattedAddress = try container.decodeIfPresent(String.self, forKey: .formattedAddress)
+		self.shortFormattedAddress = try container.decodeIfPresent(String.self, forKey: .shortFormattedAddress)
+		self.addressComponents = try container.decodeIfPresent([Restaurant.AddressComponent].self, forKey: .addressComponents)
+		self.location = try container.decode(Location.self, forKey: .location)
+		self.rating = try container.decode(CGFloat.self, forKey: .rating)
+		self.userRatingCount = try container.decodeIfPresent(Int.self, forKey: .userRatingCount)
+		self.servesBrunch = try container.decodeIfPresent(Bool.self, forKey: .servesBrunch)
+		self.servesLunch = try container.decodeIfPresent(Bool.self, forKey: .servesLunch)
+		self.servesDinner = try container.decodeIfPresent(Bool.self, forKey: .servesDinner)
+		self.regularOpeningHours = try container.decodeIfPresent(Restaurant.RegularOpeningHours.self, forKey: .regularOpeningHours)
+		self.photos = try container.decodeIfPresent([Restaurant.Photo].self, forKey: .photos)
+		self.offset = 0
+	}
 }
