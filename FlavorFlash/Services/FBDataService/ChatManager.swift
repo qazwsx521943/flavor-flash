@@ -66,7 +66,11 @@ final class ChatManager {
 	func groupListener(groupId: String, completionHandler: @escaping ([FBMessage], ListenerRegistration?) -> Void) {
 		var listener: ListenerRegistration?
 
-		listener = chatCollection.document(groupId).collection("messages").order(by: "created_date").addSnapshotListener { [weak listener] collectionSnapshot, error in
+		listener = chatCollection
+			.document(groupId)
+			.collection("messages")
+			.order(by: "created_date")
+			.addSnapshotListener { [weak listener] collectionSnapshot, _ in
 
 			guard let collectionSnapshot else { return }
 

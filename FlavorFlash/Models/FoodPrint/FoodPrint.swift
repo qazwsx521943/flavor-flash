@@ -36,9 +36,19 @@ struct FoodPrint: FBModelType {
 		case createdDate = "created_date"
 	}
 
-	init(id: String, userId: String, restaurantId: String? = nil, 
-		 frontCameraImageUrl: String, frontCameraImagePath: String, backCameraImageUrl: String, backCameraImagePath: String,
-		 description: String, category: String? = nil, location: Location? = nil, comments: [FBComment]? = nil, createdDate: Date) {
+	init(
+		id: String,
+		userId: String,
+		restaurantId: String? = nil,
+		frontCameraImageUrl: String,
+		frontCameraImagePath: String,
+		backCameraImageUrl: String,
+		backCameraImagePath: String,
+		description: String,
+		category: String? = nil, 
+		location: Location? = nil,
+		comments: [FBComment]? = nil,
+		createdDate: Date) {
 		self.id = id
 		self.userId = userId
 		self.restaurantId = restaurantId

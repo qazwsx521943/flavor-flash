@@ -42,4 +42,3 @@ struct BookmarkButton: View {
 #Preview {
 	BookmarkButton(isLiked: .constant(false))
 }
-

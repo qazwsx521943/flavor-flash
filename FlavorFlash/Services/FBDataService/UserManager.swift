@@ -50,7 +50,7 @@ final class UserManager {
 	}
 
 	func listenToChange(userId: String, completionHandler: @escaping (FFUser) -> Void) {
-		userDocument(userId: userId).addSnapshotListener { documentSnapshot, error in
+		userDocument(userId: userId).addSnapshotListener { documentSnapshot, _ in
 			guard let document = documentSnapshot else { return }
 			guard let data = try? document.data(as: FFUser.self) else { return }
 			
@@ -75,7 +75,7 @@ final class UserManager {
 	func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
 		let data: [String: Any] = [
 			FFUser.CodingKeys.profileImagePath.rawValue: path,
-			FFUser.CodingKeys.profileImageUrl.rawValue: url,
+			FFUser.CodingKeys.profileImageUrl.rawValue: url
 		]
 
 		try await userDocument(userId: userId).updateData(data)

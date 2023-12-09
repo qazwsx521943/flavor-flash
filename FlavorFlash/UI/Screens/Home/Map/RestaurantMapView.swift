@@ -20,34 +20,38 @@ struct RestaurantMapView: UIViewRepresentable {
     func makeUIView(context: Context) -> MKMapView {
 		let mapView = MKMapView()
 
-		mapView.register(RestaurantMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        mapView.delegate = context.coordinator
+		mapView.register(
+			RestaurantMarkerView.self,
+			forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier
+		)
+
+		mapView.delegate = context.coordinator
 
 		return mapView
-    }
+	}
 
-    func updateUIView(_ uiView: MKMapView, context: Context) {
+	func updateUIView(_ uiView: MKMapView, context: Context) {
 		debugPrint("updated uiview")
 		updateRestaurants(mapView: uiView)
 
-        let pointAnnotation = MKPointAnnotation()
+		let pointAnnotation = MKPointAnnotation()
 		if let currentLocation = homeViewModel.currentLocation {
 			pointAnnotation.title = "目前位置"
 			pointAnnotation.coordinate = currentLocation
 		}
 
-        uiView.addAnnotation(pointAnnotation)
+		uiView.addAnnotation(pointAnnotation)
 
 		if let centerLocation {
 			centerToRegion(
 				mapView: uiView,
 				coordinateRegion: MKCoordinateRegion(center: centerLocation, latitudinalMeters: 200, longitudinalMeters: 200))
 		}
-    }
+	}
 
-    func makeCoordinator() -> RestaurantMapViewCoordinator {
-        RestaurantMapViewCoordinator(self)
-    }
+	func makeCoordinator() -> RestaurantMapViewCoordinator {
+		RestaurantMapViewCoordinator(self)
+	}
 }
 
 extension RestaurantMapView {

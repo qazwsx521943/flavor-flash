@@ -200,8 +200,6 @@ class Camera: NSObject {
 				])
 			}
 
-//			let isFlashAvailable = self.backCamDeviceInput?.device.isFlashAvailable ?? false
-//			photoSettings.flashMode = isFlashAvailable ? .auto : .off
 			photoSettings.isHighResolutionPhotoEnabled = true
 
 			if
@@ -212,14 +210,17 @@ class Camera: NSObject {
 			photoSettings.photoQualityPrioritization = .balanced
 
 			if let photoOutputVideoConnection = backCamPhotoOutput.connection(with: .video) {
-				if photoOutputVideoConnection.isVideoOrientationSupported,
-				   let videoOrientation = self.videoOrientationFor(self.deviceOrientation) {
+				if 
+					photoOutputVideoConnection.isVideoOrientationSupported,
+						let videoOrientation = self.videoOrientationFor(self.deviceOrientation) {
+
 					photoOutputVideoConnection.videoOrientation = videoOrientation
 				}
 			}
 			if let photoOutputVideoConnection = frontCamPhotoOutput.connection(with: .video) {
-				if photoOutputVideoConnection.isVideoOrientationSupported,
-				   let videoOrientation = self.videoOrientationFor(self.deviceOrientation) {
+				if 
+					photoOutputVideoConnection.isVideoOrientationSupported,
+						let videoOrientation = self.videoOrientationFor(self.deviceOrientation) {
 					photoOutputVideoConnection.videoOrientation = videoOrientation
 				}
 			}
@@ -264,8 +265,10 @@ class Camera: NSObject {
 	}
 
 	private func updateVideoOutputConnection() {
-		if let videoOutput = frontCamVideoDataOutput,
-		   let videoOutputConnection = videoOutput.connection(with: .video) {
+		if
+			let videoOutput = frontCamVideoDataOutput,
+			let videoOutputConnection = videoOutput.connection(with: .video)
+		{
 			if videoOutputConnection.isVideoMirroringSupported {
 				videoOutputConnection.isVideoMirrored = true
 			}
@@ -438,17 +441,6 @@ extension Camera: AVCapturePhotoCaptureDelegate {
 			logger.error("Error capturing photo: \(error.localizedDescription)")
 			return
 		}
-
-//		guard let photoData = photo.fileDataRepresentation() else {
-//			return
-//		}
-//
-//		let image = UIImage(data: photoData)
-//
-//		var previewPhotoOrientation: CGImagePropertyOrientation?
-//		if let orientationNum = photo.metadata[kCGImagePropertyOrientation as String] as? NSNumber {
-//			debugPrint(orientationNum)
-//		}
 
 		if output == backCamPhotoOutput {
 			backCamCapturedImage?(photo)

@@ -10,7 +10,7 @@ import SwiftUI
 struct ToggleStyles: View {
 	@State private var isOn = false
 
-    var body: some View {
+	var body: some View {
 		VStack {
 			Text("Toggle Styles")
 
@@ -22,11 +22,8 @@ struct ToggleStyles: View {
 
 			Toggle("toggle", isOn: $isOn)
 				.toggleStyle(PrimaryToggleStyle(isLabelHidden: true))
-				
-
-
 		}
-    }
+	}
 }
 
 // MARK: - Custom ToggleStyles

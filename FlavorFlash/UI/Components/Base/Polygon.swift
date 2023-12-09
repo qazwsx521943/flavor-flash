@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct Polygon: Shape {
-	var sides : Int = 5
+	var sides: Int = 5
 
-	func path(in rect : CGRect ) -> Path{
+	func path(in rect: CGRect ) -> Path {
 		// get the center point and the radius
 		let center = CGPoint(x: rect.width / 2, y: rect.height / 2)
 		let radius = rect.width / 2
@@ -28,17 +28,16 @@ struct Polygon: Shape {
 
 			let vertexPoint = CGPoint( x: x, y: y)
 
-			if (side == 0) {
+			if side == 0 {
 				startPoint = vertexPoint
 				path.move(to: startPoint )
-			}
-			else {
+			} else {
 				path.addLine(to: vertexPoint)
 			}
 
 			// move back to starting point
 			// needed for stroke
-			if ( side == (sides - 1) ){
+			if side == (sides - 1) {
 				path.addLine(to: startPoint)
 			}
 		}

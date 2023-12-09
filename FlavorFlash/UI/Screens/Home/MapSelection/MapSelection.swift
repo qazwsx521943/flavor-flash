@@ -65,4 +65,3 @@ struct MapSelection: View {
 #Preview {
 	MapSelection(maxResultValue: .constant(2.0), searchRadius: .constant(300.0), rankPreference: .constant(.popularity))
 }
-

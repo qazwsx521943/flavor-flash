@@ -112,7 +112,9 @@ extension Restaurant {
 		self.servesBrunch = try container.decodeIfPresent(Bool.self, forKey: .servesBrunch)
 		self.servesLunch = try container.decodeIfPresent(Bool.self, forKey: .servesLunch)
 		self.servesDinner = try container.decodeIfPresent(Bool.self, forKey: .servesDinner)
-		self.regularOpeningHours = try container.decodeIfPresent(Restaurant.RegularOpeningHours.self, forKey: .regularOpeningHours)
+		self.regularOpeningHours = try container.decodeIfPresent(
+			Restaurant.RegularOpeningHours.self,
+			forKey: .regularOpeningHours)
 		self.photos = try container.decodeIfPresent([Restaurant.Photo].self, forKey: .photos)
 		self.offset = 0
 	}

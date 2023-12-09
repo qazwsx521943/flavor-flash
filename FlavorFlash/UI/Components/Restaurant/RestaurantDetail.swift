@@ -17,15 +17,15 @@ struct RestaurantDetail: View {
 
 	var addToFavorite: ((Restaurant) -> Void)?
 
-    var body: some View {
+	var body: some View {
 		VStack(alignment: .leading, spacing: 10) {
-//			HStack {
-//				if let featureImage {
-//					Image(uiImage: featureImage)
-//						.resizable()
-//						.frame(width: 100, height: 100)
-//				}
-//			}
+			//			HStack {
+			//				if let featureImage {
+			//					Image(uiImage: featureImage)
+			//						.resizable()
+			//						.frame(width: 100, height: 100)
+			//				}
+			//			}
 			HStack {
 				VStack(alignment: .leading, spacing: 5) {
 					Text(restaurant.displayName.text)
@@ -64,7 +64,7 @@ struct RestaurantDetail: View {
 		.task {
 			PlaceFetcher.shared.fetchImage(for: restaurant.id) { featureImage = $0 }
 		}
-    }
+	}
 }
 
 extension RestaurantDetail {

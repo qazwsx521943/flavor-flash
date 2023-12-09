@@ -9,7 +9,8 @@ import SwiftUI
 
 struct FoodPrintView: View {
 	@StateObject private var foodPrintViewModel = FoodPrintViewModel(dataService: FoodPrintDataService(path: "foodprints"))
-//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(mockService: FoodPrintDataService(path: "foodprints"))
+//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(
+//mockService: FoodPrintDataService(path: "foodprints"))
 	@State private var showCommentModal = false
 
 	@State private var showReportModal = false
@@ -33,10 +34,10 @@ struct FoodPrintView: View {
 							FoodPrintCell(foodPrint: post, showComment: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .comment
-							}) { foodprint in
+							}, showReport: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .report
-							}
+							})
 							.frame(width: geometry.size.width, height: geometry.size.height * 0.9)
 							.padding(16)
 							.background(Color.black)

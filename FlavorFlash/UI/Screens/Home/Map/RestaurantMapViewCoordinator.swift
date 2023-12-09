@@ -30,14 +30,24 @@ class RestaurantMapViewCoordinator: NSObject {
 
 extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-		parent.centerToRegion(mapView: mapView, coordinateRegion: MKCoordinateRegion(center: annotation.coordinate, latitudinalMeters: 200, longitudinalMeters: 200))
+		parent.centerToRegion(
+			mapView: mapView,
+			coordinateRegion: MKCoordinateRegion(
+				center: annotation.coordinate,
+				latitudinalMeters: 200,
+				longitudinalMeters: 200
+			)
+		)
 	}
 
-	func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+	func mapView(
+		_ mapView: MKMapView,
+		annotationView view: MKAnnotationView,
+		calloutAccessoryControlTapped control: UIControl) {
 		guard let restaurant = view.annotation as? RestaurantAnnotation else { return }
 
 		let launchOptions = [
-			MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking,
+			MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
 		]
 
 		restaurant.mapItem?.openInMaps(launchOptions: launchOptions)

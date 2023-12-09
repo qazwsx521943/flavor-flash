@@ -43,7 +43,7 @@ struct CameraView: View {
 
 extension CameraView {
 	private var dualCameraCaptureView: some View {
-		GeometryReader { geometry in
+		GeometryReader { _ in
 			let animation = Animation.default.repeatCount(2, autoreverses: true)
 			ViewfinderView(
 				backCamImage: $cameraDataModel.viewfinderBackCamImage,
@@ -82,7 +82,7 @@ extension CameraView {
 					}
 				}
 			}
-			.overlayWithSystemImage(systemName: "xmark",alignment: .topTrailing) {
+			.overlayWithSystemImage(systemName: "xmark", alignment: .topTrailing) {
 				navigationModel.selectedTab = .home
 			}
 		}

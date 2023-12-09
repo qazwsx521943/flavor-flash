@@ -14,7 +14,7 @@ struct ProfileView: View {
 
 	@EnvironmentObject private var navigationModel: NavigationModel
 
-	@State private var selectedItem: PhotosPickerItem? = nil
+	@State private var selectedItem: PhotosPickerItem?
 
 	@State private var showQRCode = false
 
@@ -221,7 +221,7 @@ extension ProfileView {
 											.frame(width: 50, height: 50)
 											.clipShape(Circle())
 
-									case .failure(_):
+									case .failure:
 										Image(systemName: "person.fill")
 											.resizable()
 											.frame(width: 50, height: 50)

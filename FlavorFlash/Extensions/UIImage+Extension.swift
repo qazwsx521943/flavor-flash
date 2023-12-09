@@ -28,13 +28,15 @@ extension UIImage {
 
 	func resizedImage(for size: CGSize) -> UIImage? {
 		let image = self.cgImage
-		let context = CGContext(data: nil,
-								width: Int(size.width),
-								height: Int(size.height),
-								bitsPerComponent: image!.bitsPerComponent,
-								bytesPerRow: Int(size.width),
-								space: image?.colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!,
-								bitmapInfo: image!.bitmapInfo.rawValue)
+		let context = CGContext(
+			data: nil,
+			width: Int(size.width),
+			height: Int(size.height),
+			bitsPerComponent: image!.bitsPerComponent,
+			bytesPerRow: Int(size.width),
+			space: image?.colorSpace ?? CGColorSpace(name: CGColorSpace.sRGB)!,
+			bitmapInfo: image!.bitmapInfo.rawValue
+		)
 		context?.interpolationQuality = .high
 		context?.draw(image!, in: CGRect(origin: .zero, size: size))
 

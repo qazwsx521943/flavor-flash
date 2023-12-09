@@ -16,7 +16,7 @@ struct Pet: Identifiable {
 	static let pets = [
 		Pet(id: "1", imageName: "cat_1", speak: "Meow..."),
 		Pet(id: "2", imageName: "cat_2", speak: "不想上班..."),
-		Pet(id: "3", imageName: "cat_3", speak: "QQ..."),
+		Pet(id: "3", imageName: "cat_3", speak: "QQ...")
 	]
 }
 
@@ -50,7 +50,7 @@ struct PetSelectionView: View {
 				Text("Upload Image")
 					.captionStyle()
 			}
-			.onChange(of: selectedItem) { item in
+			.onChange(of: selectedItem) { _ in
 				Task {
 					if
 						let selectedItem,
@@ -81,23 +81,23 @@ struct PetSelectionCell: View {
 	var isCurrentSelection: Bool
 
 	var body: some View {
-			HStack(alignment: .center) {
-				Image(pet.imageName)
-					.resizable()
-					.scaledToFit()
-					.frame(width: 100)
-					.lightWeightShadow()
-					.overlay(alignment: .bottomTrailing) {
-						if isCurrentSelection {
-							Image(systemName: "checkmark.circle")
-								.foregroundStyle(.green)
-						}
+		HStack(alignment: .center) {
+			Image(pet.imageName)
+				.resizable()
+				.scaledToFit()
+				.frame(width: 100)
+				.lightWeightShadow()
+				.overlay(alignment: .bottomTrailing) {
+					if isCurrentSelection {
+						Image(systemName: "checkmark.circle")
+							.foregroundStyle(.green)
 					}
+				}
 
-				Text(pet.speak)
-					.captionStyle()
-			}
-			.frame(height: 150)
+			Text(pet.speak)
+				.captionStyle()
+		}
+		.frame(height: 150)
 	}
 }
 

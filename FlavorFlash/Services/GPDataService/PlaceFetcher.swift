@@ -36,9 +36,11 @@ final class PlaceFetcher {
 
 	func fetchPlaceDetailById(id: String, completionHandler: @escaping (Result<Restaurant, Error>) -> Void) {
 
-		let request = AF.request("https://places.googleapis.com/v1/places/\(id)",
-								 encoding: JSONEncoding(options: .prettyPrinted),
-								 headers: HTTPHeaders(headers))
+		let request = AF.request(
+			"https://places.googleapis.com/v1/places/\(id)",
+			encoding: JSONEncoding(options: .prettyPrinted),
+			headers: HTTPHeaders(headers)
+		)
 
 		request.responseDecodable(of: Restaurant.self) { response in
 			switch response.result {
@@ -67,7 +69,7 @@ final class PlaceFetcher {
 		let placeFields: GMSPlaceField = [.name, .coordinate]
 
 		placesClient.findPlaceLikelihoodsFromCurrentLocation(withPlaceFields: placeFields) { placeLikelihoods, error in
-			if let error {
+			if let _ = error {
 				completionHandler(.failure(PlaceFetcherError.responseError))
 				return
 			}
@@ -95,15 +97,15 @@ final class PlaceFetcher {
 				"rankPreference": rankPreference.rawValue,
 				"locationRestriction": [
 					"circle": [
-						"center": ["latitude": location.latitude,
-								   "longitude": location.longitude],
+						"center": [
+							"latitude": location.latitude,
+							"longitude": location.longitude],
 						"radius": radius
 					]
 				]
 			]
 
-			let request =
-			AF.request(
+			let request = AF.request(
 				"https://places.googleapis.com/v1/places:searchNearby",
 				method: .post,
 				parameters: body,
@@ -121,22 +123,27 @@ final class PlaceFetcher {
 			}
 		}
 
-	func fetchPlaceByText(keyword: String, location: Location, completionHandler: @escaping (Result<GooglePlaceResult, Error>) -> Void) {
+	func fetchPlaceByText(
+		keyword: String,
+		location: Location,
+		completionHandler: @escaping (Result<GooglePlaceResult, Error>
+	) -> Void) {
 
 		let body: [String: Any] = [
 			"textQuery": keyword,
 			"includedType": "restaurant",
 			"rankPreference": "DISTANCE",
-			"maxResultCount": 20,
+			"maxResultCount": 20
 		]
 
-		let request =
-		AF.request("https://places.googleapis.com/v1/places:searchText",
-				   method: .post,
-				   parameters: body,
-				   encoding: JSONEncoding(options: .prettyPrinted),
-				   headers: HTTPHeaders(headers)
+		let request = AF.request(
+			"https://places.googleapis.com/v1/places:searchText",
+			method: .post,
+			parameters: body,
+			encoding: JSONEncoding(options: .prettyPrinted),
+			headers: HTTPHeaders(headers)
 		)
+
 		request.responseDecodable(of: GooglePlaceResult.self) { response in
 			debugPrint(response.debugDescription)
 			switch response.result {
@@ -151,10 +158,10 @@ final class PlaceFetcher {
 	func fetchImage(for id: String, completionHandler: @escaping (UIImage) -> Void) {
 		let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt64(UInt(GMSPlaceField.photos.rawValue)))
 
-		placesClient.fetchPlace(fromPlaceID: id,
-								placeFields: fields,
-								sessionToken: nil, callback: {
-			(place: GMSPlace?, error: Error?) in
+		placesClient.fetchPlace(
+			fromPlaceID: id,
+			placeFields: fields,
+			sessionToken: nil, callback: { (place: GMSPlace?, error: Error?) in
 			if let error = error {
 				print("An error occurred: \(error.localizedDescription)")
 				return

@@ -21,7 +21,7 @@ struct ChatroomView: View {
 		))
 	}
 
-    var body: some View {
+	var body: some View {
 		ChatView(messages: chatroomViewModel.messages) { message in
 			chatroomViewModel.sendMessage(message: message)
 		}
@@ -33,8 +33,8 @@ struct ChatroomView: View {
 		.onDisappear {
 			navigationModel.showTabBar()
 		}
-//		.toolbar(.hidden, for: .tabBar)
-    }
+		//		.toolbar(.hidden, for: .tabBar)
+	}
 
 	init(groupId: String) {
 		_chatroomViewModel = StateObject(wrappedValue: ChatroomViewModel(groupId: groupId))
@@ -80,20 +80,20 @@ struct CustomChatNavigationModifier: ViewModifier {
 	private var infoToolbarItem: some ToolbarContent {
 		ToolbarItem(placement: .principal) {
 			HStack {
-//				if let url = cover {
-//					AsyncImage(url: url) { phase in
-//						switch phase {
-//						case .success(let image):
-//							image
-//								.resizable()
-//								.scaledToFill()
-//						default:
-//							Rectangle().fill(theme.colors.grayStatus)
-//						}
-//					}
-//					.frame(width: 35, height: 35)
-//					.clipShape(Circle())
-//				}
+				//				if let url = cover {
+				//					AsyncImage(url: url) { phase in
+				//						switch phase {
+				//						case .success(let image):
+				//							image
+				//								.resizable()
+				//								.scaledToFill()
+				//						default:
+				//							Rectangle().fill(theme.colors.grayStatus)
+				//						}
+				//					}
+				//					.frame(width: 35, height: 35)
+				//					.clipShape(Circle())
+				//				}
 
 				VStack(alignment: .leading, spacing: 0) {
 					Text(title)

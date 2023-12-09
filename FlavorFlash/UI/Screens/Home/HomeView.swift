@@ -136,6 +136,8 @@ struct HomeView: View {
 				.padding()
 				.presentationDetents([.medium])
 			}
+			.navigationTitle("My App")
+			.navigationBarTitleDisplayMode(.inline)
 		}
 	}
 }

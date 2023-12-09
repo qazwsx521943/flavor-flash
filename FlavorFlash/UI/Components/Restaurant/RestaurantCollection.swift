@@ -103,6 +103,6 @@ extension RestaurantCollection {
 	Group {
 //		RestaurantCollection(restaurants: .constant(Array(repeating: Restaurant.mockData, count: 5)))
 
-		RestaurantCollection(restaurants: .constant(Array(repeating: Restaurant.mockData, count: 5)))
+	RestaurantCollection(restaurants: .constant(Array(repeating: Restaurant.mockData, count: 5)))
 	}
 }

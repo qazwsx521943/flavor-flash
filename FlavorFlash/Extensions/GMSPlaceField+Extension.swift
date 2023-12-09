@@ -8,11 +8,11 @@
 import GooglePlaces
 
 /**
- This extension is used as a workaround to enable using GMSPlaceField as if it were an NS_OPTIONS. Doing so
- enables set notation usage to combine multiple GMSPlaceFields.
- 
- e.g. let fields: GMSPlaceField = [.name, .phoneNumber]
- */
+	This extension is used as a workaround to enable using GMSPlaceField as if it were an NS_OPTIONS. Doing so
+	enables set notation usage to combine multiple GMSPlaceFields.
+
+	e.g. let fields: GMSPlaceField = [.name, .phoneNumber]
+*/
 extension GMSPlaceField: SetAlgebra {
 	public init() {
 		self.init(rawValue: 0)
