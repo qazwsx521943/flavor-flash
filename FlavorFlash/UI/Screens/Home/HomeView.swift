@@ -24,6 +24,8 @@ struct HomeView: View {
 
 	@State private var showRestaurantCollection: Bool = false
 
+	@State private var showMapSliders: Bool = false
+
 	var body: some View {
 		NavigationStack {
 			let animation = Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true)
@@ -110,6 +112,14 @@ struct HomeView: View {
 					.buttonStyle(IconButtonStyle())
 				}
 			}
+			.overlay(alignment: .topLeading) {
+				Button {
+					showMapSliders.toggle()
+				} label: {
+					Image(systemName: "slider.horizontal.3")
+				}
+				.buttonStyle(IconButtonStyle())
+			}
 			.sheet(isPresented: $showRestaurantCollection) {
 				RestaurantCollection(restaurants: $viewModel.userSavedRestaurants) { restaurant in
 					try? viewModel.saveLovedRestaurant(restaurant)
@@ -117,6 +127,14 @@ struct HomeView: View {
 					try? viewModel.saveBlockedRestaurant(restaurant)
 				}
 				.padding(.top, 12)
+			}
+			.sheet(isPresented: $showMapSliders) {
+				MapSelection(
+					maxResultValue: $viewModel.maxResultCount.unwrapped(20),
+					searchRadius: $viewModel.searchRadius.unwrapped(1000),
+					rankPreference: $viewModel.rankPreference.unwrapped(.distance))
+				.padding()
+				.presentationDetents([.medium])
 			}
 		}
 	}

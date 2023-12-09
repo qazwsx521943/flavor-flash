@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */; };
 		E703590E2B246BB7008F14E7 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E703590D2B246BB7008F14E7 /* BookmarkButton.swift */; };
+		E70359112B247201008F14E7 /* MapSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70359102B247201008F14E7 /* MapSelection.swift */; };
+		E70359132B247D1B008F14E7 /* Binding+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70359122B247D1B008F14E7 /* Binding+EXT.swift */; };
 		E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8DD2B0710950003462C /* ProfileView.swift */; };
 		E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8DF2B0710BA0003462C /* appConfig.swift */; };
 		E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E22B071D450003462C /* NavigationModel.swift */; };
@@ -149,6 +151,8 @@
 		3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.debug.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.debug.xcconfig"; sourceTree = "<group>"; };
 		BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlavorFlash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E703590D2B246BB7008F14E7 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
+		E70359102B247201008F14E7 /* MapSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelection.swift; sourceTree = "<group>"; };
+		E70359122B247D1B008F14E7 /* Binding+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+EXT.swift"; sourceTree = "<group>"; };
 		E70AF8DD2B0710950003462C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E70AF8DF2B0710BA0003462C /* appConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appConfig.swift; sourceTree = "<group>"; };
 		E70AF8E22B071D450003462C /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
@@ -316,9 +320,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E703590F2B2471EE008F14E7 /* MapSelection */ = {
+			isa = PBXGroup;
+			children = (
+				E70359102B247201008F14E7 /* MapSelection.swift */,
+			);
+			path = MapSelection;
+			sourceTree = "<group>";
+		};
 		E70AF8DB2B070EE60003462C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E703590F2B2471EE008F14E7 /* MapSelection */,
 				E7FECC822B218AE800674C20 /* PetSelection */,
 				E7F9EDB72B0864A7005976BE /* Map */,
 				E7A399422B034E11005C8021 /* HomeView.swift */,
@@ -453,6 +466,7 @@
 				E78678092B21C54A00664756 /* MLMultiArray+Helpers.swift */,
 				E78678072B21C50100664756 /* CGImage+RawBytes.swift */,
 				E7C110472B22188F00999FBD /* CGFloat+EXT.swift */,
+				E70359122B247D1B008F14E7 /* Binding+EXT.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1126,6 +1140,8 @@
 				E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E75588BD2B0E075B00086854 /* EmailSignInViewModel.swift in Sources */,
+				E70359132B247D1B008F14E7 /* Binding+EXT.swift in Sources */,
+				E70359112B247201008F14E7 /* MapSelection.swift in Sources */,
 				E7FECC722B20927A00674C20 /* TextStyles.swift in Sources */,
 				E78678062B21C2E200664756 /* MLMultiArray+EXT.swift in Sources */,
 				E71BFB192B1760E1008E89DE /* SignInWithAppleButtonView.swift in Sources */,

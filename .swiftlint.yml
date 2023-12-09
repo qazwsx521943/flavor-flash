@@ -6,6 +6,7 @@ excluded:
 disabled_rules:
   - private_over_fileprivate
   - comment_spacing
+  - trailing_whitespace
 
 analyzer_rules:
   - unused_import

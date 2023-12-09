@@ -29,6 +29,11 @@ final class PlaceFetcher {
 		case responseError
 	}
 
+	public enum RankPreference: String, Codable {
+		case popularity = "POPULARITY"
+		case distance = "DISTANCE"
+	}
+
 	func fetchPlaceDetailById(id: String, completionHandler: @escaping (Result<Restaurant, Error>) -> Void) {
 
 		let request = AF.request("https://places.googleapis.com/v1/places/\(id)",
@@ -76,17 +81,23 @@ final class PlaceFetcher {
 		}
 	}
 
-	func fetchNearBy(type categories: [String], location: Location, completionHandler: @escaping (Result<GooglePlaceResult, Error>) -> Void) {
+	func fetchNearBy(
+		type categories: [String],
+		location: Location,
+		maxResultCount: Int = 20,
+		rankPreference: RankPreference = .distance,
+		radius: Double = 1000.0,
+		completionHandler: @escaping (Result<GooglePlaceResult, Error>) -> Void) {
 			let body: [String: Any] = [
 				"languageCode": "zh-TW",
 				"includedTypes": categories,
-				"maxResultCount": 20,
-				"rankPreference": "DISTANCE",
+				"maxResultCount": maxResultCount,
+				"rankPreference": rankPreference.rawValue,
 				"locationRestriction": [
 					"circle": [
 						"center": ["latitude": location.latitude,
 								   "longitude": location.longitude],
-						"radius": 1000.0
+						"radius": radius
 					]
 				]
 			]

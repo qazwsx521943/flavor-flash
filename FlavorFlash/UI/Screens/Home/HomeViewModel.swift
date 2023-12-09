@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 import Vision
+import SwiftUI
 
 @MainActor
 final class HomeViewModel: ObservableObject {
@@ -28,6 +29,12 @@ final class HomeViewModel: ObservableObject {
 	@Published var outputImage: UIImage?
 
 	@Published var userSavedRestaurants: [Restaurant] = []
+
+	@AppStorage("maxResultCount") var maxResultCount: Double?
+
+	@AppStorage("searchRadius") var searchRadius: Double?
+
+	@AppStorage("rankPreference") var rankPreference: PlaceFetcher.RankPreference?
 
 	init() {
 		Task {
