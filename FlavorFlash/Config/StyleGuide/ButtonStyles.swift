@@ -52,7 +52,7 @@ struct SmallPrimaryButtonStyle: ButtonStyle {
 	@Environment(\.isEnabled) var isEnabled
 
 	var backgroundColor: Color {
-		colorScheme == .light ? Color(.middleYellow) : Color(.darkOrange)
+		colorScheme == .light ? Color(.darkGreen) : Color(.lightGreen)
 	}
 
 	func makeBody(configuration: Configuration) -> some View {
@@ -70,7 +70,7 @@ struct LargePrimaryButtonStyle: ButtonStyle {
 	@Environment(\.isEnabled) var isEnabled
 
 	var backgroundColor: Color {
-		colorScheme == .light ? Color(.middleYellow) : Color(.darkOrange)
+		colorScheme == .light ? Color(.darkGreen) : Color(.lightGreen)
 	}
 
 	func makeBody(configuration: Configuration) -> some View {
@@ -86,7 +86,7 @@ struct IconButtonStyle: ButtonStyle {
 	@Environment(\.colorScheme) var colorScheme
 
 	var backgroundColor: Color {
-		colorScheme == .light ? Color(.middleYellow) : Color(.darkOrange)
+		colorScheme == .light ? Color(.darkGreen) : Color(.lightGreen)
 	}
 
 	func makeBody(configuration: Configuration) -> some View {

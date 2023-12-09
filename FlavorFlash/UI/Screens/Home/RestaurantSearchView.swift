@@ -10,6 +10,8 @@ import SwiftUI
 struct RestaurantSearchView: View {
 	@EnvironmentObject var homeViewModel: HomeViewModel
 
+	@EnvironmentObject var navigationModel: NavigationModel
+
 	@State private var showDetail: Bool = false
 
 	var body: some View {
@@ -36,6 +38,12 @@ struct RestaurantSearchView: View {
 					}
 				}
 				.frame(height: 120)
+			}
+			.onAppear {
+				navigationModel.hideTabBar()
+			}
+			.onDisappear {
+				navigationModel.showTabBar()
 			}
 			.navigationTitle(homeViewModel.category!.title)
 			.navigationBarTitleDisplayMode(.inline)

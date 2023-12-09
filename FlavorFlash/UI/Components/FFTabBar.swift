@@ -17,46 +17,48 @@ struct FFTabBar: View {
 	@Namespace private var tabAnimation
 
     var body: some View {
-		TabView(selection: $selectedTab) {
-			HomeView()
-				.tag(TabItems.home)
-				.tabItem {
-					Label("Home", systemImage: "house.fill")
-						.foregroundStyle(.white)
-				}
-				.toolbar(.hidden, for: .tabBar)
+		ZStack(alignment: .bottom) {
+			TabView(selection: $selectedTab) {
+				HomeView()
+					.tag(TabItems.home)
+					.tabItem {
+						Label("Home", systemImage: "house.fill")
+							.foregroundStyle(.white)
+					}
+					.toolbar(.hidden, for: .tabBar)
 
-			FlavorFlashView()
-				.tag(TabItems.flavorFlash)
-				.tabItem {
-					Label("Camera", systemImage: "camera")
-						.foregroundStyle(.white)
-				}
-				.toolbar(.hidden, for: .tabBar)
-				.onAppear {
-					navigationModel.hideTabBar()
-				}
-				.onDisappear {
-					navigationModel.showTabBar()
-				}
+				FlavorFlashView()
+					.tag(TabItems.flavorFlash)
+					.tabItem {
+						Label("Camera", systemImage: "camera")
+							.foregroundStyle(.white)
+					}
+					.toolbar(.hidden, for: .tabBar)
+					.onAppear {
+						navigationModel.hideTabBar()
+					}
+					.onDisappear {
+						navigationModel.showTabBar()
+					}
 
-			FoodPrintView()
-				.tag(TabItems.foodPrint)
-				.tabItem {
-					Label("foodPrint", systemImage: "network")
-						.foregroundStyle(.white)
-				}
-				.toolbar(.hidden, for: .tabBar)
+				FoodPrintView()
+					.tag(TabItems.foodPrint)
+					.tabItem {
+						Label("foodPrint", systemImage: "network")
+							.foregroundStyle(.white)
+					}
+					.toolbar(.hidden, for: .tabBar)
 
-			ProfileView()
-				.tag(TabItems.profile)
-				.toolbar(.hidden, for: .tabBar)
-		}
-		.ignoresSafeArea()
+				ProfileView()
+					.tag(TabItems.profile)
+					.toolbar(.hidden, for: .tabBar)
+			}
+			.ignoresSafeArea()
 
-		if !navigationModel.tabBarHidden {
-			customTabBar(isDarkMode ? .darkOrange : .middleYellow)
-				.ignoresSafeArea()
+			if !navigationModel.tabBarHidden {
+				customTabBar(isDarkMode ? .lightGreen : .darkGreen)
+					.ignoresSafeArea()
+			}
 		}
     }
 }
