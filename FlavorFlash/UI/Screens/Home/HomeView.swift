@@ -111,7 +111,12 @@ struct HomeView: View {
 				}
 			}
 			.sheet(isPresented: $showRestaurantCollection) {
-				RestaurantCollection(restaurants: $viewModel.userSavedRestaurants)
+				RestaurantCollection(restaurants: $viewModel.userSavedRestaurants) { restaurant in
+					try? viewModel.saveLovedRestaurant(restaurant)
+				} deleteAction: { restaurant in
+					try? viewModel.saveBlockedRestaurant(restaurant)
+				}
+				.padding(.top, 12)
 			}
 		}
 	}

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */; };
+		E703590E2B246BB7008F14E7 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E703590D2B246BB7008F14E7 /* BookmarkButton.swift */; };
 		E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8DD2B0710950003462C /* ProfileView.swift */; };
 		E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8DF2B0710BA0003462C /* appConfig.swift */; };
 		E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E22B071D450003462C /* NavigationModel.swift */; };
@@ -147,6 +148,7 @@
 		28055511D6E283B5661F16BB /* Pods-FlavorFlash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.release.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.release.xcconfig"; sourceTree = "<group>"; };
 		3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.debug.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.debug.xcconfig"; sourceTree = "<group>"; };
 		BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlavorFlash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E703590D2B246BB7008F14E7 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		E70AF8DD2B0710950003462C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E70AF8DF2B0710BA0003462C /* appConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appConfig.swift; sourceTree = "<group>"; };
 		E70AF8E22B071D450003462C /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 			isa = PBXGroup;
 			children = (
 				E7FFB3802B1C35CF0065A213 /* LikeButton.swift */,
+				E703590D2B246BB7008F14E7 /* BookmarkButton.swift */,
 				E7FECC852B21AC6000674C20 /* Polygon.swift */,
 			);
 			path = Base;
@@ -1049,6 +1052,7 @@
 				E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
+				E703590E2B246BB7008F14E7 /* BookmarkButton.swift in Sources */,
 				E73B171A2B0AF8A200F1A0DD /* FBGroup.swift in Sources */,
 				E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */,
 				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,

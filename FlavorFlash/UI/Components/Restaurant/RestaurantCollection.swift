@@ -11,10 +11,18 @@ struct RestaurantCollection: View {
 
 	@Binding var restaurants: [Restaurant]
 
+	var addAction: ((Restaurant) -> Void)?
+
+	var deleteAction: ((Restaurant) -> Void)?
+
     var body: some View {
 		ScrollView {
 			VStack {
-				ForEach(restaurants.indices) { index in
+
+				Text("To-Eat List")
+					.bodyBoldStyle()
+
+				ForEach(Array(restaurants.enumerated()), id: \.element.id) { index, restaurant in
 					ZStack {
 						Color(.shadowGray)
 							.roundedRectRadius(20)
@@ -27,7 +35,8 @@ struct RestaurantCollection: View {
 							Spacer()
 
 							Button {
-
+								restaurants.remove(at: index)
+								deleteAction?(restaurant)
 							} label: {
 								Image(systemName: "hand.thumbsdown")
 									.foregroundStyle(.white)
@@ -36,7 +45,8 @@ struct RestaurantCollection: View {
 							}
 
 							Button {
-
+								restaurants.remove(at: index)
+								addAction?(restaurant)
 							} label: {
 								Image(systemName: "heart")
 									.foregroundStyle(.white)
@@ -62,6 +72,7 @@ struct RestaurantCollection: View {
     }
 }
 
+// MARK: - closures
 extension RestaurantCollection {
 	private func onChanged(value: DragGesture.Value, index: Int) {
 		if value.translation.width < 0 {
@@ -80,6 +91,18 @@ extension RestaurantCollection {
 	}
 }
 
+// MARK: - Custom initializer
+extension RestaurantCollection {
+	init(
+		restaurants: Binding<[Restaurant]>) {
+			self._restaurants = restaurants
+		}
+}
+
 #Preview {
-	RestaurantCollection(restaurants: .constant(Array(repeating: Restaurant.mockData, count: 5)))
+	Group {
+//		RestaurantCollection(restaurants: .constant(Array(repeating: Restaurant.mockData, count: 5)))
+
+		RestaurantCollection(restaurants: .constant(Array(repeating: Restaurant.mockData, count: 5)))
+	}
 }

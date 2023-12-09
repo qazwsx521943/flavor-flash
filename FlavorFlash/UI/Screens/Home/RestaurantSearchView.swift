@@ -32,6 +32,8 @@ struct RestaurantSearchView: View {
 										RestaurantDetail(restaurant: selected) { restaurant in
 											try? homeViewModel.saveFavoriteRestaurant(restaurant)
 										}
+										.padding()
+										.presentationDetents([.medium])
 									}
 								}
 						}

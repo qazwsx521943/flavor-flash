@@ -38,7 +38,7 @@ struct PrimaryToggleStyle: ToggleStyle {
 	let size: CGFloat
 
 	var backgroundColor: Color {
-		colorScheme == .light ? Color(.middleYellow) : Color(.darkOrange)
+		colorScheme == .light ? Color(.middleYellow) : Color(.lightGreen)
 	}
 
 	init(isLabelHidden: Bool = false, size: CGFloat = 20.0) {

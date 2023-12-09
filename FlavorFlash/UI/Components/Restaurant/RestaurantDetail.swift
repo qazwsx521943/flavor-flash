@@ -39,7 +39,7 @@ struct RestaurantDetail: View {
 
 				Spacer()
 
-				LikeButton(isLiked: $isLiked) {
+				BookmarkButton(isLiked: $isLiked) {
 					addToFavorite?(restaurant)
 				}
 			}
@@ -47,7 +47,7 @@ struct RestaurantDetail: View {
 			Divider()
 
 			if let openingDays = restaurant.regularOpeningHours?.weekdayDescriptions {
-				VStack(spacing: 4) {
+				VStack(alignment: .leading, spacing: 4) {
 					Text("Opening hours:")
 						.captionStyle()
 

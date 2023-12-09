@@ -37,8 +37,8 @@ struct Restaurant: Hashable, Codable, Identifiable {
 		)
 	}
 
-	var roundedRating: String {
-		rating.roundedToString(decimalPlaces: 1)
+	var roundedRating: CGFloat {
+		rating.preciseRound(to: 2)
 	}
 
 	var status: String {

@@ -33,7 +33,12 @@ final class HomeViewModel: ObservableObject {
 		Task {
 			try await loadCurrentUser()
 			try await loadUserSavedRestaurants()
+
+			UserManager.shared.listenToChange(userId: currentUser!.id) { [weak self] user in
+				self?.currentUser = user
+			}
 		}
+
 	}
 
     func setRestaurants(_ restaurants: [Restaurant]) {
@@ -54,6 +59,7 @@ final class HomeViewModel: ObservableObject {
 
 		let user = try await UserManager.shared.getUser(userId: currentUser.uid)
 		debugPrint("home get user: \(user)")
+
 		await MainActor.run {
 			self.currentUser = user
 			if let categoryPreferences = user.categoryPreferences {
@@ -72,11 +78,28 @@ final class HomeViewModel: ObservableObject {
 		}
 	}
 
+	func saveLovedRestaurant(_ restaurant: Restaurant) throws {
+		guard let currentUser else { return }
+
+		do {
+			try UserManager.shared.saveUserLovedRestaurant(userId: currentUser.id, restaurant: restaurant)
+		} catch {
+			throw URLError(.badServerResponse)
+		}
+	}
+
+	func saveBlockedRestaurant(_ restaurant: Restaurant) throws {
+		guard let currentUser else { return }
+
+		do {
+			try UserManager.shared.saveUserBlockedRestaurant(userId: currentUser.id, restaurant: restaurant)
+		} catch {
+			throw URLError(.badServerResponse)
+		}
+	}
+
 	func loadUserSavedRestaurants() async throws {
-		print(currentUser?.favoriteRestaurants)
-		print("current User",currentUser)
 		guard let savedRestaurantIds = currentUser?.favoriteRestaurants else { return }
-		print("saved ids: \(savedRestaurantIds)")
 
 		var restaurants: [Restaurant] = []
 
