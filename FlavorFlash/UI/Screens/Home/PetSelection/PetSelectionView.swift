@@ -39,7 +39,7 @@ struct PetSelectionView: View {
 						}
 				}
 
-				if let image = homeViewModel.outputImage {
+				if let image = homeViewModel.inputImage {
 					Image(uiImage: image)
 						.resizable()
 						.frame(width: 100, height: 100)
@@ -57,8 +57,6 @@ struct PetSelectionView: View {
 						let data = try? await selectedItem.loadTransferable(type: Data.self)
 					{
 						homeViewModel.inputImage = UIImage(data: data)
-
-						homeViewModel.runVisionRequest()
 					}
 				}
 			}
