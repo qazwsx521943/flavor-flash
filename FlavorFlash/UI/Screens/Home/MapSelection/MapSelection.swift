@@ -20,8 +20,10 @@ struct MapSelection: View {
 			Text("Map Search Options")
 				.bodyBoldStyle()
 
+			Divider()
+
 			Text("Max Search Result: \(Int(maxResultValue))")
-				.bodyStyle()
+				.captionBoldStyle()
 			Slider(value: $maxResultValue, in: 1...20, step: 1) {
 				Text("Result Count")
 			} minimumValueLabel: {
@@ -31,7 +33,7 @@ struct MapSelection: View {
 			}
 
 			Text("Search Radius: \(Int(searchRadius)) meters")
-				.bodyStyle()
+				.captionBoldStyle()
 			Slider(value: $searchRadius, in: 100...5000) {
 				Text("search radius")
 			} minimumValueLabel: {
@@ -41,7 +43,7 @@ struct MapSelection: View {
 			}
 
 			Text("Rank Preference")
-				.bodyStyle()
+				.captionBoldStyle()
 
 			Picker(selection: $rankPreference) {
 				Text("Distance")

@@ -46,7 +46,10 @@ struct ChatListView: View {
 							.foregroundStyle(.white)
 					}
 				}
+
+				NavigationBarBackButton()
 			}
+			.navigationBarBackButtonHidden()
 			.navigationTitle("Chat")
 			.navigationBarTitleDisplayMode(.inline)
 		}
@@ -72,6 +75,12 @@ extension ChatListView {
 		}
 		.listStyle(.plain)
 		.searchable(text: $viewModel.searchUserText, placement: .automatic, prompt: Text("search user"))
+		.navigationTitle("Add Chatroom")
+		.navigationBarTitleDisplayMode(.inline)
+		.toolbar {
+			NavigationBarBackButton()
+		}
+		.navigationBarBackButtonHidden()
 	}
 }
 

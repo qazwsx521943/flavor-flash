@@ -11,6 +11,7 @@
 		E703590E2B246BB7008F14E7 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E703590D2B246BB7008F14E7 /* BookmarkButton.swift */; };
 		E70359112B247201008F14E7 /* MapSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70359102B247201008F14E7 /* MapSelection.swift */; };
 		E70359132B247D1B008F14E7 /* Binding+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70359122B247D1B008F14E7 /* Binding+EXT.swift */; };
+		E70359172B248F84008F14E7 /* NavigationBarBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */; };
 		E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8DD2B0710950003462C /* ProfileView.swift */; };
 		E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8DF2B0710BA0003462C /* appConfig.swift */; };
 		E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E22B071D450003462C /* NavigationModel.swift */; };
@@ -153,6 +154,7 @@
 		E703590D2B246BB7008F14E7 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
 		E70359102B247201008F14E7 /* MapSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelection.swift; sourceTree = "<group>"; };
 		E70359122B247D1B008F14E7 /* Binding+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+EXT.swift"; sourceTree = "<group>"; };
+		E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarBackButton.swift; sourceTree = "<group>"; };
 		E70AF8DD2B0710950003462C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E70AF8DF2B0710BA0003462C /* appConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appConfig.swift; sourceTree = "<group>"; };
 		E70AF8E22B071D450003462C /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 				E7FFB3802B1C35CF0065A213 /* LikeButton.swift */,
 				E703590D2B246BB7008F14E7 /* BookmarkButton.swift */,
 				E7FECC852B21AC6000674C20 /* Polygon.swift */,
+				E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1088,6 +1091,7 @@
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
 				E7C110482B22188F00999FBD /* CGFloat+EXT.swift in Sources */,
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
+				E70359172B248F84008F14E7 /* NavigationBarBackButton.swift in Sources */,
 				E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */,
 				E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,

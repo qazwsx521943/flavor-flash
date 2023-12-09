@@ -47,6 +47,10 @@ struct RestaurantSearchView: View {
 			.onDisappear {
 				navigationModel.showTabBar()
 			}
+			.toolbar {
+				NavigationBarBackButton()
+			}
+			.navigationBarBackButtonHidden()
 			.navigationTitle(homeViewModel.category!.title)
 			.navigationBarTitleDisplayMode(.inline)
 	}

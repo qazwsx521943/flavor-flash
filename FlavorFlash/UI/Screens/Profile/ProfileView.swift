@@ -72,6 +72,10 @@ struct ProfileView: View {
 							}
 						}
 					}
+					.toolbar {
+						NavigationBarBackButton()
+					}
+					.navigationBarBackButtonHidden()
 					.navigationTitle("Friends")
 					.navigationBarTitleDisplayMode(.inline)
 				}
@@ -346,6 +350,10 @@ extension ProfileView {
 					}
 				}
 			}
+			.toolbar {
+				NavigationBarBackButton()
+			}
+			.navigationBarBackButtonHidden()
 			.navigationTitle("Friends")
 			.navigationBarTitleDisplayMode(.inline)
 		} label: {
