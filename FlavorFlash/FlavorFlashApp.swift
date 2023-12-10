@@ -43,6 +43,7 @@ struct FlavorFlashApp: App {
 				.fullScreenCover(isPresented: $navigationModel.showCategorySelectionModal) {
 					RestaurantCategoryView()
 				}
+				.preferredColorScheme(navigationModel.preferDarkMode ? .dark : .light)
 				.environmentObject(navigationModel)
 				.environment(\.colorScheme, navigationModel.preferDarkMode ?? (colorScheme == .dark) ? .dark : .light)
 		}

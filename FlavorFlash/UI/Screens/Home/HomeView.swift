@@ -100,7 +100,7 @@ struct HomeView: View {
 							showPetSelection.toggle()
 						}
 					} label: {
-						Image(systemName: "line.3.horizontal.decrease")
+						Image(systemName: "pawprint.fill")
 					}
 					.buttonStyle(IconButtonStyle())
 

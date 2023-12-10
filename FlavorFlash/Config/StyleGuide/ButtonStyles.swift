@@ -92,6 +92,7 @@ struct IconButtonStyle: ButtonStyle {
 	func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.bodyBoldStyle()
+			.foregroundStyle(.white)
 			.padding(12)
 			.background(
 				Circle()
