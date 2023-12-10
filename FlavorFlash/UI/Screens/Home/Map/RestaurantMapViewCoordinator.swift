@@ -30,16 +30,13 @@ class RestaurantMapViewCoordinator: NSObject {
 
 extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 	func mapView(_ mapView: MKMapView, didSelect annotation: MKAnnotation) {
-		parent.centerToRegion(
-			mapView: mapView,
-			coordinateRegion: MKCoordinateRegion(
-				center: annotation.coordinate,
-				latitudinalMeters: 200,
-				longitudinalMeters: 200
-			)
-		)
+		parent.homeViewModel.selectedRestaurant = parent
+			.homeViewModel
+			.restaurants
+			.first { $0.displayName.text == annotation.title }
 	}
 
+	// Opens apple map when callout AccessoryControl is tapped
 	func mapView(
 		_ mapView: MKMapView,
 		annotationView view: MKAnnotationView,
@@ -72,6 +69,7 @@ extension RestaurantMapViewCoordinator {
 	func fetchNearByRestaurants(centerCoordinate: CLLocationCoordinate2D) {
 
 		guard let categoryTag = parent.homeViewModel.category?.searchTag else { return }
+
 		PlaceFetcher.shared.fetchNearBy(
 			type: [categoryTag],
 			location: Location(CLLocation: centerCoordinate),
@@ -79,9 +77,12 @@ extension RestaurantMapViewCoordinator {
 			rankPreference: parent.homeViewModel.rankPreference ?? .distance,
 			radius: parent.homeViewModel.searchRadius ?? 1000
 		) { [weak self] response in
+
 			switch response {
 			case .success(let result):
+				debugPrint("nearby search Result: \(result.places.count)")
 				self?.parent.homeViewModel.restaurants = result.places
+
 			case .failure(let error):
 				debugPrint(error.localizedDescription)
 			}
@@ -89,12 +90,12 @@ extension RestaurantMapViewCoordinator {
 	}
 }
 
+// MARK: - CLLocationManager Delegate
 extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let location: CLLocation = locations.last!
 		manager.stopUpdatingLocation()
 		debugPrint("locations updated : \(location.coordinate)")
-		debugPrint("location altitude: \(location.altitude)")
 		parent.homeViewModel.currentLocation = CLLocationCoordinate2D(
 			latitude: location.coordinate.latitude,
 			longitude: location.coordinate.longitude)
@@ -104,7 +105,7 @@ extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 		else {
 			return
 		}
-		parent.centerLocation = currentLocation
+
 		fetchNearByRestaurants(centerCoordinate: currentLocation)
 	}
 
