@@ -8,6 +8,7 @@
 import UIKit
 import UserNotifications
 import GooglePlaces
+import Firebase
 import FirebaseCore
 import FirebaseMessaging
 
