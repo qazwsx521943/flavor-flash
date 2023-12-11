@@ -11,6 +11,8 @@ struct FoodPrintCell: View {
 
 	let foodPrint: FoodPrint
 
+	let author: FFUser?
+
 	@State private var isLiked: Bool = false
 
 	var showComment: ((FoodPrint) -> Void)?
@@ -20,7 +22,11 @@ struct FoodPrintCell: View {
 	var body: some View {
 		VStack(alignment: .leading, spacing: 10) {
 			HStack {
-				Text("userId: \(foodPrint.userId)")
+				if let author {
+					Text(author.displayName)
+						.padding(.leading, 12)
+						.bodyStyle()
+				}
 
 				Spacer()
 			}
@@ -114,5 +120,5 @@ private extension FoodPrintCell {
 }
 
 #Preview {
-	FoodPrintCell(foodPrint: FoodPrint.mockFoodPrint)
+	FoodPrintCell(foodPrint: FoodPrint.mockFoodPrint, author: nil)
 }

@@ -31,7 +31,10 @@ struct FoodPrintView: View {
 				ScrollView(.vertical, showsIndicators: false) {
 					VStack(alignment: .center, spacing: 30) {
 						ForEach(foodPrintViewModel.posts) { post in
-							FoodPrintCell(foodPrint: post, showComment: { foodprint in
+							FoodPrintCell(
+								foodPrint: post,
+								author: foodPrintViewModel.friends.first { $0.id == post.userId },
+								showComment: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .comment
 							}, showReport: { foodprint in

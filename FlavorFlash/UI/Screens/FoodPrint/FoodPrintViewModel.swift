@@ -14,6 +14,8 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 
 	@Published var currentUser: FFUser?
 
+	@Published var friends: [FFUser] = []
+
 	private let dataService: DI
 	private var cancellable = Set<AnyCancellable>()
 
@@ -23,6 +25,7 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		Task {
 			try await loadCurrentUser()
 			try await initDataService()
+			try await getAllFriends()
 		}
 	}
 
@@ -63,10 +66,16 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		guard let authDataResultModel = authUser else { return }
 		self.currentUser = try await UserManager.shared.getUser(userId: authDataResultModel.uid)
 	}
+
+	private func getAllFriends() async throws {
+		guard let friendsId = currentUser?.friends else { return }
+
+		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
+	}
 }
 
 extension FoodPrintViewModel {
-	func leaveComment(foodPrint: FoodPrint, comment: String) {
+	public func leaveComment(foodPrint: FoodPrint, comment: String) {
 		guard let currentUser else { return }
 
 		dataService.leaveComment(foodPrint, userId: currentUser.id, comment: comment)
