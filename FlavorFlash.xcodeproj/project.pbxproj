@@ -108,7 +108,6 @@
 		E7E200C12B08FF8C003C22D6 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200C02B08FF8C003C22D6 /* FirebaseFirestoreSwift */; };
 		E7E200C32B08FF8C003C22D6 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200C22B08FF8C003C22D6 /* FirebaseFunctions */; };
 		E7E200C52B08FF8C003C22D6 /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200C42B08FF8C003C22D6 /* FirebaseFunctionsCombine-Community */; };
-		E7E200CD2B08FF8C003C22D6 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200CC2B08FF8C003C22D6 /* FirebaseMLModelDownloader */; };
 		E7E200D12B08FF8C003C22D6 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D02B08FF8C003C22D6 /* FirebasePerformance */; };
 		E7E200D32B08FF8C003C22D6 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D22B08FF8C003C22D6 /* FirebaseRemoteConfig */; };
 		E7E200D72B08FF8C003C22D6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D62B08FF8C003C22D6 /* FirebaseStorage */; };
@@ -274,7 +273,6 @@
 				E7E200C32B08FF8C003C22D6 /* FirebaseFunctions in Frameworks */,
 				E7E200B32B08FF8C003C22D6 /* FirebaseAuthCombine-Community in Frameworks */,
 				E7E200BF2B08FF8C003C22D6 /* FirebaseFirestoreCombine-Community in Frameworks */,
-				E7E200CD2B08FF8C003C22D6 /* FirebaseMLModelDownloader in Frameworks */,
 				E70C6C592B0C9B6A003B27EE /* Kingfisher in Frameworks */,
 				E74EDF422B15B8BA004DE202 /* ExyteChat in Frameworks */,
 				E7E200A52B08FF8C003C22D6 /* FirebaseAnalytics in Frameworks */,
@@ -880,7 +878,6 @@
 				E7E200C02B08FF8C003C22D6 /* FirebaseFirestoreSwift */,
 				E7E200C22B08FF8C003C22D6 /* FirebaseFunctions */,
 				E7E200C42B08FF8C003C22D6 /* FirebaseFunctionsCombine-Community */,
-				E7E200CC2B08FF8C003C22D6 /* FirebaseMLModelDownloader */,
 				E7E200D02B08FF8C003C22D6 /* FirebasePerformance */,
 				E7E200D22B08FF8C003C22D6 /* FirebaseRemoteConfig */,
 				E7E200D62B08FF8C003C22D6 /* FirebaseStorage */,
@@ -1475,11 +1472,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFunctionsCombine-Community";
-		};
-		E7E200CC2B08FF8C003C22D6 /* FirebaseMLModelDownloader */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMLModelDownloader;
 		};
 		E7E200D02B08FF8C003C22D6 /* FirebasePerformance */ = {
 			isa = XCSwiftPackageProductDependency;
