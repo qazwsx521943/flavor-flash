@@ -23,6 +23,10 @@ final class ProfileViewModel: ObservableObject {
 	@Published var friendFoodPrints: [FoodPrint] = []
 
 	init() {
+		loadProfileData()
+	}
+
+	public func loadProfileData() {
 		Task {
 			try? await loadCurrentUser()
 			try? await getFoodPrints()

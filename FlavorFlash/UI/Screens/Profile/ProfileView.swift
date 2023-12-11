@@ -119,6 +119,9 @@ struct ProfileView: View {
 			}
 			.navigationTitle("Profile")
 			.navigationBarTitleDisplayMode(.inline)
+			.refreshable {
+				viewModel.loadProfileData()
+			}
 		}
 	}
 }
