@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Kingfisher
+import FirebaseAuth
 
 struct FoodPrintCell: View {
 
@@ -13,11 +15,33 @@ struct FoodPrintCell: View {
 
 	let author: FFUser?
 
-	@State private var isLiked: Bool = false
+	@State private var isLiked: Bool
 
 	var showComment: ((FoodPrint) -> Void)?
 
 	var showReport: ((FoodPrint) -> Void)?
+
+	var likePost: () -> Void
+
+	var dislikePost: () -> Void
+
+	init(foodPrint: FoodPrint, author: FFUser?, showComment: ( (FoodPrint) -> Void)? = nil, showReport: ( (FoodPrint) -> Void)? = nil, likePost: @escaping () -> Void, dislikePost: @escaping () -> Void) {
+		self.foodPrint = foodPrint
+		self.author = author
+		if
+			let currentUserId = Auth.auth().currentUser?.uid,
+			let isLiked = foodPrint.likedBy?.contains(where: { id in
+				currentUserId == id
+			}) {
+			self._isLiked = State(wrappedValue: isLiked)
+		} else {
+			self._isLiked = State(wrappedValue: false)
+		}
+		self.showComment = showComment
+		self.showReport = showReport
+		self.likePost = likePost
+		self.dislikePost = dislikePost
+	}
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 10) {
@@ -56,16 +80,26 @@ private extension FoodPrintCell {
 			ScrollView(.horizontal, showsIndicators: false) {
 				HStack {
 					ForEach(foodPrint.getAllImagesURL, id: \.self) { imageUrl in
-						AsyncImage(url: URL(string: imageUrl)!) { image in
-							image
-								.resizable()
-								.rotationEffect(.degrees(90))
-								.scaledToFill()
-								.frame(width: size.width)
-						} placeholder: {
-							ProgressView()
-								.frame(width: size.width, height: 300)
-						}
+						KFImage(URL(string: imageUrl))
+							.placeholder({
+								ProgressView()
+									.frame(width: size.width, height: 300)
+							})
+							.resizable()
+							.rotationEffect(.degrees(90))
+							.scaledToFill()
+							.frame(width: size.width)
+
+//						AsyncImage(url: URL(string: imageUrl)!) { image in
+//							image
+//								.resizable()
+//								.rotationEffect(.degrees(90))
+//								.scaledToFill()
+//								.frame(width: size.width)
+//						} placeholder: {
+//							ProgressView()
+//								.frame(width: size.width, height: 300)
+//						}
 					}
 				}
 			}
@@ -99,8 +133,10 @@ private extension FoodPrintCell {
 
 	private var actionsTab: some View {
 		HStack(spacing: 20) {
-			LikeButton(isLiked: $isLiked)
-				.frame(width: 30, height: 30)
+			LikeButton(isLiked: $isLiked) {
+				isLiked ? dislikePost() : likePost()
+			}
+			.frame(width: 30, height: 30)
 
 			Image(systemName: "paperplane.fill")
 			Image(systemName: "ellipsis.message")
@@ -120,5 +156,9 @@ private extension FoodPrintCell {
 }
 
 #Preview {
-	FoodPrintCell(foodPrint: FoodPrint.mockFoodPrint, author: nil)
+	FoodPrintCell(foodPrint: FoodPrint.mockFoodPrint, author: nil) {
+		print("cool")
+	} dislikePost: {
+		print("dislike")
+	}
 }

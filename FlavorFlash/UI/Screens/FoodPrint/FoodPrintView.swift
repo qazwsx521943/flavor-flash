@@ -40,6 +40,8 @@ struct FoodPrintView: View {
 							}, showReport: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .report
+							}, likePost: {foodPrintViewModel.likePost(foodPrint: post)}, dislikePost: {
+								foodPrintViewModel.dislikePost(foodPrint: post)
 							})
 							.frame(width: geometry.size.width, height: geometry.size.height * 0.9)
 							.padding(16)
@@ -50,6 +52,9 @@ struct FoodPrintView: View {
 					.sheet(item: $isSelectedFoodPrint) { item in
 						sheetType(foodPrint: item)
 					}
+				}
+				.refreshable {
+					foodPrintViewModel.reloadData()
 				}
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {
@@ -76,6 +81,17 @@ extension FoodPrintView {
 				CommentSheetView(foodPrint: foodPrint) { comment in
 					foodPrintViewModel.leaveComment(foodPrint: foodPrint, comment: comment)
 				}
+//				.task {
+//					if let userIds = foodPrint.comments?.compactMap({ comment in
+//						comment.userId
+//					}) {
+//						do {
+//							try await foodPrintViewModel.getCommentUsers(ids: userIds)
+//						} catch {
+//							print("cool")
+//						}
+//					}
+//				}
 				.presentationDetents([.medium])
 			case .report:
 				ReportSheetView { reason in

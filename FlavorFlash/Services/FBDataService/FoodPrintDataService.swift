@@ -66,6 +66,23 @@ class FoodPrintDataService<T: FBModelType>: FBDataService {
 		}
 	}
 
+	func likePost(_ item: T, userId: String) {
+		let documentID = item.id
+
+		store
+			.collection(path)
+			.document(documentID)
+			.updateData(["liked_by": FieldValue.arrayUnion([userId])])
+	}
+
+	func dislikePost(_ item: T, userId: String) {
+		let documentID = item.id
+
+		store.collection(path)
+			.document(documentID)
+			.updateData(["liked_by": FieldValue.arrayRemove([userId])])
+	}
+
 	func leaveComment(_ item: T, userId: String, comment: String) {
 		let documentID = item.id
 
@@ -79,7 +96,7 @@ class FoodPrintDataService<T: FBModelType>: FBDataService {
 				.collection(path)
 				.document(documentID)
 				.updateData([
-				"comments": FieldValue.arrayUnion([encodedComment])
+					"comments": FieldValue.arrayUnion([encodedComment])
 				])
 		} catch {
 			fatalError("adding comment failed")

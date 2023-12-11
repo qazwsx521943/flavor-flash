@@ -16,8 +16,8 @@ struct LikeButton: View {
 	var body: some View {
 		HStack {
 			Button {
-				isLiked.toggle()
 				action?()
+				isLiked.toggle()
 			} label: {
 				ZStack {
 					Image(systemName: isLiked ? "heart.fill" : "heart")
