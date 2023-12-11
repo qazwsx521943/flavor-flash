@@ -24,8 +24,8 @@ struct CameraView: View {
 					let _ = cameraDataModel.capturedBackCamImage,
 					let _ = cameraDataModel.capturedFrontCamImage
 				{
-					AnalyzeView(cameraDataModel: cameraDataModel)
-						.overlayWithSystemImage(systemName: "xmark", alignment: .topTrailing) {
+					EditorView(cameraDataModel: cameraDataModel)
+						.overlayWithSystemImage(systemName: "arrow.left.circle.fill", alignment: .topLeading) {
 							cameraDataModel.capturedBackCamImage = nil
 							cameraDataModel.capturedFrontCamImage = nil
 						}

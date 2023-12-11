@@ -22,10 +22,6 @@ struct ViewfinderView: View {
                 }
                 .overlay(alignment: .topLeading) {
 					SecondaryPreviewView(previewImage: isBackCamPrimary ? frontCamImage : backCamImage)
-						.background(
-							RoundedRectangle(cornerRadius: 10)
-						)
-						.offset(x: 48, y: 100)
 						.onTapGesture {
 							isBackCamPrimary.toggle()
 						}

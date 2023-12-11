@@ -7,12 +7,18 @@
 
 import SwiftUI
 
-struct StackItem: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+struct StackItem: Identifiable {
+	var id = UUID().uuidString
 
-#Preview {
-    StackItem()
+	var view: AnyView
+
+	// MARK: - For Gesture
+	var offset: CGSize = .zero
+	var lastOffset: CGSize = .zero
+
+	var rotation: Angle = .zero
+	var lastRotation: Angle = .zero
+
+	var scale: CGFloat = 1.0
+	var lastScale: CGFloat = 1.0
 }
