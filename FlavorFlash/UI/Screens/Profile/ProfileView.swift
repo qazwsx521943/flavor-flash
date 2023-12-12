@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import Kingfisher
 
 struct ProfileView: View {
 
@@ -34,7 +35,10 @@ struct ProfileView: View {
 		NavigationStack {
 
 			if let user = viewModel.user {
-				ProfileHeader(avatarUrlString: user.profileImageUrl ?? "") {
+				ProfileHeader(
+					avatarUrlString: user.profileImageUrl ?? "",
+					displayName: user.displayName
+				) {
 					ActivityItemDisplay(title: "foodprints", count: viewModel.foodPrints.count) {
 						showFoodPrint = true
 					}
@@ -58,20 +62,46 @@ struct ProfileView: View {
 					List {
 						ForEach(viewModel.friends, id: \.self) { friend in
 							HStack {
-								AsyncImage(url: URL(string: friend.profileImageUrl ?? "")) { image in
-									image
-										.resizable()
-										.scaledToFill()
-								} placeholder: {
-									Image(systemName: "person.fill")
-								}
-								.frame(width: 50, height: 50)
-								.clipShape(Circle())
+								KFImage(URL(string: friend.profileImageUrl ?? ""))
+									.placeholder {
+										Image(systemName: "person.fill")
+									}
+									.resizable()
+									.scaledToFill()
+									.frame(width: 50, height: 50)
+									.clipShape(Circle())
 
 								Text(friend.displayName)
+
+								Spacer()
+
+								Text("...")
+									.bodyStyle()
+									.contextMenu {
+										Button(role: .destructive) {
+											viewModel.deleteFriend(friend.id)
+										} label: {
+											Text("Delete")
+										}
+
+										Button(role: .destructive) {
+											viewModel.blockFriend(friend.id)
+										} label: {
+											Text("Block")
+										}
+
+									} preview: {
+										KFImage(URL(string: friend.profileImageUrl ?? ""))
+											.placeholder {
+												Image(systemName: "person.fill")
+											}
+											.resizable()
+											.frame(width: 200, height: 200)
+									}
 							}
 						}
 					}
+					.listStyle(.plain)
 					.toolbar {
 						NavigationBarBackButton()
 					}
@@ -327,20 +357,47 @@ extension ProfileView {
 	// unused
 	private var showFriendLink: some View {
 		NavigationLink {
-			List {
-				ForEach(viewModel.friends, id: \.self) { friend in
-					HStack {
-						AsyncImage(url: URL(string: friend.profileImageUrl ?? "")) { image in
-							image
+			ScrollView {
+				VStack {
+					ForEach(viewModel.friends, id: \.self) { friend in
+						HStack {
+							KFImage(URL(string: friend.profileImageUrl ?? ""))
+								.placeholder {
+									Image(systemName: "person.fill")
+								}
 								.resizable()
 								.scaledToFill()
-						} placeholder: {
-							Image(systemName: "person.fill")
-						}
-						.frame(width: 50, height: 50)
-						.clipShape(Circle())
+								.frame(width: 50, height: 50)
+								.clipShape(Circle())
 
-						Text(friend.displayName)
+							Text(friend.displayName)
+
+							Spacer()
+
+							Button {
+
+							} label: {
+								Text("...")
+									.bodyStyle()
+									.contextMenu {
+										Button(role: .destructive) {
+
+										} label: {
+											Text("Delete")
+										}
+
+										Button(role: .destructive) {
+
+										} label: {
+											Text("Block")
+										}
+
+									} preview: {
+										KFImage(URL(string: friend.profileImageUrl ?? ""))
+									}
+							}
+							.buttonStyle(SmallPrimaryButtonStyle())
+						}
 					}
 				}
 			}

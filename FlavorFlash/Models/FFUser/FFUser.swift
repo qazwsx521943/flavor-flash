@@ -18,6 +18,7 @@ struct FFUser: Codable, Hashable, Identifiable {
 	let lovedRestaurants: [String]?
 	let blockedRestaurants: [String]?
 	let friends: [String]?
+	let blockedList: [String]?
 	let categoryPreferences: [String]?
 
 	enum CodingKeys: String, CodingKey {
@@ -31,6 +32,7 @@ struct FFUser: Codable, Hashable, Identifiable {
 		case lovedRestaurants = "loved_restaurants"
 		case blockedRestaurants = "blocked_restaurants"
 		case friends
+		case blockedList = "blocked_list"
 		case categoryPreferences
 	}
 }
@@ -48,6 +50,7 @@ extension FFUser {
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = "Anonymous"
+		self.blockedList = nil
 		self.categoryPreferences = nil
 	}
 
@@ -62,6 +65,7 @@ extension FFUser {
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = displayName
+		self.blockedList = nil
 		self.categoryPreferences = nil
 	}
 }
@@ -79,6 +83,7 @@ extension FFUser {
 			lovedRestaurants: nil,
 			blockedRestaurants: nil,
 			friends: nil,
+			blockedList: nil,
 			categoryPreferences: nil)
 	}
 }

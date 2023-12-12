@@ -106,3 +106,34 @@ final class ChatManager {
 		}
 	}
 }
+
+// MARK: - UGC conform
+extension ChatManager {
+	public func deleteGroup(with blockId: String, from userId: String) async throws {
+		let docs = try await groupCollection
+			.whereField("members", arrayContainsAny: [blockId, userId])
+			.getDocuments()
+		debugPrint("groupdocs: \(docs.documents.count)")
+
+		do {
+			let groups = try docs.documents.map { try $0.data(as: FBGroup.self) }
+			debugPrint("groups: \(groups)")
+			let filteredGroup = groups.filter { group in
+				group.members.allSatisfy { id in
+					id == blockId || id == userId
+				}
+			}
+
+			print("filterd Group", filteredGroup.map { $0.id })
+			if !filteredGroup.isEmpty {
+				for group in filteredGroup {
+					try await groupCollection.document(group.id).delete()
+				}
+			}
+
+		} catch {
+			throw URLError(.badServerResponse)
+		}
+
+	}
+}

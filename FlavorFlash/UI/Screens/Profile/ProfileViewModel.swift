@@ -122,3 +122,23 @@ extension ProfileViewModel {
 		user = nil
 	}
 }
+
+// MARK: - UGC conform
+extension ProfileViewModel {
+	public func blockFriend(_ id: String) {
+		guard let userId = user?.id else { return }
+		Task {
+			try await UserManager.shared.blockFriend(blockId: id, from: userId)
+			try await ChatManager.shared.deleteGroup(with: id, from: userId)
+			loadProfileData()
+		}
+	}
+
+	public func deleteFriend(_ id: String) {
+		guard let userId = user?.id else { return }
+		Task {
+			try await UserManager.shared.deleteFriend(deleteId: id, from: userId)
+			loadProfileData()
+		}
+	}
+}

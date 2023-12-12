@@ -138,3 +138,17 @@ extension UserManager {
 		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayRemove([restaurant.id])])
 	}
 }
+
+// MARK: - UGC conform
+extension UserManager {
+	public func blockFriend(blockId: String, from userId: String) async throws {
+		try await deleteFriend(deleteId: blockId, from: userId)
+
+		try await userDocument(userId: userId).updateData(["blocked_list": FieldValue.arrayUnion([blockId])])
+	}
+
+	public func deleteFriend(deleteId: String, from userId: String) async throws {
+		try await userDocument(userId: userId).updateData(["friends": FieldValue.arrayRemove([deleteId])])
+		try await userDocument(userId: deleteId).updateData(["friends": FieldValue.arrayRemove([userId])])
+	}
+}

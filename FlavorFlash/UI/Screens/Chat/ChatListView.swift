@@ -21,7 +21,10 @@ struct ChatListView: View {
 							NavigationLink {
 								ChatroomView(groupId: group.id)
 							} label: {
-								ChatListCell(avatarUrl: group.getGroupImage(exclude: currentUser.id), name: group.name)
+								ChatListCell(
+									avatarUrl: group.getGroupImage(exclude: currentUser.id),
+									name: group.name
+								)
 									.frame(height: 60)
 							}
 						}
