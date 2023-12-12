@@ -60,24 +60,28 @@ extension EditorView {
 		HStack {
 			Spacer()
 
-			Button {
-				showTextEditor.toggle()
-			} label: {
-				Image(systemName: "textformat")
-			}.buttonStyle(IconButtonStyle())
+			if #available(iOS 17.0, *) {
+				Button {
+					showTextEditor.toggle()
+				} label: {
+					Image(systemName: "textformat")
+				}.buttonStyle(IconButtonStyle())
 
-			Button {
-				showPhotoPicker.toggle()
-			} label: {
-				Image(systemName: "photo.fill")
+				Button {
+					showPhotoPicker.toggle()
+				} label: {
+					Image(systemName: "photo.fill")
 
-			}.buttonStyle(IconButtonStyle())
+				}.buttonStyle(IconButtonStyle())
+			}
 
 			NavigationLink {
 				CommentView(cameraDataModel: cameraDataModel)
 			} label: {
 				Image(systemName: "arrow.right.circle.fill")
-					.bodyStyle()
+					.resizable()
+					.foregroundStyle(.white)
+					.frame(width: 40, height: 40)
 			}
 		}
 		.frame(maxWidth: .infinity)

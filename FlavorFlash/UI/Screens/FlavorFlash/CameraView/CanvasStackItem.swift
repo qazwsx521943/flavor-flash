@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+@available(iOS 17.0, *)
 struct CanvasStackItem<Content: View>: View {
 
 	@Binding var stackItem: StackItem
@@ -19,22 +20,31 @@ struct CanvasStackItem<Content: View>: View {
 
 	@State private var longTapScale: CGFloat = 1
 
+	@State var offset: CGSize = .zero
+	@State var lastOffset: CGSize = .zero
+
+	@State var scale: CGFloat = 1
+	@State var lastScale: CGFloat = 1
+
+	@State var rotation: Angle = .zero
+	@State var lastRotation: Angle = .zero
+
 	init(
 		stackItem: Binding<StackItem>,
 		@ViewBuilder content: @escaping () -> Content,
 		moveFront: @escaping () -> (),
 		delete: @escaping () -> ()) {
-		self._stackItem = stackItem
-		self.content = content()
-		self.moveFront = moveFront
-		self.delete = delete
-	}
+			self._stackItem = stackItem
+			self.content = content()
+			self.moveFront = moveFront
+			self.delete = delete
+		}
 
-    var body: some View {
+	var body: some View {
 		content
-			.offset(stackItem.offset)
-			.rotationEffect(stackItem.rotation)
-			.scaleEffect(stackItem.scale < 0.4 ? 0.4 : stackItem.scale)
+			.offset(offset)
+			.rotationEffect(rotation)
+			.scaleEffect(scale < 0.4 ? 0.4 : scale)
 			.scaleEffect(longTapScale)
 			.onTapGesture(count: 2) {
 				delete()
@@ -52,16 +62,34 @@ struct CanvasStackItem<Content: View>: View {
 			.gesture(
 				DragGesture()
 					.onChanged { value in
-						stackItem.offset = CGSize(
-							width: stackItem.lastOffset.width + value.translation.width,
-							height: stackItem.lastOffset.height + value.translation.height
+						offset = CGSize(
+							width: lastOffset.width + value.translation.width,
+							height: lastOffset.height + value.translation.height
 						)
 					}
 					.onEnded { value in
-						stackItem.lastOffset = stackItem.offset
+						lastOffset = offset
 					}
 			)
-    }
+			.gesture(
+				MagnifyGesture()
+					.onChanged { value in
+						scale = lastScale * value.magnification
+					}
+					.onEnded { value in
+						lastScale = scale
+					}
+					.simultaneously(
+						with: RotateGesture()
+							.onChanged { value in
+								rotation = lastRotation + value.rotation
+							}
+							.onEnded { value in
+								lastRotation = rotation
+							}
+					)
+			)
+	}
 }
 
 //#Preview {

@@ -10,7 +10,7 @@ import SwiftUI
 class CanvasViewModel: NSObject, ObservableObject {
 	@Published var stack: [StackItem] = []
 
-	func addStackItem(_ uiImage: UIImage) {
+	public func addStackItem(_ uiImage: UIImage) {
 		let image = Image(uiImage: uiImage)
 			.resizable()
 			.aspectRatio(contentMode: .fit)
@@ -19,7 +19,7 @@ class CanvasViewModel: NSObject, ObservableObject {
 		stack.append(stackItem)
 	}
 
-	func addStackItem(_ anyView: AnyView) {
+	public func addStackItem(_ anyView: AnyView) {
 		let stackItem = StackItem(view: anyView)
 		stack.append(stackItem)
 	}

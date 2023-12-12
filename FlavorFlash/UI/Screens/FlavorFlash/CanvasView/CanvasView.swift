@@ -22,13 +22,15 @@ struct CanvasView: View {
 				.scaledToFit()
 				.frame(maxWidth: .infinity)
 
-			ForEach($canvasViewModel.stack) { $stackItem in
-				CanvasStackItem(stackItem: $stackItem) {
-					stackItem.view
-				} moveFront: {
-					canvasViewModel.moveToFront(stackItem)
-				} delete: {
-					canvasViewModel.deleteStackItem(stackItem)
+			if #available(iOS 17.0, *) {
+				ForEach($canvasViewModel.stack) { $stackItem in
+					CanvasStackItem(stackItem: $stackItem) {
+						stackItem.view
+					} moveFront: {
+						canvasViewModel.moveToFront(stackItem)
+					} delete: {
+						canvasViewModel.deleteStackItem(stackItem)
+					}
 				}
 			}
 		}
