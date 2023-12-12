@@ -18,6 +18,8 @@ final class ProfileViewModel: ObservableObject {
 
 	@Published var friends: [FFUser] = []
 
+	@Published var blockedUsers: [FFUser] = []
+
 	@Published var foodPrints: [FoodPrint] = []
 
 	@Published var friendFoodPrints: [FoodPrint] = []
@@ -30,6 +32,7 @@ final class ProfileViewModel: ObservableObject {
 		Task {
 			try? await loadCurrentUser()
 			try? await getFoodPrints()
+			try? await loadBlockedUser()
 		}
 	}
 
@@ -52,6 +55,11 @@ final class ProfileViewModel: ObservableObject {
 		let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
 
 		self.user = try await UserManager.shared.getUser(userId: authUser.uid)
+	}
+
+	func loadBlockedUser() async throws {
+		guard let blockedIds = self.user?.blockedList else { return }
+		self.blockedUsers = try await UserManager.shared.getUserFriends(ids: blockedIds)
 	}
 
 	func saveProfileImage(item: PhotosPickerItem) {

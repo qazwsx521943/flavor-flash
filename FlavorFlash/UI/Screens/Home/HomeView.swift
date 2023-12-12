@@ -40,6 +40,7 @@ struct HomeView: View {
 							.overlay(alignment: .top) {
 								Text(viewModel.category?.title ?? "What to eat？")
 									.captionStyle()
+									.foregroundStyle(.white)
 									.padding(.vertical, 8)
 									.padding(.horizontal, 12)
 									.background(

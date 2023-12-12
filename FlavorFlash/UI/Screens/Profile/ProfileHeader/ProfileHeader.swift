@@ -38,6 +38,7 @@ struct ProfileHeader<Content: View>: View {
 				.frame(width: 80, height: 80)
 				.clipShape(Circle())
 				.offset(y: -40)
+				.frame(maxWidth: .infinity)
 				.overlay(alignment: .center) {
 					Text(displayName)
 						.bodyBoldStyle()
@@ -81,7 +82,7 @@ struct ActivityItemDisplay: View {
 }
 
 #Preview {
-	ProfileHeader(avatarUrlString: "https://picsum.photos/200", displayName: "Jason") {
+	ProfileHeader(avatarUrlString: "https://picsum.photos/200", displayName: "Jasssson") {
 		ActivityItemDisplay(title: "foodprints", count: 8)
 		ActivityItemDisplay(title: "badges", count: 8)
 		ActivityItemDisplay(title: "friends", count: 8)

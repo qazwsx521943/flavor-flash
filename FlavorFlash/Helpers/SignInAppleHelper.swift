@@ -12,6 +12,7 @@ import CryptoKit
 struct SignInWithAppleResult {
 	let token: String
 	let nonce: String
+	let fullName: PersonNameComponents?
 }
 
 @MainActor
@@ -106,7 +107,10 @@ extension SignInAppleHelper: ASAuthorizationControllerDelegate {
 			return
 		}
 
-		let tokens = SignInWithAppleResult(token: idTokenString, nonce: nonce)
+		let tokens = SignInWithAppleResult(
+			token: idTokenString,
+			nonce: nonce,
+			fullName: appleIDCredential.fullName)
 
 		completionHandler?(.success(tokens))
 	}

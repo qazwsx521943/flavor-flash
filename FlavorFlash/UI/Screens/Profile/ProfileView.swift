@@ -42,7 +42,7 @@ struct ProfileView: View {
 					ActivityItemDisplay(title: "foodprints", count: viewModel.foodPrints.count) {
 						showFoodPrint = true
 					}
-					ActivityItemDisplay(title: "badges", count: 8)
+					ActivityItemDisplay(title: "badges", count: 0)
 					ActivityItemDisplay(title: "friends", count: viewModel.friends.count) {
 						showFriends = true
 					}

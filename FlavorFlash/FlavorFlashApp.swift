@@ -38,14 +38,15 @@ struct FlavorFlashApp: App {
 				.fullScreenCover(isPresented: $navigationModel.showSignInModal) {
 					NavigationStack {
 						AuthenticationView()
+							.preferredColorScheme(colorScheme)
 					}
 				}
 				.fullScreenCover(isPresented: $navigationModel.showCategorySelectionModal) {
 					RestaurantCategoryView()
 				}
-				.preferredColorScheme(navigationModel.preferDarkMode ? .dark : .light)
+				.preferredColorScheme(navigationModel.preferDarkMode ?? (colorScheme == .dark) ? .dark : .light)
 				.environmentObject(navigationModel)
-				.environment(\.colorScheme, navigationModel.preferDarkMode ?? (colorScheme == .dark) ? .dark : .light)
+//				.environment(\.colorScheme, navigationModel.preferDarkMode ?? (colorScheme == .dark) ? .dark : .light)
 		}
 		.onChange(of: scenePhase) { newValue in
 			if newValue == .background {
