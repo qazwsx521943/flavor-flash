@@ -22,11 +22,7 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 	init(dataService: DI) {
 		self.dataService = dataService
 
-		Task {
-			try await loadCurrentUser()
-			try await initDataService()
-			try await getAllFriends()
-		}
+		self.reloadData()
 	}
 
 	init(mockService: DI) {
@@ -77,13 +73,11 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 extension FoodPrintViewModel {
 	// MARK: - User actions
 	public func reloadData() {
-		dataService.getData()
-			.sink { error in
-				print(error)
-			} receiveValue: { [weak self] foodPrints in
-				self?.posts = foodPrints
-			}
-			.store(in: &cancellable)
+		Task {
+			try await loadCurrentUser()
+			try await initDataService()
+			try await getAllFriends()
+		}
 	}
 
 	public func leaveComment(foodPrint: FoodPrint, comment: String) {

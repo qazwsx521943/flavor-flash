@@ -64,7 +64,7 @@ struct FoodPrintView: View {
 							ChatListView()
 						} label: {
 							Image(systemName: "message.fill")
-								.foregroundStyle(.white)
+								.foregroundStyle(navigationModel.preferDarkMode ? .lightGreen : .darkGreen)
 						}
 					}
 				}

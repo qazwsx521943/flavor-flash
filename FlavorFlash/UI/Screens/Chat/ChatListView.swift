@@ -46,7 +46,7 @@ struct ChatListView: View {
 						addNewChat
 					} label: {
 						Image(systemName: "plus")
-							.foregroundStyle(.white)
+							.foregroundStyle(.darkGreen)
 					}
 				}
 
