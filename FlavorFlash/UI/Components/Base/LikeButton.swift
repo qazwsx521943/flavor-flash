@@ -22,7 +22,7 @@ struct LikeButton: View {
 				ZStack {
 					Image(systemName: isLiked ? "heart.fill" : "heart")
 						.font(isLiked ? .title2 : .title3)
-						.foregroundColor(Color(isLiked ? .systemPink : .white))
+						.foregroundColor(Color(isLiked ? .systemPink : .black))
 						.animation(.interpolatingSpring(stiffness: 170, damping: 15), value: isLiked)
 
 					Circle()
