@@ -19,7 +19,7 @@ struct SettingsView: View {
 			} label: {
 				Text("Account")
 					.prefixedWithSFSymbol(named: "person.crop.circle", height: 20)
-					.bodyStyle()
+					.captionStyle()
 			}
 
 			NavigationLink {
@@ -27,7 +27,7 @@ struct SettingsView: View {
 			} label: {
 				Text("Privacy Setting")
 					.prefixedWithSFSymbol(named: "lock", height: 20)
-					.bodyStyle()
+					.captionStyle()
 			}
 		}
 		.listStyle(.plain)
@@ -50,6 +50,7 @@ extension SettingsView {
 				.navigationTitle("Blocked Users")
 			} label: {
 				Text("Blocked Users")
+					.captionStyle()
 			}
 
 		}
@@ -69,7 +70,8 @@ extension SettingsView {
 					}
 				}
 			} label: {
-				Text("重設密碼")
+				Text("Reset Password")
+					.captionStyle()
 					.foregroundStyle(.primary)
 			}
 
@@ -79,7 +81,8 @@ extension SettingsView {
 					navigationModel.showSignInModal = true
 				}
 			} label: {
-				Text("刪除帳號")
+				Text("Delete Account")
+					.captionStyle()
 			}
 		}
 		.listStyle(.plain)

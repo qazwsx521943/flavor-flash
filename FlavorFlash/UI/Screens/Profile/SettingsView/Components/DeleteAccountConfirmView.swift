@@ -17,12 +17,15 @@ struct DeleteAccountConfirmView: View {
 		VStack {
 			Spacer()
 
-			Text("你確嗎？")
+			Text("Are you sure you want to delete your account？")
+				.bodyStyle()
+				.multilineTextAlignment(.center)
 
 			Spacer()
 
 			Divider()
-			Text("刪除帳號")
+			Text("Delete Account")
+				.bodyStyle()
 				.frame(maxWidth: .infinity)
 				.padding(.vertical, 12)
 				.padding(.horizontal, 16)
@@ -43,7 +46,7 @@ struct DeleteAccountConfirmView: View {
 		.onDisappear {
 			navigationModel.showTabBar()
 		}
-		.navigationTitle("刪除帳號")
+		.navigationTitle("Delete Account")
 		.navigationBarTitleDisplayMode(.inline)
     }
 }
