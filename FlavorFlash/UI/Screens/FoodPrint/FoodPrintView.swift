@@ -81,17 +81,6 @@ extension FoodPrintView {
 				CommentSheetView(foodPrint: foodPrint) { comment in
 					foodPrintViewModel.leaveComment(foodPrint: foodPrint, comment: comment)
 				}
-//				.task {
-//					if let userIds = foodPrint.comments?.compactMap({ comment in
-//						comment.userId
-//					}) {
-//						do {
-//							try await foodPrintViewModel.getCommentUsers(ids: userIds)
-//						} catch {
-//							print("cool")
-//						}
-//					}
-//				}
 				.presentationDetents([.medium])
 			case .report:
 				ReportSheetView { reason in

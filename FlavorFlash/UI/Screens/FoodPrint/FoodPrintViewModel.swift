@@ -41,16 +41,6 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		]
 	}
 
-	public func reloadData() {
-		dataService.getData()
-			.sink { error in
-				print(error)
-			} receiveValue: { [weak self] foodPrints in
-				self?.posts = foodPrints
-			}
-			.store(in: &cancellable)
-	}
-
 	private func initDataService() async throws {
 		guard 
 			let dataService = dataService as? FoodPrintDataService<FoodPrint>,
@@ -82,21 +72,24 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 
 		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
 	}
-
-	public func getCommentUsers(ids: [String]) async throws -> [FFUser] {
-		let users = try await UserManager.shared.getUserFriends(ids: ids)
-
-		return users
-	}
-
 }
 
 extension FoodPrintViewModel {
 	// MARK: - User actions
+	public func reloadData() {
+		dataService.getData()
+			.sink { error in
+				print(error)
+			} receiveValue: { [weak self] foodPrints in
+				self?.posts = foodPrints
+			}
+			.store(in: &cancellable)
+	}
+
 	public func leaveComment(foodPrint: FoodPrint, comment: String) {
 		guard let currentUser else { return }
 
-		dataService.leaveComment(foodPrint, userId: currentUser.id, comment: comment)
+		dataService.leaveComment(foodPrint, userId: currentUser.displayName, comment: comment)
 	}
 
 	public func reportFoodPrint(id: String, reason: ReportReason) {
