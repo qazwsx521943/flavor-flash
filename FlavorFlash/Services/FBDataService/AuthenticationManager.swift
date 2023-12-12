@@ -96,10 +96,21 @@ final class AuthenticationManager {
 extension AuthenticationManager {
 	@discardableResult
 	func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
-		let credential = OAuthProvider.credential(
-			withProviderID: AuthProviderOption.apple.rawValue,
-			idToken: tokens.token,
-			rawNonce: tokens.nonce)
+//		let credential = OAuthProvider.credential(
+//			withProviderID: AuthProviderOption.apple.rawValue,
+//			idToken: tokens.token,
+//			rawNonce: tokens.nonce
+//		)
+
+		let credential = OAuthProvider.appleCredential(
+			withIDToken: tokens.token,
+			rawNonce: tokens.nonce,
+			fullName: tokens.fullName)
+
+//		debugPrint("fullName", tokens.fullName?.middleName)
+//		debugPrint("fullName", tokens.fullName?.givenName)
+//		debugPrint("fullName", tokens.fullName?.familyName)
+//		debugPrint("fullName", tokens.fullName?.debugDescription)
 
 		return try await signIn(credential: credential)
 	}

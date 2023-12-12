@@ -51,5 +51,5 @@ struct CommentSheetView: View {
 }
 
 #Preview {
-	CommentSheetView(foodPrint: FoodPrint.mockFoodPrint)
+	CommentSheetView(foodPrint: FoodPrint.mockFoodPrint, action: nil)
 }

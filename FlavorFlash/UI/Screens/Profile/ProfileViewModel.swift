@@ -18,14 +18,21 @@ final class ProfileViewModel: ObservableObject {
 
 	@Published var friends: [FFUser] = []
 
+	@Published var blockedUsers: [FFUser] = []
+
 	@Published var foodPrints: [FoodPrint] = []
 
 	@Published var friendFoodPrints: [FoodPrint] = []
 
 	init() {
+		loadProfileData()
+	}
+
+	public func loadProfileData() {
 		Task {
 			try? await loadCurrentUser()
 			try? await getFoodPrints()
+			try? await loadBlockedUser()
 		}
 	}
 
@@ -48,6 +55,11 @@ final class ProfileViewModel: ObservableObject {
 		let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
 
 		self.user = try await UserManager.shared.getUser(userId: authUser.uid)
+	}
+
+	func loadBlockedUser() async throws {
+		guard let blockedIds = self.user?.blockedList else { return }
+		self.blockedUsers = try await UserManager.shared.getUserFriends(ids: blockedIds)
 	}
 
 	func saveProfileImage(item: PhotosPickerItem) {
@@ -116,5 +128,25 @@ extension ProfileViewModel {
 	func deleteAccount() {
 		AuthenticationManager.shared.deleteAccount()
 		user = nil
+	}
+}
+
+// MARK: - UGC conform
+extension ProfileViewModel {
+	public func blockFriend(_ id: String) {
+		guard let userId = user?.id else { return }
+		Task {
+			try await UserManager.shared.blockFriend(blockId: id, from: userId)
+			try await ChatManager.shared.deleteGroup(with: id, from: userId)
+			loadProfileData()
+		}
+	}
+
+	public func deleteFriend(_ id: String) {
+		guard let userId = user?.id else { return }
+		Task {
+			try await UserManager.shared.deleteFriend(deleteId: id, from: userId)
+			loadProfileData()
+		}
 	}
 }

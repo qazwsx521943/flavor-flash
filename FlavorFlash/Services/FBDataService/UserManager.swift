@@ -49,6 +49,15 @@ final class UserManager {
 			merge: false)
 	}
 
+	func listenToChange(userId: String, completionHandler: @escaping (FFUser) -> Void) {
+		userDocument(userId: userId).addSnapshotListener { documentSnapshot, _ in
+			guard let document = documentSnapshot else { return }
+			guard let data = try? document.data(as: FFUser.self) else { return }
+			
+			completionHandler(data)
+		}
+	}
+
 	func getUser(userId: String) async throws -> FFUser {
 		do {
 			return try await userDocument(userId: userId).getDocument(as: FFUser.self)
@@ -66,16 +75,10 @@ final class UserManager {
 	func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
 		let data: [String: Any] = [
 			FFUser.CodingKeys.profileImagePath.rawValue: path,
-			FFUser.CodingKeys.profileImageUrl.rawValue: url,
+			FFUser.CodingKeys.profileImageUrl.rawValue: url
 		]
 
 		try await userDocument(userId: userId).updateData(data)
-	}
-
-	func saveUserFavoriteRestaurant(userId: String, restaurant: Restaurant) throws {
-		debugPrint("userId: \(userId), restaurant: \(restaurant)")
-//		userDocument(userId: userId).setData(["favorite_restaurants": restaurant.id], merge: true)
-		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayUnion([restaurant.id])])
 	}
 
 	func saveUserFoodPrint(userId: String, foodPrint: FoodPrint) async throws {
@@ -109,5 +112,43 @@ final class UserManager {
 
 			return users
 		}
+	}
+}
+
+
+// MARK: - User saved restaurants
+extension UserManager {
+	func saveUserFavoriteRestaurant(userId: String, restaurant: Restaurant) throws {
+		debugPrint("userId: \(userId), restaurant: \(restaurant)")
+		//		userDocument(userId: userId).setData(["favorite_restaurants": restaurant.id], merge: true)
+		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayUnion([restaurant.id])])
+	}
+
+	func saveUserLovedRestaurant(userId: String, restaurant: Restaurant) throws {
+		debugPrint("userId: \(userId), restaurant: \(restaurant)")
+
+		userDocument(userId: userId).updateData(["loved_restaurants": FieldValue.arrayUnion([restaurant.id])])
+		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayRemove([restaurant.id])])
+	}
+
+	func saveUserBlockedRestaurant(userId: String, restaurant: Restaurant) throws {
+		debugPrint("userId: \(userId), restaurant: \(restaurant)")
+
+		userDocument(userId: userId).updateData(["blocked_restaurants": FieldValue.arrayUnion([restaurant.id])])
+		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayRemove([restaurant.id])])
+	}
+}
+
+// MARK: - UGC conform
+extension UserManager {
+	public func blockFriend(blockId: String, from userId: String) async throws {
+		try await deleteFriend(deleteId: blockId, from: userId)
+
+		try await userDocument(userId: userId).updateData(["blocked_list": FieldValue.arrayUnion([blockId])])
+	}
+
+	public func deleteFriend(deleteId: String, from userId: String) async throws {
+		try await userDocument(userId: userId).updateData(["friends": FieldValue.arrayRemove([deleteId])])
+		try await userDocument(userId: deleteId).updateData(["friends": FieldValue.arrayRemove([userId])])
 	}
 }

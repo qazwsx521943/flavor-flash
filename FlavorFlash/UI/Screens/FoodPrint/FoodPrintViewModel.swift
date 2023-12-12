@@ -10,9 +10,11 @@ import Combine
 
 @MainActor
 class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == FoodPrint {
-	@Published private(set) var posts: [FoodPrint] = []
+	@Published var posts: [FoodPrint] = []
 
 	@Published var currentUser: FFUser?
+
+	@Published var friends: [FFUser] = []
 
 	private let dataService: DI
 	private var cancellable = Set<AnyCancellable>()
@@ -23,6 +25,7 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		Task {
 			try await loadCurrentUser()
 			try await initDataService()
+			try await getAllFriends()
 		}
 	}
 
@@ -63,21 +66,50 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		guard let authDataResultModel = authUser else { return }
 		self.currentUser = try await UserManager.shared.getUser(userId: authDataResultModel.uid)
 	}
+
+	private func getAllFriends() async throws {
+		guard let friendsId = currentUser?.friends else { return }
+
+		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
+	}
 }
 
 extension FoodPrintViewModel {
-	func leaveComment(foodPrint: FoodPrint, comment: String) {
-		guard let currentUser else { return }
-
-		dataService.leaveComment(foodPrint, userId: currentUser.id, comment: comment)
+	// MARK: - User actions
+	public func reloadData() {
+		dataService.getData()
+			.sink { error in
+				print(error)
+			} receiveValue: { [weak self] foodPrints in
+				self?.posts = foodPrints
+			}
+			.store(in: &cancellable)
 	}
 
-	func reportFoodPrint(id: String, reason: ReportReason) {
+	public func leaveComment(foodPrint: FoodPrint, comment: String) {
+		guard let currentUser else { return }
+
+		dataService.leaveComment(foodPrint, userId: currentUser.displayName, comment: comment)
+	}
+
+	public func reportFoodPrint(id: String, reason: ReportReason) {
 		debugPrint("reported")
 		do {
 			try ReportManager.shared.report(id: id, type: .foodPrint, reason: reason)
 		} catch {
 			debugPrint(error)
 		}
+	}
+
+	public func likePost(foodPrint: FoodPrint) {
+		guard let currentUser else { return }
+
+		dataService.likePost(foodPrint, userId: currentUser.id)
+	}
+
+	public func dislikePost(foodPrint: FoodPrint) {
+		guard let currentUser else { return }
+
+		dataService.dislikePost(foodPrint, userId: currentUser.id)
 	}
 }

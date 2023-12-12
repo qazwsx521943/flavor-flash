@@ -34,7 +34,10 @@ struct RoundedRectangleBackgroundModifier: ViewModifier {
 }
 
 extension View {
-	func withRoundedRectangleBackground(cornerRadius: CGFloat = 10.0, gradient: [Color] = [Color.red, Color.purple]) -> some View {
+	func withRoundedRectangleBackground(
+		cornerRadius: CGFloat = 10.0,
+		gradient: [Color] = [Color.red, Color.purple]
+	) -> some View {
 		modifier(
 			RoundedRectangleBackgroundModifier(
 				cornerRadius: cornerRadius,

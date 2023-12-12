@@ -21,7 +21,10 @@ struct ChatListView: View {
 							NavigationLink {
 								ChatroomView(groupId: group.id)
 							} label: {
-								ChatListCell(avatarUrl: group.getGroupImage(exclude: currentUser.id), name: group.name)
+								ChatListCell(
+									avatarUrl: group.getGroupImage(exclude: currentUser.id),
+									name: group.name
+								)
 									.frame(height: 60)
 							}
 						}
@@ -46,7 +49,10 @@ struct ChatListView: View {
 							.foregroundStyle(.white)
 					}
 				}
+
+				NavigationBarBackButton()
 			}
+			.navigationBarBackButtonHidden()
 			.navigationTitle("Chat")
 			.navigationBarTitleDisplayMode(.inline)
 		}
@@ -72,6 +78,12 @@ extension ChatListView {
 		}
 		.listStyle(.plain)
 		.searchable(text: $viewModel.searchUserText, placement: .automatic, prompt: Text("search user"))
+		.navigationTitle("Add Chatroom")
+		.navigationBarTitleDisplayMode(.inline)
+		.toolbar {
+			NavigationBarBackButton()
+		}
+		.navigationBarBackButtonHidden()
 	}
 }
 

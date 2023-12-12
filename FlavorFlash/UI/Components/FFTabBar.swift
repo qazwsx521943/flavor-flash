@@ -8,114 +8,139 @@
 import SwiftUI
 
 struct FFTabBar: View {
-    @Binding var selectedTab: TabItems
+	@Binding var selectedTab: TabItems
+
     @EnvironmentObject private var navigationModel: NavigationModel
 
+	@Environment(\.colorScheme) var colorScheme
+
+	@Namespace private var tabAnimation
+
     var body: some View {
-//        ZStack(alignment: .bottom) {
-		TabView(selection: $selectedTab) {
-			HomeView()
-				.tag(TabItems.home)
-				.tabItem {
-					Label("Home", systemImage: "house.fill")
-						.foregroundStyle(.white)
-				}
+		ZStack(alignment: .bottom) {
+			TabView(selection: $selectedTab) {
+				HomeView()
+					.tag(TabItems.home)
+					.tabItem {
+						Label("Home", systemImage: "house.fill")
+							.foregroundStyle(.white)
+					}
+					.toolbar(.hidden, for: .tabBar)
 
-			FlavorFlashView()
-				.tag(TabItems.flavorFlash)
-				.tabItem {
-					Label("Camera", systemImage: "camera")
-						.foregroundStyle(.white)
-				}
+				FlavorFlashView()
+					.tag(TabItems.flavorFlash)
+					.tabItem {
+						Label("Camera", systemImage: "camera")
+							.foregroundStyle(.white)
+					}
+					.toolbar(.hidden, for: .tabBar)
+					.onAppear {
+						navigationModel.hideTabBar()
+					}
+					.onDisappear {
+						navigationModel.showTabBar()
+					}
 
-			FoodPrintView()
-				.tag(TabItems.community)
-				.tabItem {
-					Label("foodPrint", systemImage: "network")
-						.foregroundStyle(.white)
-				}
+				FoodPrintView()
+					.tag(TabItems.foodPrint)
+					.tabItem {
+						Label("foodPrint", systemImage: "network")
+							.foregroundStyle(.white)
+					}
+					.toolbar(.hidden, for: .tabBar)
 
-//			CommunityView()
-//				.tag(TabItems.community)
-//				.tabItem {
-//					Label("foodPrint", systemImage: "network")
-//						.foregroundStyle(.white)
-//				}
+				ProfileView()
+					.tag(TabItems.profile)
+					.toolbar(.hidden, for: .tabBar)
+			}
+			.ignoresSafeArea()
+
+			if !navigationModel.tabBarHidden {
+				customTabBar(isDarkMode ? .lightGreen : .darkGreen)
+					.ignoresSafeArea()
+			}
 		}
-		.ignoresSafeArea()
-
-//        }
-
-//        ZStack {
-//            HStack {
-//                ForEach(TabItems.allCases, id: \.self) { tab in
-//                    Button {
-//                        selectedTab = tab
-//                    } label: {
-//                        if tab == .flavorFlash {
-//                            centerTabItem(
-//                                imageName: tab.icon,
-//                                title: tab.title,
-//                                isActive: (selectedTab == tab)
-//                            )
-//                        } else {
-//                            normalTabItem(
-//                                imageName: tab.icon,
-//                                title: tab.title,
-//                                isActive: (selectedTab == tab)
-//                            )
-//                        }
-//                    }
-//                }
-//            }
-//            .padding(20)
-//        }
-//        .frame(height: 60)
-//        .background(.black.opacity(0.2))
-//        .cornerRadius(40)
-//        .padding(.horizontal, 26)
     }
 }
 
 extension FFTabBar {
-    func centerTabItem(imageName: String, title: String, isActive: Bool) -> some View {
-        HStack(spacing: 10) {
-            Spacer()
+	var isDarkMode: Bool {
+		colorScheme == .dark
+	}
 
-            ZStack {
-                Image(imageName)
-                    .resizable()
-                    .frame(width: 80, height: 80)
-                Circle()
-                    .strokeBorder(.white, lineWidth: 5)
-                    .frame(width: 80, height: 80)
-            }
+	@ViewBuilder
+	func customTabBar(
+		_ tint: Color = .middleYellow,
+		_ inactiveTint: Color = .shadowGray
+	) -> some View {
+		HStack(alignment: .bottom, spacing: 10) {
+			ForEach(TabItems.allCases) { tabItem in
+				TabItem(
+					tint: tint,
+					inactiveTint: inactiveTint,
+					tab: tabItem,
+					animation: tabAnimation,
+					activeTab: $selectedTab)
+			}
+		}
+		.padding(.horizontal, 15)
+		.padding(.vertical, 10)
+		.background(
+			RoundedRectangle(cornerRadius: 15.0)
+				.fill(.shadowGray.opacity(0.4))
+				.padding(.top, 20)
+				.padding(.horizontal, 10)
+		)
+		.animation(.interactiveSpring(response: 0.6, dampingFraction: 0.7, blendDuration: 0.7), value: selectedTab)
+	}
+}
 
-            Spacer()
-        }
-        .frame(width: 80, height: 80)
-        .background(isActive ? .purple.opacity(0.4) : .clear)
-        .cornerRadius(40)
-    }
+/// Tab Bar Item
+struct TabItem: View {
+	let tint: Color
 
-    func normalTabItem(imageName: String, title: String, isActive: Bool) -> some View {
-        HStack(spacing: 10) {
-            Spacer()
+	let inactiveTint: Color
 
-            Image(imageName)
-                .resizable()
-                .foregroundColor(isActive ? nil : .gray)
-                .frame(width: 60, height: 60)
+	let tab: TabItems
 
-            Spacer()
-        }
-        .frame(width: 60, height: 60)
-        .background(isActive ? .purple.opacity(0.4) : .clear)
-        .cornerRadius(30)
-    }
+	let animation: Namespace.ID
+
+	@Binding var activeTab: TabItems
+
+	var isActive: Bool {
+		activeTab == tab
+	}
+
+	var body: some View {
+		VStack {
+			Image(systemName: tab.icon)
+				.bodyBoldStyle()
+				.foregroundStyle(isActive ? .white : tint)
+				.frame(
+					width: isActive ? 50 : 35,
+					height: isActive ? 50 : 35
+				)
+				.background {
+					if isActive {
+						Circle()
+							.fill(tint.gradient)
+							.matchedGeometryEffect(id: "ActiveTab", in: animation)
+					}
+				}
+
+			Text(tab.title)
+				.detailBoldStyle()
+				.foregroundStyle(isActive ? tint : inactiveTint)
+		}
+		.frame(maxWidth: .infinity)
+		.contentShape(Rectangle())
+		.onTapGesture {
+			activeTab = tab
+		}
+	}
 }
 
 #Preview {
-    FFTabBar(selectedTab: .constant(.home))
-        .environmentObject(NavigationModel())
+	FFTabBar(selectedTab: .constant(.home))
+		.environmentObject(NavigationModel())
 }

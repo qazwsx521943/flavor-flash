@@ -17,15 +17,17 @@ struct SettingsView: View {
 			NavigationLink {
 				accountSettingList
 			} label: {
-				Text("帳號")
+				Text("Account")
 					.prefixedWithSFSymbol(named: "person.crop.circle", height: 20)
+					.bodyStyle()
 			}
 
 			NavigationLink {
 				privacySettingList
 			} label: {
-				Text("隱私設定")
+				Text("Privacy Setting")
 					.prefixedWithSFSymbol(named: "lock", height: 20)
+					.bodyStyle()
 			}
 		}
 		.listStyle(.plain)
@@ -38,7 +40,18 @@ struct SettingsView: View {
 extension SettingsView {
 	private var privacySettingList: some View {
 		List {
-			Text("privacy setting")
+			NavigationLink {
+				List {
+					ForEach(profileViewModel.blockedUsers) { user in
+						Text(user.displayName)
+							.bodyStyle()
+					}
+				}
+				.navigationTitle("Blocked Users")
+			} label: {
+				Text("Blocked Users")
+			}
+
 		}
 		.listStyle(.plain)
 		.navigationTitle("Privacy Settings")

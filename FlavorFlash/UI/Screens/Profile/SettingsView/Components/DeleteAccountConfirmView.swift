@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct DeleteAccountConfirmView: View {
+
+	@EnvironmentObject var navigationModel: NavigationModel
+
 	var action: (() -> Void)?
 
     var body: some View {
@@ -33,6 +36,12 @@ struct DeleteAccountConfirmView: View {
 				}
 
 			Divider()
+		}
+		.onAppear {
+			navigationModel.hideTabBar()
+		}
+		.onDisappear {
+			navigationModel.showTabBar()
 		}
 		.navigationTitle("刪除帳號")
 		.navigationBarTitleDisplayMode(.inline)

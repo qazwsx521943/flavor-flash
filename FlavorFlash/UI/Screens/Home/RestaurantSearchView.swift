@@ -8,47 +8,54 @@
 import SwiftUI
 
 struct RestaurantSearchView: View {
-    @EnvironmentObject var homeViewModel: HomeViewModel
-    @State private var showDetail: Bool = false
+	@EnvironmentObject var homeViewModel: HomeViewModel
 
-    var body: some View {
+	@EnvironmentObject var navigationModel: NavigationModel
 
-        GeometryReader { geometry in
-			VStack {
-				RestaurantMapView()
-				.overlay(alignment: .bottom) {
-					ScrollView(.horizontal, showsIndicators: false) {
-						HStack {
-							ForEach(homeViewModel.restaurants) { restaurant in
-								RestaurantCard(restaurant: restaurant)
-									.frame(width: geometry.size.width * 0.75, height: 120)
-									.onTapGesture {
-										homeViewModel.selectedRestaurant = restaurant
-										showDetail = true
-									}
-									.sheet(isPresented: $showDetail) {
-										if let selected = homeViewModel.selectedRestaurant {
-											RestaurantDetail(restaurant: selected) { restaurant in
-												try? homeViewModel.saveFavoriteRestaurant(restaurant)
-											}
+	@State private var showDetail: Bool = false
+
+	var body: some View {
+
+		RestaurantMapView()
+			.overlay(alignment: .bottom) {
+				ScrollView(.horizontal, showsIndicators: false) {
+					HStack {
+						ForEach(homeViewModel.restaurants) { restaurant in
+							RestaurantCard(restaurant: restaurant)
+								.frame(width: 250, height: 120)
+								.onTapGesture {
+									homeViewModel.selectedRestaurant = restaurant
+									showDetail = true
+								}
+								.sheet(isPresented: $showDetail) {
+									if let selected = homeViewModel.selectedRestaurant {
+										RestaurantDetail(restaurant: selected) { restaurant in
+											try? homeViewModel.saveFavoriteRestaurant(restaurant)
 										}
+										.padding()
+										.presentationDetents([.medium])
 									}
-							}
+								}
 						}
 					}
-					.frame(height: 120)
 				}
+				.frame(height: 120)
 			}
+			.onAppear {
+				navigationModel.hideTabBar()
+			}
+			.onDisappear {
+				navigationModel.showTabBar()
+			}
+			.toolbar {
+				NavigationBarBackButton()
+			}
+			.navigationBarBackButtonHidden()
 			.navigationTitle(homeViewModel.category!.title)
 			.navigationBarTitleDisplayMode(.inline)
-        }
-    }
-//
-//    init(category: String) {
-//        _homeViewModel = StateObject(wrappedValue: HomeViewModel())
-//    }
+	}
 }
 
-#Preview {
-    RestaurantSearchView()
-}
+//#Preview {
+//	RestaurantSearchView()
+//}

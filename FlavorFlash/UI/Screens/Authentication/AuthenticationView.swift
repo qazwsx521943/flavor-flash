@@ -12,6 +12,8 @@ struct AuthenticationView: View {
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
+	@Environment(\.colorScheme) var colorScheme
+
 	var body: some View {
 		VStack(spacing: 10) {
 
@@ -30,6 +32,12 @@ struct AuthenticationView: View {
 		.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottom)
 		.padding(40)
 		.padding(.bottom, 50)
+		.overlay(alignment: .top) {
+			FFLottieView(lottieFile: "foodieNation")
+				.frame(maxWidth: .infinity)
+				.frame(height: 250)
+				.offset(y: 100)
+		}
 		.navigationTitle("Sign In")
 		.toolbar(.hidden, for: .navigationBar)
 	}
@@ -51,7 +59,9 @@ extension AuthenticationView {
 				}
 			}
 		} label: {
-			SignInWithAppleButtonView(type: .default, style: .white)
+			SignInWithAppleButtonView(
+				type: .default,
+				style: colorScheme == .dark ? .whiteOutline : .black)
 		}
 		.frame(height: 55)
 	}
@@ -81,7 +91,7 @@ extension AuthenticationView {
 				Text("Continue with Email")
 					.font(.caption)
 					.padding(.horizontal, 10)
-					.background(.black)
+					.background(colorScheme == .dark ? .black : .white)
 			}
 	}
 
@@ -91,7 +101,7 @@ extension AuthenticationView {
 		} label: {
 			Text("Doesn't have an account? Register")
 				.font(.caption)
-				.foregroundStyle(.white)
+				.foregroundStyle(colorScheme == .dark ? .white : .black)
 				.bold()
 				.underline()
 		}

@@ -15,49 +15,73 @@ struct RestaurantMapView: UIViewRepresentable {
 
 	@EnvironmentObject var homeViewModel: HomeViewModel
 
-	@State var centerLocation: CLLocationCoordinate2D?
+	var currentLocationAnnotation: MKAnnotation {
+		guard let currentLocation = homeViewModel.currentLocation else { return MKPointAnnotation() }
+		let annotation = MKPointAnnotation()
+		annotation.title = "Current"
+		annotation.coordinate = currentLocation
+		return annotation
+	}
 
     func makeUIView(context: Context) -> MKMapView {
 		let mapView = MKMapView()
 
-		mapView.register(RestaurantMarkerView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
-        mapView.delegate = context.coordinator
+		// register a custom Annotation as the default reuse identifier, so that we don't have to set up the annotation view via delegate methods.
+		mapView.register(
+			RestaurantMarkerView.self,
+			forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier
+		)
+
+		mapView.delegate = context.coordinator
 
 		return mapView
-    }
+	}
 
-    func updateUIView(_ uiView: MKMapView, context: Context) {
+	// swiftUI calls this function when state changes
+	func updateUIView(_ uiView: MKMapView, context: Context) {
 		debugPrint("updated uiview")
+
 		updateRestaurants(mapView: uiView)
 
-        let pointAnnotation = MKPointAnnotation()
-		if let currentLocation = homeViewModel.currentLocation {
-			pointAnnotation.title = "目前位置"
-			pointAnnotation.coordinate = currentLocation
-		}
+		uiView.removeAnnotation(currentLocationAnnotation)
+		uiView.addAnnotation(currentLocationAnnotation)
 
-        uiView.addAnnotation(pointAnnotation)
-
-		if let centerLocation {
+		if let selectedRestaurant = homeViewModel.selectedRestaurant {
 			centerToRegion(
 				mapView: uiView,
-				coordinateRegion: MKCoordinateRegion(center: centerLocation, latitudinalMeters: 200, longitudinalMeters: 200))
+				coordinateRegion: MKCoordinateRegion(
+					center: selectedRestaurant.coordinate,
+					latitudinalMeters: 200, longitudinalMeters: 200
+				)
+			)
+		} else {
+			if let startLocation = homeViewModel.currentLocation {
+				debugPrint("start location: \(startLocation)")
+				centerToRegion(
+					mapView: uiView,
+					coordinateRegion: MKCoordinateRegion(
+						center: startLocation,
+						latitudinalMeters: 200,
+						longitudinalMeters: 200
+					)
+				)
+			}
 		}
-    }
+	}
 
-    func makeCoordinator() -> RestaurantMapViewCoordinator {
-        RestaurantMapViewCoordinator(self)
-    }
+	func makeCoordinator() -> RestaurantMapViewCoordinator {
+		RestaurantMapViewCoordinator(self)
+	}
 }
 
 extension RestaurantMapView {
 	func updateRestaurants(mapView: MKMapView) {
 		for restaurant in homeViewModel.restaurants {
-			let annotation =
-			RestaurantAnnotation(
+			let annotation = RestaurantAnnotation(
 				title: restaurant.displayName.text,
 				rating: restaurant.rating,
-				coordinate: restaurant.coordinate)
+				coordinate: restaurant.coordinate
+			)
 
 			mapView.addAnnotation(annotation)
         }

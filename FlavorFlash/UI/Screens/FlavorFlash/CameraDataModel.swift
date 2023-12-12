@@ -37,8 +37,8 @@ final class CameraDataModel: ObservableObject {
 
 	@Published var searchText = ""
 
-	// MLModel Config
- 	let foodClassifier = {
+	// Setting up MLModel configuration
+	let foodClassifier = {
 		do {
 			let config = MLModelConfiguration()
 			return try FoodClassifierV1(configuration: config)
@@ -50,6 +50,7 @@ final class CameraDataModel: ObservableObject {
 	private var classificationRequest: VNCoreMLRequest?
 
     init() {
+		// assigning closures for the camera object, called by the photo output delegate
         camera.frontCamCapturedImage = { capturedImage in
             self.capturedFrontCamImage = capturedImage
         }
@@ -58,6 +59,7 @@ final class CameraDataModel: ObservableObject {
             self.capturedBackCamImage = capturedImage
         }
 
+		// Handling the camera preview stream in background threads
         Task {
             await handleBackCameraPreviews()
         }
@@ -66,7 +68,7 @@ final class CameraDataModel: ObservableObject {
         }
     }
 
-    // handle camera previews
+    // handle back camera previews stream functions
     func handleBackCameraPreviews() async {
         let backCamImageStream = camera.backCamPreviewStream.map { $0.image }
 
@@ -77,6 +79,7 @@ final class CameraDataModel: ObservableObject {
         }
     }
 
+	// handle front camera previews stream functions
     func handleFrontCameraPreviews() async {
         let frontCamImageStream = camera.frontCamPreviewStream.map { $0.image }
 
@@ -90,7 +93,7 @@ final class CameraDataModel: ObservableObject {
 	var frontCamImage: Image? {
 		guard
 			let captureImage = capturedFrontCamImage,
-			let photoData = captureImage.fileDataRepresentation()
+			let _ = captureImage.fileDataRepresentation()
 		else {
 			return nil
 		}
@@ -121,8 +124,8 @@ final class CameraDataModel: ObservableObject {
 		}
 		let frontImage = UIImage(cgImage: fcImage)
 		let backImage = UIImage(cgImage: bcImage)
-		let (frontImagePath, frontImageName) = try await StorageManager.shared.saveImage(userId: userId, image: frontImage)
-		let (backImagePath, backImageName) = try await StorageManager.shared.saveImage(userId: userId, image: backImage)
+		let (frontImagePath, _) = try await StorageManager.shared.saveImage(userId: userId, image: frontImage)
+		let (backImagePath, _) = try await StorageManager.shared.saveImage(userId: userId, image: backImage)
 
 		let frontUrl = try await StorageManager.shared.getUrlForImage(path: frontImagePath)
 		let backUrl = try await StorageManager.shared.getUrlForImage(path: backImagePath)
@@ -144,13 +147,15 @@ final class CameraDataModel: ObservableObject {
 		try await UserManager.shared.saveUserFoodPrint(userId: userId, foodPrint: foodPrint)
 	}
 
+	// TODO: 
 	func fetchNearByRestaurants() {
 		guard let currentLocation else { return }
-		PlaceFetcher.shared.fetchNearBy(type: ["restaurant"], location: Location(CLLocation: currentLocation)) { [weak self] response in
+		PlaceFetcher.shared.fetchNearBy(
+			type: ["restaurant"],
+			location: Location(CLLocation: currentLocation)) { [weak self] response in
 			switch response {
 			case .success(let result):
 				self?.nearByRestaurants = result.places
-				debugPrint(self?.nearByRestaurants.map { $0.displayName.text })
 			case .failure(let error):
 				debugPrint(error.localizedDescription)
 			}
@@ -159,7 +164,9 @@ final class CameraDataModel: ObservableObject {
 
 	func searchRestaurants() {
 		guard let currentLocation else { return }
-		PlaceFetcher.shared.fetchPlaceByText(keyword: searchText, location: Location(CLLocation: currentLocation)) { [weak self] response in
+		PlaceFetcher.shared.fetchPlaceByText(
+			keyword: searchText,
+			location: Location(CLLocation: currentLocation)) { [weak self] response in
 			switch response {
 			case .success(let placesResult):
 				self?.nearByRestaurants = placesResult.places
@@ -230,11 +237,6 @@ extension CameraDataModel {
 					if results.isEmpty {
 						self?.foodAnalyzeResult = "nothing found"
 					} else {
-//						self?.foodAnalyzeResult = String(
-//							format: "%@ %.1f%%",
-//							results[0].identifier,
-//							results[0].confidence * 100)
-						debugPrint("vision analyze results : \(results)")
 						self?.foodAnalyzeResult = results[0].identifier
 					}
 					// 4

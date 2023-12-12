@@ -1,11 +1,16 @@
 
-excluded:
+excluded: # ignored file path
   - Pods
   - DerivedData
+
+included: # lint .swift suffix files under file path
 
 disabled_rules:
   - private_over_fileprivate
   - comment_spacing
+  - trailing_whitespace
+  - unused_optional_binding
+  - todo
 
 analyzer_rules:
   - unused_import
@@ -33,15 +38,16 @@ identifier_name:
     - URL
     - url
     - app
+    - x
+    - y
 
 force_cast: warning
 
 force_try: warning
 
 line_length:
-  ignore_urls: true
-  ignore_function_declarations: true
-  ignore_comments: true
+  ignores_urls: true
+  ignores_comments: true
 
 file_length:
   warning: 500
@@ -53,10 +59,6 @@ type_body_length:
 
 function_body_length:
   warning: 80
-
-trailing_whitespace:
-  ignores_empty_lines: false
-  ignores_comments: true
 
 vertical_whitespace:
   max_empty_lines: 2

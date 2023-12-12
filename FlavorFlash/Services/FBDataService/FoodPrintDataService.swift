@@ -20,7 +20,7 @@ class FoodPrintDataService<T: FBModelType>: FBDataService {
 	}
 
 	func getData() -> AnyPublisher<[T], Error> {
-		$items.tryMap{ $0 }.eraseToAnyPublisher()
+		$items.tryMap { $0 }.eraseToAnyPublisher()
 	}
 
 	func getDataFromFirebase(from friends: [String]) async throws {
@@ -66,15 +66,38 @@ class FoodPrintDataService<T: FBModelType>: FBDataService {
 		}
 	}
 
+	func likePost(_ item: T, userId: String) {
+		let documentID = item.id
+
+		store
+			.collection(path)
+			.document(documentID)
+			.updateData(["liked_by": FieldValue.arrayUnion([userId])])
+	}
+
+	func dislikePost(_ item: T, userId: String) {
+		let documentID = item.id
+
+		store.collection(path)
+			.document(documentID)
+			.updateData(["liked_by": FieldValue.arrayRemove([userId])])
+	}
+
 	func leaveComment(_ item: T, userId: String, comment: String) {
 		let documentID = item.id
 
 		let fbComment = FBComment(id: UUID().uuidString, userId: userId, comment: comment, createdDate: Date.now)
-		let encodedComment = try! Firestore.Encoder().encode(fbComment)
+		let encodedComment = try? Firestore.Encoder().encode(fbComment)
+
+		guard let encodedComment else { return }
+
 		do {
-			store.collection(path).document(documentID).updateData([
-				"comments": FieldValue.arrayUnion([encodedComment])
-			])
+			store
+				.collection(path)
+				.document(documentID)
+				.updateData([
+					"comments": FieldValue.arrayUnion([encodedComment])
+				])
 		} catch {
 			fatalError("adding comment failed")
 		}
