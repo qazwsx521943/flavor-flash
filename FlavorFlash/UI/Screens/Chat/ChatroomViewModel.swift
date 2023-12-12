@@ -70,11 +70,20 @@ final class ChatroomViewModel: ObservableObject {
 	func getMessages(groupId: String) async throws -> [ExyteChat.Message] {
 
 		let messages = try await ChatManager.shared.getGroupMessages(groupId: groupId)
+
 		guard let currentUser = user else { return [] }
+
 		let mkMessages = messages.map {
 			ExyteChat.Message(
 				id: $0.id,
-				user: User(id: $0.senderId, name: $0.senderName, avatarURL: nil, isCurrentUser: currentUser.id == $0.senderId), createdAt: $0.createdDate, text: $0.text)
+				user: User(
+					id: $0.senderId,
+					name: $0.senderName,
+					avatarURL: nil,
+					isCurrentUser: currentUser.id == $0.senderId
+				),
+				createdAt: $0.createdDate,
+				text: $0.text)
 		}
 
 		self.messages = mkMessages
@@ -92,14 +101,28 @@ final class ChatroomViewModel: ObservableObject {
 				guard let imageData = await firstMedia.getData() else { return }
 				let (imagePath, _) = try await StorageManager.shared.saveImage(userId: user.id, data: imageData)
 				let imagePathUrl = try await StorageManager.shared.getUrlForImage(path: imagePath)
-				let message = FBMessage(id: UUID().uuidString, text: message.text, senderName: user.displayName, senderId: user.id, createdDate: Date(), medias: [imagePathUrl.absoluteString])
+				let message = FBMessage(
+					id: UUID().uuidString,
+					text: message.text,
+					senderName: user.displayName,
+					senderId: user.id,
+					createdDate: Date(),
+					medias: [imagePathUrl.absoluteString]
+				)
 
 				try await ChatManager.shared.sendMessage(groupId: groupId, message: message)
 			}
 		} else {
 			let text = message.text
 			Task {
-				let message = FBMessage(id: UUID().uuidString, text: text, senderName: user.displayName ?? "Anonymous", senderId: user.id, createdDate: Date(), medias: nil)
+				let message = FBMessage(
+					id: UUID().uuidString,
+					text: text,
+					senderName: user.displayName,
+					senderId: user.id,
+					createdDate: Date(),
+					medias: nil
+				)
 
 				try await ChatManager.shared.sendMessage(groupId: groupId, message: message)
 			}
@@ -120,7 +143,16 @@ final class ChatroomViewModel: ObservableObject {
 				}
 				return ExyteChat.Message(
 					id: $0.id,
-					user: User(id: $0.senderId, name: $0.senderName, avatarURL: nil, isCurrentUser: currentUser.id == $0.senderId), createdAt: $0.createdDate, text: $0.text, attachments: attachment)
+					user: User(
+						id: $0.senderId,
+						name: $0.senderName,
+						avatarURL: nil,
+						isCurrentUser: currentUser.id == $0.senderId
+					),
+					createdAt: $0.createdDate, 
+					text: $0.text,
+					attachments: attachment
+				)
 			}
 			self.listener = listener
 			self.messages.append(contentsOf: mkMessages)
@@ -131,4 +163,3 @@ final class ChatroomViewModel: ObservableObject {
 		self.listener?.remove()
 	}
 }
-

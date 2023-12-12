@@ -24,8 +24,8 @@ struct CameraView: View {
 					let _ = cameraDataModel.capturedBackCamImage,
 					let _ = cameraDataModel.capturedFrontCamImage
 				{
-					AnalyzeView(cameraDataModel: cameraDataModel)
-						.overlayWithSystemImage(systemName: "xmark", alignment: .topTrailing) {
+					EditorView(cameraDataModel: cameraDataModel)
+						.overlayWithSystemImage(systemName: "arrow.left.circle.fill", alignment: .topLeading) {
 							cameraDataModel.capturedBackCamImage = nil
 							cameraDataModel.capturedFrontCamImage = nil
 						}
@@ -43,7 +43,7 @@ struct CameraView: View {
 
 extension CameraView {
 	private var dualCameraCaptureView: some View {
-		GeometryReader { geometry in
+		GeometryReader { _ in
 			let animation = Animation.default.repeatCount(2, autoreverses: true)
 			ViewfinderView(
 				backCamImage: $cameraDataModel.viewfinderBackCamImage,
@@ -82,7 +82,7 @@ extension CameraView {
 					}
 				}
 			}
-			.overlayWithSystemImage(systemName: "xmark",alignment: .topTrailing) {
+			.overlayWithSystemImage(systemName: "xmark", alignment: .topTrailing) {
 				navigationModel.selectedTab = .home
 			}
 		}

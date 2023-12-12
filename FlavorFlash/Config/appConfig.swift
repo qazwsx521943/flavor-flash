@@ -15,21 +15,24 @@ enum TabItems: Int, Hashable, CaseIterable, Codable, Identifiable {
 
 	case home = 0
 	case flavorFlash
-	case community
+	case foodPrint
+	case profile
 
 	var title: String {
 		switch self {
 		case .home: return "Home"
-		case .flavorFlash: return "FF"
-		case .community: return "Community"
+		case .flavorFlash: return "FlavorFlash"
+		case .foodPrint: return "FoodPrint"
+		case .profile: return "Profile"
 		}
 	}
 
 	var icon: String {
 		switch self {
-		case .home: return "home-icon"
-		case .flavorFlash: return "camera-icon"
-		case .community: return "community-icon"
+		case .home: return "house.fill"
+		case .flavorFlash: return "camera.fill"
+		case .foodPrint: return "rectangle.3.group.bubble.fill"
+		case .profile: return "person.fill"
 		}
 	}
 }

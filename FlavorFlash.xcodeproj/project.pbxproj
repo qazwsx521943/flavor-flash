@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */; };
+		E703590E2B246BB7008F14E7 /* BookmarkButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E703590D2B246BB7008F14E7 /* BookmarkButton.swift */; };
+		E70359112B247201008F14E7 /* MapSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70359102B247201008F14E7 /* MapSelection.swift */; };
+		E70359132B247D1B008F14E7 /* Binding+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70359122B247D1B008F14E7 /* Binding+EXT.swift */; };
+		E70359172B248F84008F14E7 /* NavigationBarBackButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */; };
 		E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8DD2B0710950003462C /* ProfileView.swift */; };
 		E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8DF2B0710BA0003462C /* appConfig.swift */; };
 		E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8E22B071D450003462C /* NavigationModel.swift */; };
@@ -23,10 +27,10 @@
 		E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8FA2B07735E0003462C /* AppDelegate.swift */; };
 		E70AF8FF2B07A5470003462C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70AF8FE2B07A5470003462C /* HomeViewModel.swift */; };
 		E70C38E72B1F22AF0048535C /* FoodClassifierV1.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E70C38E62B1F22AF0048535C /* FoodClassifierV1.mlmodel */; };
+		E70C38F12B2063810048535C /* Color+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C38F02B2063810048535C /* Color+EXT.swift */; };
 		E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */; };
 		E70C6C352B0B6134003B27EE /* PlaceFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C342B0B6134003B27EE /* PlaceFetcher.swift */; };
 		E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C402B0BA145003B27EE /* BorderModifiers.swift */; };
-		E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */; };
 		E70C6C452B0BAD51003B27EE /* TextFieldModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */; };
 		E70C6C472B0BBA03003B27EE /* EmailAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C462B0BBA03003B27EE /* EmailAddress.swift */; };
 		E70C6C492B0BBE0E003B27EE /* ButtonModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */; };
@@ -60,6 +64,12 @@
 		E75588C72B0EF40F00086854 /* SecondaryPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588C62B0EF40F00086854 /* SecondaryPreviewView.swift */; };
 		E75588C92B0F1E2F00086854 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588C82B0F1E2F00086854 /* Location.swift */; };
 		E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75588CB2B0F3BC100086854 /* SearchBar.swift */; };
+		E7627D892B26AE2400F0AAC5 /* CanvasViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D882B26AE2400F0AAC5 /* CanvasViewModel.swift */; };
+		E7627D8B2B26B06C00F0AAC5 /* CanvasStackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D8A2B26B06C00F0AAC5 /* CanvasStackItem.swift */; };
+		E7627D8F2B26BB2000F0AAC5 /* PhotoPickerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D8E2B26BB2000F0AAC5 /* PhotoPickerVC.swift */; };
+		E7627D922B26EE0C00F0AAC5 /* StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D912B26EE0C00F0AAC5 /* StackItem.swift */; };
+		E7627D942B27025C00F0AAC5 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D932B27025C00F0AAC5 /* TextEditorView.swift */; };
+		E7627D972B27223E00F0AAC5 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D962B27223E00F0AAC5 /* CanvasView.swift */; };
 		E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D776E2B11C74200176A53 /* FoodPrintView.swift */; };
 		E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */; };
 		E76D77752B11C8C400176A53 /* FoodPrintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D77742B11C8C400176A53 /* FoodPrintManager.swift */; };
@@ -68,11 +78,17 @@
 		E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77353712B09CA08003035B4 /* AuthenticationView.swift */; };
 		E77353742B09CB5C003035B4 /* EmailSignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77353732B09CB5C003035B4 /* EmailSignInView.swift */; };
 		E77353762B09CE95003035B4 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77353752B09CE95003035B4 /* AuthenticationManager.swift */; };
+		E77456912B283D8100CAF64C /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = E77456902B283D8100CAF64C /* Lottie */; };
+		E77456942B283E7800CAF64C /* FFLottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E77456932B283E7800CAF64C /* FFLottieView.swift */; };
+		E77456962B2849CD00CAF64C /* foodChoice.json in Resources */ = {isa = PBXBuildFile; fileRef = E77456952B2849CD00CAF64C /* foodChoice.json */; };
+		E774569A2B284CCC00CAF64C /* foodieNation.json in Resources */ = {isa = PBXBuildFile; fileRef = E77456992B284CCC00CAF64C /* foodieNation.json */; };
+		E774569D2B28538D00CAF64C /* randomFood.json in Resources */ = {isa = PBXBuildFile; fileRef = E774569C2B28538D00CAF64C /* randomFood.json */; };
 		E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B502B0A054200D76E71 /* ProfileViewModel.swift */; };
 		E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B522B0A0E7A00D76E71 /* UserManager.swift */; };
 		E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FFUser.swift */; };
 		E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */; };
 		E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB82B1448330042FB51 /* FoodPrintCell.swift */; };
+		E78678042B21BF8A00664756 /* DeepLabV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */; };
 		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
 		E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639802B118A49006FF600 /* QRCodeScanner.swift */; };
 		E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639822B118A6E006FF600 /* ScannerViewController.swift */; };
@@ -87,6 +103,11 @@
 		E7A399432B034E11005C8021 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399422B034E11005C8021 /* HomeView.swift */; };
 		E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399442B034E22005C8021 /* FlavorFlashView.swift */; };
 		E7A399472B034E30005C8021 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399462B034E30005C8021 /* ChatListView.swift */; };
+		E7C110482B22188F00999FBD /* CGFloat+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C110472B22188F00999FBD /* CGFloat+EXT.swift */; };
+		E7C1104C2B22F0EF00999FBD /* RestaurantCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104B2B22F0EF00999FBD /* RestaurantCollection.swift */; };
+		E7C1104E2B22F1DE00999FBD /* RestaurantCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */; };
+		E7C110502B22F3F700999FBD /* RestaurantInfoTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104F2B22F3F700999FBD /* RestaurantInfoTags.swift */; };
+		E7C110522B22F6AA00999FBD /* CornerRadiusStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */; };
 		E7E200A52B08FF8C003C22D6 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200A42B08FF8C003C22D6 /* FirebaseAnalytics */; };
 		E7E200B12B08FF8C003C22D6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200B02B08FF8C003C22D6 /* FirebaseAuth */; };
 		E7E200B32B08FF8C003C22D6 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200B22B08FF8C003C22D6 /* FirebaseAuthCombine-Community */; };
@@ -98,7 +119,6 @@
 		E7E200C12B08FF8C003C22D6 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200C02B08FF8C003C22D6 /* FirebaseFirestoreSwift */; };
 		E7E200C32B08FF8C003C22D6 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200C22B08FF8C003C22D6 /* FirebaseFunctions */; };
 		E7E200C52B08FF8C003C22D6 /* FirebaseFunctionsCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200C42B08FF8C003C22D6 /* FirebaseFunctionsCombine-Community */; };
-		E7E200CD2B08FF8C003C22D6 /* FirebaseMLModelDownloader in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200CC2B08FF8C003C22D6 /* FirebaseMLModelDownloader */; };
 		E7E200D12B08FF8C003C22D6 /* FirebasePerformance in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D02B08FF8C003C22D6 /* FirebasePerformance */; };
 		E7E200D32B08FF8C003C22D6 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D22B08FF8C003C22D6 /* FirebaseRemoteConfig */; };
 		E7E200D72B08FF8C003C22D6 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200D62B08FF8C003C22D6 /* FirebaseStorage */; };
@@ -108,7 +128,13 @@
 		E7E200EB2B098597003C22D6 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E200EA2B098597003C22D6 /* ChatListViewModel.swift */; };
 		E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */; };
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
-		E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */; };
+		E7FD9B8A2B05BAAF002D0ADF /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* EditorView.swift */; };
+		E7FECC722B20927A00674C20 /* TextStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC712B20927A00674C20 /* TextStyles.swift */; };
+		E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC732B209A9500674C20 /* ButtonStyles.swift */; };
+		E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC752B209C2B00674C20 /* ShadowStyles.swift */; };
+		E7FECC7A2B20A69600674C20 /* ToggleStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC792B20A69600674C20 /* ToggleStyles.swift */; };
+		E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC832B218B1600674C20 /* PetSelectionView.swift */; };
+		E7FECC862B21AC6000674C20 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC852B21AC6000674C20 /* Polygon.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
 		E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */; };
 		E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */; };
@@ -132,6 +158,10 @@
 		28055511D6E283B5661F16BB /* Pods-FlavorFlash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.release.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.release.xcconfig"; sourceTree = "<group>"; };
 		3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.debug.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.debug.xcconfig"; sourceTree = "<group>"; };
 		BE1E9F2AB892E7C98A8D53DB /* Pods_FlavorFlash.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlavorFlash.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E703590D2B246BB7008F14E7 /* BookmarkButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkButton.swift; sourceTree = "<group>"; };
+		E70359102B247201008F14E7 /* MapSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapSelection.swift; sourceTree = "<group>"; };
+		E70359122B247D1B008F14E7 /* Binding+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Binding+EXT.swift"; sourceTree = "<group>"; };
+		E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarBackButton.swift; sourceTree = "<group>"; };
 		E70AF8DD2B0710950003462C /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		E70AF8DF2B0710BA0003462C /* appConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appConfig.swift; sourceTree = "<group>"; };
 		E70AF8E22B071D450003462C /* NavigationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationModel.swift; sourceTree = "<group>"; };
@@ -147,10 +177,10 @@
 		E70AF8FA2B07735E0003462C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E70AF8FE2B07A5470003462C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		E70C38E62B1F22AF0048535C /* FoodClassifierV1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FoodClassifierV1.mlmodel; sourceTree = "<group>"; };
+		E70C38F02B2063810048535C /* Color+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+EXT.swift"; sourceTree = "<group>"; };
 		E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantDetail.swift; sourceTree = "<group>"; };
 		E70C6C342B0B6134003B27EE /* PlaceFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceFetcher.swift; sourceTree = "<group>"; };
 		E70C6C402B0BA145003B27EE /* BorderModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderModifiers.swift; sourceTree = "<group>"; };
-		E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextModifiers.swift; sourceTree = "<group>"; };
 		E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifiers.swift; sourceTree = "<group>"; };
 		E70C6C462B0BBA03003B27EE /* EmailAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailAddress.swift; sourceTree = "<group>"; };
 		E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonModifiers.swift; sourceTree = "<group>"; };
@@ -182,6 +212,12 @@
 		E75588C62B0EF40F00086854 /* SecondaryPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryPreviewView.swift; sourceTree = "<group>"; };
 		E75588C82B0F1E2F00086854 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E75588CB2B0F3BC100086854 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		E7627D882B26AE2400F0AAC5 /* CanvasViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasViewModel.swift; sourceTree = "<group>"; };
+		E7627D8A2B26B06C00F0AAC5 /* CanvasStackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasStackItem.swift; sourceTree = "<group>"; };
+		E7627D8E2B26BB2000F0AAC5 /* PhotoPickerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerVC.swift; sourceTree = "<group>"; };
+		E7627D912B26EE0C00F0AAC5 /* StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackItem.swift; sourceTree = "<group>"; };
+		E7627D932B27025C00F0AAC5 /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
+		E7627D962B27223E00F0AAC5 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		E76D776E2B11C74200176A53 /* FoodPrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintView.swift; sourceTree = "<group>"; };
 		E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintViewModel.swift; sourceTree = "<group>"; };
 		E76D77742B11C8C400176A53 /* FoodPrintManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintManager.swift; sourceTree = "<group>"; };
@@ -190,11 +226,16 @@
 		E77353712B09CA08003035B4 /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		E77353732B09CB5C003035B4 /* EmailSignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailSignInView.swift; sourceTree = "<group>"; };
 		E77353752B09CE95003035B4 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		E77456932B283E7800CAF64C /* FFLottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFLottieView.swift; sourceTree = "<group>"; };
+		E77456952B2849CD00CAF64C /* foodChoice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foodChoice.json; sourceTree = "<group>"; };
+		E77456992B284CCC00CAF64C /* foodieNation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foodieNation.json; sourceTree = "<group>"; };
+		E774569C2B28538D00CAF64C /* randomFood.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = randomFood.json; sourceTree = "<group>"; };
 		E7809B502B0A054200D76E71 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E7809B522B0A0E7A00D76E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E7809B552B0A2DDF00D76E71 /* FFUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFUser.swift; sourceTree = "<group>"; };
 		E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintDataService.swift; sourceTree = "<group>"; };
 		E783AAB82B1448330042FB51 /* FoodPrintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintCell.swift; sourceTree = "<group>"; };
+		E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DeepLabV3.mlmodel; sourceTree = "<group>"; };
 		E79639802B118A49006FF600 /* QRCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanner.swift; sourceTree = "<group>"; };
 		E79639822B118A6E006FF600 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		E79ED0982B14D392008C2E6F /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
@@ -209,12 +250,23 @@
 		E7A399422B034E11005C8021 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E7A399442B034E22005C8021 /* FlavorFlashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashView.swift; sourceTree = "<group>"; };
 		E7A399462B034E30005C8021 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		E7C110472B22188F00999FBD /* CGFloat+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+EXT.swift"; sourceTree = "<group>"; };
+		E7C1104B2B22F0EF00999FBD /* RestaurantCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollection.swift; sourceTree = "<group>"; };
+		E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionItem.swift; sourceTree = "<group>"; };
+		E7C1104F2B22F3F700999FBD /* RestaurantInfoTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoTags.swift; sourceTree = "<group>"; };
+		E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyles.swift; sourceTree = "<group>"; };
 		E7E200DF2B090B69003C22D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E200E62B091235003C22D6 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		E7E200EA2B098597003C22D6 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
 		E7F9EDB52B085EA8005976BE /* GMSPlaceField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSPlaceField+Extension.swift"; sourceTree = "<group>"; };
 		E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceResult.swift; sourceTree = "<group>"; };
-		E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyzeView.swift; sourceTree = "<group>"; };
+		E7FD9B892B05BAAF002D0ADF /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		E7FECC712B20927A00674C20 /* TextStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextStyles.swift; sourceTree = "<group>"; };
+		E7FECC732B209A9500674C20 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		E7FECC752B209C2B00674C20 /* ShadowStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyles.swift; sourceTree = "<group>"; };
+		E7FECC792B20A69600674C20 /* ToggleStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyles.swift; sourceTree = "<group>"; };
+		E7FECC832B218B1600674C20 /* PetSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSelectionView.swift; sourceTree = "<group>"; };
+		E7FECC852B21AC6000674C20 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryView.swift; sourceTree = "<group>"; };
 		E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintMapView.swift; sourceTree = "<group>"; };
@@ -242,7 +294,6 @@
 				E7E200C32B08FF8C003C22D6 /* FirebaseFunctions in Frameworks */,
 				E7E200B32B08FF8C003C22D6 /* FirebaseAuthCombine-Community in Frameworks */,
 				E7E200BF2B08FF8C003C22D6 /* FirebaseFirestoreCombine-Community in Frameworks */,
-				E7E200CD2B08FF8C003C22D6 /* FirebaseMLModelDownloader in Frameworks */,
 				E70C6C592B0C9B6A003B27EE /* Kingfisher in Frameworks */,
 				E74EDF422B15B8BA004DE202 /* ExyteChat in Frameworks */,
 				E7E200A52B08FF8C003C22D6 /* FirebaseAnalytics in Frameworks */,
@@ -257,6 +308,7 @@
 				E79639722B109C41006FF600 /* PopupView in Frameworks */,
 				E7E200D92B08FF8C003C22D6 /* FirebaseStorageCombine-Community in Frameworks */,
 				102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */,
+				E77456912B283D8100CAF64C /* Lottie in Frameworks */,
 				E7E200B12B08FF8C003C22D6 /* FirebaseAuth in Frameworks */,
 				E7E200BB2B08FF8C003C22D6 /* FirebaseDynamicLinks in Frameworks */,
 				E7FFB3A32B1DC9860065A213 /* FirebaseMessaging in Frameworks */,
@@ -284,9 +336,19 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E703590F2B2471EE008F14E7 /* MapSelection */ = {
+			isa = PBXGroup;
+			children = (
+				E70359102B247201008F14E7 /* MapSelection.swift */,
+			);
+			path = MapSelection;
+			sourceTree = "<group>";
+		};
 		E70AF8DB2B070EE60003462C /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				E703590F2B2471EE008F14E7 /* MapSelection */,
+				E7FECC822B218AE800674C20 /* PetSelection */,
 				E7F9EDB72B0864A7005976BE /* Map */,
 				E7A399422B034E11005C8021 /* HomeView.swift */,
 				E70AF8FE2B07A5470003462C /* HomeViewModel.swift */,
@@ -313,6 +375,8 @@
 		E70AF8E12B0710CB0003462C /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				E774569B2B28536800CAF64C /* LottieAnimation */,
+				E7FECC702B20926900674C20 /* StyleGuide */,
 				E70AF8DF2B0710BA0003462C /* appConfig.swift */,
 				E70AF8F82B0763480003462C /* ENV.swift */,
 			);
@@ -341,6 +405,9 @@
 			children = (
 				E70AF8EB2B074B580003462C /* RestaurantCard.swift */,
 				E70C6C322B0B5CF5003B27EE /* RestaurantDetail.swift */,
+				E7C1104B2B22F0EF00999FBD /* RestaurantCollection.swift */,
+				E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */,
+				E7C1104F2B22F3F700999FBD /* RestaurantInfoTags.swift */,
 			);
 			path = Restaurant;
 			sourceTree = "<group>";
@@ -349,7 +416,6 @@
 			isa = PBXGroup;
 			children = (
 				E70C6C402B0BA145003B27EE /* BorderModifiers.swift */,
-				E70C6C422B0BA6B4003B27EE /* TextModifiers.swift */,
 				E70C6C442B0BAD51003B27EE /* TextFieldModifiers.swift */,
 				E70C6C482B0BBE0E003B27EE /* ButtonModifiers.swift */,
 				E70C6C4A2B0C1AF4003B27EE /* ImageModifiers.swift */,
@@ -412,6 +478,9 @@
 				E70AF8E62B0734A30003462C /* View+Extension.swift */,
 				E773536E2B09B53F003035B4 /* DateFormatter+Extension.swift */,
 				E79ED09D2B14E9A7008C2E6F /* UIImage+Extension.swift */,
+				E70C38F02B2063810048535C /* Color+EXT.swift */,
+				E7C110472B22188F00999FBD /* CGFloat+EXT.swift */,
+				E70359122B247D1B008F14E7 /* Binding+EXT.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -419,9 +488,10 @@
 		E75588BA2B0DCD7A00086854 /* CameraView */ = {
 			isa = PBXGroup;
 			children = (
-				E7FD9B892B05BAAF002D0ADF /* AnalyzeView.swift */,
+				E7627D8E2B26BB2000F0AAC5 /* PhotoPickerVC.swift */,
 				E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */,
 				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
+				E7627D8A2B26B06C00F0AAC5 /* CanvasStackItem.swift */,
 			);
 			path = CameraView;
 			sourceTree = "<group>";
@@ -438,6 +508,7 @@
 		E75588C02B0EE27800086854 /* CreateML */ = {
 			isa = PBXGroup;
 			children = (
+				E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */,
 				E70C38E62B1F22AF0048535C /* FoodClassifierV1.mlmodel */,
 			);
 			path = CreateML;
@@ -458,6 +529,25 @@
 				E75588CB2B0F3BC100086854 /* SearchBar.swift */,
 			);
 			path = SearchBar;
+			sourceTree = "<group>";
+		};
+		E7627D902B26EE0200F0AAC5 /* Canvas */ = {
+			isa = PBXGroup;
+			children = (
+				E7627D912B26EE0C00F0AAC5 /* StackItem.swift */,
+			);
+			path = Canvas;
+			sourceTree = "<group>";
+		};
+		E7627D952B2717BC00F0AAC5 /* CanvasView */ = {
+			isa = PBXGroup;
+			children = (
+				E7627D932B27025C00F0AAC5 /* TextEditorView.swift */,
+				E7FD9B892B05BAAF002D0ADF /* EditorView.swift */,
+				E7627D882B26AE2400F0AAC5 /* CanvasViewModel.swift */,
+				E7627D962B27223E00F0AAC5 /* CanvasView.swift */,
+			);
+			path = CanvasView;
 			sourceTree = "<group>";
 		};
 		E76D776D2B11C73000176A53 /* FoodPrint */ = {
@@ -497,6 +587,24 @@
 			path = FBDataService;
 			sourceTree = "<group>";
 		};
+		E77456922B283DEE00CAF64C /* LoginBackground */ = {
+			isa = PBXGroup;
+			children = (
+				E774569C2B28538D00CAF64C /* randomFood.json */,
+				E77456992B284CCC00CAF64C /* foodieNation.json */,
+				E77456952B2849CD00CAF64C /* foodChoice.json */,
+			);
+			path = LoginBackground;
+			sourceTree = "<group>";
+		};
+		E774569B2B28536800CAF64C /* LottieAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				E77456922B283DEE00CAF64C /* LoginBackground */,
+			);
+			path = LottieAnimation;
+			sourceTree = "<group>";
+		};
 		E7809B542B0A2DCE00D76E71 /* FFUser */ = {
 			isa = PBXGroup;
 			children = (
@@ -518,7 +626,11 @@
 		E796396B2B105B2A006FF600 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				E77456932B283E7800CAF64C /* FFLottieView.swift */,
 				E7FFB3802B1C35CF0065A213 /* LikeButton.swift */,
+				E703590D2B246BB7008F14E7 /* BookmarkButton.swift */,
+				E7FECC852B21AC6000674C20 /* Polygon.swift */,
+				E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -694,6 +806,26 @@
 			path = GooglePlaceResult;
 			sourceTree = "<group>";
 		};
+		E7FECC702B20926900674C20 /* StyleGuide */ = {
+			isa = PBXGroup;
+			children = (
+				E7FECC712B20927A00674C20 /* TextStyles.swift */,
+				E7FECC732B209A9500674C20 /* ButtonStyles.swift */,
+				E7FECC752B209C2B00674C20 /* ShadowStyles.swift */,
+				E7FECC792B20A69600674C20 /* ToggleStyles.swift */,
+				E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */,
+			);
+			path = StyleGuide;
+			sourceTree = "<group>";
+		};
+		E7FECC822B218AE800674C20 /* PetSelection */ = {
+			isa = PBXGroup;
+			children = (
+				E7FECC832B218B1600674C20 /* PetSelectionView.swift */,
+			);
+			path = PetSelection;
+			sourceTree = "<group>";
+		};
 		E7FFB3822B1C90E10065A213 /* FoodPrintHistoryView */ = {
 			isa = PBXGroup;
 			children = (
@@ -750,6 +882,7 @@
 		E7FFC2492B037A1A00F7B171 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
+				E7627D952B2717BC00F0AAC5 /* CanvasView */,
 				E75588C32B0EF3AB00086854 /* PreviewVIew */,
 				E75588BA2B0DCD7A00086854 /* CameraView */,
 				E7A399442B034E22005C8021 /* FlavorFlashView.swift */,
@@ -762,6 +895,7 @@
 		E7FFC24E2B037B5A00F7B171 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E7627D902B26EE0200F0AAC5 /* Canvas */,
 				E7FFB39D2B1DBA1D0065A213 /* FoodPrint */,
 				E7FFB3952B1D949A0065A213 /* FBReport */,
 				E79ED0972B14D359008C2E6F /* Annotations */,
@@ -790,6 +924,7 @@
 				E715D9B42B04A22A00B6478D /* Run Script */,
 				5052881ECA486989E9088EF1 /* [CP] Copy Pods Resources */,
 				77DC380EE426F9E67DDBF888 /* [CP] Embed Pods Frameworks */,
+				E7627D872B26A2F800F0AAC5 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -808,7 +943,6 @@
 				E7E200C02B08FF8C003C22D6 /* FirebaseFirestoreSwift */,
 				E7E200C22B08FF8C003C22D6 /* FirebaseFunctions */,
 				E7E200C42B08FF8C003C22D6 /* FirebaseFunctionsCombine-Community */,
-				E7E200CC2B08FF8C003C22D6 /* FirebaseMLModelDownloader */,
 				E7E200D02B08FF8C003C22D6 /* FirebasePerformance */,
 				E7E200D22B08FF8C003C22D6 /* FirebaseRemoteConfig */,
 				E7E200D62B08FF8C003C22D6 /* FirebaseStorage */,
@@ -818,6 +952,7 @@
 				E79639712B109C41006FF600 /* PopupView */,
 				E74EDF412B15B8BA004DE202 /* ExyteChat */,
 				E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */,
+				E77456902B283D8100CAF64C /* Lottie */,
 			);
 			productName = FlavorFlash;
 			productReference = E7A399292B034AB4005C8021 /* FlavorFlash.app */;
@@ -852,6 +987,7 @@
 				E70C6C572B0C9B6A003B27EE /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */,
 				E74EDF402B15B8BA004DE202 /* XCRemoteSwiftPackageReference "Chat" */,
+				E774568F2B283D8100CAF64C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = E7A3992A2B034AB4005C8021 /* Products */;
 			projectDirPath = "";
@@ -867,9 +1003,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E774569D2B28538D00CAF64C /* randomFood.json in Resources */,
 				E7A399362B034AB6005C8021 /* Preview Assets.xcassets in Resources */,
 				E7A399332B034AB6005C8021 /* Assets.xcassets in Resources */,
+				E77456962B2849CD00CAF64C /* foodChoice.json in Resources */,
 				E7E200E02B090B69003C22D6 /* GoogleService-Info.plist in Resources */,
+				E774569A2B284CCC00CAF64C /* foodieNation.json in Resources */,
 				E70AF8F32B075E260003462C /* DEBUG-Keys.plist in Resources */,
 				E70AF8F52B075E3F0003462C /* PROD-Keys.plist in Resources */,
 			);
@@ -952,6 +1091,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
+		E7627D872B26A2F800F0AAC5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -961,11 +1122,15 @@
 			files = (
 				E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */,
 				E70AF8EE2B074B8F0003462C /* Restaurant.swift in Sources */,
+				E7627D942B27025C00F0AAC5 /* TextEditorView.swift in Sources */,
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
 				E71BFB1E2B176E6B008E89DE /* Utilities.swift in Sources */,
+				E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */,
+				E7FECC862B21AC6000674C20 /* Polygon.swift in Sources */,
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */,
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,
+				E7C110522B22F6AA00999FBD /* CornerRadiusStyles.swift in Sources */,
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
 				E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
@@ -973,7 +1138,9 @@
 				E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */,
 				E70C6C4B2B0C1AF4003B27EE /* ImageModifiers.swift in Sources */,
 				E70C6C5D2B0CEA05003B27EE /* CommentView.swift in Sources */,
+				E7FECC7A2B20A69600674C20 /* ToggleStyles.swift in Sources */,
 				E7274B7D2B19ABE5008C439F /* BackgroundModifiers.swift in Sources */,
+				E7C1104C2B22F0EF00999FBD /* RestaurantCollection.swift in Sources */,
 				E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */,
 				E74EDF442B15B9B4004DE202 /* ChatroomView.swift in Sources */,
 				E73225832B1B0A4C00EE14CC /* OverlayModifiers.swift in Sources */,
@@ -983,6 +1150,7 @@
 				E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+Extension.swift in Sources */,
+				E703590E2B246BB7008F14E7 /* BookmarkButton.swift in Sources */,
 				E73B171A2B0AF8A200F1A0DD /* FBGroup.swift in Sources */,
 				E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */,
 				E70AF8EC2B074B580003462C /* RestaurantCard.swift in Sources */,
@@ -990,9 +1158,12 @@
 				E7A3992F2B034AB4005C8021 /* ContentView.swift in Sources */,
 				E75588C52B0EF3E600086854 /* PrimaryPreviewView.swift in Sources */,
 				E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */,
+				E7627D972B27223E00F0AAC5 /* CanvasView.swift in Sources */,
 				E7F9EDB62B085EA8005976BE /* GMSPlaceField+Extension.swift in Sources */,
+				E7C1104E2B22F1DE00999FBD /* RestaurantCollectionItem.swift in Sources */,
 				E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */,
 				E70C6C472B0BBA03003B27EE /* EmailAddress.swift in Sources */,
+				E77456942B283E7800CAF64C /* FFLottieView.swift in Sources */,
 				E7FFB3922B1D6FA00065A213 /* DeleteAccountConfirmView.swift in Sources */,
 				E70C6C5B2B0C9BA3003B27EE /* KingfisherWrapper.swift in Sources */,
 				E70C6C452B0BAD51003B27EE /* TextFieldModifiers.swift in Sources */,
@@ -1000,7 +1171,10 @@
 				E7A3993F2B034AEC005C8021 /* FFTabBar.swift in Sources */,
 				E70C6C352B0B6134003B27EE /* PlaceFetcher.swift in Sources */,
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
+				E7C110482B22188F00999FBD /* CGFloat+EXT.swift in Sources */,
 				E7A399432B034E11005C8021 /* HomeView.swift in Sources */,
+				E7627D8F2B26BB2000F0AAC5 /* PhotoPickerVC.swift in Sources */,
+				E70359172B248F84008F14E7 /* NavigationBarBackButton.swift in Sources */,
 				E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */,
 				E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
@@ -1011,23 +1185,27 @@
 				E7FFB3A12B1DBC940065A213 /* CommentCell.swift in Sources */,
 				E70AF8FF2B07A5470003462C /* HomeViewModel.swift in Sources */,
 				E7FFB39F2B1DBA400065A213 /* FBComment.swift in Sources */,
+				E7627D892B26AE2400F0AAC5 /* CanvasViewModel.swift in Sources */,
 				E7274B8C2B1ACF85008C439F /* ProfileHeader.swift in Sources */,
 				E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */,
 				E7FFB38F2B1D6C000065A213 /* SettingsView.swift in Sources */,
 				E7A3992D2B034AB4005C8021 /* FlavorFlashApp.swift in Sources */,
+				E7C110502B22F3F700999FBD /* RestaurantInfoTags.swift in Sources */,
 				E75588C72B0EF40F00086854 /* SecondaryPreviewView.swift in Sources */,
 				E79ED09B2B14DF7C008C2E6F /* RestaurantMarkerView.swift in Sources */,
 				E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */,
 				E71BFB222B1771CC008E89DE /* SignInAppleHelper.swift in Sources */,
-				E7FD9B8A2B05BAAF002D0ADF /* AnalyzeView.swift in Sources */,
+				E7FD9B8A2B05BAAF002D0ADF /* EditorView.swift in Sources */,
 				E7FFB3882B1C97950065A213 /* FoodPrintAnnotation.swift in Sources */,
 				E715D9B32B03C52A00B6478D /* Camera.swift in Sources */,
 				E70C6C522B0C5BAD003B27EE /* RestaurantCategoryViewModel.swift in Sources */,
 				E70AF8E32B071D450003462C /* NavigationModel.swift in Sources */,
 				E7FFB3972B1D94AA0065A213 /* FBReport.swift in Sources */,
+				E70C38F12B2063810048535C /* Color+EXT.swift in Sources */,
 				E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */,
 				E79ED0992B14D392008C2E6F /* RestaurantAnnotation.swift in Sources */,
 				E7FFB39A2B1D9B0A0065A213 /* ReportSheetView.swift in Sources */,
+				E7627D8B2B26B06C00F0AAC5 /* CanvasStackItem.swift in Sources */,
 				E77353762B09CE95003035B4 /* AuthenticationManager.swift in Sources */,
 				E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */,
 				E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */,
@@ -1036,8 +1214,11 @@
 				E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */,
 				E7E200E72B091235003C22D6 /* Message.swift in Sources */,
 				E7FFB39C2B1DB4BF0065A213 /* CommentSheetView.swift in Sources */,
+				E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+Extension.swift in Sources */,
+				E78678042B21BF8A00664756 /* DeepLabV3.mlmodel in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
+				E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
 				E7A399472B034E30005C8021 /* ChatListView.swift in Sources */,
 				E70C6C542B0C5CAF003B27EE /* RestaurantCategoryView.swift in Sources */,
@@ -1045,12 +1226,15 @@
 				E7FFB38A2B1C9A6E0065A213 /* FoodPrintAnnotationView.swift in Sources */,
 				E70C6C492B0BBE0E003B27EE /* ButtonModifiers.swift in Sources */,
 				E70C6C332B0B5CF5003B27EE /* RestaurantDetail.swift in Sources */,
-				E70C6C432B0BA6B4003B27EE /* TextModifiers.swift in Sources */,
 				E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */,
 				E75588BD2B0E075B00086854 /* EmailSignInViewModel.swift in Sources */,
+				E70359132B247D1B008F14E7 /* Binding+EXT.swift in Sources */,
+				E70359112B247201008F14E7 /* MapSelection.swift in Sources */,
+				E7FECC722B20927A00674C20 /* TextStyles.swift in Sources */,
 				E71BFB192B1760E1008E89DE /* SignInWithAppleButtonView.swift in Sources */,
 				E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */,
 				E70AF8FB2B07735F0003462C /* AppDelegate.swift in Sources */,
+				E7627D922B26EE0C00F0AAC5 /* StackItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,7 +1275,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -1114,6 +1298,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1170,6 +1355,7 @@
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
@@ -1199,8 +1385,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1209,9 +1395,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1238,8 +1427,8 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1248,9 +1437,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlash";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -1294,6 +1486,14 @@
 				minimumVersion = 1.3.0;
 			};
 		};
+		E774568F2B283D8100CAF64C /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.4;
+			};
+		};
 		E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/exyte/PopupView.git";
@@ -1327,6 +1527,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E74EDF402B15B8BA004DE202 /* XCRemoteSwiftPackageReference "Chat" */;
 			productName = ExyteChat;
+		};
+		E77456902B283D8100CAF64C /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E774568F2B283D8100CAF64C /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 		E79639712B109C41006FF600 /* PopupView */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1387,11 +1592,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFunctionsCombine-Community";
-		};
-		E7E200CC2B08FF8C003C22D6 /* FirebaseMLModelDownloader */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseMLModelDownloader;
 		};
 		E7E200D02B08FF8C003C22D6 /* FirebasePerformance */ = {
 			isa = XCSwiftPackageProductDependency;

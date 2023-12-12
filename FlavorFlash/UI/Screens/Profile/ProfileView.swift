@@ -7,6 +7,7 @@
 
 import SwiftUI
 import PhotosUI
+import Kingfisher
 
 struct ProfileView: View {
 
@@ -14,14 +15,16 @@ struct ProfileView: View {
 
 	@EnvironmentObject private var navigationModel: NavigationModel
 
-	@State private var selectedItem: PhotosPickerItem? = nil
+	@State private var selectedItem: PhotosPickerItem?
 
 	@State private var showQRCode = false
 
 	@State private var qrCodeMode: QRCodeMode = .myQRCode
 
 	@State private var showFriends = false
+
 	@State private var showFoodPrint = false
+
 
 	enum QRCodeMode: Int {
 		case myQRCode = 0
@@ -29,13 +32,18 @@ struct ProfileView: View {
 	}
 
 	var body: some View {
+		NavigationStack {
+
 			if let user = viewModel.user {
-				ProfileHeader(avatarUrlString: user.profileImageUrl ?? "") {
-					ActivityItemDisplay(title: "足跡", count: viewModel.foodPrints.count) {
+				ProfileHeader(
+					avatarUrlString: user.profileImageUrl ?? "",
+					displayName: user.displayName
+				) {
+					ActivityItemDisplay(title: "foodprints", count: viewModel.foodPrints.count) {
 						showFoodPrint = true
 					}
-					ActivityItemDisplay(title: "成就", count: 8)
-					ActivityItemDisplay(title: "朋友", count: viewModel.friends.count) {
+					ActivityItemDisplay(title: "badges", count: 0)
+					ActivityItemDisplay(title: "friends", count: viewModel.friends.count) {
 						showFriends = true
 					}
 				}
@@ -54,20 +62,50 @@ struct ProfileView: View {
 					List {
 						ForEach(viewModel.friends, id: \.self) { friend in
 							HStack {
-								AsyncImage(url: URL(string: friend.profileImageUrl ?? "")) { image in
-									image
-										.resizable()
-										.scaledToFill()
-								} placeholder: {
-									Image(systemName: "person.fill")
-								}
-								.frame(width: 50, height: 50)
-								.clipShape(Circle())
+								KFImage(URL(string: friend.profileImageUrl ?? ""))
+									.placeholder {
+										Image(systemName: "person.fill")
+									}
+									.resizable()
+									.scaledToFill()
+									.frame(width: 50, height: 50)
+									.clipShape(Circle())
 
 								Text(friend.displayName)
+
+								Spacer()
+
+								Text("...")
+									.bodyStyle()
+									.contextMenu {
+										Button(role: .destructive) {
+											viewModel.deleteFriend(friend.id)
+										} label: {
+											Text("Delete")
+										}
+
+										Button(role: .destructive) {
+											viewModel.blockFriend(friend.id)
+										} label: {
+											Text("Block")
+										}
+
+									} preview: {
+										KFImage(URL(string: friend.profileImageUrl ?? ""))
+											.placeholder {
+												Image(systemName: "person.fill")
+											}
+											.resizable()
+											.frame(width: 200, height: 200)
+									}
 							}
 						}
 					}
+					.listStyle(.plain)
+					.toolbar {
+						NavigationBarBackButton()
+					}
+					.navigationBarBackButtonHidden()
 					.navigationTitle("Friends")
 					.navigationBarTitleDisplayMode(.inline)
 				}
@@ -77,17 +115,23 @@ struct ProfileView: View {
 			}
 
 			List {
-				Section("FoodPrint") {
-					NavigationLink {
-						Text("hi")
-					} label: {
-						Text("FoodPrint")
-							.prefixedWithSFSymbol(named: "shoeprints.fill", height: 20)
+				Section {
+					Toggle(isOn: $navigationModel.preferDarkMode) {
+						Text("Dark Mode")
+							.prefixedWithSFSymbol(named: "circle.lefthalf.filled", height: 20)
+							.captionStyle()
 					}
+					.toggleStyle(PrimaryToggleStyle(size: 16))
+				} header: {
+					Text("Appearance")
+						.captionStyle()
 				}
 
-				Section("Social") {
+				Section {
 					qrcodeView
+				} header: {
+					Text("Social")
+						.captionStyle()
 				}
 
 				accountConfigurationView
@@ -105,29 +149,33 @@ struct ProfileView: View {
 			}
 			.navigationTitle("Profile")
 			.navigationBarTitleDisplayMode(.inline)
+			.refreshable {
+				viewModel.loadProfileData()
+			}
 		}
+	}
 }
 
 extension ProfileView {
 	// MARK: - Layout
 	private var avatarInfo: some View {
 		ZStack(alignment: .center) {
-//			if let user = viewModel.user {
-//				VStack(alignment: .leading) {
-//					Text(user.displayName)
-//						.padding(.leading, 12)
-//						.font(.title)
-//						.bold()
+			//			if let user = viewModel.user {
+			//				VStack(alignment: .leading) {
+			//					Text(user.displayName)
+			//						.padding(.leading, 12)
+			//						.font(.title)
+			//						.bold()
 
 
-//				}
-//				.frame(maxWidth: .infinity, maxHeight: 100)
+			//				}
+			//				.frame(maxWidth: .infinity, maxHeight: 100)
 			Rectangle()
 				.frame(width: .infinity, height: 100)
 				.background(Color.gray)
 
 			avatarImage
-//			}
+			//			}
 		}
 		.frame(height: 100)
 		.padding(.horizontal, 16)
@@ -157,8 +205,7 @@ extension ProfileView {
 					}
 				} label: {
 					Text("Logout")
-						.font(.title2)
-						.bold()
+						.bodyBoldStyle()
 						.foregroundStyle(.red)
 				}
 
@@ -168,8 +215,9 @@ extension ProfileView {
 	}
 
 	private var qrcodeView: some View {
-		Text("掃描QRCode")
+		Text("Add Friends")
 			.prefixedWithSFSymbol(named: "qrcode", height: 20, tintColor: .white)
+			.captionStyle()
 			.onTapGesture {
 				showQRCode = true
 			}
@@ -206,7 +254,7 @@ extension ProfileView {
 											.frame(width: 50, height: 50)
 											.clipShape(Circle())
 
-									case .failure(_):
+									case .failure:
 										Image(systemName: "person.fill")
 											.resizable()
 											.frame(width: 50, height: 50)
@@ -309,20 +357,47 @@ extension ProfileView {
 	// unused
 	private var showFriendLink: some View {
 		NavigationLink {
-			List {
-				ForEach(viewModel.friends, id: \.self) { friend in
-					HStack {
-						AsyncImage(url: URL(string: friend.profileImageUrl ?? "")) { image in
-							image
+			ScrollView {
+				VStack {
+					ForEach(viewModel.friends, id: \.self) { friend in
+						HStack {
+							KFImage(URL(string: friend.profileImageUrl ?? ""))
+								.placeholder {
+									Image(systemName: "person.fill")
+								}
 								.resizable()
 								.scaledToFill()
-						} placeholder: {
-							Image(systemName: "person.fill")
-						}
-						.frame(width: 50, height: 50)
-						.clipShape(Circle())
+								.frame(width: 50, height: 50)
+								.clipShape(Circle())
 
-						Text(friend.displayName)
+							Text(friend.displayName)
+
+							Spacer()
+
+							Button {
+
+							} label: {
+								Text("...")
+									.bodyStyle()
+									.contextMenu {
+										Button(role: .destructive) {
+
+										} label: {
+											Text("Delete")
+										}
+
+										Button(role: .destructive) {
+
+										} label: {
+											Text("Block")
+										}
+
+									} preview: {
+										KFImage(URL(string: friend.profileImageUrl ?? ""))
+									}
+							}
+							.buttonStyle(SmallPrimaryButtonStyle())
+						}
 					}
 				}
 			}
@@ -335,6 +410,10 @@ extension ProfileView {
 					}
 				}
 			}
+			.toolbar {
+				NavigationBarBackButton()
+			}
+			.navigationBarBackButtonHidden()
 			.navigationTitle("Friends")
 			.navigationBarTitleDisplayMode(.inline)
 		} label: {

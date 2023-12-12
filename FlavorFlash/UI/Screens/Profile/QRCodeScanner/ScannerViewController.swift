@@ -11,8 +11,11 @@ import UIKit
 @available(macCatalyst 14.0, *)
 extension CodeScannerView {
 
-	public class ScannerViewController: UIViewController, 
-											UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVCaptureMetadataOutputObjectsDelegate, UIAdaptivePresentationControllerDelegate {
+	public class ScannerViewController: UIViewController,
+											UIImagePickerControllerDelegate,
+										UINavigationControllerDelegate,
+										AVCaptureMetadataOutputObjectsDelegate,
+										UIAdaptivePresentationControllerDelegate {
 		private let photoOutput = AVCapturePhotoOutput()
 		private var isCapturing = false
 		private var handler: ((UIImage) -> Void)?
@@ -56,11 +59,16 @@ extension CodeScannerView {
 			openGallery()
 		}
 
-		public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+		public func imagePickerController(
+			_ picker: UIImagePickerController,
+			didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
 			isGalleryShowing = false
 
 			if let qrcodeImg = info[.originalImage] as? UIImage {
-				let detector = CIDetector(ofType: CIDetectorTypeQRCode, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])!
+				let detector = CIDetector(
+					ofType: CIDetectorTypeQRCode,
+					context: nil,
+					options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])!
 				let ciImage = CIImage(image:qrcodeImg)!
 				var qrCodeLink = ""
 
@@ -449,7 +457,10 @@ extension CodeScannerView {
 			lastTime = Date()
 		}
 
-		public func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
+		public func metadataOutput(
+			_ output: AVCaptureMetadataOutput,
+			didOutput metadataObjects: [AVMetadataObject],
+			from connection: AVCaptureConnection) {
 			if let metadataObject = metadataObjects.first {
 				guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
 				guard let stringValue = readableObject.stringValue else { return }
@@ -461,7 +472,11 @@ extension CodeScannerView {
 				isCapturing = true
 
 				handler = { [self] image in
-					let result = ScanResult(string: stringValue, type: readableObject.type, image: image, corners: readableObject.corners)
+					let result = ScanResult(
+						string: stringValue,
+						type: readableObject.type,
+						image: image,
+						corners: readableObject.corners)
 
 					switch parentView.scanMode {
 					case .once:
@@ -526,11 +541,11 @@ extension CodeScannerView.ScannerViewController: AVCapturePhotoCaptureDelegate {
 	) {
 		isCapturing = false
 		guard let imageData = photo.fileDataRepresentation() else {
-			print("Error while generating image from photo capture data.");
+			print("Error while generating image from photo capture data.")
 			return
 		}
 		guard let qrImage = UIImage(data: imageData) else {
-			print("Unable to generate UIImage from image data.");
+			print("Unable to generate UIImage from image data.")
 			return
 		}
 		handler?(qrImage)
@@ -557,8 +572,18 @@ public extension AVCaptureDevice {
 
 	/// This returns the Ultra Wide Camera on capable devices and the default Camera for Video otherwise.
 	static var bestForVideo: AVCaptureDevice? {
-		let deviceHasUltraWideCamera = !AVCaptureDevice.DiscoverySession(deviceTypes: [.builtInUltraWideCamera], mediaType: .video, position: .back).devices.isEmpty
-		return deviceHasUltraWideCamera ? AVCaptureDevice.default(.builtInUltraWideCamera, for: .video, position: .back) : AVCaptureDevice.default(for: .video)
+		let deviceHasUltraWideCamera = !AVCaptureDevice.DiscoverySession(
+			deviceTypes: [.builtInUltraWideCamera],
+			mediaType: .video,
+			position: .back
+		).devices.isEmpty
+
+		return deviceHasUltraWideCamera ?
+			AVCaptureDevice.default(
+				.builtInUltraWideCamera,
+				for: .video,
+				position: .back) : 
+			AVCaptureDevice.default(for: .video)
 	}
 
 }

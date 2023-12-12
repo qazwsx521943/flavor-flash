@@ -9,7 +9,8 @@ import SwiftUI
 
 struct FoodPrintView: View {
 	@StateObject private var foodPrintViewModel = FoodPrintViewModel(dataService: FoodPrintDataService(path: "foodprints"))
-//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(mockService: FoodPrintDataService(path: "foodprints"))
+//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(
+//mockService: FoodPrintDataService(path: "foodprints"))
 	@State private var showCommentModal = false
 
 	@State private var showReportModal = false
@@ -30,13 +31,18 @@ struct FoodPrintView: View {
 				ScrollView(.vertical, showsIndicators: false) {
 					VStack(alignment: .center, spacing: 30) {
 						ForEach(foodPrintViewModel.posts) { post in
-							FoodPrintCell(foodPrint: post, showComment: { foodprint in
+							FoodPrintCell(
+								foodPrint: post,
+								author: foodPrintViewModel.friends.first { $0.id == post.userId },
+								showComment: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .comment
-							}) { foodprint in
+							}, showReport: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .report
-							}
+							}, likePost: {foodPrintViewModel.likePost(foodPrint: post)}, dislikePost: {
+								foodPrintViewModel.dislikePost(foodPrint: post)
+							})
 							.frame(width: geometry.size.width, height: geometry.size.height * 0.9)
 							.padding(16)
 							.background(Color.black)
@@ -46,6 +52,9 @@ struct FoodPrintView: View {
 					.sheet(item: $isSelectedFoodPrint) { item in
 						sheetType(foodPrint: item)
 					}
+				}
+				.refreshable {
+					foodPrintViewModel.reloadData()
 				}
 				.toolbar {
 					ToolbarItem(placement: .topBarTrailing) {

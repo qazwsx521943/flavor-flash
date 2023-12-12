@@ -37,6 +37,33 @@ enum RestaurantCategory: String, CaseIterable, Identifiable {
 
 	var title: String {
 		switch self {
+		case .american: return "American Food"
+		case .barbecue: return "BBQ"
+		case .brazilian: return "Brazilian Food"
+		case .chinese: return "Chinese Food"
+		case .fast_food: return "Fast Food"
+		case .french: return "French Food"
+		case .greek: return "Greek Food"
+		case .hamburger: return "Hamburger"
+		case .indian: return "Indian Food"
+		case .indonesian: return "Indonesian Food"
+		case .japanese: return "Japanese Food"
+		case .korean: return "Korean Food"
+		case .mediterranean: return "Mediterranean Food"
+		case .mexican: return "Mexican Food"
+		case .pizza: return "Pizza"
+		case .ramen: return "Ramen"
+		case .seafood: return "Seafood"
+		case .thai: return "Thai Food"
+		case .turkish: return "Turkish Food"
+		case .steak: return "Steak"
+		case .sushi: return "Sushi"
+		case .vietnamese: return "Vietnamese Food"
+		}
+	}
+
+	var titleTw: String {
+		switch self {
 		case .american: return "美式"
 		case .barbecue: return "燒烤"
 		case .brazilian: return "巴西"

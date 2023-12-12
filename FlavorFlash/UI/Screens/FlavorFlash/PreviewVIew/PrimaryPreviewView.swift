@@ -15,7 +15,6 @@ struct PrimaryPreviewView: View {
 		previewImage
 			.resizable()
 			.scaledToFill()
-			.border(.black, width: 4)
 			.clipped()
     }
 }

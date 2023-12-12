@@ -17,15 +17,17 @@ struct SettingsView: View {
 			NavigationLink {
 				accountSettingList
 			} label: {
-				Text("帳號")
+				Text("Account")
 					.prefixedWithSFSymbol(named: "person.crop.circle", height: 20)
+					.captionStyle()
 			}
 
 			NavigationLink {
 				privacySettingList
 			} label: {
-				Text("隱私設定")
+				Text("Privacy Setting")
 					.prefixedWithSFSymbol(named: "lock", height: 20)
+					.captionStyle()
 			}
 		}
 		.listStyle(.plain)
@@ -38,7 +40,19 @@ struct SettingsView: View {
 extension SettingsView {
 	private var privacySettingList: some View {
 		List {
-			Text("privacy setting")
+			NavigationLink {
+				List {
+					ForEach(profileViewModel.blockedUsers) { user in
+						Text(user.displayName)
+							.bodyStyle()
+					}
+				}
+				.navigationTitle("Blocked Users")
+			} label: {
+				Text("Blocked Users")
+					.captionStyle()
+			}
+
 		}
 		.listStyle(.plain)
 		.navigationTitle("Privacy Settings")
@@ -56,7 +70,8 @@ extension SettingsView {
 					}
 				}
 			} label: {
-				Text("重設密碼")
+				Text("Reset Password")
+					.captionStyle()
 					.foregroundStyle(.primary)
 			}
 
@@ -66,7 +81,8 @@ extension SettingsView {
 					navigationModel.showSignInModal = true
 				}
 			} label: {
-				Text("刪除帳號")
+				Text("Delete Account")
+					.captionStyle()
 			}
 		}
 		.listStyle(.plain)

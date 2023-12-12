@@ -11,6 +11,8 @@ struct FoodPrintHistoryView: View {
 
 	@ObservedObject var profileViewModel: ProfileViewModel
 
+	@EnvironmentObject var navigationModel: NavigationModel
+
 	@State private var showFriendSelectionView = false
 
 	var body: some View {
@@ -63,8 +65,18 @@ struct FoodPrintHistoryView: View {
 				.transition(.move(edge: .bottom))
 			}
 		}
+		.onAppear {
+			navigationModel.hideTabBar()
+		}
+		.onDisappear {
+			navigationModel.showTabBar()
+		}
 		.ignoresSafeArea(edges: .bottom)
 		.toolbar(.hidden, for: .tabBar)
+		.toolbar {
+			NavigationBarBackButton()
+		}
+		.navigationBarBackButtonHidden()
 		.navigationTitle("My FoodPrints")
 		.navigationBarTitleDisplayMode(.inline)
 	}

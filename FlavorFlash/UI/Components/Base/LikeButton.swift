@@ -11,11 +11,13 @@ struct LikeButton: View {
 
 	@Binding var isLiked: Bool
 
+	var action: (() -> Void)?
+
 	var body: some View {
 		HStack {
 			Button {
+				action?()
 				isLiked.toggle()
-
 			} label: {
 				ZStack {
 					Image(systemName: isLiked ? "heart.fill" : "heart")

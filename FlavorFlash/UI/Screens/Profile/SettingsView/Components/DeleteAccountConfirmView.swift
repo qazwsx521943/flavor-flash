@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct DeleteAccountConfirmView: View {
+
+	@EnvironmentObject var navigationModel: NavigationModel
+
 	var action: (() -> Void)?
 
     var body: some View {
 		VStack {
 			Spacer()
 
-			Text("你確嗎？")
+			Text("Are you sure you want to delete your account？")
+				.bodyStyle()
+				.multilineTextAlignment(.center)
 
 			Spacer()
 
 			Divider()
-			Text("刪除帳號")
+			Text("Delete Account")
+				.bodyStyle()
 				.frame(maxWidth: .infinity)
 				.padding(.vertical, 12)
 				.padding(.horizontal, 16)
@@ -34,7 +40,13 @@ struct DeleteAccountConfirmView: View {
 
 			Divider()
 		}
-		.navigationTitle("刪除帳號")
+		.onAppear {
+			navigationModel.hideTabBar()
+		}
+		.onDisappear {
+			navigationModel.showTabBar()
+		}
+		.navigationTitle("Delete Account")
 		.navigationBarTitleDisplayMode(.inline)
     }
 }

@@ -19,6 +19,7 @@ struct FoodPrint: FBModelType {
 	let category: String?
 	let location: Location?
 	let comments: [FBComment]?
+	let likedBy: [String]?
 	let createdDate: Date
 
 	enum CodingKeys: String, CodingKey {
@@ -33,12 +34,24 @@ struct FoodPrint: FBModelType {
 		case category
 		case location
 		case comments
+		case likedBy = "liked_by"
 		case createdDate = "created_date"
 	}
 
-	init(id: String, userId: String, restaurantId: String? = nil, 
-		 frontCameraImageUrl: String, frontCameraImagePath: String, backCameraImageUrl: String, backCameraImagePath: String,
-		 description: String, category: String? = nil, location: Location? = nil, comments: [FBComment]? = nil, createdDate: Date) {
+	init(
+		id: String,
+		userId: String,
+		restaurantId: String? = nil,
+		frontCameraImageUrl: String,
+		frontCameraImagePath: String,
+		backCameraImageUrl: String,
+		backCameraImagePath: String,
+		description: String,
+		category: String? = nil, 
+		location: Location? = nil,
+		comments: [FBComment]? = nil,
+		likedBy: [String]? = nil,
+		createdDate: Date) {
 		self.id = id
 		self.userId = userId
 		self.restaurantId = restaurantId
@@ -50,6 +63,7 @@ struct FoodPrint: FBModelType {
 		self.category = category
 		self.location = location
 		self.comments = comments
+		self.likedBy = likedBy
 		self.createdDate = createdDate
 	}
 }

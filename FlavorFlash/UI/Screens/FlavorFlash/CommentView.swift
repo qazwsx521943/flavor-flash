@@ -30,8 +30,8 @@ struct CommentView: View {
 								.border(Color.white, width: 2)
 								.overlay(alignment: .bottomLeading) {
 									Text(cameraDataModel.foodAnalyzeResult)
-										.font(.caption)
-										.bold()
+										.captionBoldStyle()
+										.foregroundStyle(.white)
 										.padding(4)
 										.background(.black.opacity(0.5))
 										.clipShape(RoundedRectangle(cornerRadius: 10.0))
@@ -40,11 +40,12 @@ struct CommentView: View {
 
 							SecondaryPreviewView(previewImage: secondary)
 						}
+						.clipped()
 					}
 
 					VStack(alignment: .leading, spacing: 8) {
-						Text(cameraDataModel.selectedRestaurant?.displayName.text ?? "選擇餐廳")
-							.foregroundStyle(.white)
+						Text(cameraDataModel.selectedRestaurant?.displayName.text ?? "Select Restaurant")
+							.bodyStyle()
 							.onTapGesture {
 								showList = true
 							}
@@ -56,11 +57,10 @@ struct CommentView: View {
 
 					TextEditor(text: $cameraDataModel.description)
 						.foregroundColor(Color.secondary)
-						.font(.custom("HelveticaNeue", size: 16))
+						.bodyStyle()
 						.lineLimit(2...5)
 						.lineSpacing(5)
 						.frame(height: 200)
-						.padding(8)
 
 					saveFoodPrintButton
 				}
@@ -70,6 +70,10 @@ struct CommentView: View {
 				}
 			}
 			.scrollDismissesKeyboard(.interactively)
+			.navigationBarBackButtonHidden()
+			.toolbar {
+				NavigationBarBackButton()
+			}
 		}
 	}
 }
@@ -93,10 +97,9 @@ extension CommentView {
 					ForEach(cameraDataModel.nearByRestaurants) { restaurant in
 						VStack(alignment: .leading, spacing: 5) {
 							Text(restaurant.displayName.text)
-								.font(.title2)
-								.foregroundStyle(Color.white)
-							Text(restaurant.shortFormattedAddress ?? "尚無資訊")
-								.font(.caption)
+								.captionBoldStyle()
+							Text(restaurant.shortFormattedAddress ?? "unknown")
+								.detailBoldStyle()
 						}
 						.frame(maxWidth: .infinity, alignment: .leading)
 						.padding(.init(top: 0, leading: 16, bottom: 16, trailing: 16))
@@ -124,14 +127,10 @@ extension CommentView {
 				navigationModel.selectedTab = .home
 			}
 		} label: {
-			Text("送出 ")
+			Text("Save FoodPrint!")
 				.suffixWithSFSymbol(named: "paperplane.fill", height: 25, tintColor: .black)
-				.font(.title3)
-				.foregroundStyle(Color.black)
-				.padding()
 		}
-		.background(Color.white)
-		.clipShape(RoundedRectangle(cornerRadius: 10))
+		.buttonStyle(LargePrimaryButtonStyle())
 	}
 }
 

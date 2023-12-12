@@ -16,7 +16,9 @@ final class RestaurantCategoryViewModel: ObservableObject {
 		do {
 			let currentUser = try AuthenticationManager.shared.getAuthenticatedUser()
 
-			try await UserManager.shared.setRestaurantCategories(userId: currentUser.uid, categories: Array(selectedCategories).toString)
+			try await UserManager.shared.setRestaurantCategories(
+				userId: currentUser.uid,
+				categories: Array(selectedCategories).toString)
 		} catch {
 			throw FBAuthError.userNotLoggedIn
 		}

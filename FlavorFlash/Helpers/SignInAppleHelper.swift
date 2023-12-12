@@ -12,6 +12,7 @@ import CryptoKit
 struct SignInWithAppleResult {
 	let token: String
 	let nonce: String
+	let fullName: PersonNameComponents?
 }
 
 @MainActor
@@ -20,18 +21,17 @@ final class SignInAppleHelper: NSObject {
 
 	private var currentNonce: String?
 
-	private var completionHandler: SignInWithAppleCompletionHandler? = nil
+	private var completionHandler: SignInWithAppleCompletionHandler?
 
 	// turn completionHandler into async await return values
 	func startSignInWithAppleFlow() async throws -> SignInWithAppleResult {
-		try await withCheckedContinuation { continuation in
+		await withCheckedContinuation { continuation in
 			self.startSignInWithAppleFlow { result in
 				switch result {
 				case .success(let signInAppleResult):
 					continuation.resume(returning: signInAppleResult)
 					return
-				case .failure(let error):
-//					continuation.resume(throwing: error)
+				case .failure:
 					return
 				}
 			}
@@ -94,7 +94,9 @@ final class SignInAppleHelper: NSObject {
 
 @available(iOS 13.0, *)
 extension SignInAppleHelper: ASAuthorizationControllerDelegate {
-	func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+	func authorizationController(
+		controller: ASAuthorizationController,
+		didCompleteWithAuthorization authorization: ASAuthorization) {
 		guard
 			let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
 			let nonce = currentNonce,
@@ -105,7 +107,10 @@ extension SignInAppleHelper: ASAuthorizationControllerDelegate {
 			return
 		}
 
-		let tokens = SignInWithAppleResult(token: idTokenString, nonce: nonce)
+		let tokens = SignInWithAppleResult(
+			token: idTokenString,
+			nonce: nonce,
+			fullName: appleIDCredential.fullName)
 
 		completionHandler?(.success(tokens))
 	}

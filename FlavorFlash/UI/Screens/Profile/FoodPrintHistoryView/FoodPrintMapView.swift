@@ -8,8 +8,6 @@
 import SwiftUI
 import MapKit
 
-
-
 struct FoodPrintMapView: UIViewRepresentable {
 
 	@ObservedObject var profileViewModel: ProfileViewModel
@@ -20,7 +18,11 @@ struct FoodPrintMapView: UIViewRepresentable {
 		let mapView = MKMapView()
 		mapView.delegate = context.coordinator
 
-		mapView.register(FoodPrintAnnotationView.self, forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier)
+		mapView.register(
+			FoodPrintAnnotationView.self,
+			forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier
+		)
+
 		return mapView
 	}
 
