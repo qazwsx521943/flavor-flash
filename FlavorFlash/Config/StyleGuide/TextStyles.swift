@@ -124,7 +124,7 @@ extension View {
 	}
 
 	func captionBoldStyle() -> some View {
-		modifier(CaptionStyle())
+		modifier(CaptionBoldStyle())
 	}
 
 	func detailBoldStyle() -> some View {

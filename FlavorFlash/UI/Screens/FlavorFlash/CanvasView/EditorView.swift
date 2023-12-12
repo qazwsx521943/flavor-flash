@@ -80,7 +80,6 @@ extension EditorView {
 			} label: {
 				Image(systemName: "arrow.right.circle.fill")
 					.resizable()
-					.foregroundStyle(.white)
 					.frame(width: 40, height: 40)
 			}
 		}

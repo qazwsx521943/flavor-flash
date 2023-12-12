@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct OverlaySystemImageModifier: ViewModifier {
+	@Environment(\.colorScheme) var colorScheme
+
 	let systemName: String
 
 	let size: CGSize
@@ -25,7 +27,7 @@ struct OverlaySystemImageModifier: ViewModifier {
 			.overlay(alignment: alignment) {
 				Image(systemName: systemName)
 					.resizable()
-					.foregroundStyle(color)
+					.foregroundStyle(colorScheme == .dark ? .white : .black)
 					.frame(width: size.width, height: size.height)
 					.padding(padding)
 					.onTapGesture {

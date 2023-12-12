@@ -58,6 +58,7 @@ struct SmallPrimaryButtonStyle: ButtonStyle {
 	func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.captionStyle()
+			.foregroundStyle(.white)
 			.padding(12.5)
 			.background(RoundedRectangle(cornerRadius: 10.0).fill(backgroundColor))
 			.scaleEffect(configuration.isPressed ? 0.9 : 1)
@@ -76,6 +77,7 @@ struct LargePrimaryButtonStyle: ButtonStyle {
 	func makeBody(configuration: Configuration) -> some View {
 		configuration.label
 			.bodyStyle()
+			.foregroundStyle(.white)
 			.padding(15)
 			.background(RoundedRectangle(cornerRadius: 10.0).fill(backgroundColor))
 			.scaleEffect(configuration.isPressed ? 0.9 : 1)
