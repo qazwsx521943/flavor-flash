@@ -19,6 +19,8 @@ struct FoodPrintView: View {
 
 	@State private var selectionType: SelectionType = .comment
 
+	@EnvironmentObject var navigationModel: NavigationModel
+
 	enum SelectionType: String {
 		case comment
 		case report
@@ -45,7 +47,7 @@ struct FoodPrintView: View {
 							})
 							.frame(width: geometry.size.width, height: geometry.size.height * 0.9)
 							.padding(16)
-							.background(Color.black)
+							.background(navigationModel.preferDarkMode ? .black : .white)
 						}
 					}
 					.frame(width: geometry.size.width)
@@ -62,7 +64,7 @@ struct FoodPrintView: View {
 							ChatListView()
 						} label: {
 							Image(systemName: "message.fill")
-								.foregroundStyle(.white)
+								.foregroundStyle(navigationModel.preferDarkMode ? .lightGreen : .darkGreen)
 						}
 					}
 				}

@@ -29,6 +29,8 @@ struct PetSelectionView: View {
 
 	@State private var selectedItem: PhotosPickerItem?
 
+	@EnvironmentObject var navigationModel: NavigationModel
+
 	var body: some View {
 		ScrollView {
 			VStack(alignment: .leading) {
@@ -46,24 +48,24 @@ struct PetSelectionView: View {
 				}
 			}
 
-			PhotosPicker(selection: $selectedItem, matching: .images) {
-				Text("Upload Image")
-					.captionStyle()
-			}
-			.onChange(of: selectedItem) { _ in
-				Task {
-					if
-						let selectedItem,
-						let data = try? await selectedItem.loadTransferable(type: Data.self)
-					{
-						homeViewModel.inputImage = UIImage(data: data)
-					}
-				}
-			}
+//			PhotosPicker(selection: $selectedItem, matching: .images) {
+//				Text("Upload Image")
+//					.captionStyle()
+//			}
+//			.onChange(of: selectedItem) { _ in
+//				Task {
+//					if
+//						let selectedItem,
+//						let data = try? await selectedItem.loadTransferable(type: Data.self)
+//					{
+//						homeViewModel.inputImage = UIImage(data: data)
+//					}
+//				}
+//			}
 
 		}
 		.background(
-			.black.opacity(0.8)
+			navigationModel.preferDarkMode ? .black.opacity(0.8) : .white.opacity(0.8)
 		)
 	}
 
