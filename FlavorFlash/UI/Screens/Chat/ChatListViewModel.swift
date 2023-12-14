@@ -102,7 +102,7 @@ final class ChatListViewModel: ObservableObject {
 		guard let currentUserId = user?.id else { return }
 
 		do {
-			try ChatManager.shared.createNewGroup(with: [currentUserId, id])
+			try ChatManager.shared.createGroup(with: [currentUserId, id])
 		} catch {
 			debugPrint("error creating new Group")
 		}
