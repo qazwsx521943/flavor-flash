@@ -487,12 +487,12 @@
 			path = EmailSignIn;
 			sourceTree = "<group>";
 		};
-		E75588C02B0EE27800086854 /* CreateML */ = {
+		E75588C02B0EE27800086854 /* MLModels */ = {
 			isa = PBXGroup;
 			children = (
 				E70C38E62B1F22AF0048535C /* FoodClassifierV1.mlmodel */,
 			);
-			path = CreateML;
+			path = MLModels;
 			sourceTree = "<group>";
 		};
 		E75588C32B0EF3AB00086854 /* PreviewVIew */ = {
@@ -918,7 +918,7 @@
 				E7FFB39D2B1DBA1D0065A213 /* FoodPrint */,
 				E7FFB3952B1D949A0065A213 /* FBReport */,
 				E79ED0972B14D359008C2E6F /* Annotations */,
-				E75588C02B0EE27800086854 /* CreateML */,
+				E75588C02B0EE27800086854 /* MLModels */,
 				E7809B542B0A2DCE00D76E71 /* FFUser */,
 				E7E200E52B091226003C22D6 /* Chatroom */,
 				E7F9EDB92B089E33005976BE /* GooglePlaceResult */,
