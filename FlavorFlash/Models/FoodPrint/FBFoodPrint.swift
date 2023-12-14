@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FoodPrint: FBModelType {
+struct FBFoodPrint: FBModelType {
 	var id: String
 	let userId: String
 	let restaurantId: String?
@@ -68,7 +68,7 @@ struct FoodPrint: FBModelType {
 	}
 }
 
-extension FoodPrint {
+extension FBFoodPrint {
 	var getAllImagesURL: [String] {
 		return [backCameraImageUrl, frontCameraImageUrl]
 	}
@@ -87,8 +87,8 @@ extension FoodPrint {
 }
 
 // MARK: - Mock
-extension FoodPrint {
-	static let mockFoodPrint = FoodPrint(
+extension FBFoodPrint {
+	static let mockFoodPrint = FBFoodPrint(
 		id: "1",
 		userId: "1",
 		frontCameraImageUrl:

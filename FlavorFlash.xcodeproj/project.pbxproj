@@ -41,7 +41,7 @@
 		E70C6C592B0C9B6A003B27EE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = E70C6C582B0C9B6A003B27EE /* Kingfisher */; };
 		E70C6C5B2B0C9BA3003B27EE /* KingfisherWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C5A2B0C9BA3003B27EE /* KingfisherWrapper.swift */; };
 		E70C6C5D2B0CEA05003B27EE /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C5C2B0CEA05003B27EE /* CommentView.swift */; };
-		E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */; };
+		E70C6C5F2B0D1307003B27EE /* FBFoodPrint.swift in Sources */ = {isa = PBXBuildFile; fileRef = E70C6C5E2B0D1307003B27EE /* FBFoodPrint.swift */; };
 		E715D9AD2B03AC8000B6478D /* CameraDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */; };
 		E715D9B32B03C52A00B6478D /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = E715D9B22B03C52A00B6478D /* Camera.swift */; };
 		E71BFB192B1760E1008E89DE /* SignInWithAppleButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71BFB182B1760E1008E89DE /* SignInWithAppleButtonView.swift */; };
@@ -186,7 +186,7 @@
 		E70C6C532B0C5CAF003B27EE /* RestaurantCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCategoryView.swift; sourceTree = "<group>"; };
 		E70C6C5A2B0C9BA3003B27EE /* KingfisherWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KingfisherWrapper.swift; sourceTree = "<group>"; };
 		E70C6C5C2B0CEA05003B27EE /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
-		E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrint.swift; sourceTree = "<group>"; };
+		E70C6C5E2B0D1307003B27EE /* FBFoodPrint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBFoodPrint.swift; sourceTree = "<group>"; };
 		E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraDataModel.swift; sourceTree = "<group>"; };
 		E715D9B22B03C52A00B6478D /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		E71BFB162B175F63008E89DE /* FlavorFlash.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FlavorFlash.entitlements; sourceTree = "<group>"; };
@@ -487,12 +487,12 @@
 			path = EmailSignIn;
 			sourceTree = "<group>";
 		};
-		E75588C02B0EE27800086854 /* MLModels */ = {
+		E75588C02B0EE27800086854 /* FoodClassifier */ = {
 			isa = PBXGroup;
 			children = (
 				E70C38E62B1F22AF0048535C /* FoodClassifierV1.mlmodel */,
 			);
-			path = MLModels;
+			path = FoodClassifier;
 			sourceTree = "<group>";
 		};
 		E75588C32B0EF3AB00086854 /* PreviewVIew */ = {
@@ -589,7 +589,6 @@
 		E7809B542B0A2DCE00D76E71 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				E7809B552B0A2DDF00D76E71 /* FBUser.swift */,
 				E70C6C462B0BBA03003B27EE /* EmailAddress.swift */,
 			);
 			path = User;
@@ -763,6 +762,16 @@
 			path = GoogleAPIConfig;
 			sourceTree = "<group>";
 		};
+		E7EBA2882B2AE33B0088C293 /* FirebaseModels */ = {
+			isa = PBXGroup;
+			children = (
+				E7809B552B0A2DDF00D76E71 /* FBUser.swift */,
+				E7FFB3962B1D94AA0065A213 /* FBReport.swift */,
+				E7FFB39E2B1DBA400065A213 /* FBComment.swift */,
+			);
+			path = FirebaseModels;
+			sourceTree = "<group>";
+		};
 		E7F9EDB02B0841FE005976BE /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -875,7 +884,6 @@
 		E7FFB3952B1D949A0065A213 /* FBReport */ = {
 			isa = PBXGroup;
 			children = (
-				E7FFB3962B1D94AA0065A213 /* FBReport.swift */,
 			);
 			path = FBReport;
 			sourceTree = "<group>";
@@ -892,8 +900,7 @@
 		E7FFB39D2B1DBA1D0065A213 /* FoodPrint */ = {
 			isa = PBXGroup;
 			children = (
-				E70C6C5E2B0D1307003B27EE /* FoodPrint.swift */,
-				E7FFB39E2B1DBA400065A213 /* FBComment.swift */,
+				E70C6C5E2B0D1307003B27EE /* FBFoodPrint.swift */,
 			);
 			path = FoodPrint;
 			sourceTree = "<group>";
@@ -914,11 +921,12 @@
 		E7FFC24E2B037B5A00F7B171 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E7EBA2882B2AE33B0088C293 /* FirebaseModels */,
 				E7627D902B26EE0200F0AAC5 /* Canvas */,
 				E7FFB39D2B1DBA1D0065A213 /* FoodPrint */,
 				E7FFB3952B1D949A0065A213 /* FBReport */,
 				E79ED0972B14D359008C2E6F /* Annotations */,
-				E75588C02B0EE27800086854 /* MLModels */,
+				E75588C02B0EE27800086854 /* FoodClassifier */,
 				E7809B542B0A2DCE00D76E71 /* User */,
 				E7E200E52B091226003C22D6 /* Chatroom */,
 				E7F9EDB92B089E33005976BE /* GooglePlaceResult */,
@@ -1216,7 +1224,7 @@
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
 				E75588C92B0F1E2F00086854 /* Location.swift in Sources */,
 				E71BFB1B2B176250008E89DE /* AuthenticationViewModel.swift in Sources */,
-				E70C6C5F2B0D1307003B27EE /* FoodPrint.swift in Sources */,
+				E70C6C5F2B0D1307003B27EE /* FBFoodPrint.swift in Sources */,
 				E70AF8F02B0750D50003462C /* RestaurantMapViewCoordinator.swift in Sources */,
 				E7FFB3A12B1DBC940065A213 /* CommentCell.swift in Sources */,
 				E70AF8FF2B07A5470003462C /* HomeViewModel.swift in Sources */,

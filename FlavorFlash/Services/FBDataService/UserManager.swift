@@ -81,7 +81,7 @@ final class UserManager {
 		try await userDocument(userId: userId).updateData(data)
 	}
 
-	func saveUserFoodPrint(userId: String, foodPrint: FoodPrint) async throws {
+	func saveUserFoodPrint(userId: String, foodPrint: FBFoodPrint) async throws {
 		debugPrint("saved foodprint: \(foodPrint)")
 		try foodPrintCollection.document(foodPrint.id).setData(from: foodPrint, merge: true)
 	}

@@ -9,8 +9,8 @@ import SwiftUI
 import Combine
 
 @MainActor
-class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == FoodPrint {
-	@Published var posts: [FoodPrint] = []
+class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == FBFoodPrint {
+	@Published var posts: [FBFoodPrint] = []
 
 	@Published var currentUser: FBUser?
 
@@ -39,7 +39,7 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 
 	private func initDataService() async throws {
 		guard 
-			let dataService = dataService as? FoodPrintDataService<FoodPrint>,
+			let dataService = dataService as? FoodPrintDataService<FBFoodPrint>,
 			let friends = currentUser?.friends
 		else {
 			return
@@ -80,7 +80,7 @@ extension FoodPrintViewModel {
 		}
 	}
 
-	public func leaveComment(foodPrint: FoodPrint, comment: String) {
+	public func leaveComment(foodPrint: FBFoodPrint, comment: String) {
 		guard let currentUser else { return }
 
 		dataService.leaveComment(foodPrint, userId: currentUser.displayName, comment: comment)
@@ -95,13 +95,13 @@ extension FoodPrintViewModel {
 		}
 	}
 
-	public func likePost(foodPrint: FoodPrint) {
+	public func likePost(foodPrint: FBFoodPrint) {
 		guard let currentUser else { return }
 
 		dataService.likePost(foodPrint, userId: currentUser.id)
 	}
 
-	public func dislikePost(foodPrint: FoodPrint) {
+	public func dislikePost(foodPrint: FBFoodPrint) {
 		guard let currentUser else { return }
 
 		dataService.dislikePost(foodPrint, userId: currentUser.id)

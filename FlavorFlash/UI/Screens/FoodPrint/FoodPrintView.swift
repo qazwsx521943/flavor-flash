@@ -15,7 +15,7 @@ struct FoodPrintView: View {
 
 	@State private var showReportModal = false
 
-	@State private var isSelectedFoodPrint: FoodPrint?
+	@State private var isSelectedFoodPrint: FBFoodPrint?
 
 	@State private var selectionType: SelectionType = .comment
 
@@ -76,7 +76,7 @@ struct FoodPrintView: View {
 }
 
 extension FoodPrintView {
-	private func sheetType(foodPrint: FoodPrint) -> some View {
+	private func sheetType(foodPrint: FBFoodPrint) -> some View {
 		ZStack {
 			switch selectionType {
 			case .comment:

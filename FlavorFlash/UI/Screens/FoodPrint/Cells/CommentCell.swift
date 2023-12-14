@@ -33,5 +33,5 @@ struct CommentCell: View {
 }
 
 #Preview {
-	CommentCell(comment: FoodPrint.mockFoodPrint.comments!.first!)
+	CommentCell(comment: FBFoodPrint.mockFoodPrint.comments!.first!)
 }

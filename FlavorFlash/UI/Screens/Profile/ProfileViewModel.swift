@@ -20,9 +20,9 @@ final class ProfileViewModel: ObservableObject {
 
 	@Published var blockedUsers: [FBUser] = []
 
-	@Published var foodPrints: [FoodPrint] = []
+	@Published var foodPrints: [FBFoodPrint] = []
 
-	@Published var friendFoodPrints: [FoodPrint] = []
+	@Published var friendFoodPrints: [FBFoodPrint] = []
 
 	init() {
 		loadProfileData()

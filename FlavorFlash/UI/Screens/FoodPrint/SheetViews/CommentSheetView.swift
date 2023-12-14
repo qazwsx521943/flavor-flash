@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CommentSheetView: View {
-	let foodPrint: FoodPrint
+	let foodPrint: FBFoodPrint
 
 	@State private var commentText = ""
 
@@ -51,5 +51,5 @@ struct CommentSheetView: View {
 }
 
 #Preview {
-	CommentSheetView(foodPrint: FoodPrint.mockFoodPrint, action: nil)
+	CommentSheetView(foodPrint: FBFoodPrint.mockFoodPrint, action: nil)
 }

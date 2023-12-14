@@ -11,21 +11,26 @@ import FirebaseAuth
 
 struct FoodPrintCell: View {
 
-	let foodPrint: FoodPrint
+	let foodPrint: FBFoodPrint
 
 	let author: FBUser?
 
 	@State private var isLiked: Bool
 
-	var showComment: ((FoodPrint) -> Void)?
+	var showComment: ((FBFoodPrint) -> Void)?
 
-	var showReport: ((FoodPrint) -> Void)?
+	var showReport: ((FBFoodPrint) -> Void)?
 
 	var likePost: () -> Void
 
 	var dislikePost: () -> Void
 
-	init(foodPrint: FoodPrint, author: FBUser?, showComment: ( (FoodPrint) -> Void)? = nil, showReport: ( (FoodPrint) -> Void)? = nil, likePost: @escaping () -> Void, dislikePost: @escaping () -> Void) {
+	init(
+		foodPrint: FBFoodPrint, author: FBUser?,
+		showComment: ( (FBFoodPrint) -> Void)? = nil,
+		showReport: ( (FBFoodPrint) -> Void)? = nil,
+		likePost: @escaping () -> Void,
+		dislikePost: @escaping () -> Void) {
 		self.foodPrint = foodPrint
 		self.author = author
 		if
@@ -156,7 +161,7 @@ private extension FoodPrintCell {
 }
 
 #Preview {
-	FoodPrintCell(foodPrint: FoodPrint.mockFoodPrint, author: nil) {
+	FoodPrintCell(foodPrint: FBFoodPrint.mockFoodPrint, author: nil) {
 		print("cool")
 	} dislikePost: {
 		print("dislike")

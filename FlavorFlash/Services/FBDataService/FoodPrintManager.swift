@@ -15,10 +15,10 @@ class FoodPrintManager {
 
 	private init() {}
 
-	func getUserPosts(including usersId: [String]) async throws -> [FoodPrint] {
+	func getUserPosts(including usersId: [String]) async throws -> [FBFoodPrint] {
 		let snapshot = try await foodPrintCollection.whereField("user_id", in: usersId).getDocuments()
 
-		let posts = snapshot.documents.compactMap { try? $0.data(as: FoodPrint.self) }
+		let posts = snapshot.documents.compactMap { try? $0.data(as: FBFoodPrint.self) }
 
 		return posts
 	}
