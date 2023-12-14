@@ -371,6 +371,7 @@
 		E70AF8E12B0710CB0003462C /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				E7EBA2872B2AD8D70088C293 /* GoogleAPIConfig */,
 				E7EBA27E2B2ACC0D0088C293 /* FirebaseConfig */,
 				E7FECC702B20926900674C20 /* StyleGuide */,
 				E70AF8DF2B0710BA0003462C /* appConfig.swift */,
@@ -678,8 +679,6 @@
 				E7A399322B034AB6005C8021 /* Assets.xcassets */,
 				E7A399342B034AB6005C8021 /* Preview Content */,
 				E71BFB162B175F63008E89DE /* FlavorFlash.entitlements */,
-				E70AF8F22B075E260003462C /* DEBUG-Keys.plist */,
-				E70AF8F42B075E3F0003462C /* PROD-Keys.plist */,
 			);
 			path = FlavorFlash;
 			sourceTree = "<group>";
@@ -753,6 +752,15 @@
 				E70AF8FA2B07735E0003462C /* AppDelegate.swift */,
 			);
 			path = System;
+			sourceTree = "<group>";
+		};
+		E7EBA2872B2AD8D70088C293 /* GoogleAPIConfig */ = {
+			isa = PBXGroup;
+			children = (
+				E70AF8F22B075E260003462C /* DEBUG-Keys.plist */,
+				E70AF8F42B075E3F0003462C /* PROD-Keys.plist */,
+			);
+			path = GoogleAPIConfig;
 			sourceTree = "<group>";
 		};
 		E7F9EDB02B0841FE005976BE /* Services */ = {
