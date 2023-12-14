@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct FBMessage: Codable {
-	let id: String
+struct FBMessage: FBModelType {
+	var id: String
 
 	let text: String
 

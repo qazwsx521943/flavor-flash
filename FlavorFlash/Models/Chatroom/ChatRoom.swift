@@ -7,11 +7,6 @@
 
 import Foundation
 
-struct FBGroup: Codable, Identifiable {
-	let id: String
-	let members: [String]
-}
-
 struct ChatRoom: Identifiable {
 	let id: String
 	let name: String

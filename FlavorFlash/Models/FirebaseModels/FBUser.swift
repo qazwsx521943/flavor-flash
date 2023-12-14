@@ -8,8 +8,8 @@
 import Foundation
 
 // Firestore User document custom struct
-struct FBUser: Codable, Hashable, Identifiable {
-	let id: String
+struct FBUser: FBModelType, Hashable {
+	var id: String
 	let displayName: String
 	let email: String?
 	let profileImageUrl: String?

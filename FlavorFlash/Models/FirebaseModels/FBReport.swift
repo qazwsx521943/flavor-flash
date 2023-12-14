@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct FBReport: Codable {
-	let id: String
+struct FBReport: FBModelType {
+	var id: String
 	let type: ReportType
 	let reason: ReportReason
 
