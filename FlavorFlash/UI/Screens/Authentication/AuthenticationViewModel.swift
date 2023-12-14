@@ -22,7 +22,7 @@ class AuthenticationViewModel: NSObject, ObservableObject {
 		do {
 			let tokens = try await signInAppleHelper.startSignInWithAppleFlow()
 			let authDataResult = try await AuthenticationManager.shared.signInWithApple(tokens: tokens)
-			let user = FFUser(auth: authDataResult)
+			let user = FBUser(auth: authDataResult)
 			do {
 				let existingUser = try await UserManager.shared.getUser(userId: user.id)
 			} catch {

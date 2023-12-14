@@ -12,13 +12,13 @@ import Combine
 
 @MainActor
 final class ProfileViewModel: ObservableObject {
-	@Published private(set) var user: FFUser?
+	@Published private(set) var user: FBUser?
 
-	@Published var searchedUser: FFUser?
+	@Published var searchedUser: FBUser?
 
-	@Published var friends: [FFUser] = []
+	@Published var friends: [FBUser] = []
 
-	@Published var blockedUsers: [FFUser] = []
+	@Published var blockedUsers: [FBUser] = []
 
 	@Published var foodPrints: [FoodPrint] = []
 
@@ -90,7 +90,7 @@ final class ProfileViewModel: ObservableObject {
 		return UIImage(systemName: "xmark.circle") ?? UIImage()
 	}
 
-	func getUser(userId: String) async throws -> FFUser {
+	func getUser(userId: String) async throws -> FBUser {
 		do {
 			let user = try await UserManager.shared.getUser(userId: userId)
 			return user

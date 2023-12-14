@@ -15,7 +15,7 @@ final class HomeViewModel: ObservableObject {
 
 	@Published var userCategories: [RestaurantCategory] = []
 
-	@Published var currentUser: FFUser?
+	@Published var currentUser: FBUser?
 
     @Published var currentLocation: CLLocationCoordinate2D?
 

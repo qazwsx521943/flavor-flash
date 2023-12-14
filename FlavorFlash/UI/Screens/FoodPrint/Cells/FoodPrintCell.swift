@@ -13,7 +13,7 @@ struct FoodPrintCell: View {
 
 	let foodPrint: FoodPrint
 
-	let author: FFUser?
+	let author: FBUser?
 
 	@State private var isLiked: Bool
 
@@ -25,7 +25,7 @@ struct FoodPrintCell: View {
 
 	var dislikePost: () -> Void
 
-	init(foodPrint: FoodPrint, author: FFUser?, showComment: ( (FoodPrint) -> Void)? = nil, showReport: ( (FoodPrint) -> Void)? = nil, likePost: @escaping () -> Void, dislikePost: @escaping () -> Void) {
+	init(foodPrint: FoodPrint, author: FBUser?, showComment: ( (FoodPrint) -> Void)? = nil, showReport: ( (FoodPrint) -> Void)? = nil, likePost: @escaping () -> Void, dislikePost: @escaping () -> Void) {
 		self.foodPrint = foodPrint
 		self.author = author
 		if

@@ -12,9 +12,9 @@ import Combine
 class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == FoodPrint {
 	@Published var posts: [FoodPrint] = []
 
-	@Published var currentUser: FFUser?
+	@Published var currentUser: FBUser?
 
-	@Published var friends: [FFUser] = []
+	@Published var friends: [FBUser] = []
 
 	private let dataService: DI
 	private var cancellable = Set<AnyCancellable>()
@@ -28,7 +28,7 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 	init(mockService: DI) {
 		self.dataService = mockService
 
-		self.currentUser = FFUser.mockUser()
+		self.currentUser = FBUser.mockUser()
 		self.posts = [
 			// swiftlint:disable:next line_length
 			.init(id: "1", userId: "1", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now),

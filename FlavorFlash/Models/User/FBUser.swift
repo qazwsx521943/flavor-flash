@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct FFUser: Codable, Hashable, Identifiable {
+// Firestore User document custom struct
+struct FBUser: Codable, Hashable, Identifiable {
 	let id: String
 	let displayName: String
 	let email: String?
@@ -37,7 +38,7 @@ struct FFUser: Codable, Hashable, Identifiable {
 	}
 }
 
-extension FFUser {
+extension FBUser {
 	// prevent overriding memberwise initializer
 	init(auth: AuthDataResultModel) {
 		self.id = auth.uid
@@ -70,9 +71,9 @@ extension FFUser {
 	}
 }
 
-extension FFUser {
+extension FBUser {
 	static func mockUser() -> Self {
-		FFUser(
+		FBUser(
 			id: "1",
 			displayName: "mock",
 			email: "qqqq@mock.com",

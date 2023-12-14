@@ -15,9 +15,9 @@ struct FBGroup: Codable, Identifiable {
 struct ChatRoom: Identifiable {
 	let id: String
 	let name: String
-	let members: [FFUser]
+	let members: [FBUser]
 
-	init(fbGroup: FBGroup, name: String, members: [FFUser]) {
+	init(fbGroup: FBGroup, name: String, members: [FBUser]) {
 		self.id = fbGroup.id
 		self.name = name
 		self.members = members

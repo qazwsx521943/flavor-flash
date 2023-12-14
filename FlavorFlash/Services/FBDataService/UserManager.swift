@@ -42,25 +42,25 @@ final class UserManager {
 	private init() { }
 
 	// MARK: - CRUD
-	func createNewUser(user: FFUser) async throws {
+	func createNewUser(user: FBUser) async throws {
 		debugPrint("creating new user: \(user)")
 		try userDocument(userId: user.id).setData(
 			from: user,
 			merge: false)
 	}
 
-	func listenToChange(userId: String, completionHandler: @escaping (FFUser) -> Void) {
+	func listenToChange(userId: String, completionHandler: @escaping (FBUser) -> Void) {
 		userDocument(userId: userId).addSnapshotListener { documentSnapshot, _ in
 			guard let document = documentSnapshot else { return }
-			guard let data = try? document.data(as: FFUser.self) else { return }
+			guard let data = try? document.data(as: FBUser.self) else { return }
 			
 			completionHandler(data)
 		}
 	}
 
-	func getUser(userId: String) async throws -> FFUser {
+	func getUser(userId: String) async throws -> FBUser {
 		do {
-			return try await userDocument(userId: userId).getDocument(as: FFUser.self)
+			return try await userDocument(userId: userId).getDocument(as: FBUser.self)
 		} catch {
 			throw(FBStoreError.fetchError)
 		}
@@ -74,8 +74,8 @@ final class UserManager {
 	// updateDate vs. setData (be careful using setData)
 	func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
 		let data: [String: Any] = [
-			FFUser.CodingKeys.profileImagePath.rawValue: path,
-			FFUser.CodingKeys.profileImageUrl.rawValue: url
+			FBUser.CodingKeys.profileImagePath.rawValue: path,
+			FBUser.CodingKeys.profileImageUrl.rawValue: url
 		]
 
 		try await userDocument(userId: userId).updateData(data)
@@ -92,11 +92,11 @@ final class UserManager {
 		try await userDocument(userId: currentUser).updateData(["friends": FieldValue.arrayUnion([userId])])
 	}
 
-	func getUserFriends(ids: [String]) async throws -> [FFUser] {
-		var users: [FFUser] = []
+	func getUserFriends(ids: [String]) async throws -> [FBUser] {
+		var users: [FBUser] = []
 		users.reserveCapacity(ids.count)
 
-		return try await withThrowingTaskGroup(of: FFUser?.self) { group in
+		return try await withThrowingTaskGroup(of: FBUser?.self) { group in
 
 			for id in ids {
 				group.addTask {
