@@ -55,7 +55,7 @@ final class StorageManager {
 
 	public func saveImage(userId: String, image: UIImage) async throws -> (path: String, name: String) {
 		// image.pngData()
-		guard let data = image.jpegData(compressionQuality: 1) else {
+		guard let data = image.jpegData(compressionQuality: 0.5) else {
 			throw URLError(.backgroundSessionWasDisconnected)
 		}
 
