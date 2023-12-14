@@ -87,7 +87,6 @@
 		E7809B562B0A2DDF00D76E71 /* FFUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FFUser.swift */; };
 		E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */; };
 		E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB82B1448330042FB51 /* FoodPrintCell.swift */; };
-		E78678042B21BF8A00664756 /* DeepLabV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */; };
 		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
 		E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639802B118A49006FF600 /* QRCodeScanner.swift */; };
 		E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639822B118A6E006FF600 /* ScannerViewController.swift */; };
@@ -232,7 +231,6 @@
 		E7809B552B0A2DDF00D76E71 /* FFUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFUser.swift; sourceTree = "<group>"; };
 		E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintDataService.swift; sourceTree = "<group>"; };
 		E783AAB82B1448330042FB51 /* FoodPrintCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintCell.swift; sourceTree = "<group>"; };
-		E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = DeepLabV3.mlmodel; sourceTree = "<group>"; };
 		E79639802B118A49006FF600 /* QRCodeScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScanner.swift; sourceTree = "<group>"; };
 		E79639822B118A6E006FF600 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		E79ED0982B14D392008C2E6F /* RestaurantAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantAnnotation.swift; sourceTree = "<group>"; };
@@ -374,7 +372,6 @@
 			isa = PBXGroup;
 			children = (
 				E7EBA27E2B2ACC0D0088C293 /* FirebaseConfig */,
-				E774569B2B28536800CAF64C /* LottieAnimation */,
 				E7FECC702B20926900674C20 /* StyleGuide */,
 				E70AF8DF2B0710BA0003462C /* appConfig.swift */,
 				E70AF8F82B0763480003462C /* ENV.swift */,
@@ -492,7 +489,6 @@
 		E75588C02B0EE27800086854 /* CreateML */ = {
 			isa = PBXGroup;
 			children = (
-				E78678032B21BF8A00664756 /* DeepLabV3.mlmodel */,
 				E70C38E62B1F22AF0048535C /* FoodClassifierV1.mlmodel */,
 			);
 			path = CreateML;
@@ -610,6 +606,7 @@
 		E796396B2B105B2A006FF600 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				E774569B2B28536800CAF64C /* LottieAnimation */,
 				E77456932B283E7800CAF64C /* FFLottieView.swift */,
 				E7FFB3802B1C35CF0065A213 /* LikeButton.swift */,
 				E703590D2B246BB7008F14E7 /* BookmarkButton.swift */,
@@ -668,6 +665,7 @@
 			isa = PBXGroup;
 			children = (
 				E7FFB3A42B1DCD580065A213 /* Info.plist */,
+				E7EBA2862B2AD85A0088C293 /* System */,
 				E71BFB202B17709A008E89DE /* Helpers */,
 				E71BFB1C2B176E5C008E89DE /* Utilities */,
 				E7F9EDB82B0894B8005976BE /* ThirdPartyWrapper */,
@@ -676,7 +674,6 @@
 				E7F9EDB02B0841FE005976BE /* Services */,
 				E7FFC24E2B037B5A00F7B171 /* Models */,
 				E7A3993C2B034ACD005C8021 /* UI */,
-				E70AF8FA2B07735E0003462C /* AppDelegate.swift */,
 				E7A3992C2B034AB4005C8021 /* FlavorFlashApp.swift */,
 				E7A399322B034AB6005C8021 /* Assets.xcassets */,
 				E7A399342B034AB6005C8021 /* Preview Content */,
@@ -748,6 +745,14 @@
 				E7EBA2812B2ACC880088C293 /* GoogleService-Info.plist */,
 			);
 			path = Release;
+			sourceTree = "<group>";
+		};
+		E7EBA2862B2AD85A0088C293 /* System */ = {
+			isa = PBXGroup;
+			children = (
+				E70AF8FA2B07735E0003462C /* AppDelegate.swift */,
+			);
+			path = System;
 			sourceTree = "<group>";
 		};
 		E7F9EDB02B0841FE005976BE /* Services */ = {
@@ -1239,7 +1244,6 @@
 				E7FFB39C2B1DB4BF0065A213 /* CommentSheetView.swift in Sources */,
 				E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+EXT.swift in Sources */,
-				E78678042B21BF8A00664756 /* DeepLabV3.mlmodel in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
