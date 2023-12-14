@@ -15,10 +15,6 @@ final class ChatManager {
 
 	private let groupCollection = Firestore.firestore().collection("groups")
 
-	private func groupDocument() {
-
-	}
-
 	private init() {}
 
 	func getGroups(userId: String) async throws -> [FBGroup] {

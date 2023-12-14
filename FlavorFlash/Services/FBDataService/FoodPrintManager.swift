@@ -2,7 +2,7 @@
 //  FoodPrintManager.swift
 //  FlavorFlash
 //
-//  Created by 鍾哲玄 on 2023/11/25.
+//  Created by 鍾哲玄 on 2023/12/14.
 //
 
 import FirebaseFirestore
@@ -11,7 +11,7 @@ import FirebaseFirestoreSwift
 class FoodPrintManager {
 	static let shared = FoodPrintManager()
 
-	let foodPrintCollection = Firestore.firestore().collection("foodprints")
+	private let foodPrintCollection = Firestore.firestore().collection("foodprints")
 
 	private init() {}
 

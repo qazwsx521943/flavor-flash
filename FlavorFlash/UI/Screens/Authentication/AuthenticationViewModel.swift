@@ -26,7 +26,7 @@ class AuthenticationViewModel: NSObject, ObservableObject {
 			do {
 				let existingUser = try await UserManager.shared.getUser(userId: user.id)
 			} catch {
-				try await UserManager.shared.createNewUser(user: user)
+				try await UserManager.shared.createUser(user: user)
 				isFirstSignIn = true
 			}
 		} catch {

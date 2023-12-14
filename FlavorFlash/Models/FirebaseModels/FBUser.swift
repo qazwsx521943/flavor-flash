@@ -15,7 +15,7 @@ struct FBUser: FBModelType, Hashable {
 	let profileImageUrl: String?
 	let profileImagePath: String?
 	let dateCreated: Date?
-	let favoriteRestaurants: [String]?
+	let toEatRestaurantList: [String]?
 	let lovedRestaurants: [String]?
 	let blockedRestaurants: [String]?
 	let friends: [String]?
@@ -29,7 +29,7 @@ struct FBUser: FBModelType, Hashable {
 		case profileImageUrl = "profile_image_url"
 		case profileImagePath = "profile_image_path"
 		case dateCreated = "date_created"
-		case favoriteRestaurants = "favorite_restaurants"
+		case toEatRestaurantList = "to_eat_restaurants"
 		case lovedRestaurants = "loved_restaurants"
 		case blockedRestaurants = "blocked_restaurants"
 		case friends
@@ -45,7 +45,7 @@ extension FBUser {
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
 		self.profileImagePath = nil
-		self.favoriteRestaurants = nil
+		self.toEatRestaurantList = nil
 		self.lovedRestaurants = nil
 		self.blockedRestaurants = nil
 		self.friends = nil
@@ -60,7 +60,7 @@ extension FBUser {
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
 		self.profileImagePath = nil
-		self.favoriteRestaurants = nil
+		self.toEatRestaurantList = nil
 		self.lovedRestaurants = nil
 		self.blockedRestaurants = nil
 		self.friends = nil
@@ -80,7 +80,7 @@ extension FBUser {
 			profileImageUrl: "https://picsum.photos/200",
 			profileImagePath: "https://picsum.photos/200",
 			dateCreated: .now,
-			favoriteRestaurants: nil,
+			toEatRestaurantList: nil,
 			lovedRestaurants: nil,
 			blockedRestaurants: nil,
 			friends: nil,

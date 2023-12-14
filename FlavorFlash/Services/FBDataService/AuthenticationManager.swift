@@ -18,6 +18,7 @@ enum FBAuthError: Error {
 
 enum AuthProviderOption: String {
 	case email = "password"
+	// TODO: - Google sign in
 	case google = "google.com"
 	case apple = "apple.com"
 }

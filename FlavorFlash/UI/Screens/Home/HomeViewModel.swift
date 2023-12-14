@@ -68,7 +68,7 @@ final class HomeViewModel: ObservableObject {
 	}
 
 	private func loadUserSavedRestaurants() async throws {
-		guard let savedRestaurantIds = currentUser?.favoriteRestaurants else { return }
+		guard let savedRestaurantIds = currentUser?.toEatRestaurantList else { return }
 
 		var restaurants: [Restaurant] = []
 
