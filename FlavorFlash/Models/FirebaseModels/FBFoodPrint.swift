@@ -10,6 +10,7 @@ import Foundation
 struct FBFoodPrint: FBModelType {
 	var id: String
 	let userId: String
+	let username: String
 	let restaurantId: String?
 	let frontCameraImageUrl: String
 	let frontCameraImagePath: String
@@ -25,6 +26,7 @@ struct FBFoodPrint: FBModelType {
 	enum CodingKeys: String, CodingKey {
 		case id
 		case userId = "user_id"
+		case username
 		case restaurantId = "restaurant_id"
 		case frontCameraImageUrl = "front_camera_image_url"
 		case frontCameraImagePath = "front_camera_image_path"
@@ -41,6 +43,7 @@ struct FBFoodPrint: FBModelType {
 	init(
 		id: String,
 		userId: String,
+		username: String,
 		restaurantId: String? = nil,
 		frontCameraImageUrl: String,
 		frontCameraImagePath: String,
@@ -54,6 +57,7 @@ struct FBFoodPrint: FBModelType {
 		createdDate: Date) {
 		self.id = id
 		self.userId = userId
+		self.username = username
 		self.restaurantId = restaurantId
 		self.frontCameraImageUrl = frontCameraImageUrl
 		self.frontCameraImagePath = frontCameraImagePath
@@ -91,6 +95,7 @@ extension FBFoodPrint {
 	static let mockFoodPrint = FBFoodPrint(
 		id: "1",
 		userId: "1",
+		username: "Godjj",
 		frontCameraImageUrl:
 			"https://picsum.photos/200/300",
 		frontCameraImagePath: "user/QzZRdN8ggVeMjryKjPMUjcljRJQ2/72E63EBF-3530-47A7-8581-052C371E1663.jpeg",

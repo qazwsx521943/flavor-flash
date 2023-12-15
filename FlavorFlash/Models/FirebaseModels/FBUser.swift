@@ -10,7 +10,8 @@ import Foundation
 // Firestore User document custom struct
 struct FBUser: FBModelType, Hashable {
 	var id: String
-	let displayName: String
+	var displayName: String
+	var username: String
 	let email: String?
 	let profileImageUrl: String?
 	let profileImagePath: String?
@@ -25,6 +26,7 @@ struct FBUser: FBModelType, Hashable {
 	enum CodingKeys: String, CodingKey {
 		case id = "user_id"
 		case displayName = "display_name"
+		case username
 		case email
 		case profileImageUrl = "profile_image_url"
 		case profileImagePath = "profile_image_path"
@@ -51,6 +53,7 @@ extension FBUser {
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = "Anonymous"
+		self.username = ""
 		self.blockedList = nil
 		self.categoryPreferences = nil
 	}
@@ -66,6 +69,7 @@ extension FBUser {
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = displayName
+		self.username = ""
 		self.blockedList = nil
 		self.categoryPreferences = nil
 	}
@@ -76,6 +80,7 @@ extension FBUser {
 		FBUser(
 			id: "1",
 			displayName: "mock",
+			username: "mock user",
 			email: "qqqq@mock.com",
 			profileImageUrl: "https://picsum.photos/200",
 			profileImagePath: "https://picsum.photos/200",
