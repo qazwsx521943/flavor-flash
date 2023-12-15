@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import OSLog
 
 enum FBAuthError: Error {
 	case signInError
@@ -63,9 +64,10 @@ final class AuthenticationManager {
 	func signIn(email: String, password: String) async throws -> AuthDataResultModel {
 		do {
 			let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-
+			
 			return AuthDataResultModel(user: authDataResult.user)
 		} catch {
+			logger.error("\(FBAuthError.signInError)")
 			throw FBAuthError.signInError
 		}
 	}
@@ -144,3 +146,5 @@ extension AuthenticationManager {
 		}
 	}
 }
+
+fileprivate let logger = Logger(subsystem: "ios22-jason.FlavorFlash", category: "AuthenticationManager")

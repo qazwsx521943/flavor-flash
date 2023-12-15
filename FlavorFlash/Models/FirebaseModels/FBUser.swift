@@ -58,7 +58,7 @@ extension FBUser {
 		self.categoryPreferences = nil
 	}
 
-	init(auth: AuthDataResultModel, displayName: String) {
+	init(auth: AuthDataResultModel, displayName: String, username: String) {
 		self.id = auth.uid
 		self.email = auth.email
 		self.profileImageUrl = auth.photoUrl
@@ -69,7 +69,7 @@ extension FBUser {
 		self.friends = nil
 		self.dateCreated = Date()
 		self.displayName = displayName
-		self.username = ""
+		self.username = username
 		self.blockedList = nil
 		self.categoryPreferences = nil
 	}

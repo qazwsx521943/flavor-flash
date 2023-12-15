@@ -51,11 +51,12 @@ class EmailSignInViewModel: ObservableObject {
 		}
 
 		let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-		try await UserManager.shared.createUser(user: FBUser(auth: userData, displayName: displayName))
+		try await UserManager.shared.createUser(user: FBUser(auth: userData, displayName: displayName, username: username))
 	}
 
 	func signIn() async throws {
 		guard !email.isEmpty, !password.isEmpty else {
+			logger.error("\(FBAuthError.inputFieldEmpty)")
 			throw FBAuthError.inputFieldEmpty
 		}
 

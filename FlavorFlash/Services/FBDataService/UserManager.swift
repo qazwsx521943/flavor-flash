@@ -54,6 +54,7 @@ final class UserManager {
 		do {
 			return try await userDocument(userId: userId).getDocument(as: FBUser.self)
 		} catch {
+			logger.error("\(FBStoreError.fetchError)")
 			throw(FBStoreError.fetchError)
 		}
 	}
