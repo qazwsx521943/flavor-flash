@@ -134,6 +134,7 @@ final class CameraDataModel: ObservableObject {
 		let foodPrint = FBFoodPrint(
 			id: UUID().uuidString,
 			userId: userId,
+			username: "GodJJ",
 			restaurantId: selectedRestaurant.id,
 			frontCameraImageUrl: frontUrl.absoluteString,
 			frontCameraImagePath: frontImagePath,

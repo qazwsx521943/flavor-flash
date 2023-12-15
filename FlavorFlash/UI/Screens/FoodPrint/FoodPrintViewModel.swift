@@ -31,9 +31,9 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		self.currentUser = FBUser.mockUser()
 		self.posts = [
 			// swiftlint:disable:next line_length
-			.init(id: "1", userId: "1", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now),
+			.init(id: "1", userId: "1", username: "GodJJ", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now),
 			// swiftlint:disable:next line_length
-			.init(id: "1", userId: "1", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now)
+			.init(id: "1", userId: "1", username: "GodJJ", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now)
 		]
 	}
 

@@ -124,6 +124,9 @@
 		E7E200EB2B098597003C22D6 /* ChatListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E200EA2B098597003C22D6 /* ChatListViewModel.swift */; };
 		E7EBA28A2B2AE4580088C293 /* FBGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EBA2892B2AE4580088C293 /* FBGroup.swift */; };
 		E7EBA28C2B2AEC850088C293 /* FoodPrintManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EBA28B2B2AEC850088C293 /* FoodPrintManager.swift */; };
+		E7EBA28F2B2B2E8C0088C293 /* Loading.json in Resources */ = {isa = PBXBuildFile; fileRef = E7EBA28E2B2B2E8C0088C293 /* Loading.json */; };
+		E7EBA2932B2B31250088C293 /* NNToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EBA2922B2B31250088C293 /* NNToastView.swift */; };
+		E7EBA2952B2BE3620088C293 /* ThirdpartySignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EBA2942B2BE3620088C293 /* ThirdpartySignUpView.swift */; };
 		E7F9EDB62B085EA8005976BE /* GMSPlaceField+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDB52B085EA8005976BE /* GMSPlaceField+EXT.swift */; };
 		E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */; };
 		E7FD9B8A2B05BAAF002D0ADF /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FD9B892B05BAAF002D0ADF /* EditorView.swift */; };
@@ -256,6 +259,9 @@
 		E7EBA2812B2ACC880088C293 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7EBA2892B2AE4580088C293 /* FBGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBGroup.swift; sourceTree = "<group>"; };
 		E7EBA28B2B2AEC850088C293 /* FoodPrintManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintManager.swift; sourceTree = "<group>"; };
+		E7EBA28E2B2B2E8C0088C293 /* Loading.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Loading.json; sourceTree = "<group>"; };
+		E7EBA2922B2B31250088C293 /* NNToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNToastView.swift; sourceTree = "<group>"; };
+		E7EBA2942B2BE3620088C293 /* ThirdpartySignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdpartySignUpView.swift; sourceTree = "<group>"; };
 		E7F9EDB52B085EA8005976BE /* GMSPlaceField+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GMSPlaceField+EXT.swift"; sourceTree = "<group>"; };
 		E7F9EDBA2B089E55005976BE /* GooglePlaceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GooglePlaceResult.swift; sourceTree = "<group>"; };
 		E7FD9B892B05BAAF002D0ADF /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
@@ -428,6 +434,7 @@
 			isa = PBXGroup;
 			children = (
 				E71BFB182B1760E1008E89DE /* SignInWithAppleButtonView.swift */,
+				E7EBA2942B2BE3620088C293 /* ThirdpartySignUpView.swift */,
 			);
 			path = AppleSignIn;
 			sourceTree = "<group>";
@@ -583,6 +590,7 @@
 		E774569B2B28536800CAF64C /* LottieAnimation */ = {
 			isa = PBXGroup;
 			children = (
+				E7EBA28D2B2B2E470088C293 /* Loading */,
 				E77456922B283DEE00CAF64C /* LoginBackground */,
 			);
 			path = LottieAnimation;
@@ -614,6 +622,7 @@
 				E703590D2B246BB7008F14E7 /* BookmarkButton.swift */,
 				E7FECC852B21AC6000674C20 /* Polygon.swift */,
 				E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */,
+				E7EBA2922B2B31250088C293 /* NNToastView.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -774,6 +783,14 @@
 				E7E200E62B091235003C22D6 /* FBMessage.swift */,
 			);
 			path = FirebaseModels;
+			sourceTree = "<group>";
+		};
+		E7EBA28D2B2B2E470088C293 /* Loading */ = {
+			isa = PBXGroup;
+			children = (
+				E7EBA28E2B2B2E8C0088C293 /* Loading.json */,
+			);
+			path = Loading;
 			sourceTree = "<group>";
 		};
 		E7F9EDB02B0841FE005976BE /* Services */ = {
@@ -1020,6 +1037,7 @@
 			files = (
 				E774569D2B28538D00CAF64C /* randomFood.json in Resources */,
 				E7A399362B034AB6005C8021 /* Preview Assets.xcassets in Resources */,
+				E7EBA28F2B2B2E8C0088C293 /* Loading.json in Resources */,
 				E7A399332B034AB6005C8021 /* Assets.xcassets in Resources */,
 				E77456962B2849CD00CAF64C /* foodChoice.json in Resources */,
 				E774569A2B284CCC00CAF64C /* foodieNation.json in Resources */,
@@ -1225,6 +1243,7 @@
 				E75588C72B0EF40F00086854 /* SecondaryPreviewView.swift in Sources */,
 				E79ED09B2B14DF7C008C2E6F /* RestaurantMarkerView.swift in Sources */,
 				E77353722B09CA08003035B4 /* AuthenticationView.swift in Sources */,
+				E7EBA2952B2BE3620088C293 /* ThirdpartySignUpView.swift in Sources */,
 				E71BFB222B1771CC008E89DE /* SignInAppleHelper.swift in Sources */,
 				E7FD9B8A2B05BAAF002D0ADF /* EditorView.swift in Sources */,
 				E7FFB3882B1C97950065A213 /* FoodPrintAnnotation.swift in Sources */,
@@ -1238,6 +1257,7 @@
 				E79ED0992B14D392008C2E6F /* RestaurantAnnotation.swift in Sources */,
 				E7FFB39A2B1D9B0A0065A213 /* ReportSheetView.swift in Sources */,
 				E7627D8B2B26B06C00F0AAC5 /* CanvasStackItem.swift in Sources */,
+				E7EBA2932B2B31250088C293 /* NNToastView.swift in Sources */,
 				E77353762B09CE95003035B4 /* AuthenticationManager.swift in Sources */,
 				E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */,
 				E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */,

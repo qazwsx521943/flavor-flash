@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 @MainActor
 class EmailSignInViewModel: ObservableObject {
@@ -29,6 +30,8 @@ class EmailSignInViewModel: ObservableObject {
 	@Published var password = ""
 
 	@Published var displayName = ""
+
+	@Published var username = ""
 
 	init(state: State) {
 		self.state = state
@@ -63,3 +66,5 @@ class EmailSignInViewModel: ObservableObject {
 		debugPrint(userData)
 	}
 }
+
+fileprivate let logger = Logger(subsystem: "ios22-jason.FlavorFlash", category: "EmailSignInViewModel")
