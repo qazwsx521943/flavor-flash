@@ -24,7 +24,7 @@ struct RestaurantCollection: View {
 
 				ForEach(Array(restaurants.enumerated()), id: \.element.id) { index, restaurant in
 					ZStack {
-						Color(.shadowGray)
+						Color(.lightGreen)
 							.roundedRectRadius(20)
 
 						Color(.darkOrange)

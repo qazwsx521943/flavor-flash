@@ -26,6 +26,7 @@ struct RestaurantInfoTags: View {
 						backgroundColor: restaurant.opening ? .green : .red)
 			}
 			.captionStyle()
+			.foregroundStyle(.white)
 		}
     }
 }
