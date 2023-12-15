@@ -56,6 +56,8 @@ extension AuthenticationView {
 
 					if authenticationViewModel.isFirstSignIn {
 						authenticationViewModel.showThirdPartySignUp = true
+					} else {
+						navigationModel.showSignInModal = false
 					}
 
 				} catch {
