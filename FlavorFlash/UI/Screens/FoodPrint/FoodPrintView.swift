@@ -35,7 +35,6 @@ struct FoodPrintView: View {
 						ForEach(foodPrintViewModel.posts) { post in
 							FoodPrintCell(
 								foodPrint: post,
-								author: foodPrintViewModel.friends.first { $0.id == post.userId },
 								showComment: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .comment
@@ -47,7 +46,7 @@ struct FoodPrintView: View {
 							})
 							.frame(width: geometry.size.width, height: geometry.size.height * 0.9)
 							.padding(16)
-							.background(navigationModel.preferDarkMode ? .black : .white)
+//							.background(navigationModel.preferDarkMode ? .black : .white)
 						}
 					}
 					.frame(width: geometry.size.width)
@@ -99,4 +98,5 @@ extension FoodPrintView {
 
 #Preview {
 	FoodPrintView()
+		.environmentObject(NavigationModel())
 }

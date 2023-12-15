@@ -18,7 +18,8 @@ struct CommentSheetView: View {
 		VStack {
 			List {
 				Section {
-					Text("留言")
+					Text("Comment")
+						.captionBoldStyle()
 						.frame(maxWidth: .infinity)
 						.multilineTextAlignment(.center)
 				}
@@ -37,12 +38,12 @@ struct CommentSheetView: View {
 			Spacer()
 
 			HStack {
-				TextField("新增留言...", text: $commentText)
-				Button("發佈") {
+				TextField("Leave comment...", text: $commentText)
+				Button("Send") {
 					action?(commentText)
 					commentText = ""
 				}
-				.tint(Color.purple.opacity(0.8))
+				.tint(.accent)
 				.disabled(commentText.isEmpty)
 			}
 			.padding(.horizontal, 32)

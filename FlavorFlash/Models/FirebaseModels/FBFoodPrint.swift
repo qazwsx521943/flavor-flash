@@ -104,9 +104,9 @@ extension FBFoodPrint {
 		backCameraImagePath: "user/QzZRdN8ggVeMjryKjPMUjcljRJQ2/5ECB61CA-F485-47A1-8C06-9B6C7BA7FFF9.jpeg",
 		description: "好難吃",
 		comments: [
-			FBComment(id: "1", userId: "1", comment: "你好聰明1", createdDate: .now),
-			FBComment(id: "2", userId: "1", comment: "你好聰明2", createdDate: .now),
-			FBComment(id: "3", userId: "1", comment: "你好聰明3", createdDate: .now)
+			FBComment(id: "1", userId: "1", username: "mockUser", userProfileImage: "https://picsum.photos/200/300", comment: "你好聰明1", createdDate: .now),
+			FBComment(id: "2", userId: "1", username: "mockUser", userProfileImage: "https://picsum.photos/200/300", comment: "你好聰明2", createdDate: .now),
+			FBComment(id: "3", userId: "1", username: "mockUser", userProfileImage: "https://picsum.photos/200/300", comment: "你好聰明3", createdDate: .now)
 		],
 		createdDate: Date.now)
 }

@@ -13,8 +13,6 @@ struct FoodPrintCell: View {
 
 	let foodPrint: FBFoodPrint
 
-	let author: FBUser?
-
 	@State private var isLiked: Bool
 
 	var showComment: ((FBFoodPrint) -> Void)?
@@ -26,13 +24,13 @@ struct FoodPrintCell: View {
 	var dislikePost: () -> Void
 
 	init(
-		foodPrint: FBFoodPrint, author: FBUser?,
+		foodPrint: FBFoodPrint,
 		showComment: ( (FBFoodPrint) -> Void)? = nil,
 		showReport: ( (FBFoodPrint) -> Void)? = nil,
 		likePost: @escaping () -> Void,
 		dislikePost: @escaping () -> Void) {
 		self.foodPrint = foodPrint
-		self.author = author
+
 		if
 			let currentUserId = Auth.auth().currentUser?.uid,
 			let isLiked = foodPrint.likedBy?.contains(where: { id in
@@ -50,15 +48,6 @@ struct FoodPrintCell: View {
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 10) {
-			HStack {
-				if let author {
-					Text(author.displayName)
-						.padding(.leading, 12)
-						.bodyStyle()
-				}
-
-				Spacer()
-			}
 
 			photoDisplay
 
@@ -95,24 +84,15 @@ private extension FoodPrintCell {
 							.scaledToFill()
 							.frame(width: size.width)
 
-//						AsyncImage(url: URL(string: imageUrl)!) { image in
-//							image
-//								.resizable()
-//								.rotationEffect(.degrees(90))
-//								.scaledToFill()
-//								.frame(width: size.width)
-//						} placeholder: {
-//							ProgressView()
-//								.frame(width: size.width, height: 300)
-//						}
 					}
 				}
 			}
 			.frame(width: size.width)
 			.overlay(alignment: .bottomTrailing, content: {
-				Text(foodPrint.category ?? "無")
+				Text(foodPrint.category ?? "unknown")
+					.captionBoldStyle()
 					.foregroundStyle(
-						LinearGradient(gradient: Gradient(colors: [Color.red, Color.purple]), startPoint: .leading, endPoint: .trailing)
+						.lightGreen
 					)
 					.padding(.vertical, 4)
 					.padding(.horizontal, 8)
@@ -138,12 +118,12 @@ private extension FoodPrintCell {
 
 	private var actionsTab: some View {
 		HStack(spacing: 20) {
-			LikeButton(isLiked: $isLiked) {
+			LikeButton(isLiked: $isLiked, frame: CGSize(width: 20, height: 20)) {
 				isLiked ? dislikePost() : likePost()
 			}
-			.frame(width: 30, height: 30)
 
 			Image(systemName: "paperplane.fill")
+
 			Image(systemName: "ellipsis.message")
 				.onTapGesture {
 					showComment?(foodPrint)
@@ -154,16 +134,23 @@ private extension FoodPrintCell {
 	}
 
 	private var postBody: some View {
-		Text(foodPrint.description)
-			.lineLimit(...5)
-			.frame(alignment: .leading)
+		VStack(alignment: .leading, spacing: 5) {
+			Text(foodPrint.username)
+				.captionBoldStyle()
+
+			Text(foodPrint.description)
+				.captionStyle()
+				.lineLimit(...5)
+				.frame(alignment: .leading)
+		}
 	}
 }
 
 #Preview {
-	FoodPrintCell(foodPrint: FBFoodPrint.mockFoodPrint, author: nil) {
-		print("cool")
+	FoodPrintCell(foodPrint: FBFoodPrint.mockFoodPrint) {
+
 	} dislikePost: {
-		print("dislike")
+
 	}
+
 }

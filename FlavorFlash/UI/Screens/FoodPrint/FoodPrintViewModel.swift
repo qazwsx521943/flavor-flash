@@ -14,9 +14,8 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 
 	@Published var currentUser: FBUser?
 
-	@Published var friends: [FBUser] = []
-
 	private let dataService: DI
+
 	private var cancellable = Set<AnyCancellable>()
 
 	init(dataService: DI) {
@@ -31,7 +30,7 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		self.currentUser = FBUser.mockUser()
 		self.posts = [
 			// swiftlint:disable:next line_length
-			.init(id: "1", userId: "1", username: "GodJJ", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now),
+			.init(id: "1", userId: "1", username: "GodJJ", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://firebasestorage.googleapis.com:443/v0/b/flavorflash-4a1fc.appspot.com/o/user%2FBG0mgz7itQNfjPp0F2jmlECbks22%2F63BC07A6-46DF-4A28-BF93-5DAE5410787D.jpeg?alt=media&token=475c5f85-83e7-4775-8ce2-502cf1292def", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now),
 			// swiftlint:disable:next line_length
 			.init(id: "1", userId: "1", username: "GodJJ", frontCameraImageUrl: "https://picsum.photos/200", frontCameraImagePath: "https://picsum.photos/200", backCameraImageUrl: "https://picsum.photos/200", backCameraImagePath: "https://picsum.photos/200", description: "測試用", createdDate: .now)
 		]
@@ -62,12 +61,6 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 		guard let authDataResultModel = authUser else { return }
 		self.currentUser = try await UserManager.shared.getUser(userId: authDataResultModel.uid)
 	}
-
-	private func getAllFriends() async throws {
-		guard let friendsId = currentUser?.friends else { return }
-
-		self.friends = try await UserManager.shared.getUserFriends(ids: friendsId)
-	}
 }
 
 extension FoodPrintViewModel {
@@ -76,14 +69,17 @@ extension FoodPrintViewModel {
 		Task {
 			try await loadCurrentUser()
 			try await initDataService()
-			try await getAllFriends()
 		}
 	}
 
 	public func leaveComment(foodPrint: FBFoodPrint, comment: String) {
 		guard let currentUser else { return }
 
-		dataService.leaveComment(foodPrint, userId: currentUser.displayName, comment: comment)
+		dataService.leaveComment(
+			foodPrint, userId: currentUser.id,
+			username: currentUser.username,
+			userProfileImage: currentUser.profileImageUrl,
+			comment: comment)
 	}
 
 	public func reportFoodPrint(id: String, reason: ReportReason) {

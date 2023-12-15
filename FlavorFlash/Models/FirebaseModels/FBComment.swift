@@ -10,6 +10,8 @@ import Foundation
 struct FBComment: FBModelType {
 	var id: String
 	let userId: String
+	let username: String
+	let userProfileImage: String?
 	let comment: String
 	let createdDate: Date
 
