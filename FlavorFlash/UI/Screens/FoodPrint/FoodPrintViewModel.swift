@@ -39,12 +39,13 @@ class FoodPrintViewModel<DI: FBDataService>: ObservableObject where DI.Item == F
 	private func initDataService() async throws {
 		guard 
 			let dataService = dataService as? FoodPrintDataService<FBFoodPrint>,
-			let friends = currentUser?.friends
+			let friends = currentUser?.friends,
+			let currentUser
 		else {
 			return
 		}
-
-		try await dataService.getDataFromFirebase(from: friends)
+		let fetchPostsFromIds = friends + [currentUser.id]
+		try await dataService.getDataFromFirebase(from: fetchPostsFromIds)
 
 		dataService.getData()
 			.sink { error in
