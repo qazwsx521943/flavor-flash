@@ -15,14 +15,13 @@ struct CommentSheetView: View {
 	var action: ((String) -> Void)?
 
     var body: some View {
-		VStack {
+		VStack(alignment: .center) {
+			Text("Comment")
+				.captionBoldStyle()
+				.frame(maxWidth: .infinity)
+				.padding(.vertical, 8)
+				.multilineTextAlignment(.center)
 			List {
-				Section {
-					Text("Comment")
-						.captionBoldStyle()
-						.frame(maxWidth: .infinity)
-						.multilineTextAlignment(.center)
-				}
 
 				if let comments = foodPrint.comments {
 					ForEach(comments) { comment in

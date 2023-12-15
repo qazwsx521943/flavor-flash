@@ -47,73 +47,54 @@ struct FoodPrintCell: View {
 	}
 
 	var body: some View {
-		VStack(alignment: .leading, spacing: 10) {
+			VStack(alignment: .leading, spacing: 10) {
 
-			photoDisplay
+				photoDisplay
 
-			Group {
-				actionsTab
+				Group {
+					actionsTab
 
-				postBody
+					postBody
 
-				Text(foodPrint.getRelativeTimeString)
-					.font(.caption2)
-					.foregroundStyle(Color(UIColor.systemGray))
+					Text(foodPrint.getRelativeTimeString)
+						.font(.caption2)
+						.foregroundStyle(Color(UIColor.systemGray))
+				}
+				.padding(.horizontal, 12)
+				Spacer()
 			}
-			.padding(.horizontal, 12)
-			Spacer()
-		}
 	}
 }
 
 private extension FoodPrintCell {
 	// MARK: - Layout
 	private var photoDisplay: some View {
-		GeometryReader { geometry in
-			let size = geometry.size
-			ScrollView(.horizontal, showsIndicators: false) {
-				HStack {
-					ForEach(foodPrint.getAllImagesURL, id: \.self) { imageUrl in
-						KFImage(URL(string: imageUrl))
-							.placeholder({
-								ProgressView()
-									.frame(width: size.width, height: 300)
-							})
-							.resizable()
-							.rotationEffect(.degrees(90))
-							.scaledToFill()
-							.frame(width: size.width)
-
-					}
+		FoodPrintPhotoDisplay(
+			front: foodPrint.frontCameraImageUrl,
+			back: foodPrint.backCameraImageUrl
+		)
+		.overlay(alignment: .bottomTrailing, content: {
+			Text(foodPrint.category ?? "unknown")
+				.captionBoldStyle()
+				.foregroundStyle(
+					.lightGreen
+				)
+				.padding(.vertical, 4)
+				.padding(.horizontal, 8)
+				.background(
+					RoundedRectangle(cornerRadius: 5)
+						.fill(.black.opacity(0.7))
+				)
+		})
+		.overlay(alignment: .topTrailing, content: {
+			Text("...")
+				.font(.title2)
+				.bold()
+				.padding(.trailing, 12)
+				.onTapGesture {
+					showReport?(foodPrint)
 				}
-			}
-			.frame(width: size.width)
-			.overlay(alignment: .bottomTrailing, content: {
-				Text(foodPrint.category ?? "unknown")
-					.captionBoldStyle()
-					.foregroundStyle(
-						.lightGreen
-					)
-					.padding(.vertical, 4)
-					.padding(.horizontal, 8)
-					.background(
-						RoundedRectangle(cornerRadius: 5)
-							.fill(.black.opacity(0.7))
-					)
-			})
-			.overlay(alignment: .topTrailing, content: {
-				Text("...")
-					.font(.title2)
-					.bold()
-					.padding(.trailing, 12)
-					.onTapGesture {
-						showReport?(foodPrint)
-					}
-			})
-			.onAppear {
-				UIScrollView.appearance().isPagingEnabled = true
-			}
-		}
+		})
 	}
 
 	private var actionsTab: some View {
@@ -143,6 +124,50 @@ private extension FoodPrintCell {
 				.lineLimit(...5)
 				.frame(alignment: .leading)
 		}
+	}
+}
+
+struct FoodPrintPhotoDisplay: View {
+
+	let front: String
+
+	let back: String
+
+	@State private var isBackPrimary = true
+
+	@State private var offset: CGSize = .zero
+
+	@State private var lastOffset: CGSize = .zero
+
+	var body: some View {
+		ZStack(alignment: .topLeading) {
+			KFImage(URL(string: back))
+				.resizable()
+				.aspectRatio(contentMode: .fill)
+				.rotationEffect(.degrees(90))
+
+			KFImage(URL(string: front))
+				.resizable()
+				.aspectRatio(contentMode: .fill)
+				.rotationEffect(.degrees(90))
+				.frame(width: 80, height: 100)
+				.clipShape(RoundedRectangle(cornerRadius: 10))
+				.border(.black, width: 2)
+				.offset(offset)
+				.gesture(
+					DragGesture()
+						.onChanged({ value in
+							offset = CGSize(
+								width: lastOffset.width + value.translation.width,
+								height: lastOffset.height + value.translation.height
+							)
+						})
+						.onEnded({ value in
+							lastOffset = offset
+						})
+				)
+		}
+		.clipped()
 	}
 }
 
