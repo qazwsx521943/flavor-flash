@@ -47,11 +47,12 @@ struct TextOverlay: View {
 			VStack(alignment: .leading, spacing: 4) {
 				Text(title)
 					.lineLimit(1)
-					.font(.callout)
+					.captionBoldStyle()
 				Text(description)
-					.font(.caption)
+					.detailBoldStyle()
 			}
 			.frame(alignment: .leading)
+			.foregroundStyle(.white)
 		}
 	}
 }

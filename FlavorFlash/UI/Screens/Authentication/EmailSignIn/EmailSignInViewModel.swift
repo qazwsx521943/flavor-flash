@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 @MainActor
 class EmailSignInViewModel: ObservableObject {
@@ -30,6 +31,8 @@ class EmailSignInViewModel: ObservableObject {
 
 	@Published var displayName = ""
 
+	@Published var username = ""
+
 	init(state: State) {
 		self.state = state
 	}
@@ -48,11 +51,12 @@ class EmailSignInViewModel: ObservableObject {
 		}
 
 		let userData = try await AuthenticationManager.shared.createUser(email: email, password: password)
-		try await UserManager.shared.createNewUser(user: FFUser(auth: userData, displayName: displayName))
+		try await UserManager.shared.createUser(user: FBUser(auth: userData, displayName: displayName, username: username))
 	}
 
 	func signIn() async throws {
 		guard !email.isEmpty, !password.isEmpty else {
+			logger.error("\(FBAuthError.inputFieldEmpty)")
 			throw FBAuthError.inputFieldEmpty
 		}
 
@@ -63,3 +67,5 @@ class EmailSignInViewModel: ObservableObject {
 		debugPrint(userData)
 	}
 }
+
+fileprivate let logger = Logger(subsystem: "ios22-jason.FlavorFlash", category: "EmailSignInViewModel")

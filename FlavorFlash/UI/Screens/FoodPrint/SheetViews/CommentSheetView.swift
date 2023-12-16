@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct CommentSheetView: View {
-	let foodPrint: FoodPrint
+	let foodPrint: FBFoodPrint
 
 	@State private var commentText = ""
 
 	var action: ((String) -> Void)?
 
     var body: some View {
-		VStack {
+		VStack(alignment: .center) {
+			Text("Comment")
+				.captionBoldStyle()
+				.frame(maxWidth: .infinity)
+				.padding(.vertical, 8)
+				.multilineTextAlignment(.center)
 			List {
-				Section {
-					Text("留言")
-						.frame(maxWidth: .infinity)
-						.multilineTextAlignment(.center)
-				}
 
 				if let comments = foodPrint.comments {
 					ForEach(comments) { comment in
@@ -37,12 +37,12 @@ struct CommentSheetView: View {
 			Spacer()
 
 			HStack {
-				TextField("新增留言...", text: $commentText)
-				Button("發佈") {
+				TextField("Leave comment...", text: $commentText)
+				Button("Send") {
 					action?(commentText)
 					commentText = ""
 				}
-				.tint(Color.purple.opacity(0.8))
+				.tint(.accent)
 				.disabled(commentText.isEmpty)
 			}
 			.padding(.horizontal, 32)
@@ -51,5 +51,5 @@ struct CommentSheetView: View {
 }
 
 #Preview {
-	CommentSheetView(foodPrint: FoodPrint.mockFoodPrint, action: nil)
+	CommentSheetView(foodPrint: FBFoodPrint.mockFoodPrint, action: nil)
 }

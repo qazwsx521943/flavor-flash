@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseAuth
 import FirebaseFirestore
+import OSLog
 
 enum FBAuthError: Error {
 	case signInError
@@ -18,6 +19,7 @@ enum FBAuthError: Error {
 
 enum AuthProviderOption: String {
 	case email = "password"
+	// TODO: - Google sign in
 	case google = "google.com"
 	case apple = "apple.com"
 }
@@ -43,9 +45,9 @@ final class AuthenticationManager {
 	// MARK: - helper getter
 	func getAuthenticatedUser() throws -> AuthDataResultModel {
 		guard let user = Auth.auth().currentUser else {
-			throw URLError(.badServerResponse)
+			throw FBAuthError.userNotLoggedIn
 		}
-		debugPrint("current loggedin user: \(user.uid)")
+		logger.info("Current Logged in UserID: \(user.uid)")
 
 		return AuthDataResultModel(user: user)
 	}
@@ -62,15 +64,19 @@ final class AuthenticationManager {
 	func signIn(email: String, password: String) async throws -> AuthDataResultModel {
 		do {
 			let authDataResult = try await Auth.auth().signIn(withEmail: email, password: password)
-
+			
 			return AuthDataResultModel(user: authDataResult.user)
 		} catch {
+			logger.error("\(FBAuthError.signInError)")
 			throw FBAuthError.signInError
 		}
 	}
 
 	func signOut() throws {
-		debugPrint("\(Auth.auth().currentUser?.displayName) signing out")
+		guard let user = Auth.auth().currentUser else {
+			throw FBAuthError.userNotLoggedIn
+		}
+		logger.info("\(user.uid) signing out")
 		try Auth.auth().signOut()
 	}
 
@@ -87,8 +93,11 @@ final class AuthenticationManager {
 	}
 
 	func deleteAccount() {
-		debugPrint("delete currentUser : \(Auth.auth().currentUser)")
+		guard let user = Auth.auth().currentUser else {
+			return
+		}
 		Auth.auth().currentUser?.delete()
+		logger.info("\(user.uid) deleted account")
 	}
 }
 
@@ -124,7 +133,12 @@ extension AuthenticationManager {
 extension AuthenticationManager {
 
 	func sendTokenToServer(token: String?) {
-		var deviceToken: [String: Any] = [
+		guard let token else {
+			logger.info("FCM Token is nil")
+			return
+		}
+
+		let deviceToken: [String: Any] = [
 			"token": token,
 			"timestamp": FieldValue.serverTimestamp()
 		]
@@ -143,3 +157,5 @@ extension AuthenticationManager {
 		}
 	}
 }
+
+fileprivate let logger = Logger(subsystem: "ios22-jason.FlavorFlash", category: "AuthenticationManager")

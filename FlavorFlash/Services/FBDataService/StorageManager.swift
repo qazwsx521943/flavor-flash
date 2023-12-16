@@ -15,8 +15,14 @@ final class StorageManager {
 
 	private let storageRef = Storage.storage().reference()
 
+	enum MetaDataType: String {
+		case jpeg = "image/jpeg"
+		case png = "image/png"
+	}
+
 	private init() {}
 
+	// MARK: - Private func
 	private func userRef(userId: String) -> StorageReference {
 		storageRef.child("user").child(userId)
 	}
@@ -25,16 +31,12 @@ final class StorageManager {
 		Storage.storage().reference(withPath: path)
 	}
 
-	func getUrlForImage(path: String) async throws -> URL {
+	// MARK: - Public func
+	public func getUrlForImage(path: String) async throws -> URL {
 		try await getPathForImage(path: path).downloadURL()
 	}
 
-	enum MetaDataType: String {
-		case jpeg = "image/jpeg"
-		case png = "image/png"
-	}
-
-	func saveImage(userId: String, data: Data) async throws -> (path: String, name: String) {
+	public func saveImage(userId: String, data: Data) async throws -> (path: String, name: String) {
 		let metaData = StorageMetadata()
 		metaData.contentType = MetaDataType.jpeg.rawValue
 
@@ -51,9 +53,9 @@ final class StorageManager {
 		return (returnedPath, returnedName)
 	}
 
-	func saveImage(userId: String, image: UIImage) async throws -> (path: String, name: String) {
+	public func saveImage(userId: String, image: UIImage) async throws -> (path: String, name: String) {
 		// image.pngData()
-		guard let data = image.jpegData(compressionQuality: 1) else {
+		guard let data = image.jpegData(compressionQuality: 0.5) else {
 			throw URLError(.backgroundSessionWasDisconnected)
 		}
 

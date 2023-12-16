@@ -7,7 +7,7 @@
 
 import SwiftUI
 import os.log
-enum BoxSkin: String {
+enum BoxSkin: String, Codable {
 	case cat01 = "cat_1"
 	case cat02 = "cat_2"
 	case cat03 = "cat_3"
@@ -48,7 +48,7 @@ struct HomeView: View {
 											.fill(.shadowGray)
 											.zIndex(1.0)
 											.overlay(alignment: .bottom) {
-												Polygon(sides: 3)
+												NNPolygon(sides: 3)
 													.fill(.shadowGray)
 													.frame(width: 20, height: 20)
 													.rotationEffect(.degrees(90.0))
@@ -137,7 +137,10 @@ struct HomeView: View {
 				.padding()
 				.presentationDetents([.medium])
 			}
-			.navigationTitle("My App")
+			.onAppear {
+				try? viewModel.checkUpdate()
+			}
+			.navigationTitle("NumNum")
 			.navigationBarTitleDisplayMode(.inline)
 		}
 	}

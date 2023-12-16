@@ -27,6 +27,7 @@ struct ChatroomView: View {
 		}
 		.customChatNavigation(theme: theme, title: chatroomViewModel.chatroomTitle)
 		.chatTheme(theme)
+		.font(.custom("Futura", size: 14))
 		.onAppear {
 			navigationModel.hideTabBar()
 		}

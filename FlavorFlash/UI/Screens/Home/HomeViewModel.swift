@@ -8,6 +8,7 @@
 import Foundation
 import MapKit
 import SwiftUI
+import FirebaseAuth
 
 @MainActor
 final class HomeViewModel: ObservableObject {
@@ -15,7 +16,7 @@ final class HomeViewModel: ObservableObject {
 
 	@Published var userCategories: [RestaurantCategory] = []
 
-	@Published var currentUser: FFUser?
+	@Published var currentUser: FBUser?
 
     @Published var currentLocation: CLLocationCoordinate2D?
 
@@ -41,6 +42,11 @@ final class HomeViewModel: ObservableObject {
 			UserManager.shared.listenToChange(userId: currentUser!.id) { [weak self] user in
 				self?.currentUser = user
 			}
+		}
+
+		NotificationCenter.default.addObserver(forName: .AuthStateDidChange, object: nil, queue: nil) { [weak self] _ in
+			debugPrint("NOTIFICATION RECEIVED:")
+			try? self?.checkUpdate()
 		}
 	}
 
@@ -68,7 +74,7 @@ final class HomeViewModel: ObservableObject {
 	}
 
 	private func loadUserSavedRestaurants() async throws {
-		guard let savedRestaurantIds = currentUser?.favoriteRestaurants else { return }
+		guard let savedRestaurantIds = currentUser?.toEatRestaurantList else { return }
 
 		var restaurants: [Restaurant] = []
 
@@ -84,6 +90,21 @@ final class HomeViewModel: ObservableObject {
 			}
 
 			self.userSavedRestaurants = restaurants
+		}
+	}
+
+	public func checkUpdate() throws {
+		if Auth.auth().currentUser?.uid != currentUser?.id {
+			Task {
+				try await loadCurrentUser()
+				try await loadUserSavedRestaurants()
+
+				UserManager.shared.listenToChange(userId: currentUser!.id) { [weak self] user in
+					self?.currentUser = user
+				}
+			}
+		} else {
+			return
 		}
 	}
 }

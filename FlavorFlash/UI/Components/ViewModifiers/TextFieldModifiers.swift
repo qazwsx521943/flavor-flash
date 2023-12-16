@@ -21,6 +21,7 @@ struct ValidateModifier<T>: ViewModifier {
 struct SignInModifier: ViewModifier {
 	func body(content: Content) -> some View {
 		content
+			.bodyStyle()
 			.padding()
 			.background(Color.gray.opacity(0.4))
 			.clipShape(.rect(cornerRadius: 10, style: .circular))

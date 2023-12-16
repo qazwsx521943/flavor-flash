@@ -16,6 +16,8 @@ struct CommentView: View {
 
 	@State private var showLoading = false
 
+	@Environment(\.dismiss) private var dismiss
+
 	var body: some View {
 		GeometryReader { geometry in
 			ScrollView(.vertical, showsIndicators: false) {
@@ -74,6 +76,14 @@ struct CommentView: View {
 			.toolbar {
 				NavigationBarBackButton()
 			}
+			.overlay(alignment: .center) {
+				if showLoading {
+					Color.black.opacity(0.3)
+						.ignoresSafeArea()
+					NNLoadingIndicator()
+						.frame(width: 300, height: 300)
+				}
+			}
 		}
 	}
 }
@@ -122,8 +132,9 @@ extension CommentView {
 			self.hideKeyboard()
 			showLoading = true
 			Task {
-				try await cameraDataModel.saveImages()
+				try await cameraDataModel.saveFoodPrint()
 				showLoading = false
+				dismiss()
 				navigationModel.selectedTab = .home
 			}
 		} label: {

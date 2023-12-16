@@ -10,10 +10,7 @@ protocol FBDataService: ObservableObject {
 	associatedtype Item: FBModelType
 
 	func getData() -> AnyPublisher<[Item], Error>
-	func add(_ item: Item)
-	func update(_ item: Item)
-	func delete(_ item: Item)
-	func leaveComment(_ item: Item, userId: String, comment: String)
+	func leaveComment(_ item: Item, userId: String, username: String, userProfileImage: String?, comment: String)
 	func likePost(_ item: Item, userId: String)
 	func dislikePost(_ item: Item, userId: String)
 }
