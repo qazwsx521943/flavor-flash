@@ -16,11 +16,11 @@ final class ChatroomViewModel: ObservableObject {
 
 	private(set) var groupId: String
 
-	var members: [FFUser]?
+	var members: [FBUser]?
 
 	private(set) var listener: ListenerRegistration?
 
-	private(set) var user: FFUser?
+	private(set) var user: FBUser?
 
 	var chatroomTitle: String {
 		guard 
@@ -41,7 +41,7 @@ final class ChatroomViewModel: ObservableObject {
 	}
 
 	func loadGroupMember() async throws {
-		var members: [FFUser] = []
+		var members: [FBUser] = []
 		do {
 			let ids = try await ChatManager.shared.getGroupMemberId(groupId: groupId)
 

@@ -11,23 +11,26 @@ import FirebaseAuth
 
 struct FoodPrintCell: View {
 
-	let foodPrint: FoodPrint
-
-	let author: FFUser?
+	let foodPrint: FBFoodPrint
 
 	@State private var isLiked: Bool
 
-	var showComment: ((FoodPrint) -> Void)?
+	var showComment: ((FBFoodPrint) -> Void)?
 
-	var showReport: ((FoodPrint) -> Void)?
+	var showReport: ((FBFoodPrint) -> Void)?
 
 	var likePost: () -> Void
 
 	var dislikePost: () -> Void
 
-	init(foodPrint: FoodPrint, author: FFUser?, showComment: ( (FoodPrint) -> Void)? = nil, showReport: ( (FoodPrint) -> Void)? = nil, likePost: @escaping () -> Void, dislikePost: @escaping () -> Void) {
+	init(
+		foodPrint: FBFoodPrint,
+		showComment: ( (FBFoodPrint) -> Void)? = nil,
+		showReport: ( (FBFoodPrint) -> Void)? = nil,
+		likePost: @escaping () -> Void,
+		dislikePost: @escaping () -> Void) {
 		self.foodPrint = foodPrint
-		self.author = author
+
 		if
 			let currentUserId = Auth.auth().currentUser?.uid,
 			let isLiked = foodPrint.likedBy?.contains(where: { id in
@@ -44,101 +47,64 @@ struct FoodPrintCell: View {
 	}
 
 	var body: some View {
-		VStack(alignment: .leading, spacing: 10) {
-			HStack {
-				if let author {
-					Text(author.displayName)
-						.padding(.leading, 12)
-						.bodyStyle()
-				}
+			VStack(alignment: .leading, spacing: 10) {
 
+				photoDisplay
+
+				Group {
+					actionsTab
+
+					postBody
+
+					Text(foodPrint.getRelativeTimeString)
+						.font(.caption2)
+						.foregroundStyle(Color(UIColor.systemGray))
+				}
+				.padding(.horizontal, 12)
 				Spacer()
 			}
-
-			photoDisplay
-
-			Group {
-				actionsTab
-
-				postBody
-
-				Text(foodPrint.getRelativeTimeString)
-					.font(.caption2)
-					.foregroundStyle(Color(UIColor.systemGray))
-			}
-			.padding(.horizontal, 12)
-			Spacer()
-		}
 	}
 }
 
 private extension FoodPrintCell {
 	// MARK: - Layout
 	private var photoDisplay: some View {
-		GeometryReader { geometry in
-			let size = geometry.size
-			ScrollView(.horizontal, showsIndicators: false) {
-				HStack {
-					ForEach(foodPrint.getAllImagesURL, id: \.self) { imageUrl in
-						KFImage(URL(string: imageUrl))
-							.placeholder({
-								ProgressView()
-									.frame(width: size.width, height: 300)
-							})
-							.resizable()
-							.rotationEffect(.degrees(90))
-							.scaledToFill()
-							.frame(width: size.width)
-
-//						AsyncImage(url: URL(string: imageUrl)!) { image in
-//							image
-//								.resizable()
-//								.rotationEffect(.degrees(90))
-//								.scaledToFill()
-//								.frame(width: size.width)
-//						} placeholder: {
-//							ProgressView()
-//								.frame(width: size.width, height: 300)
-//						}
-					}
+		FoodPrintPhotoDisplay(
+			front: foodPrint.frontCameraImageUrl,
+			back: foodPrint.backCameraImageUrl
+		)
+		.overlay(alignment: .bottomTrailing, content: {
+			Text(foodPrint.category ?? "unknown")
+				.captionBoldStyle()
+				.foregroundStyle(
+					.lightGreen
+				)
+				.padding(.vertical, 4)
+				.padding(.horizontal, 8)
+				.background(
+					RoundedRectangle(cornerRadius: 5)
+						.fill(.black.opacity(0.7))
+				)
+		})
+		.overlay(alignment: .topTrailing, content: {
+			Text("...")
+				.font(.title2)
+				.bold()
+				.padding(.trailing, 12)
+				.onTapGesture {
+					showReport?(foodPrint)
 				}
-			}
-			.frame(width: size.width)
-			.overlay(alignment: .bottomTrailing, content: {
-				Text(foodPrint.category ?? "無")
-					.foregroundStyle(
-						LinearGradient(gradient: Gradient(colors: [Color.red, Color.purple]), startPoint: .leading, endPoint: .trailing)
-					)
-					.padding(.vertical, 4)
-					.padding(.horizontal, 8)
-					.background(
-						RoundedRectangle(cornerRadius: 5)
-							.fill(.black.opacity(0.7))
-					)
-			})
-			.overlay(alignment: .topTrailing, content: {
-				Text("...")
-					.font(.title2)
-					.bold()
-					.padding(.trailing, 12)
-					.onTapGesture {
-						showReport?(foodPrint)
-					}
-			})
-			.onAppear {
-				UIScrollView.appearance().isPagingEnabled = true
-			}
-		}
+		})
 	}
 
 	private var actionsTab: some View {
 		HStack(spacing: 20) {
-			LikeButton(isLiked: $isLiked) {
+			LikeButton(isLiked: $isLiked, frame: CGSize(width: 20, height: 20)) {
 				isLiked ? dislikePost() : likePost()
 			}
-			.frame(width: 30, height: 30)
 
 			Image(systemName: "paperplane.fill")
+
 			Image(systemName: "ellipsis.message")
 				.onTapGesture {
 					showComment?(foodPrint)
@@ -149,16 +115,67 @@ private extension FoodPrintCell {
 	}
 
 	private var postBody: some View {
-		Text(foodPrint.description)
-			.lineLimit(...5)
-			.frame(alignment: .leading)
+		VStack(alignment: .leading, spacing: 5) {
+			Text(foodPrint.username)
+				.captionBoldStyle()
+
+			Text(foodPrint.description)
+				.captionStyle()
+				.lineLimit(...5)
+				.frame(alignment: .leading)
+		}
+	}
+}
+
+struct FoodPrintPhotoDisplay: View {
+
+	let front: String
+
+	let back: String
+
+	@State private var isBackPrimary = true
+
+	@State private var offset: CGSize = .zero
+
+	@State private var lastOffset: CGSize = .zero
+
+	var body: some View {
+		ZStack(alignment: .topLeading) {
+			KFImage(URL(string: back))
+				.resizable()
+				.aspectRatio(contentMode: .fill)
+				.rotationEffect(.degrees(90))
+
+			KFImage(URL(string: front))
+				.resizable()
+				.aspectRatio(contentMode: .fill)
+				.rotationEffect(.degrees(90))
+				.frame(width: 80, height: 100)
+				.clipShape(RoundedRectangle(cornerRadius: 10))
+				.border(.black, width: 2)
+				.offset(offset)
+				.gesture(
+					DragGesture()
+						.onChanged({ value in
+							offset = CGSize(
+								width: lastOffset.width + value.translation.width,
+								height: lastOffset.height + value.translation.height
+							)
+						})
+						.onEnded({ value in
+							lastOffset = offset
+						})
+				)
+		}
+		.clipped()
 	}
 }
 
 #Preview {
-	FoodPrintCell(foodPrint: FoodPrint.mockFoodPrint, author: nil) {
-		print("cool")
+	FoodPrintCell(foodPrint: FBFoodPrint.mockFoodPrint) {
+
 	} dislikePost: {
-		print("dislike")
+
 	}
+
 }

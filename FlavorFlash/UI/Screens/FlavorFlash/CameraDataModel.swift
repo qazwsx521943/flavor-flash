@@ -131,9 +131,10 @@ final class CameraDataModel: ObservableObject {
 		let backUrl = try await StorageManager.shared.getUrlForImage(path: backImagePath)
 
 		guard let selectedRestaurant else { return }
-		let foodPrint = FoodPrint(
+		let foodPrint = FBFoodPrint(
 			id: UUID().uuidString,
 			userId: userId,
+			username: "GodJJ",
 			restaurantId: selectedRestaurant.id,
 			frontCameraImageUrl: frontUrl.absoluteString,
 			frontCameraImagePath: frontImagePath,

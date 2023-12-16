@@ -37,35 +37,6 @@ class FoodPrintDataService<T: FBModelType>: FBDataService {
 			}
 	}
 
-	func add(_ item: T) {
-		do {
-			_ = try store.collection(path).addDocument(from: item)
-		} catch {
-			fatalError("Adding an item failed")
-		}
-	}
-
-	func delete(_ item: T) {
-		//		guard let documentID = item.id else { return }
-		let documentID = item.id
-		store.collection(path).document(documentID).delete { error in
-			if let error = error {
-				print("Unable to remove fbmask: \(error.localizedDescription)")
-			}
-		}
-	}
-
-	func update(_ item: T) {
-		//		guard let documentID = item.id else { return }
-		let documentID = item.id
-		do {
-			try store.collection(path).document(documentID).setData(from: item)
-
-		} catch {
-			fatalError("Updating item failed")
-		}
-	}
-
 	func likePost(_ item: T, userId: String) {
 		let documentID = item.id
 
@@ -83,10 +54,17 @@ class FoodPrintDataService<T: FBModelType>: FBDataService {
 			.updateData(["liked_by": FieldValue.arrayRemove([userId])])
 	}
 
-	func leaveComment(_ item: T, userId: String, comment: String) {
+	func leaveComment(_ item: T, userId: String, username: String, userProfileImage: String?, comment: String) {
 		let documentID = item.id
 
-		let fbComment = FBComment(id: UUID().uuidString, userId: userId, comment: comment, createdDate: Date.now)
+		let fbComment = FBComment(
+			id: UUID().uuidString,
+			userId: userId,
+			username: username,
+			userProfileImage: userProfileImage,
+			comment: comment,
+			createdDate: Date.now)
+
 		let encodedComment = try? Firestore.Encoder().encode(fbComment)
 
 		guard let encodedComment else { return }

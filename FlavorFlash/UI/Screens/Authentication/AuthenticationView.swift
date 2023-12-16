@@ -38,6 +38,9 @@ struct AuthenticationView: View {
 				.frame(height: 250)
 				.offset(y: 100)
 		}
+		.fullScreenCover(isPresented: $authenticationViewModel.showThirdPartySignUp) {
+			ThirdpartySignUpView(viewModel: authenticationViewModel, navigationModel: navigationModel)
+		}
 		.navigationTitle("Sign In")
 		.toolbar(.hidden, for: .navigationBar)
 	}
@@ -50,10 +53,13 @@ extension AuthenticationView {
 			Task {
 				do {
 					try await authenticationViewModel.signInWithApple()
-					navigationModel.showSignInModal = false
+
 					if authenticationViewModel.isFirstSignIn {
-						navigationModel.showCategorySelectionModal = true
+						authenticationViewModel.showThirdPartySignUp = true
+					} else {
+						navigationModel.showSignInModal = false
 					}
+
 				} catch {
 					print(error)
 				}

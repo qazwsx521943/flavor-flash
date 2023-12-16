@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
+import OSLog
 
 enum FBStoreError: Error {
 	case noSuchInputField
@@ -19,84 +20,59 @@ final class UserManager {
 
 	static let shared = UserManager()
 
+	// MARK: - Properties
 	private let userCollection = Firestore.firestore().collection("users")
 
 	private let foodPrintCollection = Firestore.firestore().collection("foodprints")
 
-//	private let encoder: Firestore.Encoder = {
-//		let encoder = Firestore.Encoder()
-//		encoder.keyEncodingStrategy = .convertToSnakeCase
-//		return encoder
-//	}()
-//
-//	private let decoder: Firestore.Decoder = {
-//		let decoder = Firestore.Decoder()
-//		decoder.keyDecodingStrategy = .convertFromSnakeCase
-//		return decoder
-//	}()
+	private var friendFieldKey: String {
+		return FBUser.CodingKeys.friends.rawValue
+	}
 
-	private func userDocument(userId: String) -> DocumentReference {
-		userCollection.document(userId)
+	private var toEatRestaurantListFieldKey: String {
+		return FBUser.CodingKeys.toEatRestaurantList.rawValue
 	}
 
 	private init() { }
 
-	// MARK: - CRUD
-	func createNewUser(user: FFUser) async throws {
-		debugPrint("creating new user: \(user)")
+	// MARK: - User Collection CRUD
+	private func userDocument(userId: String) -> DocumentReference {
+		userCollection.document(userId)
+	}
+
+	public func createUser(user: FBUser) async throws {
+		logger.notice("create User: \(user.displayName)")
+
 		try userDocument(userId: user.id).setData(
 			from: user,
 			merge: false)
 	}
 
-	func listenToChange(userId: String, completionHandler: @escaping (FFUser) -> Void) {
-		userDocument(userId: userId).addSnapshotListener { documentSnapshot, _ in
-			guard let document = documentSnapshot else { return }
-			guard let data = try? document.data(as: FFUser.self) else { return }
-			
-			completionHandler(data)
-		}
-	}
+	public func getUser(userId: String) async throws -> FBUser {
+		logger.debug("get UserId: \(userId)")
 
-	func getUser(userId: String) async throws -> FFUser {
 		do {
-			return try await userDocument(userId: userId).getDocument(as: FFUser.self)
+			return try await userDocument(userId: userId).getDocument(as: FBUser.self)
 		} catch {
+			logger.error("\(FBStoreError.fetchError)")
 			throw(FBStoreError.fetchError)
 		}
 	}
 
-	func setRestaurantCategories(userId: String, categories: [String]) async throws {
-		let docData: [String: Any] = ["categoryPreferences": categories]
-		try await userDocument(userId: userId).setData(docData, merge: true)
+	public func listenToChange(userId: String, completionHandler: @escaping (FBUser) -> Void) {
+		userDocument(userId: userId).addSnapshotListener { documentSnapshot, _ in
+			guard let document = documentSnapshot else { return }
+			guard let data = try? document.data(as: FBUser.self) else { return }
+
+			completionHandler(data)
+		}
 	}
 
-	// updateDate vs. setData (be careful using setData)
-	func updateUserProfileImagePath(userId: String, path: String?, url: String?) async throws {
-		let data: [String: Any] = [
-			FFUser.CodingKeys.profileImagePath.rawValue: path,
-			FFUser.CodingKeys.profileImageUrl.rawValue: url
-		]
-
-		try await userDocument(userId: userId).updateData(data)
-	}
-
-	func saveUserFoodPrint(userId: String, foodPrint: FoodPrint) async throws {
-		debugPrint("saved foodprint: \(foodPrint)")
-		try foodPrintCollection.document(foodPrint.id).setData(from: foodPrint, merge: true)
-	}
-
-	func addFriend(userId: String, from currentUser: String) async throws {
-		debugPrint("add \(userId) to friend")
-		try await userDocument(userId: userId).updateData(["friends": FieldValue.arrayUnion([currentUser])])
-		try await userDocument(userId: currentUser).updateData(["friends": FieldValue.arrayUnion([userId])])
-	}
-
-	func getUserFriends(ids: [String]) async throws -> [FFUser] {
-		var users: [FFUser] = []
+	public func getUserFriends(ids: [String]) async throws -> [FBUser] {
+		var users: [FBUser] = []
 		users.reserveCapacity(ids.count)
 
-		return try await withThrowingTaskGroup(of: FFUser?.self) { group in
+		return try await withThrowingTaskGroup(of: FBUser?.self) { group in
 
 			for id in ids {
 				group.addTask {
@@ -116,26 +92,65 @@ final class UserManager {
 }
 
 
-// MARK: - User saved restaurants
+// MARK: - User Document CRUD
 extension UserManager {
-	func saveUserFavoriteRestaurant(userId: String, restaurant: Restaurant) throws {
-		debugPrint("userId: \(userId), restaurant: \(restaurant)")
-		//		userDocument(userId: userId).setData(["favorite_restaurants": restaurant.id], merge: true)
-		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayUnion([restaurant.id])])
+	public func updateUserProfileImagePath(userId: String, path: String, url: String) async throws {
+		let docData: [String: Any] = [
+			FBUser.CodingKeys.profileImagePath.rawValue: path,
+			FBUser.CodingKeys.profileImageUrl.rawValue: url
+		]
+
+		try await userDocument(userId: userId).updateData(docData)
 	}
 
-	func saveUserLovedRestaurant(userId: String, restaurant: Restaurant) throws {
-		debugPrint("userId: \(userId), restaurant: \(restaurant)")
+	public func addFriend(userId: String, from currentUser: String) async throws {
+		logger.notice("\(currentUser) wants to add \(userId) as friend!")
 
-		userDocument(userId: userId).updateData(["loved_restaurants": FieldValue.arrayUnion([restaurant.id])])
-		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayRemove([restaurant.id])])
+		let currentUserDocData = [friendFieldKey: FieldValue.arrayUnion([currentUser])]
+		let addUserDocData = [friendFieldKey: FieldValue.arrayUnion([userId])]
+
+		try await userDocument(userId: userId).updateData(currentUserDocData)
+		try await userDocument(userId: currentUser).updateData(addUserDocData)
 	}
 
-	func saveUserBlockedRestaurant(userId: String, restaurant: Restaurant) throws {
-		debugPrint("userId: \(userId), restaurant: \(restaurant)")
+	public func setRestaurantCategories(userId: String, categories: [String]) async throws {
+		let docData: [String: Any] = [
+			FBUser.CodingKeys.categoryPreferences.rawValue: categories
+		]
 
-		userDocument(userId: userId).updateData(["blocked_restaurants": FieldValue.arrayUnion([restaurant.id])])
-		userDocument(userId: userId).updateData(["favorite_restaurants": FieldValue.arrayRemove([restaurant.id])])
+		try await userDocument(userId: userId).setData(docData, merge: true)
+	}
+
+	public func saveUserFavoriteRestaurant(userId: String, restaurant: Restaurant) throws {
+		logger.notice("userId \(userId) add \(restaurant.name) to loved!")
+
+		userDocument(userId: userId).updateData([
+			toEatRestaurantListFieldKey: FieldValue.arrayUnion([restaurant.id])
+		])
+	}
+
+	public func saveUserLovedRestaurant(userId: String, restaurant: Restaurant) throws {
+		logger.notice("userId \(userId) add \(restaurant.name) to loved!")
+
+		userDocument(userId: userId).updateData([
+			FBUser.CodingKeys.lovedRestaurants.rawValue: FieldValue.arrayUnion([restaurant.id])
+		])
+		userDocument(userId: userId).updateData([toEatRestaurantListFieldKey: FieldValue.arrayRemove([restaurant.id])])
+	}
+
+	public func saveUserBlockedRestaurant(userId: String, restaurant: Restaurant) throws {
+		logger.notice("userId \(userId) blocked \(restaurant.name)")
+
+		userDocument(userId: userId).updateData([
+			FBUser.CodingKeys.blockedRestaurants.rawValue: FieldValue.arrayUnion([restaurant.id])
+		])
+		userDocument(userId: userId).updateData([toEatRestaurantListFieldKey: FieldValue.arrayRemove([restaurant.id])])
+	}
+
+	// FIXME: - Should be in foodPrint manager
+	func saveUserFoodPrint(userId: String, foodPrint: FBFoodPrint) async throws {
+
+		try foodPrintCollection.document(foodPrint.id).setData(from: foodPrint, merge: true)
 	}
 }
 
@@ -144,11 +159,15 @@ extension UserManager {
 	public func blockFriend(blockId: String, from userId: String) async throws {
 		try await deleteFriend(deleteId: blockId, from: userId)
 
-		try await userDocument(userId: userId).updateData(["blocked_list": FieldValue.arrayUnion([blockId])])
+		try await userDocument(userId: userId).updateData([
+			FBUser.CodingKeys.blockedList.rawValue: FieldValue.arrayUnion([blockId])
+		])
 	}
 
 	public func deleteFriend(deleteId: String, from userId: String) async throws {
-		try await userDocument(userId: userId).updateData(["friends": FieldValue.arrayRemove([deleteId])])
-		try await userDocument(userId: deleteId).updateData(["friends": FieldValue.arrayRemove([userId])])
+		try await userDocument(userId: userId).updateData([friendFieldKey: FieldValue.arrayRemove([deleteId])])
+		try await userDocument(userId: deleteId).updateData([friendFieldKey: FieldValue.arrayRemove([userId])])
 	}
 }
+
+fileprivate let logger = Logger(subsystem: "ios22-jason.FlavorFlash", category: "UserManager")

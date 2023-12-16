@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PopupView
 
 struct EmailSignInView: View {
 
@@ -22,35 +23,44 @@ struct EmailSignInView: View {
     var body: some View {
 		VStack {
 			if isAnimated {
-				Circle()
-					.stroke(style: StrokeStyle(lineWidth: 5, lineCap: .round))
-					.fill(.blue)
+				FFLottieView(lottieFile: "Loading")
 					.frame(width: 200, height: 200)
-					.overlay(alignment: .center, content: {
-						Text("Signing Up...")
-							.font(.headline)
-							.bold()
-					})
 					.transition(.push(from: .leading))
 					.animation(Animation.spring, value: isAnimated)
 
 			} else {
-				TextField("Email:", text: $viewModel.email)
+				Text(viewModel.state.navigationTitle)
+					.titleStyle()
+					.multilineTextAlignment(.center)
+					.padding(.bottom, 80)
+
+
+				TextField("email", text: $viewModel.email)
 					.signInFields()
 
-				SecureField("Password", text: $viewModel.password)
+				SecureField("password", text: $viewModel.password)
 					.signInFields()
 
 				if viewModel.state == .signUp {
-					TextField("Name:", text: $viewModel.displayName)
+					TextField("name", text: $viewModel.displayName)
+						.signInFields()
+				}
+
+				if viewModel.state == .signUp {
+					TextField("username", text: $viewModel.username)
 						.signInFields()
 				}
 
 				loginButton
 			}
 		}
+
+		.frame(maxHeight: .infinity, alignment: .top)
 		.padding(16)
-		.navigationTitle(viewModel.state.navigationTitle)
+		.navigationBarBackButtonHidden()
+		.toolbar {
+			NavigationBarBackButton()
+		}
     }
 }
 
@@ -58,9 +68,6 @@ extension EmailSignInView {
 	// MARK: - Layout
 	private var loginButton: some View {
 		Button {
-			withAnimation(.spring) {
-				isAnimated = true
-			}
 			emailLogin()
 		} label: {
 			Text(viewModel.state.rawValue.uppercased())
@@ -80,13 +87,16 @@ extension EmailSignInView {
 	private func emailLogin() {
 		Task {
 			do {
+				withAnimation(.spring) {
+					isAnimated = true
+				}
 				try await viewModel.signUp()
 				isAnimated = false
 				navigationModel.showSignInModal = false
 				navigationModel.showCategorySelectionModal = true
 				return
 			} catch {
-				debugPrint(error)
+				isAnimated = false
 			}
 
 			do {

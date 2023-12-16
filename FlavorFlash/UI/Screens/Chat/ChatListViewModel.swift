@@ -13,11 +13,11 @@ final class ChatListViewModel: ObservableObject {
 
 	@Published var groups: [ChatRoom] = []
 
-	private(set) var user: FFUser?
+	private(set) var user: FBUser?
 
 	@Published var searchUserText: String = ""
 
-	@Published var searchedResult: [FFUser] = []
+	@Published var searchedResult: [FBUser] = []
 
 	private var cancellables = Set<AnyCancellable>()
 
@@ -72,8 +72,8 @@ final class ChatListViewModel: ObservableObject {
 		debugPrint(groups)
 	}
 
-	private func loadGroupMember(groupId: String) async throws -> [FFUser] {
-		var members: [FFUser] = []
+	private func loadGroupMember(groupId: String) async throws -> [FBUser] {
+		var members: [FBUser] = []
 		do {
 			let ids = try await ChatManager.shared.getGroupMemberId(groupId: groupId)
 
@@ -102,7 +102,7 @@ final class ChatListViewModel: ObservableObject {
 		guard let currentUserId = user?.id else { return }
 
 		do {
-			try ChatManager.shared.createNewGroup(with: [currentUserId, id])
+			try ChatManager.shared.createGroup(with: [currentUserId, id])
 		} catch {
 			debugPrint("error creating new Group")
 		}

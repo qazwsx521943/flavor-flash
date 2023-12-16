@@ -9,13 +9,13 @@ import SwiftUI
 
 struct FoodPrintView: View {
 	@StateObject private var foodPrintViewModel = FoodPrintViewModel(dataService: FoodPrintDataService(path: "foodprints"))
-//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(
-//mockService: FoodPrintDataService(path: "foodprints"))
+	//	@StateObject private var foodPrintViewModel = FoodPrintViewModel(
+	//mockService: FoodPrintDataService(path: "foodprints"))
 	@State private var showCommentModal = false
 
 	@State private var showReportModal = false
 
-	@State private var isSelectedFoodPrint: FoodPrint?
+	@State private var isSelectedFoodPrint: FBFoodPrint?
 
 	@State private var selectionType: SelectionType = .comment
 
@@ -29,14 +29,13 @@ struct FoodPrintView: View {
 
 	var body: some View {
 		NavigationStack {
-			GeometryReader { geometry in
-				ScrollView(.vertical, showsIndicators: false) {
-					VStack(alignment: .center, spacing: 30) {
-						ForEach(foodPrintViewModel.posts) { post in
-							FoodPrintCell(
-								foodPrint: post,
-								author: foodPrintViewModel.friends.first { $0.id == post.userId },
-								showComment: { foodprint in
+			ScrollView(.vertical, showsIndicators: false) {
+
+				VStack(alignment: .center, spacing: 30) {
+					ForEach(foodPrintViewModel.posts) { post in
+						FoodPrintCell(
+							foodPrint: post,
+							showComment: { foodprint in
 								isSelectedFoodPrint = foodprint
 								selectionType = .comment
 							}, showReport: { foodprint in
@@ -45,38 +44,35 @@ struct FoodPrintView: View {
 							}, likePost: {foodPrintViewModel.likePost(foodPrint: post)}, dislikePost: {
 								foodPrintViewModel.dislikePost(foodPrint: post)
 							})
-							.frame(width: geometry.size.width, height: geometry.size.height * 0.9)
-							.padding(16)
-							.background(navigationModel.preferDarkMode ? .black : .white)
-						}
-					}
-					.frame(width: geometry.size.width)
-					.sheet(item: $isSelectedFoodPrint) { item in
-						sheetType(foodPrint: item)
+						.padding(.horizontal, 8)
 					}
 				}
-				.refreshable {
-					foodPrintViewModel.reloadData()
+				//				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.sheet(item: $isSelectedFoodPrint) { item in
+					sheetType(foodPrint: item)
 				}
-				.toolbar {
-					ToolbarItem(placement: .topBarTrailing) {
-						NavigationLink {
-							ChatListView()
-						} label: {
-							Image(systemName: "message.fill")
-								.foregroundStyle(navigationModel.preferDarkMode ? .lightGreen : .darkGreen)
-						}
-					}
-				}
-				.navigationTitle("FoodPrints")
-				.navigationBarTitleDisplayMode(.inline)
 			}
+			.refreshable {
+				foodPrintViewModel.reloadData()
+			}
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					NavigationLink {
+						ChatListView()
+					} label: {
+						Image(systemName: "message.fill")
+							.foregroundStyle(navigationModel.preferDarkMode ? .lightGreen : .darkGreen)
+					}
+				}
+			}
+			.navigationTitle("FoodPrints")
+			.navigationBarTitleDisplayMode(.inline)
 		}
 	}
 }
 
 extension FoodPrintView {
-	private func sheetType(foodPrint: FoodPrint) -> some View {
+	private func sheetType(foodPrint: FBFoodPrint) -> some View {
 		ZStack {
 			switch selectionType {
 			case .comment:
@@ -99,4 +95,5 @@ extension FoodPrintView {
 
 #Preview {
 	FoodPrintView()
+		.environmentObject(NavigationModel())
 }

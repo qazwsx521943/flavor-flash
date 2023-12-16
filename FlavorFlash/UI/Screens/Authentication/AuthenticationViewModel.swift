@@ -9,29 +9,58 @@ import Foundation
 import SwiftUI
 import CryptoKit
 import AuthenticationServices
+import OSLog
 
 @MainActor
 class AuthenticationViewModel: NSObject, ObservableObject {
 
-	@Published var didSignInWithApple = false
+	@EnvironmentObject var navigationModel: NavigationModel
 
 	@Published var isFirstSignIn = false
+
+	@Published var showThirdPartySignUp = false
+
+	@Published var appleSignUpUser: FBUser?
+
+	@Published var username: String = ""
+
+	@Published var displayName: String = ""
 
 	func signInWithApple() async throws {
 		let signInAppleHelper = SignInAppleHelper()
 		do {
 			let tokens = try await signInAppleHelper.startSignInWithAppleFlow()
 			let authDataResult = try await AuthenticationManager.shared.signInWithApple(tokens: tokens)
-			let user = FFUser(auth: authDataResult)
+			appleSignUpUser = FBUser(auth: authDataResult)
+			guard let appleSignUpUser else { return }
 			do {
-				let existingUser = try await UserManager.shared.getUser(userId: user.id)
+				_ = try await UserManager.shared.getUser(userId: appleSignUpUser.id)
 			} catch {
-				try await UserManager.shared.createNewUser(user: user)
 				isFirstSignIn = true
 			}
+
 		} catch {
 			debugPrint("signIn with apple cancelled")
 		}
-		//		print(signInResult)
+	}
+
+	func thirdPartySignUp() async throws {
+		guard appleSignUpUser != nil else { return }
+
+		guard
+			!username.isEmpty,
+			!displayName.isEmpty
+		else {
+			return
+		}
+
+		appleSignUpUser?.displayName = displayName
+		appleSignUpUser?.username = username
+		guard let appleSignUpUser else { return }
+
+		try await UserManager.shared.createUser(user: appleSignUpUser)
+		showThirdPartySignUp.toggle()
 	}
 }
+
+fileprivate let logger = Logger(subsystem: "ios22-jason.FlavorFlash", category: "AuthenticationModel")
