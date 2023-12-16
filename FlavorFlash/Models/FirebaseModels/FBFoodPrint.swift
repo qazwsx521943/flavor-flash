@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FBFoodPrint: FBModelType {
+struct FBFoodPrint: FBModelType, Equatable {
 	var id: String
 	let userId: String
 	let username: String
@@ -77,6 +77,10 @@ struct FBFoodPrint: FBModelType {
 }
 
 extension FBFoodPrint {
+	static func == (lhs: FBFoodPrint, rhs: FBFoodPrint) -> Bool {
+		lhs.id == rhs.id
+	}
+
 	var getAllImagesURL: [String] {
 		return [backCameraImageUrl, frontCameraImageUrl]
 	}

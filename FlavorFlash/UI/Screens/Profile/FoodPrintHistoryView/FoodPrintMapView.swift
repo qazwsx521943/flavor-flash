@@ -25,10 +25,27 @@ struct FoodPrintMapView: UIViewRepresentable {
 			forAnnotationViewWithReuseIdentifier: MKMapViewDefaultAnnotationViewReuseIdentifier
 		)
 
+		if !profileViewModel.foodPrints.isEmpty {
+			mapView.setRegion(MKCoordinateRegion(
+				center: CLLocationCoordinate2D(location: profileViewModel.foodPrints.first!.location!),
+				latitudinalMeters: CLLocationDistance(300),
+				longitudinalMeters: CLLocationDistance(300)),
+							 animated: true)
+		}
+
 		return mapView
 	}
 
 	func updateUIView(_ uiView: UIViewType, context: Context) {
+		let needRemoveAnnotation = uiView.annotations.filter { annotation in
+			guard let annotation = annotation as? FoodPrintAnnotation else { return false }
+			return !profileViewModel.friendFoodPrints.contains { foodPrint in
+				foodPrint == annotation.foodPrint
+			}
+		}
+
+		uiView.removeAnnotations(needRemoveAnnotation)
+
 		for foodPrint in profileViewModel.foodPrints {
 			if let location = foodPrint.location {
 				let coordinate = CLLocationCoordinate2D(location: location)
@@ -61,14 +78,6 @@ struct FoodPrintMapView: UIViewRepresentable {
 
 				uiView.addAnnotation(annotation)
 			}
-		}
-
-		if !profileViewModel.foodPrints.isEmpty {
-			uiView.setRegion(MKCoordinateRegion(
-				center: CLLocationCoordinate2D(location: profileViewModel.foodPrints.first!.location!),
-				latitudinalMeters: CLLocationDistance(300),
-				longitudinalMeters: CLLocationDistance(300)),
-				animated: true)
 		}
 	}
 

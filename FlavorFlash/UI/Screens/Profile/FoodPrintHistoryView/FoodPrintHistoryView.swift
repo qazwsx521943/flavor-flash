@@ -19,6 +19,8 @@ struct FoodPrintHistoryView: View {
 
 	@State private var selectedFoodPrint: FBFoodPrint?
 
+	@State private var selectedFriends: [String] = []
+
 	var body: some View {
 		ZStack(alignment: .topLeading) {
 			FoodPrintMapView(profileViewModel: profileViewModel) { foodPrint in
@@ -47,20 +49,41 @@ struct FoodPrintHistoryView: View {
 						.padding(.top, 16)
 					List {
 						ForEach(profileViewModel.friends) { friend in
-							Text(friend.displayName)
-								.captionBoldStyle()
-								.tint(.white)
-								.onTapGesture {
+							HStack {
+								Text(friend.displayName)
+									.captionBoldStyle()
+									.tint(.white)
+
+								Spacer()
+
+								if selectedFriends.contains(friend.id) {
+									Image(systemName: "checkmark.circle")
+										.foregroundStyle(.green)
+								}
+							}
+							.onTapGesture {
+
+								if selectedFriends.contains(friend.id) {
+									guard let index = selectedFriends.firstIndex(of: friend.id) else { return }
+									selectedFriends.remove(at: index)
+									profileViewModel.friendFoodPrints = profileViewModel.friendFoodPrints.filter { foodPrint in
+										foodPrint.userId != friend.id
+									}
+								} else {
+									selectedFriends.append(friend.id)
+
 									Task {
 										try await profileViewModel.getFriendFoodPrint(userId: friend.id)
 									}
 								}
+
+							}
 						}
 					}
 					.listStyle(.plain)
 				}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
-				.background(.black)
+				.background(navigationModel.preferDarkMode ? .black : .white)
 				.frame(
 					width: geo.size.width,
 					height: geo.size.height / 2
@@ -76,7 +99,7 @@ struct FoodPrintHistoryView: View {
 					FoodPrintCell(foodPrint: selectedFoodPrint, likePost: {
 
 					}, dislikePost: {
-						
+
 					}, hideActionTab: true)
 					.frame(maxWidth: .infinity)
 					.frame(height: 250)
