@@ -47,22 +47,22 @@ struct FoodPrintCell: View {
 	}
 
 	var body: some View {
-			VStack(alignment: .leading, spacing: 10) {
+		VStack(alignment: .leading, spacing: 10) {
 
-				photoDisplay
+			photoDisplay
 
-				Group {
-					actionsTab
+			Group {
+				actionsTab
 
-					postBody
+				postBody
 
-					Text(foodPrint.getRelativeTimeString)
-						.font(.caption2)
-						.foregroundStyle(Color(UIColor.systemGray))
-				}
-				.padding(.horizontal, 12)
-				Spacer()
+				Text(foodPrint.getRelativeTimeString)
+					.font(.caption2)
+					.foregroundStyle(Color(UIColor.systemGray))
 			}
+			.padding(.horizontal, 12)
+			Spacer()
+		}
 	}
 }
 
@@ -116,8 +116,15 @@ private extension FoodPrintCell {
 
 	private var postBody: some View {
 		VStack(alignment: .leading, spacing: 5) {
-			Text(foodPrint.username)
-				.captionBoldStyle()
+			HStack {
+				Text(foodPrint.username)
+					.captionBoldStyle()
+
+				if let restaurantName = foodPrint.restaurantName {
+					Text("at \(restaurantName)")
+						.captionStyle()
+				}
+			}
 
 			Text(foodPrint.description)
 				.captionStyle()

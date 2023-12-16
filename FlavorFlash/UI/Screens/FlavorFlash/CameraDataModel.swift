@@ -136,6 +136,7 @@ final class CameraDataModel: ObservableObject {
 			userId: userId,
 			username: "GodJJ",
 			restaurantId: selectedRestaurant.id,
+			restaurantName: selectedRestaurant.displayName.text,
 			frontCameraImageUrl: frontUrl.absoluteString,
 			frontCameraImagePath: frontImagePath,
 			backCameraImageUrl: backUrl.absoluteString,

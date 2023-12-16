@@ -12,6 +12,7 @@ struct FBFoodPrint: FBModelType {
 	let userId: String
 	let username: String
 	let restaurantId: String?
+	let restaurantName: String?
 	let frontCameraImageUrl: String
 	let frontCameraImagePath: String
 	let backCameraImageUrl: String
@@ -28,6 +29,7 @@ struct FBFoodPrint: FBModelType {
 		case userId = "user_id"
 		case username
 		case restaurantId = "restaurant_id"
+		case restaurantName = "restaurant_name"
 		case frontCameraImageUrl = "front_camera_image_url"
 		case frontCameraImagePath = "front_camera_image_path"
 		case backCameraImageUrl = "back_camera_image_url"
@@ -45,6 +47,7 @@ struct FBFoodPrint: FBModelType {
 		userId: String,
 		username: String,
 		restaurantId: String? = nil,
+		restaurantName: String? = nil,
 		frontCameraImageUrl: String,
 		frontCameraImagePath: String,
 		backCameraImageUrl: String,
@@ -59,6 +62,7 @@ struct FBFoodPrint: FBModelType {
 		self.userId = userId
 		self.username = username
 		self.restaurantId = restaurantId
+		self.restaurantName = restaurantName
 		self.frontCameraImageUrl = frontCameraImageUrl
 		self.frontCameraImagePath = frontCameraImagePath
 		self.backCameraImageUrl = backCameraImageUrl
@@ -96,6 +100,8 @@ extension FBFoodPrint {
 		id: "1",
 		userId: "1",
 		username: "Godjj",
+		restaurantId: "123",
+		restaurantName: "我家",
 		frontCameraImageUrl:
 			"https://picsum.photos/200/300",
 		frontCameraImagePath: "user/QzZRdN8ggVeMjryKjPMUjcljRJQ2/72E63EBF-3530-47A7-8581-052C371E1663.jpeg",
