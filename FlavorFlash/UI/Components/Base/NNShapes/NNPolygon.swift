@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Polygon: Shape {
+struct NNPolygon: Shape {
 	var sides: Int = 5
 
 	func path(in rect: CGRect ) -> Path {
@@ -47,5 +47,5 @@ struct Polygon: Shape {
 }
 
 #Preview {
-    Polygon()
+    NNPolygon()
 }

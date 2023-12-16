@@ -48,7 +48,7 @@ struct HomeView: View {
 											.fill(.shadowGray)
 											.zIndex(1.0)
 											.overlay(alignment: .bottom) {
-												Polygon(sides: 3)
+												NNPolygon(sides: 3)
 													.fill(.shadowGray)
 													.frame(width: 20, height: 20)
 													.rotationEffect(.degrees(90.0))
