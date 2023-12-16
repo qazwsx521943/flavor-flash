@@ -102,6 +102,7 @@
 		E7A399472B034E30005C8021 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399462B034E30005C8021 /* ChatListView.swift */; };
 		E7B37E1E2B2D4E8A00157DF0 /* NNTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B37E1D2B2D4E8A00157DF0 /* NNTriangle.swift */; };
 		E7B37E202B2D81E700157DF0 /* NNDiamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B37E1F2B2D81E700157DF0 /* NNDiamond.swift */; };
+		E7B37E222B2DA1B900157DF0 /* NNLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B37E212B2DA1B900157DF0 /* NNLoadingIndicator.swift */; };
 		E7C110482B22188F00999FBD /* CGFloat+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C110472B22188F00999FBD /* CGFloat+EXT.swift */; };
 		E7C1104C2B22F0EF00999FBD /* RestaurantCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104B2B22F0EF00999FBD /* RestaurantCollection.swift */; };
 		E7C1104E2B22F1DE00999FBD /* RestaurantCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */; };
@@ -252,6 +253,7 @@
 		E7A399462B034E30005C8021 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
 		E7B37E1D2B2D4E8A00157DF0 /* NNTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTriangle.swift; sourceTree = "<group>"; };
 		E7B37E1F2B2D81E700157DF0 /* NNDiamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNDiamond.swift; sourceTree = "<group>"; };
+		E7B37E212B2DA1B900157DF0 /* NNLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNLoadingIndicator.swift; sourceTree = "<group>"; };
 		E7C110472B22188F00999FBD /* CGFloat+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+EXT.swift"; sourceTree = "<group>"; };
 		E7C1104B2B22F0EF00999FBD /* RestaurantCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollection.swift; sourceTree = "<group>"; };
 		E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionItem.swift; sourceTree = "<group>"; };
@@ -627,6 +629,7 @@
 				E703590D2B246BB7008F14E7 /* BookmarkButton.swift */,
 				E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */,
 				E7EBA2922B2B31250088C293 /* NNToastView.swift */,
+				E7B37E212B2DA1B900157DF0 /* NNLoadingIndicator.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1215,6 +1218,7 @@
 				E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+EXT.swift in Sources */,
+				E7B37E222B2DA1B900157DF0 /* NNLoadingIndicator.swift in Sources */,
 				E703590E2B246BB7008F14E7 /* BookmarkButton.swift in Sources */,
 				E73B171A2B0AF8A200F1A0DD /* ChatRoom.swift in Sources */,
 				E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */,

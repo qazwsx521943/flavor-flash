@@ -14,7 +14,7 @@ struct CommentView: View {
 
 	@State private var showList = false
 
-	@State private var showLoading = false
+	@State private var showLoading = true
 
 	var body: some View {
 		GeometryReader { geometry in
@@ -73,6 +73,14 @@ struct CommentView: View {
 			.navigationBarBackButtonHidden()
 			.toolbar {
 				NavigationBarBackButton()
+			}
+			.overlay(alignment: .center) {
+				if showLoading {
+					Color.black.opacity(0.3)
+						.ignoresSafeArea()
+					NNLoadingIndicator()
+						.frame(width: 300, height: 300)
+				}
 			}
 		}
 	}
