@@ -23,12 +23,15 @@ struct FoodPrintCell: View {
 
 	var dislikePost: () -> Void
 
+	var hideActionTab: Bool
+
 	init(
 		foodPrint: FBFoodPrint,
 		showComment: ( (FBFoodPrint) -> Void)? = nil,
 		showReport: ( (FBFoodPrint) -> Void)? = nil,
 		likePost: @escaping () -> Void,
-		dislikePost: @escaping () -> Void) {
+		dislikePost: @escaping () -> Void,
+		hideActionTab: Bool = false) {
 		self.foodPrint = foodPrint
 
 		if
@@ -44,25 +47,28 @@ struct FoodPrintCell: View {
 		self.showReport = showReport
 		self.likePost = likePost
 		self.dislikePost = dislikePost
+		self.hideActionTab = hideActionTab
 	}
 
 	var body: some View {
-			VStack(alignment: .leading, spacing: 10) {
+		VStack(alignment: .leading, spacing: 10) {
 
-				photoDisplay
+			photoDisplay
 
-				Group {
+			Group {
+				if !hideActionTab {
 					actionsTab
-
-					postBody
-
-					Text(foodPrint.getRelativeTimeString)
-						.font(.caption2)
-						.foregroundStyle(Color(UIColor.systemGray))
 				}
-				.padding(.horizontal, 12)
-				Spacer()
+
+				postBody
+
+				Text(foodPrint.getRelativeTimeString)
+					.font(.caption2)
+					.foregroundStyle(Color(UIColor.systemGray))
 			}
+			.padding(.horizontal, 12)
+			Spacer()
+		}
 	}
 }
 
@@ -116,8 +122,15 @@ private extension FoodPrintCell {
 
 	private var postBody: some View {
 		VStack(alignment: .leading, spacing: 5) {
-			Text(foodPrint.username)
-				.captionBoldStyle()
+			HStack {
+				Text(foodPrint.username)
+					.captionBoldStyle()
+
+				if let restaurantName = foodPrint.restaurantName {
+					Text("at \(restaurantName)")
+						.captionStyle()
+				}
+			}
 
 			Text(foodPrint.description)
 				.captionStyle()

@@ -19,8 +19,22 @@ class FoodPrintAnnotationView: MKMarkerAnnotationView {
 			let mapsButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 48, height: 48)))
 			mapsButton.setBackgroundImage(#imageLiteral(resourceName: "apple-map"), for: .normal)
 			rightCalloutAccessoryView = mapsButton
+			rightCalloutAccessoryView?.tag = 1
 
 			glyphText = annotation.glythText
+
+			let postButton = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 48, height: 48)))
+			guard let imageUrl = annotation.imageUrl else {
+				return
+			}
+
+			Task {
+				let backCameraImage = try await UIImageView.getUIImage(urlString: imageUrl)
+				let cgImage = backCameraImage.cgImage
+				postButton.setBackgroundImage(UIImage(cgImage: cgImage!, scale: 1.0, orientation: .right), for: .normal)
+				leftCalloutAccessoryView = postButton
+				leftCalloutAccessoryView?.tag = 0
+			}
 		}
 	}
 }

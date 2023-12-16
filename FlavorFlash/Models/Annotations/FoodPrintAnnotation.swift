@@ -8,7 +8,13 @@
 import MapKit
 
 class FoodPrintAnnotation: NSObject, MKAnnotation {
+	var id: String
+
+	var foodPrint: FBFoodPrint
+
 	var coordinate: CLLocationCoordinate2D
+
+	var glythText: String
 
 	var title: String?
 
@@ -16,18 +22,37 @@ class FoodPrintAnnotation: NSObject, MKAnnotation {
 
 	var imageUrl: String?
 
-	init(coordinate: CLLocationCoordinate2D, title: String? = nil, subtitle: String? = nil, imageUrl: String? = nil) {
+
+	init(
+		id: String,
+		coordinate: CLLocationCoordinate2D,
+		glythText: String,
+		foodPrint: FBFoodPrint,
+		title: String? = nil,
+		subtitle: String? = nil,
+		imageUrl: String? = nil) {
+		self.id = id
 		self.coordinate = coordinate
+		self.glythText = glythText
+		self.foodPrint = foodPrint
 		self.title = title
 		self.subtitle = subtitle
 		self.imageUrl = imageUrl
 	}
 
 	var markerTintColor: UIColor {
-		return .systemPurple
+		switch glythText {
+		case "Me": return UIColor.red
+		default: return UIColor.purple
+		}
 	}
 
-	var glythText: String {
-		return "Me"
+	var mapItem: MKMapItem? {
+		guard let title else { return nil }
+
+		let placeMark = MKPlacemark(coordinate: coordinate)
+		let mapItem = MKMapItem(placemark: placeMark)
+		mapItem.name = title
+		return mapItem
 	}
 }

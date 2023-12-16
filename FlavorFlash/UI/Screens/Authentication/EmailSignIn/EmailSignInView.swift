@@ -23,10 +23,16 @@ struct EmailSignInView: View {
     var body: some View {
 		VStack {
 			if isAnimated {
-				FFLottieView(lottieFile: "Loading")
-					.frame(width: 200, height: 200)
-					.transition(.push(from: .leading))
-					.animation(Animation.spring, value: isAnimated)
+				VStack {
+					NNLoadingIndicator()
+
+					Text("Loading...")
+						.titleStyle()
+						.multilineTextAlignment(.center)
+				}
+				.frame(maxWidth: .infinity, maxHeight: .infinity)
+				.transition(.push(from: .leading))
+				.animation(Animation.spring, value: isAnimated)
 
 			} else {
 				Text(viewModel.state.navigationTitle)
@@ -94,20 +100,24 @@ extension EmailSignInView {
 				isAnimated = false
 				navigationModel.showSignInModal = false
 				navigationModel.showCategorySelectionModal = true
+				NotificationCenter.default.post(name: .AuthStateDidChange, object: nil)
 				return
 			} catch {
-				isAnimated = false
+				debugPrint(error)
 			}
 
 			do {
 				try await viewModel.signIn()
 				isAnimated = false
 				navigationModel.showSignInModal = false
+				NotificationCenter.default.post(name: .AuthStateDidChange, object: nil)
 				return
 			} catch {
+				isAnimated = false
 				debugPrint(error)
 				return
 			}
+
 		}
 	}
 }

@@ -111,10 +111,12 @@ final class CameraDataModel: ObservableObject {
 		return Image(captureImage.cgImageRepresentation()!, scale: 1, orientation: .right, label: Text("back"))
 	}
 
-	func saveImages() async throws {
+	func saveFoodPrint() async throws {
 		let authResultModel = try AuthenticationManager.shared.getAuthenticatedUser()
 
 		let userId = authResultModel.uid
+
+		let currentUser = try await UserManager.shared.getUser(userId: userId)
 
 		guard
 			let fcImage = capturedFrontCamImage?.cgImageRepresentation(),
@@ -134,8 +136,9 @@ final class CameraDataModel: ObservableObject {
 		let foodPrint = FBFoodPrint(
 			id: UUID().uuidString,
 			userId: userId,
-			username: "GodJJ",
+			username: currentUser.username,
 			restaurantId: selectedRestaurant.id,
+			restaurantName: selectedRestaurant.displayName.text,
 			frontCameraImageUrl: frontUrl.absoluteString,
 			frontCameraImagePath: frontImagePath,
 			backCameraImageUrl: backUrl.absoluteString,
@@ -146,6 +149,9 @@ final class CameraDataModel: ObservableObject {
 			createdDate: Date())
 
 		try await UserManager.shared.saveUserFoodPrint(userId: userId, foodPrint: foodPrint)
+
+		capturedBackCamImage = nil
+		capturedFrontCamImage = nil
 	}
 
 	// TODO: 

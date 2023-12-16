@@ -100,6 +100,9 @@
 		E7A399432B034E11005C8021 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399422B034E11005C8021 /* HomeView.swift */; };
 		E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399442B034E22005C8021 /* FlavorFlashView.swift */; };
 		E7A399472B034E30005C8021 /* ChatListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A399462B034E30005C8021 /* ChatListView.swift */; };
+		E7B37E1E2B2D4E8A00157DF0 /* NNTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B37E1D2B2D4E8A00157DF0 /* NNTriangle.swift */; };
+		E7B37E202B2D81E700157DF0 /* NNDiamond.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B37E1F2B2D81E700157DF0 /* NNDiamond.swift */; };
+		E7B37E222B2DA1B900157DF0 /* NNLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B37E212B2DA1B900157DF0 /* NNLoadingIndicator.swift */; };
 		E7C110482B22188F00999FBD /* CGFloat+EXT.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C110472B22188F00999FBD /* CGFloat+EXT.swift */; };
 		E7C1104C2B22F0EF00999FBD /* RestaurantCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104B2B22F0EF00999FBD /* RestaurantCollection.swift */; };
 		E7C1104E2B22F1DE00999FBD /* RestaurantCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */; };
@@ -135,7 +138,7 @@
 		E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC752B209C2B00674C20 /* ShadowStyles.swift */; };
 		E7FECC7A2B20A69600674C20 /* ToggleStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC792B20A69600674C20 /* ToggleStyles.swift */; };
 		E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC832B218B1600674C20 /* PetSelectionView.swift */; };
-		E7FECC862B21AC6000674C20 /* Polygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC852B21AC6000674C20 /* Polygon.swift */; };
+		E7FECC862B21AC6000674C20 /* NNPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC852B21AC6000674C20 /* NNPolygon.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
 		E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */; };
 		E7FFB3862B1C917C0065A213 /* FoodPrintMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */; };
@@ -248,6 +251,9 @@
 		E7A399422B034E11005C8021 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		E7A399442B034E22005C8021 /* FlavorFlashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashView.swift; sourceTree = "<group>"; };
 		E7A399462B034E30005C8021 /* ChatListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListView.swift; sourceTree = "<group>"; };
+		E7B37E1D2B2D4E8A00157DF0 /* NNTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNTriangle.swift; sourceTree = "<group>"; };
+		E7B37E1F2B2D81E700157DF0 /* NNDiamond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNDiamond.swift; sourceTree = "<group>"; };
+		E7B37E212B2DA1B900157DF0 /* NNLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNLoadingIndicator.swift; sourceTree = "<group>"; };
 		E7C110472B22188F00999FBD /* CGFloat+EXT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGFloat+EXT.swift"; sourceTree = "<group>"; };
 		E7C1104B2B22F0EF00999FBD /* RestaurantCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollection.swift; sourceTree = "<group>"; };
 		E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionItem.swift; sourceTree = "<group>"; };
@@ -270,7 +276,7 @@
 		E7FECC752B209C2B00674C20 /* ShadowStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyles.swift; sourceTree = "<group>"; };
 		E7FECC792B20A69600674C20 /* ToggleStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyles.swift; sourceTree = "<group>"; };
 		E7FECC832B218B1600674C20 /* PetSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSelectionView.swift; sourceTree = "<group>"; };
-		E7FECC852B21AC6000674C20 /* Polygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polygon.swift; sourceTree = "<group>"; };
+		E7FECC852B21AC6000674C20 /* NNPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNPolygon.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryView.swift; sourceTree = "<group>"; };
 		E7FFB3852B1C917C0065A213 /* FoodPrintMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintMapView.swift; sourceTree = "<group>"; };
@@ -481,7 +487,6 @@
 			children = (
 				E7627D8E2B26BB2000F0AAC5 /* PhotoPickerVC.swift */,
 				E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */,
-				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
 				E7627D8A2B26B06C00F0AAC5 /* CanvasStackItem.swift */,
 			);
 			path = CameraView;
@@ -616,13 +621,14 @@
 		E796396B2B105B2A006FF600 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				E7B37E1A2B2D3AF400157DF0 /* NNShapes */,
 				E774569B2B28536800CAF64C /* LottieAnimation */,
 				E77456932B283E7800CAF64C /* FFLottieView.swift */,
 				E7FFB3802B1C35CF0065A213 /* LikeButton.swift */,
 				E703590D2B246BB7008F14E7 /* BookmarkButton.swift */,
-				E7FECC852B21AC6000674C20 /* Polygon.swift */,
 				E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */,
 				E7EBA2922B2B31250088C293 /* NNToastView.swift */,
+				E7B37E212B2DA1B900157DF0 /* NNLoadingIndicator.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -708,6 +714,16 @@
 				E7F9EDB12B084BD8005976BE /* Components */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		E7B37E1A2B2D3AF400157DF0 /* NNShapes */ = {
+			isa = PBXGroup;
+			children = (
+				E7FECC852B21AC6000674C20 /* NNPolygon.swift */,
+				E7B37E1D2B2D4E8A00157DF0 /* NNTriangle.swift */,
+				E7B37E1F2B2D81E700157DF0 /* NNDiamond.swift */,
+			);
+			path = NNShapes;
 			sourceTree = "<group>";
 		};
 		E7E200DD2B0909A0003C22D6 /* Chat */ = {
@@ -918,6 +934,7 @@
 				E75588C32B0EF3AB00086854 /* PreviewVIew */,
 				E75588BA2B0DCD7A00086854 /* CameraView */,
 				E7A399442B034E22005C8021 /* FlavorFlashView.swift */,
+				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
 				E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */,
 				E70C6C5C2B0CEA05003B27EE /* CommentView.swift */,
 			);
@@ -1176,7 +1193,7 @@
 				E7A399452B034E22005C8021 /* FlavorFlashView.swift in Sources */,
 				E71BFB1E2B176E6B008E89DE /* Utilities.swift in Sources */,
 				E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */,
-				E7FECC862B21AC6000674C20 /* Polygon.swift in Sources */,
+				E7FECC862B21AC6000674C20 /* NNPolygon.swift in Sources */,
 				E70AF8E02B0710BA0003462C /* appConfig.swift in Sources */,
 				E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */,
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,
@@ -1192,6 +1209,7 @@
 				E7274B7D2B19ABE5008C439F /* BackgroundModifiers.swift in Sources */,
 				E7C1104C2B22F0EF00999FBD /* RestaurantCollection.swift in Sources */,
 				E70C6C412B0BA145003B27EE /* BorderModifiers.swift in Sources */,
+				E7B37E202B2D81E700157DF0 /* NNDiamond.swift in Sources */,
 				E74EDF442B15B9B4004DE202 /* ChatroomView.swift in Sources */,
 				E73225832B1B0A4C00EE14CC /* OverlayModifiers.swift in Sources */,
 				E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */,
@@ -1200,6 +1218,7 @@
 				E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+EXT.swift in Sources */,
+				E7B37E222B2DA1B900157DF0 /* NNLoadingIndicator.swift in Sources */,
 				E703590E2B246BB7008F14E7 /* BookmarkButton.swift in Sources */,
 				E73B171A2B0AF8A200F1A0DD /* ChatRoom.swift in Sources */,
 				E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */,
@@ -1218,6 +1237,7 @@
 				E70C6C5B2B0C9BA3003B27EE /* KingfisherWrapper.swift in Sources */,
 				E70C6C452B0BAD51003B27EE /* TextFieldModifiers.swift in Sources */,
 				E7A3993F2B034AEC005C8021 /* FFTabBar.swift in Sources */,
+				E7B37E1E2B2D4E8A00157DF0 /* NNTriangle.swift in Sources */,
 				E70C6C352B0B6134003B27EE /* PlaceFetcher.swift in Sources */,
 				E7FFC24B2B037A5300F7B171 /* ViewfinderView.swift in Sources */,
 				E7C110482B22188F00999FBD /* CGFloat+EXT.swift in Sources */,
