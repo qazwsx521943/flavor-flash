@@ -487,7 +487,6 @@
 			children = (
 				E7627D8E2B26BB2000F0AAC5 /* PhotoPickerVC.swift */,
 				E7FFC24A2B037A5300F7B171 /* ViewfinderView.swift */,
-				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
 				E7627D8A2B26B06C00F0AAC5 /* CanvasStackItem.swift */,
 			);
 			path = CameraView;
@@ -935,6 +934,7 @@
 				E75588C32B0EF3AB00086854 /* PreviewVIew */,
 				E75588BA2B0DCD7A00086854 /* CameraView */,
 				E7A399442B034E22005C8021 /* FlavorFlashView.swift */,
+				E7FFC24C2B037A8E00F7B171 /* CameraView.swift */,
 				E715D9AC2B03AC8000B6478D /* CameraDataModel.swift */,
 				E70C6C5C2B0CEA05003B27EE /* CommentView.swift */,
 			);

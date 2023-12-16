@@ -12,6 +12,8 @@ struct FoodPrintMapView: UIViewRepresentable {
 
 	@ObservedObject var profileViewModel: ProfileViewModel
 
+	var action: (FBFoodPrint) -> ()
+
 	typealias UIViewType = MKMapView
 
 	func makeUIView(context: Context) -> MKMapView {
@@ -27,27 +29,33 @@ struct FoodPrintMapView: UIViewRepresentable {
 	}
 
 	func updateUIView(_ uiView: UIViewType, context: Context) {
-		debugPrint("inside updateView : \(profileViewModel.foodPrints)")
 		for foodPrint in profileViewModel.foodPrints {
 			if let location = foodPrint.location {
 				let coordinate = CLLocationCoordinate2D(location: location)
 				let annotation = FoodPrintAnnotation(
+					id: foodPrint.id,
 					coordinate: coordinate,
-					title: foodPrint.id,
-					subtitle: foodPrint.restaurantId,
+					glythText: "Me",
+					foodPrint: foodPrint,
+					title: foodPrint.restaurantName,
+					subtitle: foodPrint.description,
 					imageUrl: foodPrint.backCameraImageUrl)
 				uiView.addAnnotation(annotation)
 			}
 		}
 
+		debugPrint("inside updateView : \(profileViewModel.friendFoodPrints.count)")
 		debugPrint("friend foodPrints: \(profileViewModel.friendFoodPrints.map { $0.id })")
 		for friendFoodPrint in profileViewModel.friendFoodPrints {
 			if let location = friendFoodPrint.location {
 				let coordinate = CLLocationCoordinate2D(location: location)
 				let annotation = FoodPrintAnnotation(
+					id: friendFoodPrint.id,
 					coordinate: coordinate,
-					title: friendFoodPrint.id,
-					subtitle: friendFoodPrint.restaurantId,
+					glythText: String(friendFoodPrint.username.prefix(5)),
+					foodPrint: friendFoodPrint,
+					title: friendFoodPrint.restaurantName,
+					subtitle: friendFoodPrint.description,
 					imageUrl: friendFoodPrint.backCameraImageUrl
 				)
 
@@ -75,6 +83,28 @@ class FoodPrintMapViewCoordinator: NSObject, MKMapViewDelegate {
 
 	init(_ parentView: FoodPrintMapView) {
 		self.parentView = parentView
+	}
+
+	func mapView(
+		_ mapView: MKMapView,
+		annotationView view: MKAnnotationView,
+		calloutAccessoryControlTapped control: UIControl) {
+			guard let restaurant = view.annotation as? FoodPrintAnnotation else { return }
+
+			switch control.tag {
+			case 0:
+				print("post button")
+				parentView.action(restaurant.foodPrint)
+			case 1:
+
+				let launchOptions = [
+					MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeWalking
+				]
+
+				restaurant.mapItem?.openInMaps(launchOptions: launchOptions)
+			default:
+				print("default show post")
+			}
 	}
 }
 

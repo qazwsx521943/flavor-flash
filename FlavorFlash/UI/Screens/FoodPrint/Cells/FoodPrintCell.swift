@@ -23,12 +23,15 @@ struct FoodPrintCell: View {
 
 	var dislikePost: () -> Void
 
+	var hideActionTab: Bool
+
 	init(
 		foodPrint: FBFoodPrint,
 		showComment: ( (FBFoodPrint) -> Void)? = nil,
 		showReport: ( (FBFoodPrint) -> Void)? = nil,
 		likePost: @escaping () -> Void,
-		dislikePost: @escaping () -> Void) {
+		dislikePost: @escaping () -> Void,
+		hideActionTab: Bool = false) {
 		self.foodPrint = foodPrint
 
 		if
@@ -44,6 +47,7 @@ struct FoodPrintCell: View {
 		self.showReport = showReport
 		self.likePost = likePost
 		self.dislikePost = dislikePost
+		self.hideActionTab = hideActionTab
 	}
 
 	var body: some View {
@@ -52,7 +56,9 @@ struct FoodPrintCell: View {
 			photoDisplay
 
 			Group {
-				actionsTab
+				if !hideActionTab {
+					actionsTab
+				}
 
 				postBody
 

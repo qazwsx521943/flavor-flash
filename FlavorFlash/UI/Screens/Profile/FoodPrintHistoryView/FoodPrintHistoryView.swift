@@ -15,9 +15,16 @@ struct FoodPrintHistoryView: View {
 
 	@State private var showFriendSelectionView = false
 
+	@State private var showFriendPost = false
+
+	@State private var selectedFoodPrint: FBFoodPrint?
+
 	var body: some View {
 		ZStack(alignment: .topLeading) {
-			FoodPrintMapView(profileViewModel: profileViewModel)
+			FoodPrintMapView(profileViewModel: profileViewModel) { foodPrint in
+				selectedFoodPrint = foodPrint
+				showFriendPost.toggle()
+			}
 
 			Image(systemName: "list.bullet")
 				.resizable()
@@ -35,15 +42,13 @@ struct FoodPrintHistoryView: View {
 
 			GeometryReader { geo in
 				VStack {
-					Text("選擇好友足跡")
-						.font(.title2)
-						.bold()
+					Text("Select Foodprint")
+						.bodyBoldStyle()
 						.padding(.top, 16)
 					List {
 						ForEach(profileViewModel.friends) { friend in
 							Text(friend.displayName)
-								.font(.title3)
-								.bold()
+								.captionBoldStyle()
 								.tint(.white)
 								.onTapGesture {
 									Task {
@@ -65,6 +70,22 @@ struct FoodPrintHistoryView: View {
 				.transition(.move(edge: .bottom))
 			}
 		}
+		.sheet(isPresented: $showFriendPost, content: {
+			if let selectedFoodPrint {
+				VStack(alignment: .center) {
+					FoodPrintCell(foodPrint: selectedFoodPrint, likePost: {
+
+					}, dislikePost: {
+						
+					}, hideActionTab: true)
+					.frame(maxWidth: .infinity)
+					.frame(height: 250)
+					.padding(.horizontal, 8)
+				}
+				.padding()
+				.presentationDetents([.medium, .large])
+			}
+		})
 		.onAppear {
 			navigationModel.hideTabBar()
 		}

@@ -14,7 +14,9 @@ struct CommentView: View {
 
 	@State private var showList = false
 
-	@State private var showLoading = true
+	@State private var showLoading = false
+
+	@Environment(\.dismiss) private var dismiss
 
 	var body: some View {
 		GeometryReader { geometry in
@@ -130,8 +132,9 @@ extension CommentView {
 			self.hideKeyboard()
 			showLoading = true
 			Task {
-				try await cameraDataModel.saveImages()
+				try await cameraDataModel.saveFoodPrint()
 				showLoading = false
+				dismiss()
 				navigationModel.selectedTab = .home
 			}
 		} label: {
