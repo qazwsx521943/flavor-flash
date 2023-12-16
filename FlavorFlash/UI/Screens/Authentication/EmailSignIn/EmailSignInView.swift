@@ -100,6 +100,7 @@ extension EmailSignInView {
 				isAnimated = false
 				navigationModel.showSignInModal = false
 				navigationModel.showCategorySelectionModal = true
+				NotificationCenter.default.post(name: .AuthStateDidChange, object: nil)
 				return
 			} catch {
 				debugPrint(error)
@@ -109,12 +110,14 @@ extension EmailSignInView {
 				try await viewModel.signIn()
 				isAnimated = false
 				navigationModel.showSignInModal = false
+				NotificationCenter.default.post(name: .AuthStateDidChange, object: nil)
 				return
 			} catch {
 				isAnimated = false
 				debugPrint(error)
 				return
 			}
+
 		}
 	}
 }

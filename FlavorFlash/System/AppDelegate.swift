@@ -28,7 +28,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
             return ProdENV()
             #endif
         }()
+		if UserDefaults.standard.value(forKey: "selectedSkin") == nil {
+			print("Set userDefault to cat_1")
 
+			UserDefaults.standard.set("cat_1", forKey: "selectedSkin")
+		}
 		FirebaseApp.configure()
 
 		// [START set_messaging_delegate]

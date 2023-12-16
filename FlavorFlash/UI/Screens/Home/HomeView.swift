@@ -7,7 +7,7 @@
 
 import SwiftUI
 import os.log
-enum BoxSkin: String {
+enum BoxSkin: String, Codable {
 	case cat01 = "cat_1"
 	case cat02 = "cat_2"
 	case cat03 = "cat_3"
@@ -136,6 +136,9 @@ struct HomeView: View {
 					rankPreference: $viewModel.rankPreference.unwrapped(.distance))
 				.padding()
 				.presentationDetents([.medium])
+			}
+			.onAppear {
+				try? viewModel.checkUpdate()
 			}
 			.navigationTitle("NumNum")
 			.navigationBarTitleDisplayMode(.inline)
