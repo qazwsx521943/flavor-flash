@@ -22,7 +22,7 @@ struct BookmarkButton: View {
 				ZStack {
 					Image(systemName: isLiked ? "bookmark.fill" : "bookmark")
 						.font(isLiked ? .title2 : .title3)
-						.foregroundColor(Color(isLiked ? .lightGreen : .white))
+						.foregroundColor(isLiked ? Color.lightGreen : Color.primary)
 						.animation(.interpolatingSpring(stiffness: 170, damping: 15), value: isLiked)
 
 					Circle()
