@@ -289,27 +289,29 @@ extension ProfileView {
 								Spacer()
 
 								HStack {
-									let isFriend = viewModel.friends.contains(searchedUser)
-									Button {
-										Task {
-											guard let searchedUser = viewModel.searchedUser else { return }
-											try await viewModel.sendRequest(to: searchedUser.id)
+									if let friends = viewModel.user?.friends {
+										let isFriend = friends.contains(searchedUser.id)
+										Button {
+											Task {
+												guard let searchedUser = viewModel.searchedUser else { return }
+												try await viewModel.sendRequest(to: searchedUser.id)
+											}
+										} label: {
+											Text(isFriend ? "Added" : "Add")
+												.captionStyle()
+												.foregroundStyle(.white)
 										}
-									} label: {
-										Text(isFriend ? "Added" : "Add")
-											.captionStyle()
-											.foregroundStyle(.white)
-									}
-									.buttonStyle(SmallPrimaryButtonStyle())
-									.disabled(isFriend)
+										.buttonStyle(SmallPrimaryButtonStyle())
+										.disabled(isFriend)
 
-									Button {
-										viewModel.searchedUser = nil
-									} label: {
-										Image(systemName: "xmark")
-											.captionStyle()
+										Button {
+											viewModel.searchedUser = nil
+										} label: {
+											Image(systemName: "xmark")
+												.captionStyle()
+										}
+										.buttonStyle(IconButtonStyle())
 									}
-									.buttonStyle(IconButtonStyle())
 								}
 							}
 						} else {
