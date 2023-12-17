@@ -126,7 +126,7 @@ struct ProfileView: View {
 					Text("Appearance")
 						.captionStyle()
 				}
-
+				// QRCODE Section
 				Section {
 					qrcodeView
 				} header: {
@@ -224,8 +224,8 @@ extension ProfileView {
 			.sheet(isPresented: $showQRCode) {
 				VStack(spacing: 50) {
 					Picker("QRCode scanner", selection: $qrCodeMode) {
-						Text("顯示QRCode").tag(QRCodeMode.myQRCode)
-						Text("掃描QRCode").tag(QRCodeMode.scanQRCode)
+						Text("Show QRCode").tag(QRCodeMode.myQRCode)
+						Text("Scan QRCode").tag(QRCodeMode.scanQRCode)
 					}
 					.pickerStyle(.segmented)
 					.padding(.horizontal, 16)
@@ -270,37 +270,32 @@ extension ProfileView {
 								}
 
 								Text(searchedUser.displayName)
+									.captionBoldStyle()
 
 								Spacer()
 
-								VStack(alignment: .center, spacing: 4) {
-									Button {
-										viewModel.searchedUser = nil
-									} label: {
-										Text("取消")
-											.font(.caption)
-											.padding(8)
-											.foregroundStyle(.white)
-									}
-									.frame(width: 80, height: 40)
-									.backgroundStyle(Color.black.opacity(0.7))
-									.clipShape(RoundedRectangle(cornerRadius: 10))
-									.border(Color.white, width: 2)
-
+								HStack {
+									let isFriend = viewModel.friends.contains(searchedUser)
 									Button {
 										Task {
 											guard let searchedUser = viewModel.searchedUser else { return }
 											try await viewModel.sendRequest(to: searchedUser.id)
 										}
 									} label: {
-										Text("加入")
-											.font(.caption)
-											.padding(8)
+										Text(isFriend ? "Added" : "Add")
+											.captionStyle()
 											.foregroundStyle(.white)
 									}
-									.frame(width: 80, height: 40)
-									.background(Color.purple)
-									.clipShape(RoundedRectangle(cornerRadius: 10))
+									.buttonStyle(SmallPrimaryButtonStyle())
+									.disabled(isFriend)
+
+									Button {
+										viewModel.searchedUser = nil
+									} label: {
+										Image(systemName: "xmark")
+											.captionStyle()
+									}
+									.buttonStyle(IconButtonStyle())
 								}
 							}
 						} else {
