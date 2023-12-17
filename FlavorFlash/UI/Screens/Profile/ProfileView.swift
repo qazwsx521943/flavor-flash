@@ -35,105 +35,15 @@ struct ProfileView: View {
 		NavigationStack {
 
 			if let user = viewModel.user {
-				ProfileHeader(
-					avatarUrlString: user.profileImageUrl ?? "",
-					displayName: user.displayName
-				) {
-					ActivityItemDisplay(title: "foodprints", count: viewModel.foodPrints.count) {
-						showFoodPrint = true
-					}
-					ActivityItemDisplay(title: "badges", count: 0)
-					ActivityItemDisplay(title: "friends", count: viewModel.friends.count) {
-						showFriends = true
-					}
-				}
-				.onAppear {
-					Task {
-						do {
-							try await viewModel.getAllFriends()
-						} catch {
-							debugPrint("error")
-						}
-					}
-				}
-				.padding(.horizontal, 16)
-				.padding(.top, 50)
-				.navigationDestination(isPresented: $showFriends) {
-					List {
-						ForEach(viewModel.friends, id: \.self) { friend in
-							HStack {
-								KFImage(URL(string: friend.profileImageUrl ?? ""))
-									.placeholder {
-										Image(systemName: "person.fill")
-									}
-									.resizable()
-									.scaledToFill()
-									.frame(width: 50, height: 50)
-									.clipShape(Circle())
-
-								Text(friend.displayName)
-
-								Spacer()
-
-								Text("...")
-									.bodyStyle()
-									.contextMenu {
-										Button(role: .destructive) {
-											viewModel.deleteFriend(friend.id)
-										} label: {
-											Text("Delete")
-										}
-
-										Button(role: .destructive) {
-											viewModel.blockFriend(friend.id)
-										} label: {
-											Text("Block")
-										}
-
-									} preview: {
-										KFImage(URL(string: friend.profileImageUrl ?? ""))
-											.placeholder {
-												Image(systemName: "person.fill")
-											}
-											.resizable()
-											.frame(width: 200, height: 200)
-									}
-							}
-						}
-					}
-					.listStyle(.plain)
-					.toolbar {
-						NavigationBarBackButton()
-					}
-					.navigationBarBackButtonHidden()
-					.navigationTitle("Friends")
-					.navigationBarTitleDisplayMode(.inline)
-				}
-				.navigationDestination(isPresented: $showFoodPrint) {
-					FoodPrintHistoryView(profileViewModel: viewModel)
-				}
+				profileHeader(user)
 			}
 
 			List {
-				Section {
-					Toggle(isOn: $navigationModel.preferDarkMode) {
-						Text("Dark Mode")
-							.prefixedWithSFSymbol(named: "circle.lefthalf.filled", height: 20)
-							.captionStyle()
-					}
-					.toggleStyle(PrimaryToggleStyle(size: 16))
-				} header: {
-					Text("Appearance")
-						.captionStyle()
-				}
+				// Appearance Setting
+				appearanceSection
 				// QRCODE Section
-				Section {
-					qrcodeView
-				} header: {
-					Text("Social")
-						.captionStyle()
-				}
-
+				socialSection
+				// Logout button
 				accountConfigurationView
 			}
 			.environmentObject(viewModel)
@@ -158,6 +68,87 @@ struct ProfileView: View {
 
 extension ProfileView {
 	// MARK: - Layout
+	private func profileHeader(_ user: FBUser) -> some View {
+			ProfileHeader(
+				avatarUrlString: user.profileImageUrl ?? "",
+				displayName: user.displayName
+			) {
+				ActivityItemDisplay(title: "foodprints", count: viewModel.foodPrints.count) {
+					showFoodPrint = true
+				}
+				ActivityItemDisplay(title: "badges", count: 0)
+				ActivityItemDisplay(title: "friends", count: user.friends?.count ?? 0) {
+					showFriends = true
+				}
+			}
+			.onAppear {
+				Task {
+					do {
+						try await viewModel.getAllFriends()
+					} catch {
+						debugPrint("error")
+					}
+				}
+			}
+			.padding(.horizontal, 16)
+			.padding(.top, 50)
+			.navigationDestination(isPresented: $showFriends) {
+				List {
+					ForEach(viewModel.friends, id: \.self) { friend in
+						HStack {
+							KFImage(URL(string: friend.profileImageUrl ?? ""))
+								.placeholder {
+									Image(systemName: "person.fill")
+								}
+								.resizable()
+								.scaledToFill()
+								.frame(width: 50, height: 50)
+								.clipShape(Circle())
+
+							Text(friend.displayName)
+
+							Spacer()
+
+							Text("...")
+								.bodyStyle()
+								.contextMenu {
+									Button(role: .destructive) {
+										viewModel.deleteFriend(friend.id)
+									} label: {
+										Text("Delete")
+									}
+
+									Button(role: .destructive) {
+										viewModel.blockFriend(friend.id)
+									} label: {
+										Text("Block")
+									}
+
+								} preview: {
+									KFImage(URL(string: friend.profileImageUrl ?? ""))
+										.placeholder {
+											Image(systemName: "person.fill")
+										}
+										.resizable()
+										.frame(width: 200, height: 200)
+								}
+						}
+					}
+				}
+				.listStyle(.plain)
+				.toolbar {
+					NavigationBarBackButton()
+				}
+				.navigationBarBackButtonHidden()
+				.navigationTitle("Friends")
+				.navigationBarTitleDisplayMode(.inline)
+			}
+			.navigationDestination(isPresented: $showFoodPrint) {
+				FoodPrintHistoryView(profileViewModel: viewModel)
+			}
+	}
+
+	// FIXME: - Unused, but needed
 	private var avatarInfo: some View {
 		ZStack(alignment: .center) {
 			//			if let user = viewModel.user {
@@ -187,6 +178,29 @@ extension ProfileView {
 				return
 			}
 			viewModel.saveProfileImage(item: selected)
+		}
+	}
+
+	private var appearanceSection: some View {
+		Section {
+			Toggle(isOn: $navigationModel.preferDarkMode) {
+				Text("Dark Mode")
+					.prefixedWithSFSymbol(named: "circle.lefthalf.filled", height: 20)
+					.captionStyle()
+			}
+			.toggleStyle(PrimaryToggleStyle(size: 16))
+		} header: {
+			Text("Appearance")
+				.captionStyle()
+		}
+	}
+
+	private var socialSection: some View {
+		Section {
+			qrcodeView
+		} header: {
+			Text("Social")
+				.captionStyle()
 		}
 	}
 
