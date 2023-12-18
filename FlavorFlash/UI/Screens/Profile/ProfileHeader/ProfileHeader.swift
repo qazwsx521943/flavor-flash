@@ -8,13 +8,15 @@
 import SwiftUI
 import Kingfisher
 
-struct ProfileHeader<Content: View>: View {
+struct ProfileHeader<Content: View, OverlayContent: View>: View {
 
 	let avatarUrlString: String
 
 	let displayName: String
 
 	var content: Content?
+
+	var overlayContent: OverlayContent?
 
 	var body: some View {
 		ZStack(alignment: .top) {
@@ -37,6 +39,10 @@ struct ProfileHeader<Content: View>: View {
 				.scaledToFill()
 				.frame(width: 80, height: 80)
 				.clipShape(Circle())
+				.overlay(alignment: .bottomTrailing) {
+					overlayContent
+						.frame(width: 30, height: 30)
+				}
 				.offset(y: -40)
 				.frame(maxWidth: .infinity)
 				.overlay(alignment: .center) {
@@ -51,10 +57,15 @@ struct ProfileHeader<Content: View>: View {
 
 extension ProfileHeader {
 	// Custom initializer
-	init(avatarUrlString: String, displayName: String,@ViewBuilder content: () -> Content) {
+	init(
+		avatarUrlString: String,
+		displayName: String,
+		@ViewBuilder content: () -> Content,
+		@ViewBuilder overlayContent: () -> OverlayContent) {
 		self.avatarUrlString = avatarUrlString
 		self.content = content()
 		self.displayName = displayName
+		self.overlayContent = overlayContent()
 	}
 }
 
@@ -86,5 +97,10 @@ struct ActivityItemDisplay: View {
 		ActivityItemDisplay(title: "foodprints", count: 8)
 		ActivityItemDisplay(title: "badges", count: 8)
 		ActivityItemDisplay(title: "friends", count: 8)
+	} overlayContent: {
+		Image(systemName: "pencil.circle.fill")
+			.symbolRenderingMode(.multicolor)
+			.font(.system(size: 30))
+			.foregroundColor(.lightGreen)
 	}
 }

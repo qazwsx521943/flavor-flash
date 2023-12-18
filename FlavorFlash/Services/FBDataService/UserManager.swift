@@ -62,9 +62,9 @@ final class UserManager {
 	public func listenToChange(userId: String, completionHandler: @escaping (FBUser) -> Void) {
 		userDocument(userId: userId).addSnapshotListener { documentSnapshot, _ in
 			guard let document = documentSnapshot else { return }
-			guard let data = try? document.data(as: FBUser.self) else { return }
+			guard let user = try? document.data(as: FBUser.self) else { return }
 
-			completionHandler(data)
+			completionHandler(user)
 		}
 	}
 

@@ -19,8 +19,9 @@ struct CommentCell: View {
 					Image(systemName: "person.fill")
 				}
 				.resizable()
-				.aspectRatio(contentMode: .fit)
-				.frame(width: 20, height: 20)
+				.aspectRatio(contentMode: .fill)
+				.frame(width: 30, height: 30)
+				.clipShape(Circle())
 
 			VStack(alignment: .leading, spacing: 5) {
 				HStack {
