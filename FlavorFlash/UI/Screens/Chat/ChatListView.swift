@@ -65,6 +65,7 @@ extension ChatListView {
 		List {
 			ForEach(viewModel.searchedResult) { user in
 				Text(user.displayName)
+					.captionBoldStyle()
 					.swipeActions(edge: .trailing) {
 						Button {
 							viewModel.createNewGroup(with: user.id)
@@ -78,7 +79,7 @@ extension ChatListView {
 		}
 		.listStyle(.plain)
 		.searchable(text: $viewModel.searchUserText, placement: .automatic, prompt: Text("search user"))
-		.navigationTitle("Add Chatroom")
+		.navigationTitle("Creat Chat")
 		.navigationBarTitleDisplayMode(.inline)
 		.toolbar {
 			NavigationBarBackButton()
