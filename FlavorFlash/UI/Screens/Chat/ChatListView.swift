@@ -25,7 +25,6 @@ struct ChatListView: View {
 									avatarUrl: group.getGroupImage(exclude: currentUser.id),
 									name: group.name
 								)
-									.frame(height: 60)
 							}
 						}
 					}
@@ -74,6 +73,7 @@ extension ChatListView {
 								.resizable()
 								.frame(width: 20, height: 20)
 						}
+						.tint(.lightGreen)
 					}
 			}
 		}
