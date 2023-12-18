@@ -21,14 +21,15 @@ struct ReportSheetView: View {
 					.animation(.default, value: reasonSelected)
 			} else {
 				List {
-					Section {
-						Text("檢舉")
-							.frame(maxWidth: .infinity)
-							.multilineTextAlignment(.center)
-					}
+					Text("Report")
+						.captionBoldStyle()
+						.frame(maxWidth: .infinity)
+						.padding(.vertical, 8)
+						.multilineTextAlignment(.center)
 
 					ForEach(ReportReason.allCases, id: \.self) { reason in
 						Text(reason.title)
+							.captionStyle()
 							.onTapGesture {
 								action?(reason)
 								reasonSelected = true
@@ -43,9 +44,9 @@ struct ReportSheetView: View {
 
 struct ReportResultView: View {
 	var body: some View {
-		Text("我們已收到你的檢舉，即將審核這篇文章。")
-
-
+		Text("We have received your report, and will review this foodPrint ASAP!")
+			.bodyStyle()
+			.multilineTextAlignment(.center)
 	}
 }
 

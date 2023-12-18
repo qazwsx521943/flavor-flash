@@ -41,9 +41,11 @@ struct PhotoPickerVC: UIViewControllerRepresentable {
 		}
 
 		func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-			debugPrint("results: \(results)")
 
-			let photo = results.first!.itemProvider
+			guard let photo = results.first?.itemProvider else {
+				parent.showPicker.toggle()
+				return
+			}
 
 			photo.loadTransferable(type: Data.self) { result in
 				DispatchQueue.main.async { [weak self] in

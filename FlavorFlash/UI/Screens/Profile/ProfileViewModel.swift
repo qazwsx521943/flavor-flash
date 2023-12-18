@@ -9,6 +9,7 @@ import PhotosUI
 import UIKit
 import CoreImage.CIFilterBuiltins
 import Combine
+import OSLog
 
 @MainActor
 final class ProfileViewModel: ObservableObject {
@@ -29,10 +30,11 @@ final class ProfileViewModel: ObservableObject {
 	}
 
 	public func loadProfileData() {
-		Task {
-			try? await loadCurrentUser()
-			try? await getFoodPrints()
-			try? await loadBlockedUser()
+		try? loadCurrentUser { [weak self] in
+			Task {
+				try? await self?.getFoodPrints()
+				try? await self?.loadBlockedUser()
+			}
 		}
 	}
 
@@ -51,10 +53,17 @@ final class ProfileViewModel: ObservableObject {
 		try await AuthenticationManager.shared.resetPassword(email: email)
 	}
 
-	func loadCurrentUser() async throws {
+	func loadCurrentUser(completionHandler: (() -> ())? = nil) throws {
 		let authUser = try AuthenticationManager.shared.getAuthenticatedUser()
 
-		self.user = try await UserManager.shared.getUser(userId: authUser.uid)
+//		self.user = try await UserManager.shared.getUser(userId: authUser.uid)
+		logger.info("listening to \(authUser.uid) user document")
+		UserManager.shared.listenToChange(userId: authUser.uid, completionHandler: { user in
+			logger.info("\(authUser.uid) user document changed!!")
+			self.user = user
+
+			completionHandler?()
+		})
 	}
 
 	func loadBlockedUser() async throws {
@@ -68,10 +77,10 @@ final class ProfileViewModel: ObservableObject {
 		Task {
 			guard let data = try await item.loadTransferable(type: Data.self) else { return }
 			let (path, name) = try await StorageManager.shared.saveImage(userId: user.id, data: data)
-			debugPrint("Image saved to path: \(path)!, name: \(name)")
+			logger.info("Image saved to path: \(path)!, name: \(name)")
 			let url = try await StorageManager.shared.getUrlForImage(path: path)
 			try await UserManager.shared.updateUserProfileImagePath(userId: user.id, path: path, url: url.absoluteString)
-			try await loadCurrentUser()
+//			try loadCurrentUser()
 		}
 	}
 
@@ -115,7 +124,6 @@ final class ProfileViewModel: ObservableObject {
 	func getFoodPrints() async throws {
 		guard let userId = user?.id else { return }
 		self.foodPrints = try await FoodPrintManager.shared.getUserPosts(including: [userId])
-		debugPrint(foodPrints)
 	}
 
 	func getFriendFoodPrint(userId: String) async throws {
@@ -150,3 +158,5 @@ extension ProfileViewModel {
 		}
 	}
 }
+
+fileprivate let logger = Logger(subsystem: "ios22-jason.FlavorFlash", category: "ProfileViewModel")

@@ -30,12 +30,34 @@ final class ChatManager {
 	// MARK: - Group Collection CRUD
 
 	public func createGroup(with members: [String]) throws {
-		let groupId = UUID().uuidString
-		do {
-			try groupCollection.document(groupId).setData(from: FBGroup(id: groupId, members: members))
-		} catch {
-			throw FBStoreError.addDocError
+		Task {
+			let exist = try await groupExists(members: members)
+			logger.info("group exist: \(exist)")
+
+			if exist {
+				return
+			}
+
+			let groupId = UUID().uuidString
+			do {
+				try groupCollection.document(groupId).setData(from: FBGroup(id: groupId, members: members))
+			} catch {
+				throw FBStoreError.addDocError
+			}
 		}
+	}
+
+	private func groupExists(members: [String]) async throws -> Bool {
+		let snapshot = try await groupCollection.whereField("members", arrayContainsAny: members).getDocuments()
+
+		let groups = try snapshot.documents.filter { doc in
+			let group = try doc.data(as: FBGroup.self)
+			if group.members.count != 2 { return false }
+
+			return group.members.contains(members)
+		}
+
+		return groups.count > 0
 	}
 
 	// get the chatrooms that an user belongs to

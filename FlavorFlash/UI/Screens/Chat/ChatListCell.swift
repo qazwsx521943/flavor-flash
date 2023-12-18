@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ChatListCell: View {
 
@@ -15,18 +16,15 @@ struct ChatListCell: View {
 
     var body: some View {
 		HStack(spacing: 10) {
-			AsyncImage(url: URL(string: avatarUrl)) { image in
-				image
-					.resizable()
-					.scaledToFill()
-					.frame(width: 50, height: 50)
-					.clipShape(Circle())
-			} placeholder: {
-				Image(systemName: "person.fill")
-					.resizable()
-					.frame(width: 50, height: 50)
-					.clipShape(Circle())
-			}
+
+			KFImage(URL(string: avatarUrl))
+				.placeholder {
+					Image(systemName: "person.fill")
+				}
+				.resizable()
+				.scaledToFill()
+				.frame(width: 40, height: 40)
+				.clipShape(Circle())
 
 			Text(name)
 				.font(.system(size: 15))

@@ -60,7 +60,10 @@ struct SmallPrimaryButtonStyle: ButtonStyle {
 			.captionStyle()
 			.foregroundStyle(.white)
 			.padding(12.5)
-			.background(RoundedRectangle(cornerRadius: 10.0).fill(backgroundColor))
+			.background(
+				RoundedRectangle(cornerRadius: 10.0).fill(backgroundColor)
+					.brightness(isEnabled ? 0 : -0.5) 
+			)
 			.scaleEffect(configuration.isPressed ? 0.9 : 1)
 	}
 }

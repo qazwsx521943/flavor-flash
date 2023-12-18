@@ -40,11 +40,11 @@ enum ReportReason: String, Codable, Hashable, CaseIterable {
 
 	var title: String {
 		switch self {
-		case .disgusting: return "讓我感到噁心"
-		case .trash: return "這是垃圾訊息"
-		case .naked: return "裸露或性行為"
-		case .scam: return "詐騙或詐欺"
-		case .other: return "我就是不喜歡"
+		case .disgusting: return "Disgusting"
+		case .trash: return "Spam"
+		case .naked: return "Naked or Violent"
+		case .scam: return "Fraud"
+		case .other: return "Just don't like it"
 		}
 	}
 }
