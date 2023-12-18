@@ -16,7 +16,7 @@ struct CommentSheetView: View {
 
     var body: some View {
 		VStack(alignment: .center) {
-			Text("Comment")
+			Text("Comments")
 				.captionBoldStyle()
 				.frame(maxWidth: .infinity)
 				.padding(.vertical, 8)
@@ -29,6 +29,7 @@ struct CommentSheetView: View {
 					}
 				} else {
 					Text("No comments yet")
+						.captionStyle()
 				}
 			}
 			.listRowSeparator(.visible, edges: .bottom)
@@ -38,10 +39,12 @@ struct CommentSheetView: View {
 
 			HStack {
 				TextField("Leave comment...", text: $commentText)
+					.captionStyle()
 				Button("Send") {
 					action?(commentText)
 					commentText = ""
 				}
+				.captionBoldStyle()
 				.tint(.accent)
 				.disabled(commentText.isEmpty)
 			}

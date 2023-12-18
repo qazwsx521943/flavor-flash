@@ -66,6 +66,7 @@ struct PrimaryToggleStyle: ToggleStyle {
 				if !configuration.isOn {
 					Text("off")
 						.detailBoldStyle()
+						.foregroundStyle(.white)
 						.frame(width: size, height: size)
 				}
 			}

@@ -80,6 +80,13 @@ extension ProfileView {
 				ActivityItemDisplay(title: "friends", count: user.friends?.count ?? 0) {
 					showFriends = true
 				}
+			} overlayContent: {
+				PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
+					Image(systemName: "pencil.circle.fill")
+						.symbolRenderingMode(.multicolor)
+						.font(.system(size: 30))
+						.foregroundColor(.lightGreen)
+				}
 			}
 			.onAppear {
 				Task {
@@ -89,6 +96,12 @@ extension ProfileView {
 						debugPrint("error")
 					}
 				}
+			}
+			.onChange(of: selectedItem) { selected in
+				guard let selected else {
+					return
+				}
+				viewModel.saveProfileImage(item: selected)
 			}
 			.padding(.horizontal, 16)
 			.padding(.top, 50)
@@ -146,39 +159,6 @@ extension ProfileView {
 			.navigationDestination(isPresented: $showFoodPrint) {
 				FoodPrintHistoryView(profileViewModel: viewModel)
 			}
-	}
-
-	// FIXME: - Unused, but needed
-	private var avatarInfo: some View {
-		ZStack(alignment: .center) {
-			//			if let user = viewModel.user {
-			//				VStack(alignment: .leading) {
-			//					Text(user.displayName)
-			//						.padding(.leading, 12)
-			//						.font(.title)
-			//						.bold()
-
-
-			//				}
-			//				.frame(maxWidth: .infinity, maxHeight: 100)
-			Rectangle()
-				.frame(width: .infinity, height: 100)
-				.background(Color.gray)
-
-			avatarImage
-			//			}
-		}
-		.frame(height: 100)
-		.padding(.horizontal, 16)
-		.task {
-			try? await viewModel.loadCurrentUser()
-		}
-		.onChange(of: selectedItem) { selected in
-			guard let selected else {
-				return
-			}
-			viewModel.saveProfileImage(item: selected)
-		}
 	}
 
 	private var appearanceSection: some View {
@@ -336,105 +316,6 @@ extension ProfileView {
 				.padding(.top, 80)
 				.frame(alignment: .top)
 			}
-	}
-
-	private var avatarImage: some View {
-		ZStack {
-			if let imageUrl = viewModel.user?.profileImageUrl {
-				AsyncImage(url: URL(string: imageUrl)) { image in
-					image
-						.resizable()
-						.scaledToFill()
-				} placeholder: {
-					ProgressView()
-				}
-				.frame(width: 80, height: 80)
-				.clipShape(Circle())
-			} else {
-				Circle()
-					.frame(width: 80, height: 80)
-			}
-		}
-		.overlay(alignment: .bottomTrailing) {
-			PhotosPicker(selection: $selectedItem, matching: .images, photoLibrary: .shared()) {
-				Image(systemName: "pencil.circle.fill")
-					.symbolRenderingMode(.multicolor)
-					.font(.system(size: 30))
-					.foregroundColor(Color.purple)
-			}
-		}
-	}
-
-	// unused
-	private var showFriendLink: some View {
-		NavigationLink {
-			ScrollView {
-				VStack {
-					ForEach(viewModel.friends, id: \.self) { friend in
-						HStack {
-							KFImage(URL(string: friend.profileImageUrl ?? ""))
-								.placeholder {
-									Image(systemName: "person.fill")
-								}
-								.resizable()
-								.scaledToFill()
-								.frame(width: 50, height: 50)
-								.clipShape(Circle())
-
-							Text(friend.displayName)
-
-							Spacer()
-
-							Button {
-
-							} label: {
-								Text("...")
-									.bodyStyle()
-									.contextMenu {
-										Button(role: .destructive) {
-
-										} label: {
-											Text("Delete")
-										}
-
-										Button(role: .destructive) {
-
-										} label: {
-											Text("Block")
-										}
-
-									} preview: {
-										KFImage(URL(string: friend.profileImageUrl ?? ""))
-									}
-							}
-							.buttonStyle(SmallPrimaryButtonStyle())
-						}
-					}
-				}
-			}
-			.onAppear {
-				Task {
-					do {
-						try await viewModel.getAllFriends()
-					} catch {
-						debugPrint("error")
-					}
-				}
-			}
-			.toolbar {
-				NavigationBarBackButton()
-			}
-			.navigationBarBackButtonHidden()
-			.navigationTitle("Friends")
-			.navigationBarTitleDisplayMode(.inline)
-		} label: {
-			if let user = viewModel.user {
-				Text("\(user.friends?.count ?? 0) Friends")
-					.prefixedWithSFSymbol(named: "person.fill", height: 15)
-					.font(.subheadline)
-					.foregroundStyle(.white)
-			}
-		}
 	}
 }
 
