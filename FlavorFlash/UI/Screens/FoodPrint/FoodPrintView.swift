@@ -17,7 +17,7 @@ struct FoodPrintView: View {
 
 	@State private var isSelectedFoodPrint: FBFoodPrint?
 
-	@State private var selectionType: SelectionType = .comment
+	@State private var selectionType: SelectionType?
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
@@ -36,11 +36,11 @@ struct FoodPrintView: View {
 						FoodPrintCell(
 							foodPrint: post,
 							showComment: { foodprint in
-								isSelectedFoodPrint = foodprint
 								selectionType = .comment
-							}, showReport: { foodprint in
 								isSelectedFoodPrint = foodprint
+							}, showReport: { foodprint in
 								selectionType = .report
+								isSelectedFoodPrint = foodprint
 							}, likePost: {foodPrintViewModel.likePost(foodPrint: post)}, dislikePost: {
 								foodPrintViewModel.dislikePost(foodPrint: post)
 							})
