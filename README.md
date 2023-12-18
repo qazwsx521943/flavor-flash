@@ -22,45 +22,83 @@
 
 ### HomePage
 
-<img src="./Screenshots/home_dark.png" width="200"/>
-<img src="./Screenshots/restaurant-search_dark.png" width="200"/>
-<img src="./Screenshots/restaurant-detail_dark.png" width="200"/>
-
-<img src="./Screenshots/home_light.png" width="200"/>
-<img src="./Screenshots/restaurant-search_light.png" width="200"/>
-<img src="./Screenshots/restaurant-detail_light.png" width="200"/>
+<table>
+  <tr align="center">
+    <td>Landing Page</td>
+     <td>Restaurant Map Search</td>
+     <td>Restaurant Detail</td>
+  </tr>
+  <tr>
+    <td><img src="./Screenshots/home_dark.png" width="200"/></td>
+    <td><img src="./Screenshots/restaurant-search_dark.png" width="200"/></td>
+    <td><img src="./Screenshots/restaurant-detail_dark.png" width="200"/></td>
+  </tr>
+    <tr>
+    <td><img src="./Screenshots/home_light.png" width="200"/></td>
+    <td><img src="./Screenshots/restaurant-search_light.png" width="200"/></td>
+    <td><img src="./Screenshots/restaurant-detail_light.png" width="200"/></td>
+  </tr>
+ </table>
 
 ### Flavor Flash Page
 
-<img src="./Screenshots/flavor-flash_dark.PNG" width="200"/>
-<img src="./Screenshots/captured_dark.PNG" width="200"/>
-<img src="./Screenshots/leave-foodprint_dark.PNG" width="200"/>
-
-<img src="./Screenshots/flavor-flash_light.PNG" width="200"/>
-<img src="./Screenshots/captured_light.PNG" width="200"/>
-<img src="./Screenshots/leave-foodprint_light.PNG" width="200"/>
+<table>
+  <tr align="center">
+    <td>Photo stream previewing</td>
+     <td>Photo editing</td>
+     <td>Submit page</td>
+  </tr>
+  <tr>
+    <td><img src="./Screenshots/flavor-flash_dark.PNG" width="200"/></td>
+    <td><img src="./Screenshots/captured_dark.PNG" width="200"/></td>
+    <td><img src="./Screenshots/leave-foodprint_dark.PNG" width="200"/></td>
+  </tr>
+    <tr>
+    <td><img src="./Screenshots/flavor-flash_light.PNG" width="200"/></td>
+    <td><img src="./Screenshots/captured_light.PNG" width="200"/></td>
+    <td><img src="./Screenshots/leave-foodprint_light.PNG" width="200"/></td>
+  </tr>
+ </table>
 
 ### Foodprint Community
 
-<img src="./Screenshots/foodprint_dark.png" width="200"/>
-<img src="./Screenshots/chatroom_dark.png" width="200"/>
-<img src="./Screenshots/foodprint-comment_dark.png" width="200"/>
-
-<img src="./Screenshots/foodprint_light.png" width="200"/>
-<img src="./Screenshots/foodprint-comment_light.png" width="200"/>
-<img src="./Screenshots/chatroom_light.png" width="200"/>
+<table>
+  <tr align="center">
+    <td>Landing Page</td>
+     <td>Comment sheet</td>
+     <td>ChatRoom</td>
+  </tr>
+  <tr>
+    <td><img src="./Screenshots/foodprint_dark.png" width="200"/></td>
+    <td><img src="./Screenshots/foodprint-comment_dark.png" width="200"/></td>
+    <td><img src="./Screenshots/chatroom_dark.png" width="200"/></td>
+  </tr>
+    <tr>
+    <td><img src="./Screenshots/foodprint_light.png" width="200"/></td>
+    <td><img src="./Screenshots/foodprint-comment_light.png" width="200"/></td>
+    <td><img src="./Screenshots/chatroom_light.png" width="200"/></td>
+  </tr>
+ </table>
 
 ### Profile
 
-<img src="./Screenshots/profile_dark.png" width="200"/>
-<img src="./Screenshots/profile-foodprint-overlay_dark.png" width="200"/>
-<img src="./Screenshots/profile-foodprint_dark.png" width="200"/>
-
-<img src="./Screenshots/profile_light.png" width="200"/>
-<img src="./Screenshots/profile-foodprint-overlay_light.png" width="200"/>
-<img src="./Screenshots/profile-foodprint_light.png" width="200"/>
-
-
+<table>
+  <tr align="center">
+    <td>Landing Page</td>
+     <td>User foodprints map display</td>
+     <td>Friend foodprint map annotation overlay</td>
+  </tr>
+  <tr align="center">
+    <td><img src="./Screenshots/profile_dark.png" width="200"/></td>
+    <td><img src="./Screenshots/profile-foodprint-overlay_dark.png" width="200"/></td>
+    <td><img src="./Screenshots/profile-foodprint_dark.png" width="200"/></td>
+  </tr>
+    <tr align="center">
+    <td><img src="./Screenshots/profile_light.png" width="200"/></td>
+    <td><img src="./Screenshots/profile-foodprint-overlay_light.png" width="200"/></td>
+    <td><img src="./Screenshots/profile-foodprint_light.png" width="200"/></td>
+  </tr>
+ </table>
 
 ## Tech Stack
 
