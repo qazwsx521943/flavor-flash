@@ -1445,10 +1445,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlavorFlash/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NumNum;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in NumNum";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera for food capturing in NumNum";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using NumNum";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in Flavor Flash";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow browsing photo in NumNum";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in NumNum";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow selecting local photo album in NumNum";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1487,10 +1487,10 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlavorFlash/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NumNum;
-				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in NumNum";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera for food capturing in NumNum";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using NumNum";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in Flavor Flash";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow browsing photo in NumNum";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in NumNum";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow selecting local photo album in NumNum";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
