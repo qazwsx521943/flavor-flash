@@ -1444,7 +1444,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlavorFlash/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
+				INFOPLIST_KEY_CFBundleDisplayName = NumNum;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in Flavor Flash";
@@ -1486,7 +1487,8 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlavorFlash/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
+				INFOPLIST_KEY_CFBundleDisplayName = NumNum;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in Flavor Flash";
