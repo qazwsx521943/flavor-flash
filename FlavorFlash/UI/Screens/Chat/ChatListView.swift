@@ -31,6 +31,7 @@ struct ChatListView: View {
 					.listStyle(.plain)
 				} else {
 					Text("No Chats yet")
+						.bodyBoldStyle()
 				}
 			}
 			.onAppear {

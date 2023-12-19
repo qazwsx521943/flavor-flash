@@ -86,7 +86,6 @@
 		E7809B562B0A2DDF00D76E71 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FBUser.swift */; };
 		E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB42B1434C90042FB51 /* FoodPrintDataService.swift */; };
 		E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E783AAB82B1448330042FB51 /* FoodPrintCell.swift */; };
-		E79639722B109C41006FF600 /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = E79639712B109C41006FF600 /* PopupView */; };
 		E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639802B118A49006FF600 /* QRCodeScanner.swift */; };
 		E79639832B118A6E006FF600 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79639822B118A6E006FF600 /* ScannerViewController.swift */; };
 		E79ED0992B14D392008C2E6F /* RestaurantAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79ED0982B14D392008C2E6F /* RestaurantAnnotation.swift */; };
@@ -315,7 +314,6 @@
 				E7E200D72B08FF8C003C22D6 /* FirebaseStorage in Frameworks */,
 				E70C6C562B0C99D6003B27EE /* FirebaseAnalyticsSwift in Frameworks */,
 				E7E200B72B08FF8C003C22D6 /* FirebaseDatabase in Frameworks */,
-				E79639722B109C41006FF600 /* PopupView in Frameworks */,
 				E7E200D92B08FF8C003C22D6 /* FirebaseStorageCombine-Community in Frameworks */,
 				102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */,
 				E77456912B283D8100CAF64C /* Lottie in Frameworks */,
@@ -998,7 +996,6 @@
 				E7E200D82B08FF8C003C22D6 /* FirebaseStorageCombine-Community */,
 				E70C6C552B0C99D6003B27EE /* FirebaseAnalyticsSwift */,
 				E70C6C582B0C9B6A003B27EE /* Kingfisher */,
-				E79639712B109C41006FF600 /* PopupView */,
 				E74EDF412B15B8BA004DE202 /* ExyteChat */,
 				E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */,
 				E77456902B283D8100CAF64C /* Lottie */,
@@ -1034,7 +1031,6 @@
 			packageReferences = (
 				E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				E70C6C572B0C9B6A003B27EE /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */,
 				E74EDF402B15B8BA004DE202 /* XCRemoteSwiftPackageReference "Chat" */,
 				E774568F2B283D8100CAF64C /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
@@ -1448,11 +1444,12 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlavorFlash/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in Flavor Flash";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow browsing photo in Flavor Flash";
+				INFOPLIST_KEY_CFBundleDisplayName = NumNumNum;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera for food capturing in NumNumNum";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using NumNumNum";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in NumNumNum";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow selecting local photo album in NumNumNum";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1490,11 +1487,12 @@
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = FlavorFlash/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Flavor Flash";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera in Flavor Flash";
-				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using Flavor Flash";
-				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in Flavor Flash";
-				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow browsing photo in Flavor Flash";
+				INFOPLIST_KEY_CFBundleDisplayName = NumNumNum;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow camera for food capturing in NumNumNum";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Allow location positioning when using NumNumNum";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Allow microphone recording in NumNumNum";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Allow selecting local photo album in NumNumNum";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -1565,14 +1563,6 @@
 				minimumVersion = 4.3.4;
 			};
 		};
-		E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/exyte/PopupView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.8.3;
-			};
-		};
 		E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1603,11 +1593,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E774568F2B283D8100CAF64C /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
-		};
-		E79639712B109C41006FF600 /* PopupView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = E79639702B109C41006FF600 /* XCRemoteSwiftPackageReference "PopupView" */;
-			productName = PopupView;
 		};
 		E7E200A42B08FF8C003C22D6 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
