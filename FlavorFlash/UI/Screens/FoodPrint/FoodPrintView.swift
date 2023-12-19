@@ -17,7 +17,7 @@ struct FoodPrintView: View {
 
 	@State private var isSelectedFoodPrint: FBFoodPrint?
 
-	@State private var selectionType: SelectionType?
+	@State private var selectionType: SelectionType = .comment
 
 	@EnvironmentObject var navigationModel: NavigationModel
 
