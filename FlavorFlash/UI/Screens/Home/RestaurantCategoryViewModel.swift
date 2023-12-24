@@ -9,7 +9,7 @@ import Foundation
 
 final class RestaurantCategoryViewModel: ObservableObject {
 	var allCategories = RestaurantCategory.allCases
-//	@Published var selectedCategories = Set<String>()
+
 	@Published var selectedCategories = RestaurantCategory.allCases
 
 	func saveCategories() async throws {
@@ -22,15 +22,5 @@ final class RestaurantCategoryViewModel: ObservableObject {
 		} catch {
 			throw FBAuthError.userNotLoggedIn
 		}
-	}
-//
-//	func addCategory(_ category: RestaurantCategory) {
-//		selectedCategories.append(category)
-//	}
-
-	func load() async throws {
-		try await Task.sleep(nanoseconds: 2_000_000)
-		print("sleep over")
-		print(selectedCategories.count)
 	}
 }

@@ -1,5 +1,5 @@
 //
-//  FlavorFlashTests.swift
+//  UserDefaultTests.swift
 //  FlavorFlashTests
 //
 //  Created by 鍾哲玄 on 2023/12/24.
@@ -7,9 +7,8 @@
 
 import XCTest
 @testable import FlavorFlash
-import SwiftUI
 
-final class LoginTests: XCTestCase {
+final class UserDefaultTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -19,23 +18,6 @@ final class LoginTests: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
 
-	@MainActor
-	func testLoginWithEmptyFields() {
-		var emailSignInVM = EmailSignInViewModel(state: .signIn)
-
-		emailSignInVM.username = "Johnson"
-		Task {
-			do {
-				try await emailSignInVM.signIn()
-			} catch {
-				debugPrint("unit test error \(error.localizedDescription)")
-				guard let error = error as? FBAuthError else { return }
-				XCTAssertThrowsError(error)
-				XCTAssertEqual(error, FBAuthError.inputFieldEmpty)
-			}
-		}
-	}
-
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
@@ -44,9 +26,18 @@ final class LoginTests: XCTestCase {
         // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
     }
 
+	func testSavedSkin() {
+		let boxSkin: BoxSkin = .cat01
+		UserDefaults.standard.set("cat_1", forKey: "selectedSkin")
+
+		let homeView = HomeView()
+
+		XCTAssertEqual(homeView.selectedSkin, boxSkin)
+	}
+
     func testPerformanceExample() throws {
         // This is an example of a performance test case.
-        measure {
+        self.measure {
             // Put the code you want to measure the time of here.
         }
     }

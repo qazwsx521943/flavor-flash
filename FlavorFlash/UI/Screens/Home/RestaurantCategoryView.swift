@@ -21,13 +21,6 @@ struct RestaurantCategoryView: View {
 					Text(category.id)
 				}
 			}
-			.refreshable {
-				do {
-					try await restaurantCategoryViewModel.load()
-				} catch {
-					debugPrint("sleep failed")
-				}
-			}
 			.navigationTitle("Select Categories")
 
 			Text("\(restaurantCategoryViewModel.selectedCategories.count) selections")

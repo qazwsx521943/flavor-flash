@@ -71,6 +71,7 @@
 		E7627D942B27025C00F0AAC5 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D932B27025C00F0AAC5 /* TextEditorView.swift */; };
 		E7627D972B27223E00F0AAC5 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D962B27223E00F0AAC5 /* CanvasView.swift */; };
 		E76D371D2B387302002E5645 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D371C2B387302002E5645 /* LoginTests.swift */; };
+		E76D37242B3880B4002E5645 /* UserDefaultTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D37232B3880B4002E5645 /* UserDefaultTests.swift */; };
 		E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D776E2B11C74200176A53 /* FoodPrintView.swift */; };
 		E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */; };
 		E773536D2B09A980003035B4 /* FBDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E773536C2B09A980003035B4 /* FBDataService.swift */; };
@@ -234,6 +235,7 @@
 		E7627D962B27223E00F0AAC5 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
 		E76D371A2B387302002E5645 /* FlavorFlashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlavorFlashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E76D371C2B387302002E5645 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
+		E76D37232B3880B4002E5645 /* UserDefaultTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultTests.swift; sourceTree = "<group>"; };
 		E76D776E2B11C74200176A53 /* FoodPrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintView.swift; sourceTree = "<group>"; };
 		E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintViewModel.swift; sourceTree = "<group>"; };
 		E773536C2B09A980003035B4 /* FBDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDataService.swift; sourceTree = "<group>"; };
@@ -567,6 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				E76D371C2B387302002E5645 /* LoginTests.swift */,
+				E76D37232B3880B4002E5645 /* UserDefaultTests.swift */,
 			);
 			path = FlavorFlashTests;
 			sourceTree = "<group>";
@@ -1243,6 +1246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E76D37242B3880B4002E5645 /* UserDefaultTests.swift in Sources */,
 				E76D371D2B387302002E5645 /* LoginTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
