@@ -70,6 +70,7 @@
 		E7627D922B26EE0C00F0AAC5 /* StackItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D912B26EE0C00F0AAC5 /* StackItem.swift */; };
 		E7627D942B27025C00F0AAC5 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D932B27025C00F0AAC5 /* TextEditorView.swift */; };
 		E7627D972B27223E00F0AAC5 /* CanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7627D962B27223E00F0AAC5 /* CanvasView.swift */; };
+		E76D371D2B387302002E5645 /* LoginTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D371C2B387302002E5645 /* LoginTests.swift */; };
 		E76D776F2B11C74200176A53 /* FoodPrintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D776E2B11C74200176A53 /* FoodPrintView.swift */; };
 		E76D77712B11C75A00176A53 /* FoodPrintViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */; };
 		E773536D2B09A980003035B4 /* FBDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E773536C2B09A980003035B4 /* FBDataService.swift */; };
@@ -157,6 +158,16 @@
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E76D371E2B387302002E5645 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7A399212B034AB4005C8021 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7A399282B034AB4005C8021;
+			remoteInfo = FlavorFlash;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		28055511D6E283B5661F16BB /* Pods-FlavorFlash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.release.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.release.xcconfig"; sourceTree = "<group>"; };
 		3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.debug.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.debug.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +232,8 @@
 		E7627D912B26EE0C00F0AAC5 /* StackItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackItem.swift; sourceTree = "<group>"; };
 		E7627D932B27025C00F0AAC5 /* TextEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		E7627D962B27223E00F0AAC5 /* CanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanvasView.swift; sourceTree = "<group>"; };
+		E76D371A2B387302002E5645 /* FlavorFlashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlavorFlashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E76D371C2B387302002E5645 /* LoginTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTests.swift; sourceTree = "<group>"; };
 		E76D776E2B11C74200176A53 /* FoodPrintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintView.swift; sourceTree = "<group>"; };
 		E76D77702B11C75A00176A53 /* FoodPrintViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintViewModel.swift; sourceTree = "<group>"; };
 		E773536C2B09A980003035B4 /* FBDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDataService.swift; sourceTree = "<group>"; };
@@ -296,6 +309,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E76D37172B387302002E5645 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399262B034AB4005C8021 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -543,6 +563,14 @@
 			path = CanvasView;
 			sourceTree = "<group>";
 		};
+		E76D371B2B387302002E5645 /* FlavorFlashTests */ = {
+			isa = PBXGroup;
+			children = (
+				E76D371C2B387302002E5645 /* LoginTests.swift */,
+			);
+			path = FlavorFlashTests;
+			sourceTree = "<group>";
+		};
 		E76D776D2B11C73000176A53 /* FoodPrint */ = {
 			isa = PBXGroup;
 			children = (
@@ -662,6 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A3992B2B034AB4005C8021 /* FlavorFlash */,
+				E76D371B2B387302002E5645 /* FlavorFlashTests */,
 				E7A3992A2B034AB4005C8021 /* Products */,
 				83261AFC1AF957C830E3524E /* Pods */,
 				875771145004DB8690077DDD /* Frameworks */,
@@ -672,6 +701,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A399292B034AB4005C8021 /* FlavorFlash.app */,
+				E76D371A2B387302002E5645 /* FlavorFlashTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -959,6 +989,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E76D37192B387302002E5645 /* FlavorFlashTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E76D37202B387302002E5645 /* Build configuration list for PBXNativeTarget "FlavorFlashTests" */;
+			buildPhases = (
+				E76D37162B387302002E5645 /* Sources */,
+				E76D37172B387302002E5645 /* Frameworks */,
+				E76D37182B387302002E5645 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E76D371F2B387302002E5645 /* PBXTargetDependency */,
+			);
+			name = FlavorFlashTests;
+			productName = FlavorFlashTests;
+			productReference = E76D371A2B387302002E5645 /* FlavorFlashTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E7A399282B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7A399392B034AB6005C8021 /* Build configuration list for PBXNativeTarget "FlavorFlash" */;
@@ -1014,6 +1062,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					E76D37192B387302002E5645 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = E7A399282B034AB4005C8021;
+					};
 					E7A399282B034AB4005C8021 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -1039,11 +1091,19 @@
 			projectRoot = "";
 			targets = (
 				E7A399282B034AB4005C8021 /* FlavorFlash */,
+				E76D37192B387302002E5645 /* FlavorFlashTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E76D37182B387302002E5645 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399272B034AB4005C8021 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1179,6 +1239,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E76D37162B387302002E5645 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E76D371D2B387302002E5645 /* LoginTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399252B034AB4005C8021 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1307,7 +1375,54 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E76D371F2B387302002E5645 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7A399282B034AB4005C8021 /* FlavorFlash */;
+			targetProxy = E76D371E2B387302002E5645 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		E76D37212B387302002E5645 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y73ZJF4SCP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlavorFlash.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FlavorFlash";
+			};
+			name = Debug;
+		};
+		E76D37222B387302002E5645 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y73ZJF4SCP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlavorFlash.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FlavorFlash";
+			};
+			name = Release;
+		};
 		E7A399372B034AB6005C8021 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1518,6 +1633,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E76D37202B387302002E5645 /* Build configuration list for PBXNativeTarget "FlavorFlashTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E76D37212B387302002E5645 /* Debug */,
+				E76D37222B387302002E5645 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E7A399242B034AB4005C8021 /* Build configuration list for PBXProject "FlavorFlash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
