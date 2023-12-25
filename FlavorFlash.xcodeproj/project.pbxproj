@@ -82,6 +82,8 @@
 		E774569A2B284CCC00CAF64C /* foodieNation.json in Resources */ = {isa = PBXBuildFile; fileRef = E77456992B284CCC00CAF64C /* foodieNation.json */; };
 		E774569D2B28538D00CAF64C /* randomFood.json in Resources */ = {isa = PBXBuildFile; fileRef = E774569C2B28538D00CAF64C /* randomFood.json */; };
 		E7804C3A2B3973B500E194F5 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7804C392B3973B500E194F5 /* TabItem.swift */; };
+		E7804C3E2B39966B00E194F5 /* LiveStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7804C3D2B39966B00E194F5 /* LiveStreamView.swift */; };
+		E7804C402B39977700E194F5 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7804C3F2B39977700E194F5 /* StreamManager.swift */; };
 		E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B502B0A054200D76E71 /* ProfileViewModel.swift */; };
 		E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B522B0A0E7A00D76E71 /* UserManager.swift */; };
 		E7809B562B0A2DDF00D76E71 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FBUser.swift */; };
@@ -232,6 +234,8 @@
 		E77456992B284CCC00CAF64C /* foodieNation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foodieNation.json; sourceTree = "<group>"; };
 		E774569C2B28538D00CAF64C /* randomFood.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = randomFood.json; sourceTree = "<group>"; };
 		E7804C392B3973B500E194F5 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
+		E7804C3D2B39966B00E194F5 /* LiveStreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveStreamView.swift; sourceTree = "<group>"; };
+		E7804C3F2B39977700E194F5 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
 		E7809B502B0A054200D76E71 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E7809B522B0A0E7A00D76E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E7809B552B0A2DDF00D76E71 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
@@ -575,6 +579,7 @@
 				E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */,
 				E7FFB3932B1D93F00065A213 /* ReportManager.swift */,
 				E7EBA28B2B2AEC850088C293 /* FoodPrintManager.swift */,
+				E7804C3F2B39977700E194F5 /* StreamManager.swift */,
 			);
 			path = FBDataService;
 			sourceTree = "<group>";
@@ -604,6 +609,14 @@
 				E70AF8DB2B070EE60003462C /* Home */,
 			);
 			path = Archive;
+			sourceTree = "<group>";
+		};
+		E7804C3C2B39965000E194F5 /* LiveStream */ = {
+			isa = PBXGroup;
+			children = (
+				E7804C3D2B39966B00E194F5 /* LiveStreamView.swift */,
+			);
+			path = LiveStream;
 			sourceTree = "<group>";
 		};
 		E7809B542B0A2DCE00D76E71 /* Auth */ = {
@@ -842,6 +855,7 @@
 		E7F9EDB22B084BE0005976BE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				E7804C3C2B39965000E194F5 /* LiveStream */,
 				E7A3992E2B034AB4005C8021 /* ContentView.swift */,
 				E76D776D2B11C73000176A53 /* FoodPrint */,
 				E77353702B09C9A2003035B4 /* Authentication */,
@@ -1277,6 +1291,7 @@
 				E7EBA2932B2B31250088C293 /* NNToastView.swift in Sources */,
 				E77353762B09CE95003035B4 /* AuthenticationManager.swift in Sources */,
 				E70AF8E52B07311F0003462C /* RestaurantSearchView.swift in Sources */,
+				E7804C3E2B39966B00E194F5 /* LiveStreamView.swift in Sources */,
 				E7F9EDBB2B089E55005976BE /* GooglePlaceResult.swift in Sources */,
 				E7E200EB2B098597003C22D6 /* ChatListViewModel.swift in Sources */,
 				E75588CC2B0F3BC100086854 /* SearchBar.swift in Sources */,
@@ -1288,6 +1303,7 @@
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
 				E7A399472B034E30005C8021 /* ChatListView.swift in Sources */,
+				E7804C402B39977700E194F5 /* StreamManager.swift in Sources */,
 				E70C6C542B0C5CAF003B27EE /* RestaurantCategoryView.swift in Sources */,
 				E7FFB38C2B1CA2B90065A213 /* FoodPrintHistoryViewModel.swift in Sources */,
 				E7FFB38A2B1C9A6E0065A213 /* FoodPrintAnnotationView.swift in Sources */,
