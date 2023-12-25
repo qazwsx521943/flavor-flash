@@ -598,6 +598,14 @@
 			path = LottieAnimation;
 			sourceTree = "<group>";
 		};
+		E7804C3B2B3989DE00E194F5 /* Archive */ = {
+			isa = PBXGroup;
+			children = (
+				E70AF8DB2B070EE60003462C /* Home */,
+			);
+			path = Archive;
+			sourceTree = "<group>";
+		};
 		E7809B542B0A2DCE00D76E71 /* Auth */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +687,7 @@
 		E7A3992B2B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
+				E7804C3B2B3989DE00E194F5 /* Archive */,
 				E7FFB3A42B1DCD580065A213 /* Info.plist */,
 				E7EBA2862B2AD85A0088C293 /* System */,
 				E71BFB202B17709A008E89DE /* Helpers */,
@@ -837,7 +846,6 @@
 				E76D776D2B11C73000176A53 /* FoodPrint */,
 				E77353702B09C9A2003035B4 /* Authentication */,
 				E7E200DD2B0909A0003C22D6 /* Chat */,
-				E70AF8DB2B070EE60003462C /* Home */,
 				E7FFC2492B037A1A00F7B171 /* FlavorFlash */,
 				E70AF8DC2B0710840003462C /* Profile */,
 			);

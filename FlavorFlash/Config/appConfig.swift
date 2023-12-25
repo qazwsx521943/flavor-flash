@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 // MARK: - Tab Configs
-enum TabItems: Int, Hashable, CaseIterable, Codable, Identifiable {
+enum TabItems: Int, CaseIterable, Codable, Identifiable {
 	var id: Int {
 		rawValue
 	}
