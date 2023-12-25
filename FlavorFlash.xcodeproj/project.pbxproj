@@ -84,6 +84,7 @@
 		E7804C3A2B3973B500E194F5 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7804C392B3973B500E194F5 /* TabItem.swift */; };
 		E7804C3E2B39966B00E194F5 /* LiveStreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7804C3D2B39966B00E194F5 /* LiveStreamView.swift */; };
 		E7804C402B39977700E194F5 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7804C3F2B39977700E194F5 /* StreamManager.swift */; };
+		E7804C432B39A2DE00E194F5 /* WebRTC in Frameworks */ = {isa = PBXBuildFile; productRef = E7804C422B39A2DE00E194F5 /* WebRTC */; };
 		E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B502B0A054200D76E71 /* ProfileViewModel.swift */; };
 		E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B522B0A0E7A00D76E71 /* UserManager.swift */; };
 		E7809B562B0A2DDF00D76E71 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FBUser.swift */; };
@@ -317,6 +318,7 @@
 				E7E200D32B08FF8C003C22D6 /* FirebaseRemoteConfig in Frameworks */,
 				E7E200D72B08FF8C003C22D6 /* FirebaseStorage in Frameworks */,
 				E70C6C562B0C99D6003B27EE /* FirebaseAnalyticsSwift in Frameworks */,
+				E7804C432B39A2DE00E194F5 /* WebRTC in Frameworks */,
 				E7E200B72B08FF8C003C22D6 /* FirebaseDatabase in Frameworks */,
 				E7E200D92B08FF8C003C22D6 /* FirebaseStorageCombine-Community in Frameworks */,
 				102AC49C20C1E6D7FD59AAA7 /* Pods_FlavorFlash.framework in Frameworks */,
@@ -1013,6 +1015,7 @@
 				E74EDF412B15B8BA004DE202 /* ExyteChat */,
 				E7FFB3A22B1DC9860065A213 /* FirebaseMessaging */,
 				E77456902B283D8100CAF64C /* Lottie */,
+				E7804C422B39A2DE00E194F5 /* WebRTC */,
 			);
 			productName = FlavorFlash;
 			productReference = E7A399292B034AB4005C8021 /* FlavorFlash.app */;
@@ -1047,6 +1050,7 @@
 				E70C6C572B0C9B6A003B27EE /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				E74EDF402B15B8BA004DE202 /* XCRemoteSwiftPackageReference "Chat" */,
 				E774568F2B283D8100CAF64C /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				E7804C412B39A2DE00E194F5 /* XCRemoteSwiftPackageReference "WebRTC" */,
 			);
 			productRefGroup = E7A3992A2B034AB4005C8021 /* Products */;
 			projectDirPath = "";
@@ -1579,6 +1583,14 @@
 				minimumVersion = 4.3.4;
 			};
 		};
+		E7804C412B39A2DE00E194F5 /* XCRemoteSwiftPackageReference "WebRTC" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stasel/WebRTC.git";
+			requirement = {
+				branch = latest;
+				kind = branch;
+			};
+		};
 		E7E200A32B08FF8C003C22D6 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -1609,6 +1621,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = E774568F2B283D8100CAF64C /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		E7804C422B39A2DE00E194F5 /* WebRTC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E7804C412B39A2DE00E194F5 /* XCRemoteSwiftPackageReference "WebRTC" */;
+			productName = WebRTC;
 		};
 		E7E200A42B08FF8C003C22D6 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
