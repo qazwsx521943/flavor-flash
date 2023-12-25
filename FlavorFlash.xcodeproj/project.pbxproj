@@ -81,6 +81,7 @@
 		E77456962B2849CD00CAF64C /* foodChoice.json in Resources */ = {isa = PBXBuildFile; fileRef = E77456952B2849CD00CAF64C /* foodChoice.json */; };
 		E774569A2B284CCC00CAF64C /* foodieNation.json in Resources */ = {isa = PBXBuildFile; fileRef = E77456992B284CCC00CAF64C /* foodieNation.json */; };
 		E774569D2B28538D00CAF64C /* randomFood.json in Resources */ = {isa = PBXBuildFile; fileRef = E774569C2B28538D00CAF64C /* randomFood.json */; };
+		E7804C3A2B3973B500E194F5 /* TabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7804C392B3973B500E194F5 /* TabItem.swift */; };
 		E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B502B0A054200D76E71 /* ProfileViewModel.swift */; };
 		E7809B532B0A0E7A00D76E71 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B522B0A0E7A00D76E71 /* UserManager.swift */; };
 		E7809B562B0A2DDF00D76E71 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7809B552B0A2DDF00D76E71 /* FBUser.swift */; };
@@ -136,7 +137,6 @@
 		E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC732B209A9500674C20 /* ButtonStyles.swift */; };
 		E7FECC762B209C2B00674C20 /* ShadowStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC752B209C2B00674C20 /* ShadowStyles.swift */; };
 		E7FECC7A2B20A69600674C20 /* ToggleStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC792B20A69600674C20 /* ToggleStyles.swift */; };
-		E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC832B218B1600674C20 /* PetSelectionView.swift */; };
 		E7FECC862B21AC6000674C20 /* NNPolygon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FECC852B21AC6000674C20 /* NNPolygon.swift */; };
 		E7FFB3812B1C35CF0065A213 /* LikeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3802B1C35CF0065A213 /* LikeButton.swift */; };
 		E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */; };
@@ -231,6 +231,7 @@
 		E77456952B2849CD00CAF64C /* foodChoice.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foodChoice.json; sourceTree = "<group>"; };
 		E77456992B284CCC00CAF64C /* foodieNation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = foodieNation.json; sourceTree = "<group>"; };
 		E774569C2B28538D00CAF64C /* randomFood.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = randomFood.json; sourceTree = "<group>"; };
+		E7804C392B3973B500E194F5 /* TabItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabItem.swift; sourceTree = "<group>"; };
 		E7809B502B0A054200D76E71 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		E7809B522B0A0E7A00D76E71 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		E7809B552B0A2DDF00D76E71 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
@@ -274,7 +275,6 @@
 		E7FECC732B209A9500674C20 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		E7FECC752B209C2B00674C20 /* ShadowStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowStyles.swift; sourceTree = "<group>"; };
 		E7FECC792B20A69600674C20 /* ToggleStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleStyles.swift; sourceTree = "<group>"; };
-		E7FECC832B218B1600674C20 /* PetSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetSelectionView.swift; sourceTree = "<group>"; };
 		E7FECC852B21AC6000674C20 /* NNPolygon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NNPolygon.swift; sourceTree = "<group>"; };
 		E7FFB3802B1C35CF0065A213 /* LikeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikeButton.swift; sourceTree = "<group>"; };
 		E7FFB3832B1C91290065A213 /* FoodPrintHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodPrintHistoryView.swift; sourceTree = "<group>"; };
@@ -356,7 +356,6 @@
 			isa = PBXGroup;
 			children = (
 				E703590F2B2471EE008F14E7 /* MapSelection */,
-				E7FECC822B218AE800674C20 /* PetSelection */,
 				E7F9EDB72B0864A7005976BE /* Map */,
 				E7A399422B034E11005C8021 /* HomeView.swift */,
 				E70AF8FE2B07A5470003462C /* HomeViewModel.swift */,
@@ -627,6 +626,7 @@
 				E70359162B248F84008F14E7 /* NavigationBarBackButton.swift */,
 				E7EBA2922B2B31250088C293 /* NNToastView.swift */,
 				E7B37E212B2DA1B900157DF0 /* NNLoadingIndicator.swift */,
+				E7804C392B3973B500E194F5 /* TabItem.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -879,14 +879,6 @@
 				E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */,
 			);
 			path = StyleGuide;
-			sourceTree = "<group>";
-		};
-		E7FECC822B218AE800674C20 /* PetSelection */ = {
-			isa = PBXGroup;
-			children = (
-				E7FECC832B218B1600674C20 /* PetSelectionView.swift */,
-			);
-			path = PetSelection;
 			sourceTree = "<group>";
 		};
 		E7FFB3822B1C90E10065A213 /* FoodPrintHistoryView */ = {
@@ -1249,6 +1241,7 @@
 				E70AF8F02B0750D50003462C /* RestaurantMapViewCoordinator.swift in Sources */,
 				E7FFB3A12B1DBC940065A213 /* CommentCell.swift in Sources */,
 				E70AF8FF2B07A5470003462C /* HomeViewModel.swift in Sources */,
+				E7804C3A2B3973B500E194F5 /* TabItem.swift in Sources */,
 				E7FFB39F2B1DBA400065A213 /* FBComment.swift in Sources */,
 				E7627D892B26AE2400F0AAC5 /* CanvasViewModel.swift in Sources */,
 				E7274B8C2B1ACF85008C439F /* ProfileHeader.swift in Sources */,
@@ -1285,7 +1278,6 @@
 				E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+EXT.swift in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
-				E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
 				E7A399472B034E30005C8021 /* ChatListView.swift in Sources */,
 				E70C6C542B0C5CAF003B27EE /* RestaurantCategoryView.swift in Sources */,

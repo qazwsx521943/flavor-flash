@@ -22,7 +22,7 @@ final class NavigationModel: ObservableObject {
 	init(
 		showSignInModal: Bool = false,
 		showCategorySelectionModal: Bool = false,
-		selectedTab: TabItems = .home,
+		selectedTab: TabItems = .foodPrint,
 		tabBarHidden: Bool = false,
 		preferDarkMode: Bool = false) {
 		self.showSignInModal = showSignInModal

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 // MARK: - Tab Configs
 enum TabItems: Int, Hashable, CaseIterable, Codable, Identifiable {
@@ -13,26 +14,31 @@ enum TabItems: Int, Hashable, CaseIterable, Codable, Identifiable {
 		rawValue
 	}
 
-	case home = 0
+	case foodPrint = 0
 	case flavorFlash
-	case foodPrint
 	case profile
 
 	var title: String {
 		switch self {
-		case .home: return "Home"
-		case .flavorFlash: return "FlavorFlash"
 		case .foodPrint: return "FoodPrint"
+		case .flavorFlash: return "FlavorFlash"
 		case .profile: return "Profile"
 		}
 	}
 
 	var icon: String {
 		switch self {
-		case .home: return "house.fill"
+		case .foodPrint: return "star.bubble"
 		case .flavorFlash: return "camera.fill"
-		case .foodPrint: return "rectangle.3.group.bubble.fill"
 		case .profile: return "person.fill"
+		}
+	}
+
+	var rootView: AnyView {
+		switch self {
+		case .foodPrint: return AnyView(FoodPrintView())
+		case .flavorFlash: return AnyView(FlavorFlashView())
+		case .profile: return AnyView(ProfileView())
 		}
 	}
 }

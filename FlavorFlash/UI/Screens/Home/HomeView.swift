@@ -7,20 +7,12 @@
 
 import SwiftUI
 import os.log
-enum BoxSkin: String, Codable {
-	case cat01 = "cat_1"
-	case cat02 = "cat_2"
-	case cat03 = "cat_3"
-}
 
+// This feature will be deprecated and hidden because i have no quotas of google place api
 struct HomeView: View {
 	@StateObject private var viewModel = HomeViewModel()
 
 	@State private var animate = false
-
-	@State private var showPetSelection = false
-
-	@AppStorage("selectedSkin") var selectedSkin: BoxSkin?
 
 	@State private var showRestaurantCollection: Bool = false
 
@@ -31,39 +23,6 @@ struct HomeView: View {
 			let animation = Animation.easeInOut(duration: 1.0).repeatForever(autoreverses: true)
 			ZStack {
 				VStack {
-					if let selectedSkin {
-						Image(selectedSkin.rawValue)
-							.resizable()
-							.frame(
-								width: 150, height: 150
-							)
-							.overlay(alignment: .top) {
-								Text(viewModel.category?.title ?? "What to eat？")
-									.captionStyle()
-									.foregroundStyle(.white)
-									.padding(.vertical, 8)
-									.padding(.horizontal, 12)
-									.background(
-										Capsule()
-											.fill(.shadowGray)
-											.zIndex(1.0)
-											.overlay(alignment: .bottom) {
-												NNPolygon(sides: 3)
-													.fill(.shadowGray)
-													.frame(width: 20, height: 20)
-													.rotationEffect(.degrees(90.0))
-													.offset(y: 5)
-											}
-									)
-									.offset(y: -30)
-							}
-							.onTapGesture {
-								viewModel.randomCategory()
-								withAnimation(animation) {
-									animate = true
-								}
-							}
-					}
 
 					if viewModel.category != nil {
 						NavigationLink {
@@ -81,29 +40,10 @@ struct HomeView: View {
 						.foregroundStyle(.white)
 					}
 				}
-
-				GeometryReader { geo in
-					PetSelectionView(currentSelectedSkin: $selectedSkin) { boxSkin in
-						selectedSkin = boxSkin
-					}
-					.frame(width: geo.size.width * 0.6)
-					.offset(x: showPetSelection ? geo.size.width * 0.4 : geo.size.width)
-					.transition(.move(edge: .trailing))
-					.animation(.easeIn, value: showPetSelection)
-					.environmentObject(viewModel)
-				}
 			}
 			.frame(maxWidth: .infinity, maxHeight: .infinity)
 			.overlay(alignment: .topTrailing) {
 				VStack {
-					Button {
-						withAnimation {
-							showPetSelection.toggle()
-						}
-					} label: {
-						Image(systemName: "pawprint.fill")
-					}
-					.buttonStyle(IconButtonStyle())
 
 					Button {
 						showRestaurantCollection.toggle()

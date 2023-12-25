@@ -83,7 +83,7 @@ extension CameraView {
 				}
 			}
 			.overlayWithSystemImage(systemName: "xmark", alignment: .topTrailing) {
-				navigationModel.selectedTab = .home
+				navigationModel.selectedTab = .foodPrint
 			}
 		}
 	}

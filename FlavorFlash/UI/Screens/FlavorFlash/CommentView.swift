@@ -135,7 +135,7 @@ extension CommentView {
 				try await cameraDataModel.saveFoodPrint()
 				showLoading = false
 				dismiss()
-				navigationModel.selectedTab = .home
+				navigationModel.selectedTab = .foodPrint
 			}
 		} label: {
 			Text("Save FoodPrint!")
