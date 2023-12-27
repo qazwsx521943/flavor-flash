@@ -37,6 +37,10 @@ class AuthenticationViewModel: NSObject, ObservableObject {
 				_ = try await UserManager.shared.getUser(userId: appleSignUpUser.id)
 			} catch {
 				isFirstSignIn = true
+				guard let email = authDataResult.email else { return }
+				let newUser = FBUser(auth: authDataResult, displayName: "Anonymous", username: email)
+				try await UserManager.shared.createUser(user: newUser)
+				try await UserManager.shared.setRestaurantCategories(userId: newUser.id, categories: RestaurantCategory.allCases.toString)
 			}
 
 		} catch {
