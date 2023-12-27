@@ -52,6 +52,14 @@ struct FFTabBar: View {
 							navigationModel.showTabBar()
 						}
 
+					LiveStreamView()
+						.tag(TabItems.liveStream)
+						.tabItem {
+							Label("Stream", systemImage: "video.fill")
+						}
+						.toolbar(.hidden, for: .tabBar)
+
+
 					ProfileView()
 						.tag(TabItems.profile)
 						.toolbar(.hidden, for: .tabBar)

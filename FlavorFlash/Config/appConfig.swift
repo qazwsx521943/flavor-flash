@@ -16,12 +16,14 @@ enum TabItems: Int, CaseIterable, Codable, Identifiable {
 
 	case foodPrint = 0
 	case flavorFlash
+	case liveStream
 	case profile
 
 	var title: String {
 		switch self {
 		case .foodPrint: return "FoodPrint"
 		case .flavorFlash: return "FlavorFlash"
+		case .liveStream: return "Stream"
 		case .profile: return "Profile"
 		}
 	}
@@ -30,6 +32,7 @@ enum TabItems: Int, CaseIterable, Codable, Identifiable {
 		switch self {
 		case .foodPrint: return "star.bubble"
 		case .flavorFlash: return "camera.fill"
+		case .liveStream: return "video.fill"
 		case .profile: return "person.fill"
 		}
 	}
@@ -38,6 +41,7 @@ enum TabItems: Int, CaseIterable, Codable, Identifiable {
 		switch self {
 		case .foodPrint: return AnyView(FoodPrintView())
 		case .flavorFlash: return AnyView(FlavorFlashView())
+		case .liveStream: return AnyView(LiveStreamView())
 		case .profile: return AnyView(ProfileView())
 		}
 	}

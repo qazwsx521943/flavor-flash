@@ -8,11 +8,50 @@
 import SwiftUI
 
 struct LiveStreamView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
+	@StateObject private var viewModel = LiveStreamViewModel()
+
+	var body: some View {
+		NavigationStack {
+
+			VStack {
+				if let streamId = viewModel.streamId {
+					HStack {
+						Text("Your stream ID: ")
+
+						Text(streamId)
+							.onTapGesture(count: 2) {
+								UIPasteboard.general.string = streamId
+							}
+					}
+				}
+
+				ForEach(viewModel.streamIds, id: \.self) { id in
+					Button(id) {
+						viewModel.streamId = id
+						viewModel.joinStream(id: id)
+					}
+					.buttonStyle(SmallPrimaryButtonStyle())
+				}
+
+				Button {
+					viewModel.createStream()
+				} label: {
+					Text("Start Stream")
+				}
+				.buttonStyle(LargePrimaryButtonStyle())
+
+				NavigationLink {
+					viewModel.buildVideoVC()
+						.frame(maxWidth: .infinity)
+						.frame(maxHeight: .infinity)
+				} label: {
+					Text("Open Camera")
+				}
+			}
+		}
+	}
 }
 
 #Preview {
-    LiveStreamView()
+	LiveStreamView()
 }
