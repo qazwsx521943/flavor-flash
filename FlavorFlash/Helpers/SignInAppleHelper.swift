@@ -101,11 +101,14 @@ extension SignInAppleHelper: ASAuthorizationControllerDelegate {
 			let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential,
 			let nonce = currentNonce,
 			let appleIDToken = appleIDCredential.identityToken,
-			let idTokenString = String(data: appleIDToken, encoding: .utf8)
+			let idTokenString = String(data: appleIDToken, encoding: .utf8),
+			let displayName = appleIDCredential.fullName
 		else {
 			completionHandler?(.failure(URLError(.badServerResponse)))
 			return
 		}
+
+		print("Your full name : \(displayName)")
 
 		let tokens = SignInWithAppleResult(
 			token: idTokenString,

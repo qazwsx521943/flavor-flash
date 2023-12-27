@@ -54,11 +54,12 @@ extension AuthenticationView {
 				do {
 					try await authenticationViewModel.signInWithApple()
 
-					if authenticationViewModel.isFirstSignIn {
-						authenticationViewModel.showThirdPartySignUp = true
-					} else {
-						navigationModel.showSignInModal = false
-					}
+//					if authenticationViewModel.isFirstSignIn {
+//						authenticationViewModel.showThirdPartySignUp = true
+//					} else {
+//						navigationModel.showSignInModal = false
+//					}
+					navigationModel.showSignInModal = false
 
 				} catch {
 					print(error)
