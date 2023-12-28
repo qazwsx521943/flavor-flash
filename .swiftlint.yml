@@ -1,17 +1,64 @@
 
-excluded:
+excluded: # ignored file path
   - Pods
+  - DerivedData
+
+included: # lint .swift suffix files under file path
+
 disabled_rules:
+  - private_over_fileprivate
+  - comment_spacing
   - trailing_whitespace
+  - unused_optional_binding
+  - todo
+
+analyzer_rules:
+  - unused_import
+  - unused_declaration
+
+opt_in_rules:
+  - indentation_width
+  - force_try
+
+custom_rules:
+  array_constructor:
+    name: "Array/Dictionary initializer"
+    regex: '[let,var] .+ = (\[.+\]\(\))'
+    capture_group: 1
+    message: "Use explicit type annotation when initializing empty arrays and dictionaries"
+    severity: warning
+
+indentation_width:
+  indentation_width: 4
+
 identifier_name:
+  allowed_symbols: ["_"] # these are allowed
   excluded: # excluded via string array
     - id
     - URL
     - url
     - app
+    - x
+    - y
+
+force_cast: warning
+
+force_try: warning
+
+line_length:
+  ignores_urls: true
+  ignores_comments: true
+
 file_length:
   warning: 500
   error: 800
+
 type_body_length:
   - 500 # warning
   - 700 # error
+
+function_body_length:
+  warning: 80
+
+vertical_whitespace:
+  max_empty_lines: 2
