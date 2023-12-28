@@ -26,7 +26,7 @@ struct ButtonStyles: View {
 				Button {
 
 				} label: {
-					Text("small primary disabled")
+					Text("small primary - Disabled")
 				}
 				.buttonStyle(SmallPrimaryButtonStyle())
 				.disabled(true)
@@ -37,6 +37,14 @@ struct ButtonStyles: View {
 					Text("Large primary")
 				}
 				.buttonStyle(LargePrimaryButtonStyle())
+
+				Button {
+
+				} label: {
+					Text("Large primary - Disabled")
+				}
+				.buttonStyle(LargePrimaryButtonStyle())
+				.disabled(true)
 
 				Button {
 
@@ -91,7 +99,11 @@ struct LargePrimaryButtonStyle: ButtonStyle {
 			.bodyStyle()
 			.foregroundStyle(.white)
 			.padding(15)
-			.background(RoundedRectangle(cornerRadius: 10.0).fill(backgroundColor))
+			.background(
+				RoundedRectangle(cornerRadius: 10.0)
+					.fill(backgroundColor)
+					.brightness(isEnabled ? 0 : 0.2)
+			)
 			.scaleEffect(configuration.isPressed ? 0.9 : 1)
 	}
 }
