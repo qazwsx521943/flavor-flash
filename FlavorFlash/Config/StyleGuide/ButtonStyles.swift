@@ -9,38 +9,44 @@ import SwiftUI
 
 struct ButtonStyles: View {
     var body: some View {
-		VStack {
+		VStack(spacing: 50) {
 			Text("Button Styles")
 				.titleStyle()
+				.foregroundStyle(.lightGreen)
+				.padding(.top, 100)
 
-			Button {
+			VStack(spacing: 15) {
+				Button {
 
-			} label: {
-				Text("small primary")
+				} label: {
+					Text("small primary")
+				}
+				.buttonStyle(SmallPrimaryButtonStyle())
+
+				Button {
+
+				} label: {
+					Text("small primary disabled")
+				}
+				.buttonStyle(SmallPrimaryButtonStyle())
+				.disabled(true)
+
+				Button {
+
+				} label: {
+					Text("Large primary")
+				}
+				.buttonStyle(LargePrimaryButtonStyle())
+
+				Button {
+
+				} label: {
+					Image(systemName: "line.3.horizontal.decrease")
+				}
+				.buttonStyle(IconButtonStyle())
 			}
-			.buttonStyle(SmallPrimaryButtonStyle())
 
-			Button {
-
-			} label: {
-				Text("small primary")
-			}
-			.buttonStyle(SmallPrimaryButtonStyle())
-			.disabled(true)
-
-			Button {
-
-			} label: {
-				Text("Large primary")
-			}
-			.buttonStyle(LargePrimaryButtonStyle())
-
-			Button {
-
-			} label: {
-				Image(systemName: "line.3.horizontal.decrease")
-			}
-			.buttonStyle(IconButtonStyle())
+			Spacer()
 		}
     }
 }
@@ -62,9 +68,12 @@ struct SmallPrimaryButtonStyle: ButtonStyle {
 			.padding(12.5)
 			.background(
 				RoundedRectangle(cornerRadius: 10.0).fill(backgroundColor)
-					.brightness(isEnabled ? 0 : -0.5) 
+					.brightness(isEnabled ? 0 : 0.2) 
 			)
-			.scaleEffect(configuration.isPressed ? 0.9 : 1)
+			.scaleEffect(configuration.isPressed 
+						 ? 0.9
+						 : 1
+			)
 	}
 }
 
