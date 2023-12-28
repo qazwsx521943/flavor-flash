@@ -1,26 +1,27 @@
 <h1 align="center" id="title">Flavor Flash</h1>
 
 <pre id="description">
-Flavor Flash is an app that foodie can record and share everyday meals in the "Food Prints" community.
-Join Flavor Flash to share and explore restaurants with your friends!</pre>
+Flavor Flash is your go-to companion for making mealtime decisions effortlessly.
+
+Record your delicious moments with our dual-camera photo-taking feature and easily share your "foodprint" with friends.</pre>
 
 ## What can you do on Flavor Flash?
 
-- Generates random food category for mealtime and recommends nearby restaurants to save your time on deciding what to eat.
+- **Random Food Category Generator**: Let Flavor Flash decide your mealtime category and effortlessly search nearby restaurants for you.
 
-- Capture daily meals using your device's front & back camera simultaneously, and submit your "foodprint".
+- **Foodprint Sharing**: Capture your daily meals with your device's front and back camera simultaneously, creating a unique "foodprint." Share your culinary adventures with the community.
 
-- Checking out your friends foodprints by commenting and liking their "foodprint" posts.
+- **Community Interaction**: Explore and engage with your friends' foodprints by commenting and liking their posts.
 
-- Browse your own foodprint history on map, and checkout friend's foodprints by overlaying map annotations.
+- **Map Integration**: Browse your personal foodprint history on the map and discover your friends' foodprints by overlaying map annotations.
 
-- Add friend by scanning QRCode.
+- **Friendship Made Easy**: Add friends seamlessly by scanning QR codes.
 
-- Chat with your foodie friend 1 on 1.
+- **Foodie Chats**: Enjoy one-on-one conversations with your foodie friends.
 
-- Light / Dark mode in-app toggle.
+- **Light/Dark Mode**: Toggle between light and dark modes for a personalized in-app experience.
 
-- (Un deployed) Food share live stream functionality undeployed.（Due to App Store review with a high chance of rejection）
+- **Food Share Live Stream (Undeployed)**: Please note that the live stream functionality is currently undeployed due to potential App Store review concerns.
 
 ## Screen Shots
 
@@ -115,36 +116,38 @@ Join Flavor Flash to share and explore restaurants with your friends!</pre>
 <img src="./Screenshots/CornerRadiusStyleGuide.png" alt="CornerRadiusStyleGuide" width="300"/>
 <img src="./Screenshots/ToggleStyleGuide.png" alt="ToggleStyleGuide" width="300"/>
 
+## Project Architecture
+
+![Project Architecture](./Screenshots/project_architecture.png)
+
 ## Feature Implementation Overview
 
-- Developed with SwiftUI, implementing the MVVM architecture coupled with Combine for enhanced flexibility and maintainability.
+- Developed with SwiftUI and following the MVVM architecture combined with Combine for enhanced flexibility and maintainability.
 
-- Designed flexible custom UI components, incorporating a comprehensive style guide through ViewModifiers to ensure a unified and flexible app interface.
+- Created custom UI components with a focus on flexibility, incorporating a comprehensive style guide through ViewModifiers to ensure a unified and flexible app interface.
 
-- Managed concurrent code effectively by leveraging Swift's new language features, which involved encapsulating SDK completionHandler closures within asynchronous functions.
+- Effectively managed concurrent code by leveraging Swift's new language features, including encapsulating SDK completionHandler closures within asynchronous functions.
 
-- Bridged UIKit components(UIView / UIViewController) into SwiftUI views.
+- Integrated UIKit components(UIView / UIViewController) into SwiftUI views.
 
-- Capturing and Previewing both food and facial images simultaneously using user’s front and back cameras, utilizing AVFoundation's API to proficiently manipulate the user's device camera.
+- Implemented simultaneous capturing and previewing both food and facial images using the user’s front and back cameras. Utilized AVFoundation's API for efficient manipulation of the device camera.
 
-- Implemented live streaming food sharing functionality using WebRTC, with Cloud Firestore serving as the signaling client for communication.
+- Analyzed food images by categorizing food images using CoreML + Vision, with a self-trained model created with CreateML for enhanced accuracy and customization.
 
-- Analyzed food images by category via CoreML + Vision, using a self-trained model created with CreateML for enhanced accuracy and customization.
+- Utilized Google Places API to retrieve nearby restaurant data and then rendered geographic data via MapKit.
 
-- Search nearby restaurant data provided by Google Places API, and then render geographic data via MapKit.
-
-- Implemented chat functionality by actively observing Cloud Firestore collection for real-time communication.
+- Implemented real-time chat functionality by actively observing Cloud Firestore collection.
 
 - (Undeployed) Foodie live streaming utilizing [WebRTC](https://github.com/stasel/WebRTC), implemented by designing a signaling client for observing Firestore collection.
 
 ## Tech Stack
 
-- [SwiftUI](https://developer.apple.com/documentation/swiftui/) - A modern framework to declare user interfaces for any Apple platform
-- [Combine](https://developer.apple.com/documentation/combine) - Provides a declarative Swift API for processing values over time
+- [SwiftUI](https://developer.apple.com/documentation/swiftui/) - A modern framework to declare user interfaces for any Apple platform.
+- [Combine](https://developer.apple.com/documentation/combine) - Provides a declarative Swift API for processing values over time.
 - [AVFoundation](https://github.com/unocss/unocss) - Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.
 
-- [MapKit](https://developer.apple.com/documentation/mapkit) - Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates
+- [MapKit](https://developer.apple.com/documentation/mapkit) - Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates.
 - [CoreML](https://developer.apple.com/documentation/coreml) - Integrate machine learning models into apple platform apps.
 - [Vision](https://developer.apple.com/documentation/vision) - Apply computer vision algorithms to perform a variety of tasks on input images and video.
-- [WebRTC](https://github.com/stasel/WebRTC) - WebRTC Binaries for iOS and macOS
-- [SwiftLint](https://github.com/realm/SwiftLint) - Xcode code style linting.
+- [WebRTC](https://github.com/stasel/WebRTC) - WebRTC Binaries for iOS and macOS.
+- [SwiftLint](https://github.com/realm/SwiftLint) - Xcode source code linting tool.
