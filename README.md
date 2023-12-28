@@ -1,24 +1,32 @@
-<h1 align="center" id="title">NumNum</h1>
+<h1 align="center" id="title">Flavor Flash</h1>
 
-<p id="description">Numnum is an app that foodie can record and share everyday meals in the "Food Prints" community. Join NumNum to share and explore restaurants with your friends!</p>
+<pre id="description">
+Flavor Flash is an app that foodie can record and share everyday meals in the "Food Prints" community.
+Join Flavor Flash to share and explore restaurants with your friends!</pre>
 
-## Main Features
+## What can you do on Flavor Flash?
 
-- Generate random food category, and recommend nearby restaurants
-- Dual Camera photo previewing / capturing
-- CoreML Models trained by
-- Share your everyday meal with close friends via our Foodprint Community
-- Browse your foodprint on map, and checkout friend's foodprint by overlaying map annotations
-- 1 on 1 Chat
-- QRCode add friend
-- Light / Dark mode toggle
+- Generates random food category for mealtime and recommends nearby restaurants to save your time on deciding what to eat.
+
+- Capture daily meals using your device's front & back camera simultaneously, and submit your "foodprint".
+
+- Checking out your friends foodprints by commenting and liking their "foodprint" posts.
+
+- Browse your own foodprint history on map, and checkout friend's foodprints by overlaying map annotations.
+
+- Add friend by scanning QRCode.
+
+- Chat with your foodie friend 1 on 1.
+
+- Light / Dark mode in-app toggle.
+
+- (Un deployed) Food share live stream functionality undeployed.（Due to App Store review with a high chance of rejection）
 
 ## Screen Shots
 
 ### LoginPage
 
-<img src="./Screenshots/login_dark.png" width="200"/>
-<img src="./Screenshots/login_light.png" width="200"/>
+<img src="./Screenshots/login_dark.png" width="200"/><img src="./Screenshots/login_light.png" width="200"/>
 
 ### HomePage
 
@@ -100,22 +108,43 @@
   </tr>
  </table>
 
+### Style Guide
+
+<img src="./Screenshots/TextStyleGuide.png" alt="TextStyleGuide" width="300"/>
+<img src="./Screenshots/ButtonStyleGuide.png" alt="ButtonStyleGuide" width="300"/>
+<img src="./Screenshots/CornerRadiusStyleGuide.png" alt="CornerRadiusStyleGuide" width="300"/>
+<img src="./Screenshots/ToggleStyleGuide.png" alt="ToggleStyleGuide" width="300"/>
+
+## Feature Implementation Overview
+
+- Developed with SwiftUI, implementing the MVVM architecture coupled with Combine for enhanced flexibility and maintainability.
+
+- Designed flexible custom UI components, incorporating a comprehensive style guide through ViewModifiers to ensure a unified and flexible app interface.
+
+- Managed concurrent code effectively by leveraging Swift's new language features, which involved encapsulating SDK completionHandler closures within asynchronous functions.
+
+- Bridged UIKit components(UIView / UIViewController) into SwiftUI views.
+
+- Capturing and Previewing both food and facial images simultaneously using user’s front and back cameras, utilizing AVFoundation's API to proficiently manipulate the user's device camera.
+
+- Implemented live streaming food sharing functionality using WebRTC, with Cloud Firestore serving as the signaling client for communication.
+
+- Analyzed food images by category via CoreML + Vision, using a self-trained model created with CreateML for enhanced accuracy and customization.
+
+- Search nearby restaurant data provided by Google Places API, and then render geographic data via MapKit.
+
+- Implemented chat functionality by actively observing Cloud Firestore collection for real-time communication.
+
+- (Undeployed) Foodie live streaming utilizing [WebRTC](https://github.com/stasel/WebRTC), implemented by designing a signaling client for observing Firestore collection.
+
 ## Tech Stack
 
-**FrameWork:**
+- [SwiftUI](https://developer.apple.com/documentation/swiftui/) - A modern framework to declare user interfaces for any Apple platform
+- [Combine](https://developer.apple.com/documentation/combine) - Provides a declarative Swift API for processing values over time
+- [AVFoundation](https://github.com/unocss/unocss) - Work with audiovisual assets, control device cameras, process audio, and configure system audio interactions.
 
-![SwiftUI](https://img.shields.io/badge/SwiftUI-black?style=for-the-badge&logo=Swift)
-
-![Combine](https://img.shields.io/badge/Combine-black?style=for-the-badge&logo=Combine)
-
-**Database:**
-
-![Cloud Firestore](https://img.shields.io/badge/Cloud%20Firestore-black?style=for-the-badge&logo=firebase)
-
-**CI / CD:**
-
-![Xcode Cloud](https://img.shields.io/badge/Xcode%20Cloud-lightblue?style=for-the-badge&logo=xcode)
-
-![testflight](https://img.shields.io/badge/testflight-lightblue?style=for-the-badge&logo=testflight)
-
-## Project Structure
+- [MapKit](https://developer.apple.com/documentation/mapkit) - Display map or satellite imagery within your app, call out points of interest, and determine placemark information for map coordinates
+- [CoreML](https://developer.apple.com/documentation/coreml) - Integrate machine learning models into apple platform apps.
+- [Vision](https://developer.apple.com/documentation/vision) - Apply computer vision algorithms to perform a variety of tasks on input images and video.
+- [WebRTC](https://github.com/stasel/WebRTC) - WebRTC Binaries for iOS and macOS
+- [SwiftLint](https://github.com/realm/SwiftLint) - Xcode code style linting.
