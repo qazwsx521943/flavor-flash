@@ -11,17 +11,24 @@ struct ToggleStyles: View {
 	@State private var isOn = false
 
 	var body: some View {
-		VStack {
+		VStack(spacing: 40) {
 			Text("Toggle Styles")
+				.titleStyle()
+				.foregroundStyle(.lightGreen)
+				.padding(.top, 100)
 
-			Toggle("toggle", isOn: .constant(true))
-				.toggleStyle(PrimaryToggleStyle(isLabelHidden: true))
+			VStack(spacing: 50) {
+				Toggle("toggle On", isOn: .constant(true))
+					.toggleStyle(PrimaryToggleStyle(isLabelHidden: false))
 
-			Toggle("toggle", isOn: .constant(false))
-				.toggleStyle(PrimaryToggleStyle(isLabelHidden: true))
+				Toggle("toggle Off", isOn: .constant(false))
+					.toggleStyle(PrimaryToggleStyle(isLabelHidden: false))
 
-			Toggle("toggle", isOn: $isOn)
-				.toggleStyle(PrimaryToggleStyle(isLabelHidden: true))
+//				Toggle("toggle", isOn: $isOn)
+//					.toggleStyle(PrimaryToggleStyle(isLabelHidden: true))
+			}.frame(width: 150)
+
+			Spacer()
 		}
 	}
 }
@@ -35,7 +42,7 @@ struct PrimaryToggleStyle: ToggleStyle {
 	let size: CGFloat
 
 	var backgroundColor: Color {
-		colorScheme == .light ? Color(.middleYellow) : Color(.lightGreen)
+		colorScheme == .light ? Color(.darkGreen) : Color(.lightGreen)
 	}
 
 	init(isLabelHidden: Bool = false, size: CGFloat = 20.0) {
@@ -56,6 +63,7 @@ struct PrimaryToggleStyle: ToggleStyle {
 				if configuration.isOn {
 					Text("on")
 						.detailBoldStyle()
+						.foregroundStyle(.white)
 						.frame(width: size, height: size)
 				}
 

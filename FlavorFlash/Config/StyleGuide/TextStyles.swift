@@ -8,38 +8,53 @@
 import SwiftUI
 
 struct TextStyles: View {
+	let englishTexts = [
+		"Title", 
+		"Body",
+		"Body - Bold",
+		"Caption",
+		"Caption - Bold",
+		"Caption tag"
+	]
+
+	let chineseTexts = [
+		"標題",
+		"內文",
+		"內文 - 粗",
+		"說明",
+		"說明 - 粗",
+		"說明 標籤"
+	]
+
     var body: some View {
-		VStack(spacing: 10) {
-			Text("Title")
+		VStack(spacing: 50) {
+
+			Text("Text Styles")
 				.titleStyle()
+				.foregroundStyle(.lightGreen)
+				.padding(.top, 100)
 
-			Text("標題")
-				.titleStyle()
+			HStack(spacing: 40) {
+				textStyleGuideLayout(englishTexts)
 
-			Text("Body")
-				.bodyStyle()
+				textStyleGuideLayout(chineseTexts)
+			}
 
-			Text("內文-中")
-				.bodyStyle()
-
-			Text("BodyBold")
-				.bodyBoldStyle()
-
-			Text("內文-粗")
-				.bodyBoldStyle()
-
-			Text("caption")
-				.captionStyle()
-
-			Text("說明")
-				.captionStyle()
-
-			Text("Padding")
-				.captionStyle()
-				.tagPaddingStyle()
-        }
+			Spacer()
+		}
     }
+
+	private func textStyleGuideLayout(_ textArray: [String]) -> some View {
+		VStack(spacing: 15) {
+			ForEach(textArray, id: \.self) { text in
+				Text(text)
+					.applyStyle(for: text)
+			}
+		}
+	}
 }
+
+
 
 // MARK: - Font Family
 enum FontStyle: String {
@@ -170,6 +185,30 @@ extension Text {
 	}
 }
 
+/// for text style guide preview
+extension Text {
+	@ViewBuilder
+	func applyStyle(for text: String) -> some View {
+		switch text {
+		case "Title", "標題":
+			self.titleStyle()
+		case "Body", "內文":
+			self.bodyStyle()
+		case "Body - Bold", "內文 - 粗":
+			self.bodyBoldStyle()
+		case "Caption", "說明":
+			self.captionStyle()
+		case "Caption - Bold", "說明 - 粗":
+			self.captionBoldStyle()
+		case "Caption tag", "說明 - 標籤":
+			self
+				.captionStyle()
+				.tagPaddingStyle(backgroundColor: .lightGreen)
+		default:
+			self
+		}
+	}
+}
 #Preview {
     TextStyles()
 }

@@ -12,11 +12,15 @@ struct ShadowStyles: View {
 		VStack {
 			Text("Shadow Styles")
 				.titleStyle()
+				.foregroundStyle(.lightGreen)
+				.padding(.top, 100)
 
 			Color("AccentColor")
 				.frame(width: 100, height: 100)
 				.clipShape(RoundedRectangle(cornerRadius: 10.0))
 				.lightWeightShadow()
+
+			Spacer()
 		}
     }
 }
