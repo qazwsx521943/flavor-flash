@@ -53,6 +53,8 @@
 		E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B882B1A111D008C439F /* ChatListCell.swift */; };
 		E7274B8C2B1ACF85008C439F /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */; };
 		E73225832B1B0A4C00EE14CC /* OverlayModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */; };
+		E73698312B49BC19007FFE8E /* FlavorFlashUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73698302B49BC19007FFE8E /* FlavorFlashUITests.swift */; };
+		E73698332B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73698322B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift */; };
 		E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17142B0AE90400F1A0DD /* ChatManager.swift */; };
 		E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */; };
 		E73B171A2B0AF8A200F1A0DD /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17192B0AF8A200F1A0DD /* ChatRoom.swift */; };
@@ -157,6 +159,16 @@
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E73698342B49BC19007FFE8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7A399212B034AB4005C8021 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7A399282B034AB4005C8021;
+			remoteInfo = FlavorFlash;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		28055511D6E283B5661F16BB /* Pods-FlavorFlash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.release.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.release.xcconfig"; sourceTree = "<group>"; };
 		3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.debug.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +217,9 @@
 		E7274B882B1A111D008C439F /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifiers.swift; sourceTree = "<group>"; };
+		E736982E2B49BC19007FFE8E /* FlavorFlashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlavorFlashUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73698302B49BC19007FFE8E /* FlavorFlashUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashUITests.swift; sourceTree = "<group>"; };
+		E73698322B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		E73B17142B0AE90400F1A0DD /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E73B17192B0AF8A200F1A0DD /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -296,6 +311,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E736982B2B49BC18007FFE8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399262B034AB4005C8021 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -465,6 +487,15 @@
 				E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */,
 			);
 			path = ProfileHeader;
+			sourceTree = "<group>";
+		};
+		E736982F2B49BC19007FFE8E /* FlavorFlashUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E73698302B49BC19007FFE8E /* FlavorFlashUITests.swift */,
+				E73698322B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift */,
+			);
+			path = FlavorFlashUITests;
 			sourceTree = "<group>";
 		};
 		E73B17132B0AE89600F1A0DD /* Extensions */ = {
@@ -662,6 +693,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A3992B2B034AB4005C8021 /* FlavorFlash */,
+				E736982F2B49BC19007FFE8E /* FlavorFlashUITests */,
 				E7A3992A2B034AB4005C8021 /* Products */,
 				83261AFC1AF957C830E3524E /* Pods */,
 				875771145004DB8690077DDD /* Frameworks */,
@@ -672,6 +704,7 @@
 			isa = PBXGroup;
 			children = (
 				E7A399292B034AB4005C8021 /* FlavorFlash.app */,
+				E736982E2B49BC19007FFE8E /* FlavorFlashUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -959,6 +992,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E736982D2B49BC18007FFE8E /* FlavorFlashUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73698382B49BC19007FFE8E /* Build configuration list for PBXNativeTarget "FlavorFlashUITests" */;
+			buildPhases = (
+				E736982A2B49BC18007FFE8E /* Sources */,
+				E736982B2B49BC18007FFE8E /* Frameworks */,
+				E736982C2B49BC18007FFE8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73698352B49BC19007FFE8E /* PBXTargetDependency */,
+			);
+			name = FlavorFlashUITests;
+			productName = FlavorFlashUITests;
+			productReference = E736982E2B49BC19007FFE8E /* FlavorFlashUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		E7A399282B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7A399392B034AB6005C8021 /* Build configuration list for PBXNativeTarget "FlavorFlash" */;
@@ -1014,6 +1065,10 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					E736982D2B49BC18007FFE8E = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = E7A399282B034AB4005C8021;
+					};
 					E7A399282B034AB4005C8021 = {
 						CreatedOnToolsVersion = 15.0;
 					};
@@ -1039,11 +1094,19 @@
 			projectRoot = "";
 			targets = (
 				E7A399282B034AB4005C8021 /* FlavorFlash */,
+				E736982D2B49BC18007FFE8E /* FlavorFlashUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E736982C2B49BC18007FFE8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399272B034AB4005C8021 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1179,6 +1242,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E736982A2B49BC18007FFE8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73698312B49BC19007FFE8E /* FlavorFlashUITests.swift in Sources */,
+				E73698332B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399252B034AB4005C8021 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1307,7 +1379,52 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E73698352B49BC19007FFE8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7A399282B034AB4005C8021 /* FlavorFlash */;
+			targetProxy = E73698342B49BC19007FFE8E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		E73698362B49BC19007FFE8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y73ZJF4SCP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FlavorFlash;
+			};
+			name = Debug;
+		};
+		E73698372B49BC19007FFE8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y73ZJF4SCP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FlavorFlash;
+			};
+			name = Release;
+		};
 		E7A399372B034AB6005C8021 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1518,6 +1635,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E73698382B49BC19007FFE8E /* Build configuration list for PBXNativeTarget "FlavorFlashUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73698362B49BC19007FFE8E /* Debug */,
+				E73698372B49BC19007FFE8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E7A399242B034AB4005C8021 /* Build configuration list for PBXProject "FlavorFlash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
