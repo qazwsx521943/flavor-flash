@@ -53,8 +53,8 @@
 		E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B882B1A111D008C439F /* ChatListCell.swift */; };
 		E7274B8C2B1ACF85008C439F /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */; };
 		E73225832B1B0A4C00EE14CC /* OverlayModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */; };
-		E73698312B49BC19007FFE8E /* FlavorFlashUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73698302B49BC19007FFE8E /* FlavorFlashUITests.swift */; };
-		E73698332B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73698322B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift */; };
+		E736983E2B49BE75007FFE8E /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736983D2B49BE75007FFE8E /* UITestingHelper.swift */; };
+		E73728F92B4A421E0061C933 /* ProfileScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73728F82B4A421E0061C933 /* ProfileScreenUITests.swift */; };
 		E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17142B0AE90400F1A0DD /* ChatManager.swift */; };
 		E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */; };
 		E73B171A2B0AF8A200F1A0DD /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17192B0AF8A200F1A0DD /* ChatRoom.swift */; };
@@ -218,8 +218,8 @@
 		E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifiers.swift; sourceTree = "<group>"; };
 		E736982E2B49BC19007FFE8E /* FlavorFlashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlavorFlashUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E73698302B49BC19007FFE8E /* FlavorFlashUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashUITests.swift; sourceTree = "<group>"; };
-		E73698322B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		E736983D2B49BE75007FFE8E /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
+		E73728F82B4A421E0061C933 /* ProfileScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenUITests.swift; sourceTree = "<group>"; };
 		E73B17142B0AE90400F1A0DD /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E73B17192B0AF8A200F1A0DD /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -477,6 +477,7 @@
 			isa = PBXGroup;
 			children = (
 				E71BFB212B1771CC008E89DE /* SignInAppleHelper.swift */,
+				E736983D2B49BE75007FFE8E /* UITestingHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -492,10 +493,17 @@
 		E736982F2B49BC19007FFE8E /* FlavorFlashUITests */ = {
 			isa = PBXGroup;
 			children = (
-				E73698302B49BC19007FFE8E /* FlavorFlashUITests.swift */,
-				E73698322B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift */,
+				E73728F72B4A41FB0061C933 /* Profile */,
 			);
 			path = FlavorFlashUITests;
+			sourceTree = "<group>";
+		};
+		E73728F72B4A41FB0061C933 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E73728F82B4A421E0061C933 /* ProfileScreenUITests.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		E73B17132B0AE89600F1A0DD /* Extensions */ = {
@@ -1067,6 +1075,7 @@
 				TargetAttributes = {
 					E736982D2B49BC18007FFE8E = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 						TestTargetID = E7A399282B034AB4005C8021;
 					};
 					E7A399282B034AB4005C8021 = {
@@ -1246,8 +1255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E73698312B49BC19007FFE8E /* FlavorFlashUITests.swift in Sources */,
-				E73698332B49BC19007FFE8E /* FlavorFlashUITestsLaunchTests.swift in Sources */,
+				E73728F92B4A421E0061C933 /* ProfileScreenUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1283,6 +1291,7 @@
 				E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */,
 				E77353742B09CB5C003035B4 /* EmailSignInView.swift in Sources */,
 				E70C38E72B1F22AF0048535C /* FoodClassifierV1.mlmodel in Sources */,
+				E736983E2B49BE75007FFE8E /* UITestingHelper.swift in Sources */,
 				E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+EXT.swift in Sources */,
@@ -1391,6 +1400,7 @@
 		E73698362B49BC19007FFE8E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -1401,6 +1411,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = FlavorFlash;
@@ -1410,6 +1421,7 @@
 		E73698372B49BC19007FFE8E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y73ZJF4SCP;
