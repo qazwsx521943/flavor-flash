@@ -9,7 +9,25 @@ import Foundation
 import GooglePlaces
 import Alamofire
 
-final class PlaceFetcher {
+protocol PlaceServiceProtocol {
+	func fetchPlaceDetailById(id: String) async throws -> Restaurant
+	func fetchNearBy(
+		type categories: [String],
+		location: Location,
+		maxResultCount: Int,
+		rankPreference: RankPreference,
+		radius: Double,
+		completionHandler: @escaping (Result<GooglePlaceResult, Error>) -> Void)
+	func fetchPlaceByText(keyword: String, location: Location, completionHandler: @escaping (Result<GooglePlaceResult, Error> ) -> Void)
+	func fetchImage(for id: String, completionHandler: @escaping (UIImage) -> Void)
+}
+
+enum RankPreference: String, Codable {
+	case popularity = "POPULARITY"
+	case distance = "DISTANCE"
+}
+
+final class PlaceFetcher: PlaceServiceProtocol {
 	static let shared = PlaceFetcher()
 
 	private let placesClient: GMSPlacesClient
@@ -27,11 +45,6 @@ final class PlaceFetcher {
 	enum PlaceFetcherError: Error {
 		case noPlacesFound
 		case responseError
-	}
-
-	public enum RankPreference: String, Codable {
-		case popularity = "POPULARITY"
-		case distance = "DISTANCE"
 	}
 
 	func fetchPlaceDetailById(id: String, completionHandler: @escaping (Result<Restaurant, Error>) -> Void) {

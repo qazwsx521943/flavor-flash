@@ -114,6 +114,8 @@
 		E7C110522B22F6AA00999FBD /* CornerRadiusStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */; };
 		E7CAD3C32B4B12A000439D2B /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD3C22B4B12A000439D2B /* MockUserService.swift */; };
 		E7CAD3C52B4B163900439D2B /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD3C42B4B163900439D2B /* MockAuthService.swift */; };
+		E7CAD3C72B4BA79000439D2B /* searchNearby.json in Resources */ = {isa = PBXBuildFile; fileRef = E7CAD3C62B4BA79000439D2B /* searchNearby.json */; };
+		E7CAD3C92B4BD01200439D2B /* MockPlaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD3C82B4BD01200439D2B /* MockPlaceService.swift */; };
 		E7E200A52B08FF8C003C22D6 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200A42B08FF8C003C22D6 /* FirebaseAnalytics */; };
 		E7E200B12B08FF8C003C22D6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200B02B08FF8C003C22D6 /* FirebaseAuth */; };
 		E7E200B32B08FF8C003C22D6 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200B22B08FF8C003C22D6 /* FirebaseAuthCombine-Community */; };
@@ -291,6 +293,8 @@
 		E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyles.swift; sourceTree = "<group>"; };
 		E7CAD3C22B4B12A000439D2B /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
 		E7CAD3C42B4B163900439D2B /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
+		E7CAD3C62B4BA79000439D2B /* searchNearby.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = searchNearby.json; sourceTree = "<group>"; };
+		E7CAD3C82B4BD01200439D2B /* MockPlaceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceService.swift; sourceTree = "<group>"; };
 		E7E200DF2B090B69003C22D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E200E62B091235003C22D6 /* FBMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBMessage.swift; sourceTree = "<group>"; };
 		E7E200EA2B098597003C22D6 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -816,6 +820,8 @@
 			children = (
 				E7CAD3C22B4B12A000439D2B /* MockUserService.swift */,
 				E7CAD3C42B4B163900439D2B /* MockAuthService.swift */,
+				E7CAD3C82B4BD01200439D2B /* MockPlaceService.swift */,
+				E7CAD3C62B4BA79000439D2B /* searchNearby.json */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -1205,6 +1211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7CAD3C72B4BA79000439D2B /* searchNearby.json in Resources */,
 				E774569D2B28538D00CAF64C /* randomFood.json in Resources */,
 				E7A399362B034AB6005C8021 /* Preview Assets.xcassets in Resources */,
 				E7EBA28F2B2B2E8C0088C293 /* Loading.json in Resources */,
@@ -1370,6 +1377,7 @@
 				E7C110522B22F6AA00999FBD /* CornerRadiusStyles.swift in Sources */,
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
 				E7CAD3C32B4B12A000439D2B /* MockUserService.swift in Sources */,
+				E7CAD3C92B4BD01200439D2B /* MockPlaceService.swift in Sources */,
 				E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
 				E7FFB3942B1D93F00065A213 /* ReportManager.swift in Sources */,

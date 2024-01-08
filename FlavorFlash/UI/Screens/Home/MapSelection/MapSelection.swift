@@ -13,7 +13,7 @@ struct MapSelection: View {
 
 	@Binding var searchRadius: Double
 
-	@Binding var rankPreference: PlaceFetcher.RankPreference
+	@Binding var rankPreference: RankPreference
 
     var body: some View {
 		VStack {
@@ -47,10 +47,10 @@ struct MapSelection: View {
 
 			Picker(selection: $rankPreference) {
 				Text("Distance")
-					.tag(PlaceFetcher.RankPreference.distance)
+					.tag(RankPreference.distance)
 
 				Text("Popularity")
-					.tag(PlaceFetcher.RankPreference.popularity)
+					.tag(RankPreference.popularity)
 			} label: {
 				Text("Rank Preference: ")
 			}

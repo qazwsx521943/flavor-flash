@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+public func loadJSONFile<T: Codable>(_ fileName: String, resultType: T.Type) -> T? {
+	let file = Bundle.main.url(forResource: fileName, withExtension: "json")
+	guard let file else { return nil }
+	do {
+		let fileData = try Data(contentsOf: file)
+		let result = try JSONDecoder().decode(resultType, from: fileData)
+		return result
+	} catch {
+		return nil
+	}
+}

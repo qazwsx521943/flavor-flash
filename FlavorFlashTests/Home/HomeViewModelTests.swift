@@ -8,14 +8,14 @@
 import XCTest
 @testable import FlavorFlash
 
+@MainActor
 final class HomeViewModelTests: XCTestCase {
-
-	@MainActor 
 	func test_generateRandomFoodCategory() async {
 		let mockUserService = MockUserService()
 		let mockAuthService = MockAuthService()
+		let mockPlaceService = MockPlaceService()
 
-		let viewModel = HomeViewModel(userService: mockUserService, authService: mockAuthService)
+		let viewModel = HomeViewModel(userService: mockUserService, authService: mockAuthService, placeService: mockPlaceService)
 
 		try? await viewModel.initialize()
 		
@@ -23,6 +23,23 @@ final class HomeViewModelTests: XCTestCase {
 		for _ in 0..<loopCount {
 			viewModel.randomCategory()
 			XCTAssertNotNil(viewModel.category)
+		}
+	}
+
+	func test_fetchNearbyRestaurants_success() async {
+		let mockUserService = MockUserService()
+		let mockAuthService = MockAuthService()
+		let mockPlaceService = MockPlaceService()
+
+		let viewModel = HomeViewModel(
+			userService: mockUserService,
+			authService: mockAuthService,
+			placeService: mockPlaceService)
+
+		try? await viewModel.initialize()
+
+		viewModel.fetchNearby {
+			XCTAssertEqual(viewModel.restaurants.count, Int(viewModel.maxResultCount ?? 20))
 		}
 	}
 }
