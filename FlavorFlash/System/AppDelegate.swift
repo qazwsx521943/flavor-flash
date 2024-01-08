@@ -55,6 +55,11 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
 
 		GMSPlacesClient.provideAPIKey(env.GOOGLE_MAP_API_KEY)
+
+		#if DEBUG
+		print("🫡 UITesting Running: \(UITestingHelper.isUITesting)🫡" )
+		#endif
+
         return true
     }
 

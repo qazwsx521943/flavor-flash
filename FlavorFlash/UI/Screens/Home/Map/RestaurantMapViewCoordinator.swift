@@ -49,45 +49,6 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 
 		restaurant.mapItem?.openInMaps(launchOptions: launchOptions)
 	}
-
-//	func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-//		pendingWorkItem?.cancel()
-//
-//		let workItem = DispatchWorkItem { [weak self] in
-//			let centerCoordinate = mapView.centerCoordinate
-//			self?.parent.centerLocation = centerCoordinate
-//			self?.fetchNearByRestaurants(centerCoordinate: centerCoordinate)
-//		}
-//
-//		pendingWorkItem = workItem
-//		DispatchQueue.global().asyncAfter(deadline: .now() + 2.0, execute: workItem)
-//	}
-}
-
-extension RestaurantMapViewCoordinator {
-
-	func fetchNearByRestaurants(centerCoordinate: CLLocationCoordinate2D) {
-
-		guard let categoryTag = parent.homeViewModel.category?.searchTag else { return }
-
-		PlaceFetcher.shared.fetchNearBy(
-			type: [categoryTag],
-			location: Location(CLLocation: centerCoordinate),
-			maxResultCount: Int(parent.homeViewModel.maxResultCount ?? 20),
-			rankPreference: parent.homeViewModel.rankPreference ?? .distance,
-			radius: parent.homeViewModel.searchRadius ?? 1000
-		) { [weak self] response in
-
-			switch response {
-			case .success(let result):
-				debugPrint("nearby search Result: \(result.places.count)")
-				self?.parent.homeViewModel.restaurants = result.places
-
-			case .failure(let error):
-				debugPrint(error.localizedDescription)
-			}
-		}
-	}
 }
 
 // MARK: - CLLocationManager Delegate
@@ -106,7 +67,7 @@ extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 			return
 		}
 
-		fetchNearByRestaurants(centerCoordinate: currentLocation)
+		parent.homeViewModel.fetchNearby()
 	}
 
 	// Handle authorization for the location manager.

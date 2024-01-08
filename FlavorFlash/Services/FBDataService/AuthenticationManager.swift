@@ -34,10 +34,27 @@ struct AuthDataResultModel {
 		self.email = user.email
 		self.photoUrl = user.photoURL?.absoluteString
 	}
+
+	// for unit testing
+	init(fbUser: FBUser) {
+		self.uid = fbUser.id
+		self.email = fbUser.email
+		self.photoUrl = fbUser.profileImageUrl
+	}
+}
+
+protocol AuthServiceProtocol {
+	func getAuthenticatedUser() throws -> AuthDataResultModel
+	func createUser(email: String, password: String) async throws -> AuthDataResultModel
+	func signIn(email: String, password: String) async throws -> AuthDataResultModel
+	func signOut() throws
+	func resetPassword(email: String) async throws
+	func updatePassword(password: String) async throws
+	func deleteAccount()
 }
 
 // TODO: use Dependency injection pattern later
-final class AuthenticationManager {
+final class AuthenticationManager: AuthServiceProtocol {
 	static let shared = AuthenticationManager()
 
 	private init() {}
@@ -105,21 +122,11 @@ final class AuthenticationManager {
 extension AuthenticationManager {
 	@discardableResult
 	func signInWithApple(tokens: SignInWithAppleResult) async throws -> AuthDataResultModel {
-//		let credential = OAuthProvider.credential(
-//			withProviderID: AuthProviderOption.apple.rawValue,
-//			idToken: tokens.token,
-//			rawNonce: tokens.nonce
-//		)
 
 		let credential = OAuthProvider.appleCredential(
 			withIDToken: tokens.token,
 			rawNonce: tokens.nonce,
 			fullName: tokens.fullName)
-
-//		debugPrint("fullName", tokens.fullName?.middleName)
-//		debugPrint("fullName", tokens.fullName?.givenName)
-//		debugPrint("fullName", tokens.fullName?.familyName)
-//		debugPrint("fullName", tokens.fullName?.debugDescription)
 
 		return try await signIn(credential: credential)
 	}

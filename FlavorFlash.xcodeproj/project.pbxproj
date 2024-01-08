@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -53,6 +53,11 @@
 		E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B882B1A111D008C439F /* ChatListCell.swift */; };
 		E7274B8C2B1ACF85008C439F /* ProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */; };
 		E73225832B1B0A4C00EE14CC /* OverlayModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */; };
+		E736983E2B49BE75007FFE8E /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736983D2B49BE75007FFE8E /* UITestingHelper.swift */; };
+		E73728F92B4A421E0061C933 /* ProfileScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73728F82B4A421E0061C933 /* ProfileScreenUITests.swift */; };
+		E73729012B4A467A0061C933 /* FlavorFlashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73729002B4A467A0061C933 /* FlavorFlashTests.swift */; };
+		E737290A2B4A471C0061C933 /* LoadFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73729092B4A471C0061C933 /* LoadFileHelper.swift */; };
+		E737290D2B4A4DBC0061C933 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737290C2B4A4DBC0061C933 /* HomeViewModelTests.swift */; };
 		E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17142B0AE90400F1A0DD /* ChatManager.swift */; };
 		E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */; };
 		E73B171A2B0AF8A200F1A0DD /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17192B0AF8A200F1A0DD /* ChatRoom.swift */; };
@@ -107,6 +112,10 @@
 		E7C1104E2B22F1DE00999FBD /* RestaurantCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */; };
 		E7C110502B22F3F700999FBD /* RestaurantInfoTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104F2B22F3F700999FBD /* RestaurantInfoTags.swift */; };
 		E7C110522B22F6AA00999FBD /* CornerRadiusStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */; };
+		E7CAD3C32B4B12A000439D2B /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD3C22B4B12A000439D2B /* MockUserService.swift */; };
+		E7CAD3C52B4B163900439D2B /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD3C42B4B163900439D2B /* MockAuthService.swift */; };
+		E7CAD3C72B4BA79000439D2B /* searchNearby.json in Resources */ = {isa = PBXBuildFile; fileRef = E7CAD3C62B4BA79000439D2B /* searchNearby.json */; };
+		E7CAD3C92B4BD01200439D2B /* MockPlaceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD3C82B4BD01200439D2B /* MockPlaceService.swift */; };
 		E7E200A52B08FF8C003C22D6 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200A42B08FF8C003C22D6 /* FirebaseAnalytics */; };
 		E7E200B12B08FF8C003C22D6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200B02B08FF8C003C22D6 /* FirebaseAuth */; };
 		E7E200B32B08FF8C003C22D6 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200B22B08FF8C003C22D6 /* FirebaseAuthCombine-Community */; };
@@ -157,6 +166,23 @@
 		E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7FFC24C2B037A8E00F7B171 /* CameraView.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E73698342B49BC19007FFE8E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7A399212B034AB4005C8021 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7A399282B034AB4005C8021;
+			remoteInfo = FlavorFlash;
+		};
+		E73729022B4A467A0061C933 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E7A399212B034AB4005C8021 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E7A399282B034AB4005C8021;
+			remoteInfo = FlavorFlash;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		28055511D6E283B5661F16BB /* Pods-FlavorFlash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.release.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.release.xcconfig"; sourceTree = "<group>"; };
 		3DE28E00F8C7916A5874EE79 /* Pods-FlavorFlash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlavorFlash.debug.xcconfig"; path = "Target Support Files/Pods-FlavorFlash/Pods-FlavorFlash.debug.xcconfig"; sourceTree = "<group>"; };
@@ -205,6 +231,13 @@
 		E7274B882B1A111D008C439F /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileHeader.swift; sourceTree = "<group>"; };
 		E73225822B1B0A4C00EE14CC /* OverlayModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayModifiers.swift; sourceTree = "<group>"; };
+		E736982E2B49BC19007FFE8E /* FlavorFlashUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlavorFlashUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E736983D2B49BE75007FFE8E /* UITestingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITestingHelper.swift; sourceTree = "<group>"; };
+		E73728F82B4A421E0061C933 /* ProfileScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenUITests.swift; sourceTree = "<group>"; };
+		E73728FE2B4A467A0061C933 /* FlavorFlashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlavorFlashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E73729002B4A467A0061C933 /* FlavorFlashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashTests.swift; sourceTree = "<group>"; };
+		E73729092B4A471C0061C933 /* LoadFileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFileHelper.swift; sourceTree = "<group>"; };
+		E737290C2B4A4DBC0061C933 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		E73B17142B0AE90400F1A0DD /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E73B17192B0AF8A200F1A0DD /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -258,6 +291,10 @@
 		E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionItem.swift; sourceTree = "<group>"; };
 		E7C1104F2B22F3F700999FBD /* RestaurantInfoTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoTags.swift; sourceTree = "<group>"; };
 		E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyles.swift; sourceTree = "<group>"; };
+		E7CAD3C22B4B12A000439D2B /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
+		E7CAD3C42B4B163900439D2B /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
+		E7CAD3C62B4BA79000439D2B /* searchNearby.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = searchNearby.json; sourceTree = "<group>"; };
+		E7CAD3C82B4BD01200439D2B /* MockPlaceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPlaceService.swift; sourceTree = "<group>"; };
 		E7E200DF2B090B69003C22D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E200E62B091235003C22D6 /* FBMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBMessage.swift; sourceTree = "<group>"; };
 		E7E200EA2B098597003C22D6 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -296,6 +333,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		E736982B2B49BC18007FFE8E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73728FB2B4A467A0061C933 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399262B034AB4005C8021 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -455,6 +506,8 @@
 			isa = PBXGroup;
 			children = (
 				E71BFB212B1771CC008E89DE /* SignInAppleHelper.swift */,
+				E736983D2B49BE75007FFE8E /* UITestingHelper.swift */,
+				E73729092B4A471C0061C933 /* LoadFileHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -465,6 +518,39 @@
 				E7274B8B2B1ACF85008C439F /* ProfileHeader.swift */,
 			);
 			path = ProfileHeader;
+			sourceTree = "<group>";
+		};
+		E736982F2B49BC19007FFE8E /* FlavorFlashUITests */ = {
+			isa = PBXGroup;
+			children = (
+				E73728F72B4A41FB0061C933 /* Profile */,
+			);
+			path = FlavorFlashUITests;
+			sourceTree = "<group>";
+		};
+		E73728F72B4A41FB0061C933 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				E73728F82B4A421E0061C933 /* ProfileScreenUITests.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		E73728FF2B4A467A0061C933 /* FlavorFlashTests */ = {
+			isa = PBXGroup;
+			children = (
+				E737290B2B4A47410061C933 /* Home */,
+				E73729002B4A467A0061C933 /* FlavorFlashTests.swift */,
+			);
+			path = FlavorFlashTests;
+			sourceTree = "<group>";
+		};
+		E737290B2B4A47410061C933 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E737290C2B4A4DBC0061C933 /* HomeViewModelTests.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		E73B17132B0AE89600F1A0DD /* Extensions */ = {
@@ -662,6 +748,8 @@
 			isa = PBXGroup;
 			children = (
 				E7A3992B2B034AB4005C8021 /* FlavorFlash */,
+				E736982F2B49BC19007FFE8E /* FlavorFlashUITests */,
+				E73728FF2B4A467A0061C933 /* FlavorFlashTests */,
 				E7A3992A2B034AB4005C8021 /* Products */,
 				83261AFC1AF957C830E3524E /* Pods */,
 				875771145004DB8690077DDD /* Frameworks */,
@@ -672,6 +760,8 @@
 			isa = PBXGroup;
 			children = (
 				E7A399292B034AB4005C8021 /* FlavorFlash.app */,
+				E736982E2B49BC19007FFE8E /* FlavorFlashUITests.xctest */,
+				E73728FE2B4A467A0061C933 /* FlavorFlashTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -679,6 +769,7 @@
 		E7A3992B2B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
+				E7CAD3C12B4B128F00439D2B /* Mock */,
 				E7FFB3A42B1DCD580065A213 /* Info.plist */,
 				E7EBA2862B2AD85A0088C293 /* System */,
 				E71BFB202B17709A008E89DE /* Helpers */,
@@ -722,6 +813,17 @@
 				E7B37E1F2B2D81E700157DF0 /* NNDiamond.swift */,
 			);
 			path = NNShapes;
+			sourceTree = "<group>";
+		};
+		E7CAD3C12B4B128F00439D2B /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E7CAD3C22B4B12A000439D2B /* MockUserService.swift */,
+				E7CAD3C42B4B163900439D2B /* MockAuthService.swift */,
+				E7CAD3C82B4BD01200439D2B /* MockPlaceService.swift */,
+				E7CAD3C62B4BA79000439D2B /* searchNearby.json */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		E7E200DD2B0909A0003C22D6 /* Chat */ = {
@@ -959,6 +1061,42 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		E736982D2B49BC18007FFE8E /* FlavorFlashUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73698382B49BC19007FFE8E /* Build configuration list for PBXNativeTarget "FlavorFlashUITests" */;
+			buildPhases = (
+				E736982A2B49BC18007FFE8E /* Sources */,
+				E736982B2B49BC18007FFE8E /* Frameworks */,
+				E736982C2B49BC18007FFE8E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73698352B49BC19007FFE8E /* PBXTargetDependency */,
+			);
+			name = FlavorFlashUITests;
+			productName = FlavorFlashUITests;
+			productReference = E736982E2B49BC19007FFE8E /* FlavorFlashUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		E73728FD2B4A467A0061C933 /* FlavorFlashTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73729042B4A467A0061C933 /* Build configuration list for PBXNativeTarget "FlavorFlashTests" */;
+			buildPhases = (
+				E73728FA2B4A467A0061C933 /* Sources */,
+				E73728FB2B4A467A0061C933 /* Frameworks */,
+				E73728FC2B4A467A0061C933 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E73729032B4A467A0061C933 /* PBXTargetDependency */,
+			);
+			name = FlavorFlashTests;
+			productName = FlavorFlashTests;
+			productReference = E73728FE2B4A467A0061C933 /* FlavorFlashTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		E7A399282B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = E7A399392B034AB6005C8021 /* Build configuration list for PBXNativeTarget "FlavorFlash" */;
@@ -1014,13 +1152,22 @@
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
+					E736982D2B49BC18007FFE8E = {
+						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
+						TestTargetID = E7A399282B034AB4005C8021;
+					};
+					E73728FD2B4A467A0061C933 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = E7A399282B034AB4005C8021;
+					};
 					E7A399282B034AB4005C8021 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
 			};
 			buildConfigurationList = E7A399242B034AB4005C8021 /* Build configuration list for PBXProject "FlavorFlash" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1039,15 +1186,32 @@
 			projectRoot = "";
 			targets = (
 				E7A399282B034AB4005C8021 /* FlavorFlash */,
+				E736982D2B49BC18007FFE8E /* FlavorFlashUITests */,
+				E73728FD2B4A467A0061C933 /* FlavorFlashTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		E736982C2B49BC18007FFE8E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73728FC2B4A467A0061C933 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399272B034AB4005C8021 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7CAD3C72B4BA79000439D2B /* searchNearby.json in Resources */,
 				E774569D2B28538D00CAF64C /* randomFood.json in Resources */,
 				E7A399362B034AB6005C8021 /* Preview Assets.xcassets in Resources */,
 				E7EBA28F2B2B2E8C0088C293 /* Loading.json in Resources */,
@@ -1179,6 +1343,23 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		E736982A2B49BC18007FFE8E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73728F92B4A421E0061C933 /* ProfileScreenUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E73728FA2B4A467A0061C933 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E73729012B4A467A0061C933 /* FlavorFlashTests.swift in Sources */,
+				E737290D2B4A4DBC0061C933 /* HomeViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		E7A399252B034AB4005C8021 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1195,6 +1376,8 @@
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,
 				E7C110522B22F6AA00999FBD /* CornerRadiusStyles.swift in Sources */,
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
+				E7CAD3C32B4B12A000439D2B /* MockUserService.swift in Sources */,
+				E7CAD3C92B4BD01200439D2B /* MockPlaceService.swift in Sources */,
 				E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
 				E7FFB3942B1D93F00065A213 /* ReportManager.swift in Sources */,
@@ -1211,6 +1394,7 @@
 				E783AAB92B1448330042FB51 /* FoodPrintCell.swift in Sources */,
 				E77353742B09CB5C003035B4 /* EmailSignInView.swift in Sources */,
 				E70C38E72B1F22AF0048535C /* FoodClassifierV1.mlmodel in Sources */,
+				E736983E2B49BE75007FFE8E /* UITestingHelper.swift in Sources */,
 				E7FFB3842B1C91290065A213 /* FoodPrintHistoryView.swift in Sources */,
 				E70AF8F92B0763480003462C /* ENV.swift in Sources */,
 				E70AF8E72B0734A30003462C /* View+EXT.swift in Sources */,
@@ -1242,6 +1426,7 @@
 				E70359172B248F84008F14E7 /* NavigationBarBackButton.swift in Sources */,
 				E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */,
 				E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */,
+				E737290A2B4A471C0061C933 /* LoadFileHelper.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
 				E75588C92B0F1E2F00086854 /* Location.swift in Sources */,
 				E71BFB1B2B176250008E89DE /* AuthenticationViewModel.swift in Sources */,
@@ -1284,6 +1469,7 @@
 				E7EBA28C2B2AEC850088C293 /* FoodPrintManager.swift in Sources */,
 				E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+EXT.swift in Sources */,
+				E7CAD3C52B4B163900439D2B /* MockAuthService.swift in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
@@ -1307,7 +1493,99 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		E73698352B49BC19007FFE8E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7A399282B034AB4005C8021 /* FlavorFlash */;
+			targetProxy = E73698342B49BC19007FFE8E /* PBXContainerItemProxy */;
+		};
+		E73729032B4A467A0061C933 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E7A399282B034AB4005C8021 /* FlavorFlash */;
+			targetProxy = E73729022B4A467A0061C933 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		E73698362B49BC19007FFE8E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y73ZJF4SCP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FlavorFlash;
+			};
+			name = Debug;
+		};
+		E73698372B49BC19007FFE8E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y73ZJF4SCP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FlavorFlash;
+			};
+			name = Release;
+		};
+		E73729052B4A467A0061C933 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = Y73ZJF4SCP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlavorFlash.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FlavorFlash";
+			};
+			name = Debug;
+		};
+		E73729062B4A467A0061C933 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y73ZJF4SCP;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FlavorFlash.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FlavorFlash";
+			};
+			name = Release;
+		};
 		E7A399372B034AB6005C8021 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1518,6 +1796,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		E73698382B49BC19007FFE8E /* Build configuration list for PBXNativeTarget "FlavorFlashUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73698362B49BC19007FFE8E /* Debug */,
+				E73698372B49BC19007FFE8E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73729042B4A467A0061C933 /* Build configuration list for PBXNativeTarget "FlavorFlashTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E73729052B4A467A0061C933 /* Debug */,
+				E73729062B4A467A0061C933 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		E7A399242B034AB4005C8021 /* Build configuration list for PBXProject "FlavorFlash" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
