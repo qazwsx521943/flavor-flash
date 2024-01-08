@@ -51,16 +51,6 @@ extension RestaurantMapViewCoordinator: MKMapViewDelegate {
 	}
 }
 
-extension RestaurantMapViewCoordinator {
-
-	func fetchNearByRestaurants(centerCoordinate: CLLocationCoordinate2D) {
-
-		guard let categoryTag = parent.homeViewModel.category?.searchTag else { return }
-
-		parent.homeViewModel.fetchNearby()
-	}
-}
-
 // MARK: - CLLocationManager Delegate
 extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -77,7 +67,7 @@ extension RestaurantMapViewCoordinator: CLLocationManagerDelegate {
 			return
 		}
 
-		fetchNearByRestaurants(centerCoordinate: currentLocation)
+		parent.homeViewModel.fetchNearby()
 	}
 
 	// Handle authorization for the location manager.
