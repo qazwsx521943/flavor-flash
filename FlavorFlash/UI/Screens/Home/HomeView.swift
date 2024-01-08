@@ -7,6 +7,7 @@
 
 import SwiftUI
 import os.log
+
 enum BoxSkin: String, Codable {
 	case cat01 = "cat_1"
 	case cat02 = "cat_2"
@@ -139,6 +140,9 @@ struct HomeView: View {
 			}
 			.onAppear {
 				try? viewModel.checkUpdate()
+			}
+			.task {
+				try? await viewModel.initialize()
 			}
 			.navigationTitle("NumNum")
 			.navigationBarTitleDisplayMode(.inline)

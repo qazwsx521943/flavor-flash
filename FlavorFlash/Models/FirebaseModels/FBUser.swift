@@ -90,6 +90,7 @@ extension FBUser {
 			blockedRestaurants: nil,
 			friends: nil,
 			blockedList: nil,
-			categoryPreferences: nil)
+			categoryPreferences: RestaurantCategory.allCases.toString
+		)
 	}
 }

@@ -10,13 +10,29 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import OSLog
 
+protocol UserServiceProtocol {
+	func createUser(user: FBUser) async throws
+	func getUser(userId: String) async throws -> FBUser
+	func listenToChange(userId: String, completionHandler: @escaping (FBUser) -> Void)
+	func getUserFriends(ids: [String]) async throws -> [FBUser]
+	func updateUserProfileImagePath(userId: String, path: String, url: String) async throws
+	func addFriend(userId: String, from currentUser: String) async throws
+	func setRestaurantCategories(userId: String, categories: [String]) async throws
+	func saveUserFavoriteRestaurant(userId: String, restaurant: Restaurant) throws
+	func saveUserLovedRestaurant(userId: String, restaurant: Restaurant) throws
+	func saveUserBlockedRestaurant(userId: String, restaurant: Restaurant) throws
+	func saveUserFoodPrint(userId: String, foodPrint: FBFoodPrint) async throws
+	func blockFriend(blockId: String, from userId: String) async throws
+	func deleteFriend(deleteId: String, from userId: String) async throws
+}
+
 enum FBStoreError: Error {
 	case noSuchInputField
 	case fetchError
 	case addDocError
 }
 
-final class UserManager {
+final class UserManager: UserServiceProtocol {
 
 	static let shared = UserManager()
 

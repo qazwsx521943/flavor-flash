@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -56,6 +56,8 @@
 		E736983E2B49BE75007FFE8E /* UITestingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E736983D2B49BE75007FFE8E /* UITestingHelper.swift */; };
 		E73728F92B4A421E0061C933 /* ProfileScreenUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73728F82B4A421E0061C933 /* ProfileScreenUITests.swift */; };
 		E73729012B4A467A0061C933 /* FlavorFlashTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73729002B4A467A0061C933 /* FlavorFlashTests.swift */; };
+		E737290A2B4A471C0061C933 /* LoadFileHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73729092B4A471C0061C933 /* LoadFileHelper.swift */; };
+		E737290D2B4A4DBC0061C933 /* HomeViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E737290C2B4A4DBC0061C933 /* HomeViewModelTests.swift */; };
 		E73B17152B0AE90400F1A0DD /* ChatManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17142B0AE90400F1A0DD /* ChatManager.swift */; };
 		E73B17172B0AEA9B00F1A0DD /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */; };
 		E73B171A2B0AF8A200F1A0DD /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73B17192B0AF8A200F1A0DD /* ChatRoom.swift */; };
@@ -110,6 +112,8 @@
 		E7C1104E2B22F1DE00999FBD /* RestaurantCollectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */; };
 		E7C110502B22F3F700999FBD /* RestaurantInfoTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C1104F2B22F3F700999FBD /* RestaurantInfoTags.swift */; };
 		E7C110522B22F6AA00999FBD /* CornerRadiusStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */; };
+		E7CAD3C32B4B12A000439D2B /* MockUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD3C22B4B12A000439D2B /* MockUserService.swift */; };
+		E7CAD3C52B4B163900439D2B /* MockAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CAD3C42B4B163900439D2B /* MockAuthService.swift */; };
 		E7E200A52B08FF8C003C22D6 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200A42B08FF8C003C22D6 /* FirebaseAnalytics */; };
 		E7E200B12B08FF8C003C22D6 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200B02B08FF8C003C22D6 /* FirebaseAuth */; };
 		E7E200B32B08FF8C003C22D6 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = E7E200B22B08FF8C003C22D6 /* FirebaseAuthCombine-Community */; };
@@ -230,6 +234,8 @@
 		E73728F82B4A421E0061C933 /* ProfileScreenUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreenUITests.swift; sourceTree = "<group>"; };
 		E73728FE2B4A467A0061C933 /* FlavorFlashTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlavorFlashTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E73729002B4A467A0061C933 /* FlavorFlashTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlavorFlashTests.swift; sourceTree = "<group>"; };
+		E73729092B4A471C0061C933 /* LoadFileHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadFileHelper.swift; sourceTree = "<group>"; };
+		E737290C2B4A4DBC0061C933 /* HomeViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModelTests.swift; sourceTree = "<group>"; };
 		E73B17142B0AE90400F1A0DD /* ChatManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManager.swift; sourceTree = "<group>"; };
 		E73B17162B0AEA9B00F1A0DD /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		E73B17192B0AF8A200F1A0DD /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
@@ -283,6 +289,8 @@
 		E7C1104D2B22F1DE00999FBD /* RestaurantCollectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionItem.swift; sourceTree = "<group>"; };
 		E7C1104F2B22F3F700999FBD /* RestaurantInfoTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoTags.swift; sourceTree = "<group>"; };
 		E7C110512B22F6AA00999FBD /* CornerRadiusStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CornerRadiusStyles.swift; sourceTree = "<group>"; };
+		E7CAD3C22B4B12A000439D2B /* MockUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserService.swift; sourceTree = "<group>"; };
+		E7CAD3C42B4B163900439D2B /* MockAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthService.swift; sourceTree = "<group>"; };
 		E7E200DF2B090B69003C22D6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E7E200E62B091235003C22D6 /* FBMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBMessage.swift; sourceTree = "<group>"; };
 		E7E200EA2B098597003C22D6 /* ChatListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListViewModel.swift; sourceTree = "<group>"; };
@@ -495,6 +503,7 @@
 			children = (
 				E71BFB212B1771CC008E89DE /* SignInAppleHelper.swift */,
 				E736983D2B49BE75007FFE8E /* UITestingHelper.swift */,
+				E73729092B4A471C0061C933 /* LoadFileHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -526,9 +535,18 @@
 		E73728FF2B4A467A0061C933 /* FlavorFlashTests */ = {
 			isa = PBXGroup;
 			children = (
+				E737290B2B4A47410061C933 /* Home */,
 				E73729002B4A467A0061C933 /* FlavorFlashTests.swift */,
 			);
 			path = FlavorFlashTests;
+			sourceTree = "<group>";
+		};
+		E737290B2B4A47410061C933 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				E737290C2B4A4DBC0061C933 /* HomeViewModelTests.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 		E73B17132B0AE89600F1A0DD /* Extensions */ = {
@@ -747,6 +765,7 @@
 		E7A3992B2B034AB4005C8021 /* FlavorFlash */ = {
 			isa = PBXGroup;
 			children = (
+				E7CAD3C12B4B128F00439D2B /* Mock */,
 				E7FFB3A42B1DCD580065A213 /* Info.plist */,
 				E7EBA2862B2AD85A0088C293 /* System */,
 				E71BFB202B17709A008E89DE /* Helpers */,
@@ -790,6 +809,15 @@
 				E7B37E1F2B2D81E700157DF0 /* NNDiamond.swift */,
 			);
 			path = NNShapes;
+			sourceTree = "<group>";
+		};
+		E7CAD3C12B4B128F00439D2B /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E7CAD3C22B4B12A000439D2B /* MockUserService.swift */,
+				E7CAD3C42B4B163900439D2B /* MockAuthService.swift */,
+			);
+			path = Mock;
 			sourceTree = "<group>";
 		};
 		E7E200DD2B0909A0003C22D6 /* Chat */ = {
@@ -1133,7 +1161,7 @@
 				};
 			};
 			buildConfigurationList = E7A399242B034AB4005C8021 /* Build configuration list for PBXProject "FlavorFlash" */;
-			compatibilityVersion = "Xcode 14.0";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -1321,6 +1349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E73729012B4A467A0061C933 /* FlavorFlashTests.swift in Sources */,
+				E737290D2B4A4DBC0061C933 /* HomeViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1340,6 +1369,7 @@
 				E70AF8DE2B0710950003462C /* ProfileView.swift in Sources */,
 				E7C110522B22F6AA00999FBD /* CornerRadiusStyles.swift in Sources */,
 				E773536D2B09A980003035B4 /* FBDataService.swift in Sources */,
+				E7CAD3C32B4B12A000439D2B /* MockUserService.swift in Sources */,
 				E783AAB52B1434C90042FB51 /* FoodPrintDataService.swift in Sources */,
 				E70AF8E92B073FC00003462C /* RestaurantMapView.swift in Sources */,
 				E7FFB3942B1D93F00065A213 /* ReportManager.swift in Sources */,
@@ -1388,6 +1418,7 @@
 				E70359172B248F84008F14E7 /* NavigationBarBackButton.swift in Sources */,
 				E7809B512B0A054200D76E71 /* ProfileViewModel.swift in Sources */,
 				E79639812B118A49006FF600 /* QRCodeScanner.swift in Sources */,
+				E737290A2B4A471C0061C933 /* LoadFileHelper.swift in Sources */,
 				E7FFC24D2B037A8E00F7B171 /* CameraView.swift in Sources */,
 				E75588C92B0F1E2F00086854 /* Location.swift in Sources */,
 				E71BFB1B2B176250008E89DE /* AuthenticationViewModel.swift in Sources */,
@@ -1430,6 +1461,7 @@
 				E7EBA28C2B2AEC850088C293 /* FoodPrintManager.swift in Sources */,
 				E7FECC742B209A9500674C20 /* ButtonStyles.swift in Sources */,
 				E79ED09E2B14E9A7008C2E6F /* UIImage+EXT.swift in Sources */,
+				E7CAD3C52B4B163900439D2B /* MockAuthService.swift in Sources */,
 				E73B171C2B0B079200F1A0DD /* ChatroomViewModel.swift in Sources */,
 				E7FECC842B218B1700674C20 /* PetSelectionView.swift in Sources */,
 				E7274B892B1A111D008C439F /* ChatListCell.swift in Sources */,
@@ -1476,7 +1508,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y73ZJF4SCP;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1496,7 +1528,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y73ZJF4SCP;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1516,7 +1548,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = Y73ZJF4SCP;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1535,7 +1567,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Y73ZJF4SCP;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "ios22-jason.FlavorFlashTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";

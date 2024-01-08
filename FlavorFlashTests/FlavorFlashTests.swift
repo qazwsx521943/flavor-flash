@@ -6,6 +6,7 @@
 //
 
 import XCTest
+@testable import FlavorFlash
 
 final class FlavorFlashTests: XCTestCase {
 

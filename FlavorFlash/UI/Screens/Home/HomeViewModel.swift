@@ -34,42 +34,45 @@ final class HomeViewModel: ObservableObject {
 
 	@AppStorage("rankPreference") var rankPreference: PlaceFetcher.RankPreference?
 
-	init() {
-		Task {
-			try await loadCurrentUser()
-			try await loadUserSavedRestaurants()
+	private var userService: UserServiceProtocol
+	private var authService: AuthServiceProtocol
 
-			UserManager.shared.listenToChange(userId: currentUser!.id) { [weak self] user in
-				self?.currentUser = user
-			}
-		}
-
-		NotificationCenter.default.addObserver(forName: .AuthStateDidChange, object: nil, queue: nil) { [weak self] _ in
-			debugPrint("NOTIFICATION RECEIVED:")
-			try? self?.checkUpdate()
-		}
+	init(
+		userService: UserServiceProtocol = UserManager.shared,
+		authService: AuthServiceProtocol = AuthenticationManager.shared
+	) {
+		self.userService = userService
+		self.authService = authService
+//		NotificationCenter.default.addObserver(forName: .AuthStateDidChange, object: nil, queue: nil) { [weak self] _ in
+//			try? self?.checkUpdate()
+//		}
 	}
 
 	public func randomCategory() {
-		print(userCategories)
 		guard !userCategories.isEmpty else { return }
 		category = userCategories.randomElement()!
 	}
 
+	public func initialize() async throws {
+		try await loadCurrentUser()
+		try await loadUserSavedRestaurants()
+
+		userService.listenToChange(userId: currentUser!.id) { [weak self] user in
+			self?.currentUser = user
+		}
+	}
+
 	private func loadCurrentUser() async throws {
-		guard let currentUser = try? AuthenticationManager.shared.getAuthenticatedUser() 
+		guard let currentUser = try? authService.getAuthenticatedUser()
 		else {
 			throw FBAuthError.userNotLoggedIn
 		}
 
-		let user = try await UserManager.shared.getUser(userId: currentUser.uid)
-		debugPrint("home get user: \(user)")
+		let user = try await userService.getUser(userId: currentUser.uid)
 
-		await MainActor.run {
-			self.currentUser = user
-			if let categoryPreferences = user.categoryPreferences {
-				self.userCategories = categoryPreferences.compactMap { RestaurantCategory(rawValue: $0) }
-			}
+		self.currentUser = user
+		if let categoryPreferences = user.categoryPreferences {
+			self.userCategories = categoryPreferences.compactMap { RestaurantCategory(rawValue: $0) }
 		}
 	}
 
@@ -99,7 +102,7 @@ final class HomeViewModel: ObservableObject {
 				try await loadCurrentUser()
 				try await loadUserSavedRestaurants()
 
-				UserManager.shared.listenToChange(userId: currentUser!.id) { [weak self] user in
+				userService.listenToChange(userId: currentUser!.id) { [weak self] user in
 					self?.currentUser = user
 				}
 			}
@@ -115,7 +118,7 @@ extension HomeViewModel {
 		guard let currentUser else { return }
 
 		do {
-			try UserManager.shared.saveUserFavoriteRestaurant(userId: currentUser.id, restaurant: restaurant)
+			try userService.saveUserFavoriteRestaurant(userId: currentUser.id, restaurant: restaurant)
 		} catch {
 			throw URLError(.badServerResponse)
 		}
@@ -125,7 +128,7 @@ extension HomeViewModel {
 		guard let currentUser else { return }
 
 		do {
-			try UserManager.shared.saveUserLovedRestaurant(userId: currentUser.id, restaurant: restaurant)
+			try userService.saveUserLovedRestaurant(userId: currentUser.id, restaurant: restaurant)
 		} catch {
 			throw URLError(.badServerResponse)
 		}
@@ -135,7 +138,7 @@ extension HomeViewModel {
 		guard let currentUser else { return }
 
 		do {
-			try UserManager.shared.saveUserBlockedRestaurant(userId: currentUser.id, restaurant: restaurant)
+			try userService.saveUserBlockedRestaurant(userId: currentUser.id, restaurant: restaurant)
 		} catch {
 			throw URLError(.badServerResponse)
 		}
